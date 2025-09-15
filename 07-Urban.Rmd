@@ -1,0 +1,7 @@
+# Week 7: Urban Systems and Modeling Green Solutions
+
+- Mon: Urban heat island effect, green infrastructure, and stormwater modeling; effectiveness of mitigation strategies
+- Tue: Simulate traffic and runoff dynamics using basic flow models
+- Wed: Group model: evaluate green roof impact on city temperature or stormwater loads
+- Thu: Model Remix Challenge: Apply urban models to a new social-environmental issue
+- Fri: AI-aided scenario testing and decision analysis for urban planning** AI-aided scenario testing and decision analysis for urban planning

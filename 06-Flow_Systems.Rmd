@@ -1,0 +1,7 @@
+# Week 6: Environmental Flow Systems and Scalable Solutions
+
+- Mon: Water flow, nutrient transport, and energy flux in ecosystems; intro to scalable remediation models
+- Tue: Simulate a watershed or nutrient runoff model in R
+- Wed: Group activity: build a model of estuarine nutrient cycling
+- Thu: Mini Hackathon: Develop a nutrient flow model with limited datasets and time
+- Fri: Introduce uncertainty: run Monte Carlo simulations for water quality projections** Introduce uncertainty: run Monte Carlo simulations for water quality projections

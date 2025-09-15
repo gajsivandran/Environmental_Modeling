@@ -1,0 +1,10 @@
+# Week 3: Modeling Population Dynamics and Conservation Solutions
+
+- Mon: Exponential and logistic growth models; applications to endangered species and recovery strategies
+- Tue: Code population models in R and visualize trajectories for wildlife populations
+- Wed: Group design: model recovery for a reintroduced species under protection
+- Thu: Model Critique Workshop: Evaluate multiple population models (different species/cases)
+- Fri: Scenario testing: parameter sweeps and sensitivity analysis for conservation planning** Scenario testing: parameter sweeps and sensitivity analysis for conservation planning
+
+
+

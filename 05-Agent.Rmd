@@ -1,0 +1,7 @@
+# Week 5: Spatial and Agent-Based Models
+
+- Mon: From compartmental to spatial models; landscape-level processes
+- Tue: 2D grid modeling in R (e.g., forest fire spread, invasive plant species)
+- Wed: Group work: design a spatial model for habitat fragmentation
+- Thu: Peer Review Studio: Exchange and critique spatial model prototypes
+- Fri: Explore NetLogo or agent-based modeling for seed dispersal or species movement** Explore NetLogo or agent-based modeling for seed dispersal or species movement

@@ -1,0 +1,9 @@
+# Week 8: Modeling and Ethics of Environmental Interventions
+
+- Mon: Assumptions, biases, and ethical implications of models used to justify environmental interventions
+- Tue: Build contrasting models (e.g., conservation vs. development outcomes)
+- Wed: Group design: simulate environmental policy scenarios (e.g., cap-and-trade vs. carbon tax)
+- Thu: Role Play: Stakeholder debate over an environmental modeling-based policy decision
+- Fri: Build model summary dashboards (RMarkdown / Shiny preview)** Build model summary dashboards (RMarkdown / Shiny preview)
+
+Explore reproducibility and documentation using LLMs (e.g., RMarkdown, code comments)

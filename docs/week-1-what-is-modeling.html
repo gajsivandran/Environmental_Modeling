@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Week 1: What is Modeling? | Week 1: What is Modeling?</title>
+  <meta name="description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Week 1: What is Modeling? | Week 1: What is Modeling?" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Week 1: What is Modeling? | Week 1: What is Modeling?" />
+  
+  <meta name="twitter:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  
+
+<meta name="author" content="Gaj Sivandran" />
+
+
+<meta name="date" content="2025-09-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>2</b> Week 1: What is Modeling?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-we-will-be-doing-this-week"><i class="fa fa-check"></i><b>2.1</b> What we will be doing this week</a></li>
+<li class="chapter" data-level="2.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#learning-objectives"><i class="fa fa-check"></i><b>2.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-watch-listen-read-student-preparation-for-the-week"><i class="fa fa-check"></i><b>2.3</b> Do, Watch, Listen, Read: Student Preparation For The Week</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#download-and-install-rstudio"><i class="fa fa-check"></i><b>2.3.1</b> Download and Install RStudio</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-this-tutorial"><i class="fa fa-check"></i><b>2.3.2</b> Do this tutorial</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#min-read"><i class="fa fa-check"></i><b>2.3.3</b> 5min Read</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#lets-build-a-model-of-learning"><i class="fa fa-check"></i><b>2.4</b> Let’s Build a Model of Learning</a></li>
+<li class="chapter" data-level="2.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-is-systems-thinking-and-simulation"><i class="fa fa-check"></i><b>2.5</b> What Is Systems Thinking and Simulation?</a></li>
+<li class="chapter" data-level="2.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#abstractionand-why-is-it-so-hard"><i class="fa fa-check"></i><b>2.6</b> Abstraction—and Why Is It So Hard?</a></li>
+<li class="chapter" data-level="2.7" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#the-problem-solving-process"><i class="fa fa-check"></i><b>2.7</b> The Problem-Solving Process</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#define-the-problem"><i class="fa fa-check"></i><b>2.7.1</b> Define the Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simplify-and-abstract"><i class="fa fa-check"></i><b>2.7.2</b> Simplify and Abstract</a></li>
+<li class="chapter" data-level="2.7.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#build-a-conceptual-or-mathematical-model"><i class="fa fa-check"></i><b>2.7.3</b> Build a Conceptual or Mathematical Model</a></li>
+<li class="chapter" data-level="2.7.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simulate-and-explore"><i class="fa fa-check"></i><b>2.7.4</b> Simulate and Explore</a></li>
+<li class="chapter" data-level="2.7.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#evaluate-and-refine"><i class="fa fa-check"></i><b>2.7.5</b> Evaluate and Refine</a></li>
+<li class="chapter" data-level="2.7.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#communicate"><i class="fa fa-check"></i><b>2.7.6</b> Communicate</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#intro-to-prompt-engineering"><i class="fa fa-check"></i><b>2.8</b> Intro to Prompt Engineering</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#why-this-matters"><i class="fa fa-check"></i><b>2.8.1</b> Why This Matters</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Week 1: What is Modeling?</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-1-what-is-modeling" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Week 1: What is Modeling?<a href="week-1-what-is-modeling.html#week-1-what-is-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Theme:</strong> Orientation, purpose of modeling, and first steps in RStudio</p>
+<p><strong>Goal:</strong> Set a positive tone, introduce modeling as a mindset, and start building confidence with tools like RStudio and LLMs.</p>
+<div id="what-we-will-be-doing-this-week" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> What we will be doing this week<a href="week-1-what-is-modeling.html#what-we-will-be-doing-this-week" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><strong>Wed</strong>: Welcome, course expectations, and an introduction to modeling as a way of thinking about systems. We’ll define what a model is and why it’s useful in environmental science. You’ll also begin brainstorming the systems you’re most interested in.</p></li>
+<li><p><strong>Thu</strong>: Build and sketch simple conceptual models. We’ll talk about abstraction, simplification, and assumptions. You’ll draw your own system and explore a visual tool like LOOPY.</p></li>
+<li><p><strong>Fri</strong>: Begin working in RStudio! We’ll introduce the platform, walk through a tutorial, and use an LLM to help you write your first line of R code. This day is all about taking that first step—together.</p></li>
+</ul>
+</div>
+<div id="learning-objectives" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Learning Objectives<a href="week-1-what-is-modeling.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By the end of Week 1, students should be able to:</p>
+<ul>
+<li>Define what a model is and explain its purpose in environmental science.</li>
+<li>Identify abstraction, simplification, and assumptions in a given model.</li>
+<li>Sketch and describe a simple conceptual model of a natural system.</li>
+<li>Critically assess the usefulness and limitations of models.</li>
+<li>Navigate basic RStudio functions and use LLMs to scaffold a simple model script.</li>
+</ul>
+</div>
+<div id="do-watch-listen-read-student-preparation-for-the-week" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Do, Watch, Listen, Read: Student Preparation For The Week<a href="week-1-what-is-modeling.html#do-watch-listen-read-student-preparation-for-the-week" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="download-and-install-rstudio" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Download and Install RStudio<a href="week-1-what-is-modeling.html#download-and-install-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Go the the following link to download RStudio
+<a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop Download</a></p>
+<p><em>Note: Scroll down to find windows/mac version</em></p>
+<p><em>Be sure to get RStudio - not R, RStudio includes everything you need and it creates a much easier user interface to work with</em></p>
+<p>Now don’t worry - the expectation for this course is you have never worked with a coding language before. The purpose of this course is to offer a low stakes way to engage with coding and modeling, see its potential, and <em>then</em> take several other courses that focus on coding.</p>
+</div>
+<div id="do-this-tutorial" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Do this tutorial<a href="week-1-what-is-modeling.html#do-this-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we can explore the environmental systems we care about—like climate change, conservation, and sustainability, we need tools to help us think clearly and creatively. One of those tools is RStudio.</p>
+<p>Let’s be honest: learning a new programming environment can feel overwhelming. That’s okay. It’s normal to feel stuck, confused, or even frustrated when you’re starting out. But here’s the truth:</p>
+<p>We don’t get to do cool science or explore new ideas without doing hard things first.</p>
+<p>This tutorial will walk you through the basics of RStudio: how it looks, how to run code, and how to get started. You don’t need to master everything right away—just take it one step at a time. We’ll practice together in class, and you’ll have support from me, your peers, and even AI tools along the way.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BvKETZ6kr9Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="min-read" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> 5min Read<a href="week-1-what-is-modeling.html#min-read" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Study Confirms Climate Models are Getting Future Warming Projections Right</p>
+<p><a href="https://science.nasa.gov/earth/climate-change/study-confirms-climate-models-are-getting-future-warming-projections-right/"><img src="https://i.gifer.com/9uje.gif" alt="Climate Model Thumbnail" /></a></p>
+</div>
+</div>
+<div id="lets-build-a-model-of-learning" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Let’s Build a Model of Learning<a href="week-1-what-is-modeling.html#lets-build-a-model-of-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is the way I see your learning. It’s a simple feedback between coming to class and office hours.</p>
+<iframe width="500" height="440" frameborder="0" src="https://ncase.me/loopy/v1.1/?embed=1&amp;data=[[[1,429,343,0,%22Learning%22,4],[2,191,211,0,%22Come%2520to%2520Class%22,5],[3,638,186,0,%22Office%2520Hours%22,0],[4,647,518,0,%22Happiness%22,3]],[[2,1,94,1,0],[1,2,89,1,0],[3,1,80,1,0],[1,3,81,1,0],[1,4,45,1,0]],[],4%5D">
+</iframe>
+<div class="activity">
+<p><strong>Activity: What Drives Learning, Enjoyment, and Science?</strong></p>
+<p>Your First Model: A Feedback Loop
+<iframe width="500" height="440" frameborder="0" src="https://ncase.me/loopy/v1.1/?embed=1&data=[[[6,504,144,0,%22Learning%2520%22,5],[7,507,347,0,%22Enjoyment%22,5],[8,505,553,0,%22Science%22,5],[9,201,129,0,%22%253F%22,3],[12,786,133,0,%22%253F%22,0]],[[7,8,13,1,0],[6,7,-6,1,0],[9,6,18,1,0],[12,6,10,-1,0]],[[258,61,%22Thing%2520that%2520ADD%2520to%2520these%2520nodes%22],[775,67,%22Things%2520that%2520SUBTRACT%2520from%2520these%2520nodes%22]],12%5D"></iframe></p>
+<p>The diagram you’re looking at is called a systems model—specifically, a causal loop diagram. It’s the kind of model we use to:</p>
+<ul>
+<li>Represent complex systems using simple relationships</li>
+<li>Visualize feedback (both positive and negative)</li>
+<li>Experiment with how change flows through a system</li>
+</ul>
+<p>In this case, the system is about you as a learner.</p>
+<p><strong>What’s Going On Here?</strong>
+Learning increases Enjoyment, which in turn increases Science.</p>
+<p>Factors can be added (green nodes) or subtracted (red nodes) from each part of the system.</p>
+<p>You can interact with the model by dragging the slider or clicking the nodes to see what happens.</p>
+<p><strong>Task</strong>
+This is the first model of the course—and it’s about you. Your task:</p>
+<ul>
+<li>Play with the model:
+<ul>
+<li>What happens when you increase the positive input?</li>
+<li>What if something subtracts from learning?</li>
+</ul></li>
+<li>As a group, add ideas to these categories:
+-What adds to your learning?
+<ul>
+<li>What subtracts from your learning?</li>
+</ul></li>
+</ul>
+<p>Sketch your own version of the loop:</p>
+<ul>
+<li>What would you add to the system to help you succeed in this class?</li>
+<li>Can you identify a feedback loop (something that reinforces itself)?</li>
+<li>What’s something that could make the system spiral negatively?</li>
+</ul>
+<p><strong>Wrap-up Discussion</strong></p>
+<ul>
+<li>What surprised you about how small changes affected the system?</li>
+<li>How could this approach be used to model an environmental system?</li>
+</ul>
+</div>
+</div>
+<div id="what-is-systems-thinking-and-simulation" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> What Is Systems Thinking and Simulation?<a href="week-1-what-is-modeling.html#what-is-systems-thinking-and-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Systems thinking is about seeing the world as an interconnected web of relationships—where change in one part of a system can ripple through others in surprising ways. It’s a mindset that helps us understand the feedback loops, delays, and patterns that shape everything from ecosystems and climate to cities and communities.</p>
+<p>Simulation is how we bring those systems to life. It’s the process of building simplified, dynamic representations of complex systems so we can ask questions, test scenarios, and explore “what if” ideas—without needing to experiment in the real world.</p>
+<p>Simulations help us:</p>
+<ul>
+<li>Focus on what really matters in a system</li>
+<li>Explore how change unfolds over time</li>
+<li>Make the invisible visible</li>
+</ul>
+<p>Together, systems thinking and simulation allow us to understand environmental challenges more deeplyand to imagine and test solutions before we act. In this course, we’ll use both to explore systems you care about, from forest ecosystems to climate strategies and sustainable cities.</p>
+</div>
+<div id="abstractionand-why-is-it-so-hard" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Abstraction—and Why Is It So Hard?<a href="week-1-what-is-modeling.html#abstractionand-why-is-it-so-hard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Abstraction is the process of simplifying a complex reality by focusing only on the parts that matter most for a specific question or purpose. It’s about stripping away detail so you can see the system more clearly.</p>
+<p>That might sound simple—but it’s not.</p>
+<p>In science (and in life), we’re surrounded by messy, interconnected realities. When we build a model or design a simulation, we have to decide:</p>
+<ul>
+<li>What do we include?</li>
+<li>What do we leave out?</li>
+<li>What assumptions are we making?</li>
+</ul>
+<p>Those are hard decisions. There’s no single “right” answer. Every abstraction involves a trade-off between realism and usability. Too simple, and the model might be useless. Too complex, and it might be impossible to understand or use.</p>
+<p>But here’s why abstraction matters:</p>
+<blockquote>
+<p>It’s the starting point for every scientific model, every simulation, every breakthrough idea.</p>
+</blockquote>
+<p>Abstraction helps us:</p>
+<ul>
+<li>Make sense of overwhelming complexity</li>
+<li>Communicate ideas clearly</li>
+<li>Focus our attention on what’s driving change</li>
+<li>Build models we can analyze, test, and improve</li>
+</ul>
+<p><strong>Every person’s model</strong> will be different because of the unique structure and assumptions they make along the way. That’s not a problem—it’s what makes modeling so powerful and flexible. In climate modeling for instance, they way we create projections of future climates is by taking the average response of many climate models to a expected change in forcings.</p>
+<div class="activity">
+<p><strong>Sketching Exercise</strong></p>
+<p>A sketch is a visual model.
+Task:</p>
+<ul>
+<li>Draw a picture of a chair</li>
+<li>Share your picture with those around you</li>
+<li>What assumptions did you all make in your <strong>model</strong></li>
+<li>Which sketch was right?</li>
+</ul>
+</div>
+</div>
+<div id="the-problem-solving-process" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> The Problem-Solving Process<a href="week-1-what-is-modeling.html#the-problem-solving-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the heart of modeling and simulation is a desire to solve real-world problems—questions about climate, conservation, cities, and sustainability that don’t have simple answers. To tackle those problems effectively, we need a clear and flexible process.</p>
+<p><img src="C:\Users\gajan\OneDrive - UW\UW\Courses\497 - Simulation\Textbook_Project\bookdown_497_simulation\bookdown-demo_files\figure-html\Problem_solving.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Here’s a step-by-step framework we’ll use throughout this course:</p>
+<div id="define-the-problem" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Define the Problem<a href="week-1-what-is-modeling.html#define-the-problem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Start by clearly stating:</p>
+<ul>
+<li>What system are you trying to understand or improve?</li>
+<li>What question are you trying to answer?</li>
+<li>Who is affected by this problem, and why does it matter?</li>
+</ul>
+<p>Example: “How can we reduce the urban heat island effect in our city?”</p>
+</div>
+<div id="simplify-and-abstract" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Simplify and Abstract<a href="week-1-what-is-modeling.html#simplify-and-abstract" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No model can capture every detail. So ask:</p>
+<ul>
+<li>What are the key components of this system?</li>
+<li>What can we leave out (at least for now)?</li>
+<li>What assumptions are we making?</li>
+</ul>
+<p>This is where abstraction comes in—choosing what to keep and what to simplify so that the model is useful without being overwhelming.</p>
+</div>
+<div id="build-a-conceptual-or-mathematical-model" class="section level3 hasAnchor" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Build a Conceptual or Mathematical Model<a href="week-1-what-is-modeling.html#build-a-conceptual-or-mathematical-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now sketch or code a model that represents the system:</p>
+<ul>
+<li>Use diagrams, equations, or simulations</li>
+<li>Identify feedbacks, delays, and influences</li>
+<li>Decide how time and change are represented</li>
+</ul>
+<p>This is where your system takes shape.</p>
+</div>
+<div id="simulate-and-explore" class="section level3 hasAnchor" number="2.7.4">
+<h3><span class="header-section-number">2.7.4</span> Simulate and Explore<a href="week-1-what-is-modeling.html#simulate-and-explore" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Run your model. Ask:</p>
+<ul>
+<li>What happens when you tweak variables?</li>
+<li>Are the results stable, surprising, or sensitive?</li>
+<li>Does this align with what you expected—or challenge it?</li>
+</ul>
+<p>Simulation helps us test our ideas before we act in the real world.</p>
+</div>
+<div id="evaluate-and-refine" class="section level3 hasAnchor" number="2.7.5">
+<h3><span class="header-section-number">2.7.5</span> Evaluate and Refine<a href="week-1-what-is-modeling.html#evaluate-and-refine" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A model is never “finished.” It’s a tool for learning.</p>
+<ul>
+<li>What are the model’s strengths and weaknesses?</li>
+<li>How could it be improved?</li>
+<li>What new questions did it raise?</li>
+</ul>
+<p>Sometimes refining the problem is just as important as refining the solution. Science is often getting to the next <strong>why?</strong></p>
+</div>
+<div id="communicate" class="section level3 hasAnchor" number="2.7.6">
+<h3><span class="header-section-number">2.7.6</span> Communicate<a href="week-1-what-is-modeling.html#communicate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Even the best model won’t make a difference if no one understands it.</p>
+<p>Can you explain your model clearly—visually, verbally, or interactively?</p>
+<p>Who needs to hear this, and how should you frame it?</p>
+<p>Good science isn’t just about building models—it’s about sharing them.</p>
+<p>By following this process, you’re not just solving technical problems—you’re learning how to think critically, collaborate effectively, and design solutions that matter.</p>
+</div>
+</div>
+<div id="intro-to-prompt-engineering" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Intro to Prompt Engineering<a href="week-1-what-is-modeling.html#intro-to-prompt-engineering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we dive into RStudio, we need to learn a surprisingly powerful skill: how to talk to AI.</p>
+<p>When we use tools like ChatGPT or Copilot, the results we get depend entirely on how we frame the question. This practice—designing questions and instructions for an AI—is called prompt engineering.</p>
+<p>Good prompts:</p>
+<ul>
+<li>Give clear context</li>
+<li>State what you’re trying to do</li>
+<li>Are specific, but not overloaded with details</li>
+<li>Might include examples or data structure</li>
+</ul>
+<p>Here’s the difference:</p>
+<p>❌ Less helpful prompt:</p>
+<p>“How do I R?”</p>
+<p>✅ More helpful prompt:</p>
+<p>“I’m working in RStudio. I have a dataset called CO2, and I want to make a scatter plot of uptake vs. concentration. Can you show me the code?”</p>
+<div id="why-this-matters" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Why This Matters<a href="week-1-what-is-modeling.html#why-this-matters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Prompt engineering isn’t just about getting the right code—it’s about learning how to collaborate with AI to think through problems.</p>
+<p>In this course, you’ll use LLMs to:</p>
+<ul>
+<li>Get unstuck when your code won’t run</li>
+<li>Try new ideas quickly</li>
+<li>Explore how changing your prompt changes the response</li>
+</ul>
+<p>And just like with any tool, the more thoughtfully you use it, the better it works.</p>
+<div class="activity">
+<p><strong>Dataset Spotlight: CO₂ Uptake in Grass Plants</strong></p>
+<p><strong>About the Experiment</strong></p>
+<p>The <span class="math inline">\(CO_2\)</span> dataset comes from a classic plant physiology experiment that measured <em>how grass plants respond to different concentrations of carbon dioxide</em> under varying conditions. Researchers wanted to understand how <em><span class="math inline">\(CO_2\)</span> levels</em> , <em>plant type</em> , and <em>treatment (chilled vs. non-chilled)</em> affected the rate at which plants take up carbon from the atmosphere—a key part of understanding photosynthesis and climate-plant interactions.</p>
+<p>Specifically, they measured <em><span class="math inline">\(CO_2\)</span> uptake</em> in grass plants from two groups:</p>
+<ul>
+<li><em>Quebec</em> (cooler climate)</li>
+<li><em>Mississippi</em> (warmer climate)</li>
+</ul>
+<p>Some plants were kept at normal temperatures, while others were <em>chilled</em> to simulate colder conditions. The goal was to see how these factors influenced carbon uptake at different CO₂ concentrations.</p>
+<p><strong>Dataset Structure</strong></p>
+<p>This dataset includes <em>84 observations</em> and <em>5 variables</em>:</p>
+<table>
+<colgroup>
+<col width="51%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Plant</code></td>
+<td>Identifier for the individual plant (Qn or Mn, where Q = Quebec, M = Mississippi)</td>
+</tr>
+<tr class="even">
+<td><code>Type</code></td>
+<td>Origin of the plant: <code>"Quebec"</code> or <code>"Mississippi"</code></td>
+</tr>
+<tr class="odd">
+<td><code>Treatment</code></td>
+<td><code>"chilled"</code> or <code>"nonchilled"</code> (i.e., whether the plant was cooled)</td>
+</tr>
+<tr class="even">
+<td><code>conc</code></td>
+<td>CO₂ concentration in the ambient air (in mL/L)</td>
+</tr>
+<tr class="odd">
+<td><code>uptake</code></td>
+<td>Rate of CO₂ uptake (μmol/m²/s) – this is the <em>response variable</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why It’s Useful for Us</strong></p>
+<p>This dataset is a great first modeling tool because it’s:</p>
+<ul>
+<li>Small and easy to understand<br />
+</li>
+<li>Rich enough for meaningful patterns<br />
+</li>
+<li>Great for <em>visualization</em>, <em>group comparisons</em>, and *basic regression modeling**</li>
+<li>A real-world example of how environmental variables interact</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Modeling.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

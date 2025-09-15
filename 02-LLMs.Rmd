@@ -1,0 +1,517 @@
+# Week 2: LLMs and Modeling Support
+
+## Learning Goals
+By the end of this week, students should be able to:
+
+- Explain what large language models (LLMs) are and how they can support simulation and coding.  
+- Apply prompt engineering techniques to improve model development.  
+- Use LLMs to reframe and clarify environmental modeling challenges.  
+- Critically evaluate when and how it is appropriate to use AI tools in science.  
+- Incorporate LLMs into workflows for reproducibility, documentation, and troubleshooting in R.  
+
+---
+
+## Do, Watch, Listen, Read: Student Preparation for the Week
+
+### Do
+- Open an LLM tool ([ChatGPT](https://chat.openai.com/), [Claude](https://claude.ai/), [Gemini](https://gemini.google.com/) and ask it to:  
+  1. Explain a simple scientific concept (e.g., greenhouse effect) in plain language.  
+  2. Write R code to simulate 10 years of daily temperature with a slight warming trend.  
+- Compare the outputs: What worked well? What didn’t?  
+
+### Watch: Video for Discussion  
+**Video:** [Master 80% of Prompt Engineering In 10 Minutes!](https://www.youtube.com/watch?v=PqfBeBt4FGE) (YouTube, 2024)  
+
+**Intro:**  
+This short video introduces the foundations of prompt engineering and then builds into practical strategies. It explains the **core elements of a good prompt**, highlights **three advanced techniques**, and shares a few **bonus tips** for refining outputs. The goal is to show how structured, intentional prompting can make AI much more useful in practice—especially for coding, modeling, and explanation tasks.  
+
+**Questions to Ponder While Watching:** 
+
+- What are the “core elements” of prompt design highlighted in the video? Why are they essential?  
+- Which advanced technique seems most useful for environmental modeling tasks (e.g., generating R code, simulation explanations)?  
+- How might you apply one of the bonus tips when working on your Week 2 activities?  
+- Can you think of a situation where a poorly written prompt could cause confusion or errors in scientific modeling? How would you fix it?  
+ 
+
+### Read: Reading for Discussion  
+**Article:** [Reconciling the contrasting narratives on the environmental impact of large language models](https://www.nature.com/articles/s41598-024-76682-6) (Nature Scientific Reports, 2024)  
+
+**Intro:**  
+As we consider how to use large language models (LLMs) in environmental science, it’s important to recognize that these tools themselves have environmental costs. This article examines the energy use and carbon footprint of training and running LLMs, compares them with human labor, and discusses how different assumptions lead to contrasting narratives about their sustainability. It’s a nuanced look at the trade-offs between the benefits of AI and the resources required to power it.  
+
+**Questions to Ponder While Reading:**
+
+- What are the main sources of environmental impact from LLMs (training vs. deployment)?  
+- How do the authors compare the impacts of LLMs to traditional human-driven approaches?  
+- Which assumptions (e.g., electricity sources, hardware lifespans) most influence the conclusions?  
+- How might these trade-offs shape your perspective on using LLMs in scientific modeling workflows?  
+
+---
+
+These materials will help you see both sides of using LLMs: as a tool for speeding up coding and simulation, and as a system with important limits you must understand as a scientist.
+
+---
+
+## Introduction to LLMs in Modeling (Mon)
+
+Large language models (LLMs) are a new class of tools that can transform the way scientists and students approach coding, simulation, and communication. They are not replacements for human expertise, but they can act as collaborators—helping us generate ideas, translate complex models into accessible explanations, and troubleshoot code. In this chapter, we explore what LLMs are, how they developed, and how they connect to environmental modeling workflows.
+
+---
+
+### What Are LLMs?
+
+A **large language model (LLM)** is a type of artificial intelligence system trained on massive collections of text. The core idea is surprisingly simple: given a sequence of words, the model predicts the most likely *next word*. By stacking billions of parameters and training on billions of words, LLMs learn patterns of grammar, style, reasoning, and even coding syntax.
+
+Think of an LLM as a highly advanced autocomplete. Instead of only finishing a single word, it can continue a sentence, draft an essay, write a block of R code, or explain a scientific model in plain language.
+
+---
+
+### A Brief History
+
+- **Early 2010s:** Models such as word2vec and GloVe mapped words into mathematical space, capturing similarities (“river” is close to “stream”).  
+- **2017:** The *transformer* architecture was introduced, allowing models to learn long-range patterns in text.  
+- **2018–2020:** OpenAI’s GPT-2 and GPT-3 showed that scaling up data and parameters led to dramatic improvements in fluency.  
+- **2022–present:** Public releases of GPT-4, Claude, Gemini, and other models made LLMs widely accessible for coding, writing, and research.  
+
+This rapid evolution means today’s students can use tools that did not exist even a few years ago.
+
+::: activity
+**Discussion**
+
+What do you think an apporpriate use of LLMs are. 
+Discuss with your table and lets see if we can build some community guidelines (for this class and beyond)
+
+:::
+
+---
+
+## Capabilities and Limits of LLMs
+
+### Capabilities  
+One of the reasons LLMs have gained such traction in research and education is their versatility. They are capable of **generating readable text in many different styles**, ranging from concise scientific summaries to conversational explanations that make technical concepts more approachable. This flexibility allows them to adapt their tone depending on the intended audience, whether it is a group of peers, policymakers, or the general public. Beyond writing, LLMs are particularly useful for **producing and troubleshooting code** across multiple languages, including R, Python, and MATLAB. Students working through simulations can quickly draft starter scripts, identify syntax errors, or explore alternative approaches to the same problem. In addition, LLMs can act as powerful **summarization tools**, condensing long articles, large datasets, or complex equations into clear, digestible insights that highlight key trends or ideas. Finally, perhaps one of their most accessible features is the ability to **translate technical content into plain language**, making specialized knowledge understandable to non-experts. This capacity to bridge the gap between complexity and clarity is especially valuable in environmental science, where communicating models and data to diverse audiences is critical for impact.  
+
+### Limits  
+Despite their impressive capabilities, LLMs come with important limitations that must be acknowledged. A well-documented issue is **hallucination**, where the model generates text that sounds plausible but is factually incorrect or even entirely fabricated. This can be especially problematic in scientific work, where accuracy is paramount. LLMs also reflect the **biases present in their training data**, which means that outputs may unintentionally reproduce stereotypes or emphasize certain perspectives while ignoring others. Another limitation is that these systems lack **true reasoning or understanding**—they do not “know” science in the way humans do, but instead predict patterns based on statistical relationships in text. This means their explanations can oversimplify concepts or miss critical assumptions. Finally, there are **reproducibility challenges**, since the same prompt can yield slightly different outputs depending on the model and context, making it harder to standardize results for scientific workflows. Recognizing these limits helps ensure that we use LLMs critically, as aids to human reasoning rather than substitutes for it.  
+
+---
+
+::: activity
+**Reflection Prompt**  
+Think about a task in environmental modeling you’ve worked on recently (coding, data analysis, or communicating results).  
+
+- Which of the capabilities described here could have supported your work?  
+- Which limitations would you need to watch out for?  
+- How might you balance the efficiency of using an LLM with the need for accuracy and scientific rigor? 
+:::
+
+---
+
+## LLMs in Environmental Modeling Workflows
+
+How do LLMs connect to the practice of environmental modeling? Their utility lies not in replacing the scientist, but in serving as a flexible assistant at different stages of the workflow. One of the most immediate applications is **code generation**. For instance, a student working on a logistic population growth model in R can prompt an LLM to draft the basic script. Even if the generated code is not perfect, it provides a working foundation that can be edited and refined, reducing the time spent on tedious setup. Similarly, LLMs can assist with **documentation support**. In RMarkdown or other coding environments, clear documentation is essential for reproducibility, yet students often overlook it. By asking an LLM to add explanatory comments, create section headers, or translate code into step-by-step descriptions, the workflow becomes easier to follow both for the original author and for future collaborators. Another important use is **simulation explanation**. Equations that may appear abstract to non-specialists—such as those describing exponential growth, diffusion, or temperature response—can be reframed by an LLM into accessible narratives. For example, the logistic growth equation can be explained as a story of a population that grows quickly at first but slows as resources become scarce, eventually leveling off at a carrying capacity.  
+
+These applications highlight the potential of LLMs to streamline scientific work: they can help students start coding more quickly, reduce frustration by catching errors or filling in gaps, and make models more communicable to a wider audience. At the same time, none of these tasks can be fully delegated without oversight. Generated code must be tested for accuracy, documentation must be checked for completeness, and plain-language explanations must be reviewed to ensure they do not omit critical assumptions. In this way, LLMs become collaborative tools that support efficiency and clarity while keeping the responsibility for scientific rigor firmly in human hands.  
+
+
+::: activity
+
+**Activity: Explain a Complex Model with Stepwise Prompting**
+
+We’ll use *stepwise (chain-of-thought–style) prompting* to unpack a very complex partial differential equation into clear, audience-appropriate language *without* asking the AI to reveal its private reasoning. The goal is to force a structured, term-by-term explanation and surface assumptions.
+
+Note: we are purposefully using a complex example here so that we can really see the value and dangers of utilizing a LLM for environmental modeling.
+
+**Model**
+The Advection–Diffusion (or Dispersion) Equation for pollutant transport in a river:
+\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]
+- \(C\): concentration at position \(x\) and time \(t\)  
+- \(D\): diffusion coefficient (mixing)  
+- \(v\): flow velocity (downstream transport)  
+- \(k\): decay rate (removal)
+
+
+
+**Step 1 — Your Own Explanation**
+Write a plain-language explanation for a non-scientist audience (e.g., a community group). If you have no idea whats going on - take a guess. Go term by term and see if you can decipher whats going on.
+
+
+**Step 2 — Baseline AI Explanation**
+Ask an LLM for a plain-language explanation. Save the response.
+
+Baseline prompt:
+ Explain the equation below in plain language for a non-scientist audience.  
+ \[
+ \frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+ \]  
+ Keep it to 6–8 sentences.
+
+Take a second here and compare your result with those at your table? Are thy idenitical?
+
+**Step 3 — Stepwise Prompting (Structured Sections)**
+
+Now force structure so the AI unpacks complexity term-by-term and surfaces assumptions.
+
+*Stepwise prompt template (copy-paste)*
+Explain the equation below using *labeled sections*. Do *not* show your internal reasoning; present only your final explanation.  
+Sections (use headings):  
+1) *Term-by-term meaning* — explain each term in one sentence.  
+2) *Physical interpretation* — connect each term to a river process with a brief analogy.  
+3) *Assumptions* — list key modeling assumptions (e.g., dimensionality, parameter constancy, uniform mixing).  
+4) *Units & parameters* — specify typical units for \(C, D, v, k\).  
+5) *Edge cases* — describe what happens if \(D=0\), \(v=0\), or \(k=0\).  
+6) *Plain-language summary* — 3 sentences for a public audience.  
+
+Equation:  
+\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]
+
+
+**Step 4 — Compare & Critique **
+
+- *Clarity:* Which version (baseline vs. stepwise) is clearer and why?  
+- *Completeness:* Did the stepwise version expose assumptions or units the baseline missed?  
+- *Accuracy:* Note any incorrect claims or overconfidence.
+
+Most importantly - which version did you learn something from?
+
+
+**Step 5 — Constraint Refinement **
+Re-prompt with tighter constraints to match a *specific audience*.
+
+*Audience-tuning examples*
+
+- Policy brief style (≤150 words, 8th-grade reading level).  
+- Technical appendix style (include parameter ranges and citations placeholder).  
+- Infographic caption style (≤90 words, 3 bullets + 1 summary sentence).
+
+**Step 6 — Mini-Deliverable**
+
+Submit: (1) your own explanation, (2) baseline AI output, (3) stepwise output, (4) a 3–5 bullet critique comparing them, and (5) one audience-tuned version.
+
+**Extension (optional)**
+Ask the AI to propose a simple diagram description (no image needed): axes, arrows for diffusion/advection, and a decay cue. Use this as a storyboard for a figure you might create later.
+
+:::
+
+---
+
+## Prompt Engineering for Model Development (Tue & Wed)
+
+- Principles of effective prompts: clarity, context, constraints.  
+- Prompt types: zero-shot, few-shot, role-based prompts.  
+- Iterative refinement and debugging prompts.  
+
+**Activity:** Students write and test prompts for generating R code to simulate temperature data.  
+
+
+
+## Learning goals
+By the end of today, students will be able to:
+- craft clear, contextualized, and constrained prompts that produce correct code and documentation;
+- select and combine zero-shot, few-shot, and role-based prompts for modeling tasks;
+- iteratively refine outputs using structured critique, unit tests, and debugging prompts;
+- apply these skills to build and explain a simple advection–diffusion–decay (ADE) model in R.
+
+---
+
+## Principles of effective prompts: clarity, context, constraints
+
+- **Clarity (goal + audience):** State the task and who it is for.  
+  *“Write R code for first-year environmental science students.”*
+- **Context (problem + assumptions):** Include the equation, domain, units, and assumptions.  
+  *“1-D ADE, L = 10 km, v = 0.2 m/s, D = 10 m²/s, k = 1e-5 s⁻¹, Dirichlet at x = 0, Neumann at x = L.”*
+- **Constraints (format + checks):** Specify interfaces, style, tests, plots, and failure modes.  
+  *“Return a function `run_ade(params)`; add a CFL check; produce one line plot and one time-series plot; comment every major step.”*
+- **Success criteria:** Tell the model how you will judge success.  
+  *“Code must run without additional packages beyond ggplot2 and dplyr.”*
+
+**Prompt template**
+
+> **ASK:** `<what to build/explain>`  
+> **CONTEXT:** `<equations, domain, units, assumptions>`  
+> **CONSTRAINTS:** `<APIs, style, allowed packages, runtime, plots>`  
+> **CHECKS:** `<tests/diagnostics to include>`  
+> **OUTPUT FORMAT:** `<function name, file structure, markdown section, etc.>`  
+> **AUDIENCE:** `<novice, advanced, instructor notes>`
+
+
+---
+
+## Prompt types: zero-shot, few-shot, role-based (with modeling examples)
+- **Zero-shot** — no examples, just a precise specifiction (spec)  
+  *“Implement a Crank–Nicolson diffusion step and 1st-order upwind advection for the 1-D ADE; include a CFL diagnostic and return a tibble of `(time_h, x, C)`.”*
+
+- **Few-shot** — show a small, high-quality example to anchor style/format.  
+  Provide a short example of a function signature and one test, then ask for an analogous function for ADE.
+
+- **Role-based** — assign the model a persona to set expectations and tone.  
+  *“You are a hydrology TA. Produce commented, teachable R code and insert two discussion questions that probe assumptions.”*
+
+- **When to mix:** Start role-based + zero-shot to draft; add few-shot when you need consistent structure (e.g., identical plotting themes across labs).
+
+---
+
+## Iterative refinement and debugging prompts (the LEI loop)
+- **L — Launch** a first draft with strict constraints.  
+- **E — Evaluate** using tests, plots, and quick sanity checks (mass balance, units, stability numbers).  
+- **I — Iterate** with targeted prompts:
+
+Examples:
+
+- *“Diagnose: Why does concentration become negative near the boundary? Propose two fixes and implement the safer one.”*
+- *“Add input validation: stop with a clear message when CFL > 0.9 or when `D < 0`.”*
+- *“Refactor into `setup_grid()`, `step_CN()`, `step_advect()`, `apply_decay()`. Return a named list.”*
+- *“Generate three unit tests using `testthat` for: CFL computation, Neumann boundary, non-negative concentration.”*
+- *“Write a 5-line docstring explaining assumptions and limitations for non-experts.”*
+
+---
+
+## ADE Prompt Library & Activity
+
+Our goal is to build and explain a simple **Advection–Diffusion (ADE)** model in class using careful prompts and iterative refinement.
+
+### What you'll build (at a glance)
+
+- An R function `run_ade(params)` that simulates
+  \[
+  \frac{\partial C}{\partial t} \;=\; D\,\frac{\partial^2 C}{\partial x^2} \;-\; v\,\frac{\partial C}{\partial x} \;-\; k\,C
+  \]
+  on \([0,L]\) with **Dirichlet** at \(x=0\) and **zero-gradient (Neumann)** at \(x=L\).
+- Built-in checks for **CFL** and **diffusion number \(r_D\)**.
+- Two plots: (i) spatial profiles at selected times, (ii) time series at stations.
+- Short, plain-language documentation of assumptions and limitations.
+
+---
+
+
+### Spec → Code
+Write an R function `run_ade(params)` that simulates the 1-D advection–diffusion equation
+$$
+\frac{\partial C}{\partial t} = D\,\frac{\partial^2 C}{\partial x^2} - v\,\frac{\partial C}{\partial x} - k\,C
+$$
+on the domain \([0, L]\) with **Dirichlet** at \(x=0\) and **zero-gradient (Neumann)** at \(x=L\).
+Include: a CFL check, diffusion number \(r_D\), two plots (profiles and station time-series),
+and comments suitable for first-year students.
+
+---
+
+#### Explain assumptions
+In 5 bullets, state modeling assumptions (dimensionality, parameter constancy, mixing, linear decay) and one situation where each assumption breaks.
+
+---
+
+#### Stability & units
+Add a helper `diagnostics()` that prints **CFL**, **Péclet**, and a **units table**
+(C in mg/L, v in m/s, D in m²/s, k in 1/s). Warn when `CFL > 0.9`.
+
+---
+
+#### Visualization
+Plot profiles at \(t=\) 0, 1, 3, 6 h and time-series at \(x=\) 1, 5, 9 km.
+Use clear axis labels and a legend; keep plotting code under 20 lines.
+
+---
+
+::: activity
+**In-class group activity (45–50 min): “Prompt → Plan → Build → Verify”**
+
+- Uses chain-of-thought prompting safely by asking the model to output a plan (step list/pseudocode) before code.
+
+- Deliverables: prompt(s), plan, R script, two plots, short reflection.
+
+:::
+
+#### Common pitfalls & how to prompt around them
+
+- **Vague goals → meandering code** →  
+*“Limit the solution to one function `run_ade`; ≤ 80 lines; include two plots and a diagnostics print.”*
+- **Hidden assumptions** →  
+*“List all assumptions you made; mark each as ‘required’ or ‘replaceable’.”*
+- **Boundary errors** →  
+*“Explain, in words, how you implement Dirichlet at \(x=0\) and zero-gradient at \(x=L\); then show the exact index operations.”*
+- **Numerical instability** →  
+*“Compute and print CFL and \(r_D\); if CFL > 0.9, automatically shrink `dt` and state the new value.”*
+- **Over-fancy output** →  
+*“No external packages beyond ggplot2/dplyr; avoid themes; keep defaults.”*
+
+
+## Critical Reflection: When to Use AI Tools
+
+Deciding when to use an LLM is not always straightforward. These tools offer powerful benefits but also come with risks and ethical concerns. As environmental scientists, we need to think critically about how AI fits into our workflows and how it might affect the quality, accessibility, and trustworthiness of science.
+
+### Benefits
+LLMs can accelerate many parts of the research process. They provide **speed**, helping draft code, summaries, or explanations in seconds. They also increase **accessibility**, lowering the entry barrier for students or collaborators who may not yet have advanced coding or writing skills. LLMs often spark **creativity**, generating new ways of framing a problem or suggesting approaches we might not have considered. Finally, they offer **support for non-experts**: a student new to modeling can use an LLM to explain equations or code in plain language, building confidence and understanding more quickly.
+
+### Risks and Limits
+At the same time, AI-generated content comes with important limitations. The most pressing concern is **accuracy**: LLMs can produce convincing but incorrect answers. This problem, often called **hallucination**, makes it dangerous to rely on AI outputs without verification. Models also inherit **biases** from their training data, which can shape the tone, assumptions, or inclusivity of their responses. There are also **ethical concerns**, including the environmental cost of training large models, the potential for plagiarism or misuse, and broader questions about authorship and credit in scientific work. Recognizing these risks is essential for responsible use.
+
+### Guidelines for Responsible Use in Environmental Science
+To make AI a constructive tool rather than a crutch, we can follow a few guidelines:
+
+- **Use AI to support, not replace, expertise.** Treat LLMs as collaborators that generate drafts, not as authorities.  
+- **Verify and validate outputs.** Always test AI-generated code and fact-check explanations.  
+- **Document when AI was used.** Transparency helps others understand how results were created.  
+- **Consider the audience.** Decide whether an AI-generated explanation is appropriate for a scientific paper, a classroom activity, or public communication.  
+- **Reflect on ethics.** Think about sustainability, fairness, and responsible authorship when integrating AI into research.  
+
+---
+
+::: activity
+**Debate — Should We Use AI in Research?**
+Divide into groups. Half the class argues *for* using LLMs in environmental research, and half argues *against*. Use examples from your own experience and the guidelines above. After the debate, reflect as a group:
+
+- Which arguments were most persuasive?  
+- What conditions or safeguards make AI use acceptable?  
+- Where should we draw the line between helpful assistance and over-reliance?  
+:::
+
+
+## Reproducibility, Documentation, and Troubleshooting (Fri)
+
+Using LLMs to improve reproducibility:  
+
+- RMarkdown templates, commenting code, documenting decisions.  
+
+**Hands-on:** Simulate a simple temperature model in R (linear warming trend + random noise).  
+
+Use LLMs for:  
+- Suggesting code improvements.  
+- Adding explanations and comments.  
+- Identifying potential reproducibility pitfalls.  
+
+**Reflection:** How does AI support or hinder scientific reproducibility?  
+
+---
+
+
+
+
+
+
+
+
+## First Model - ADE
+
+The **advection–diffusion equation (ADE)** is a fundamental tool in environmental science for describing how substances such as pollutants, heat, or nutrients move and transform in natural systems. It combines three processes — **advection** (transport by bulk flow), **diffusion** (spreading due to mixing or molecular motion), and **decay** (loss by reaction, degradation, or uptake). Together, these processes govern how concentrations change in space and time.
+
+---
+
+### General Form
+
+In one spatial dimension, the ADE is written as:
+
+\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]
+
+where:  
+- \(C(x,t)\) = concentration of the substance at location \(x\) and time \(t\)  
+- \(D\) = diffusion (or dispersion) coefficient \((\text{L}^2/\text{T})\)  
+- \(v\) = advective velocity (bulk flow speed, \(\text{L}/\text{T}\))  
+- \(k\) = decay rate constant \((1/\text{T})\)  
+
+This is a **partial differential equation (PDE)** because it describes how concentration changes both with respect to time (\(t\)) and space (\(x\)).
+
+---
+
+### Term-by-Term Meaning
+
+- **Diffusion Term \((D \frac{\partial^2 C}{\partial x^2})\):**  
+  Captures the natural tendency of a substance to spread out, whether through molecular diffusion (random particle motion) or turbulent mixing. In rivers, this reflects how pollutants disperse laterally and longitudinally.  
+
+- **Advection Term \((-v \frac{\partial C}{\partial x})\):**  
+  Represents bulk transport due to flow. In a river, advection moves pollutants downstream at approximately the mean flow velocity.  
+
+- **Decay Term \((-kC)\):**  
+  Accounts for processes that remove the substance over time. Examples include radioactive decay, microbial degradation of organic matter, or chemical reactions that break down contaminants.  
+
+---
+
+### Assumptions Behind the ADE
+
+Like all models, the ADE relies on simplifying assumptions:  
+1. **Homogeneity of parameters:** \(D\), \(v\), and \(k\) are assumed constant in space and time.  
+2. **One-dimensional flow:** The river or system is treated as a single streamline, ignoring lateral and vertical variation.  
+3. **Continuum assumption:** Concentration is treated as a smooth, continuous field rather than individual particles.  
+4. **Linear processes:** Each term acts independently and linearly, with no feedbacks or nonlinear effects.  
+
+These assumptions make the equation mathematically tractable, but real systems often require adjustments or numerical solutions to capture complexity.
+
+---
+
+### Applications in Environmental Science
+
+- **Rivers and Streams:** Tracking the downstream fate of pollutants (e.g., nutrients, heavy metals, thermal plumes).  
+- **Atmosphere:** Modeling dispersion of air pollutants under wind flow and turbulent mixing.  
+- **Groundwater:** Describing contaminant transport through porous media.  
+- **Oceans and Lakes:** Simulating nutrient plumes or thermal pollution.  
+
+In each case, the relative importance of advection, diffusion, and decay depends on system parameters. A fast river with low diffusion behaves differently than a stagnant pond with strong decay.
+
+---
+
+### Analytical Solutions
+
+For simple cases, the ADE has analytical solutions. A classic example is the **instantaneous point source** (a sudden spill at \(x=0\), \(t=0\)) in an infinite domain:
+
+\[
+C(x,t) = \frac{M}{\sqrt{4\pi D t}} \exp \left( -\frac{(x - vt)^2}{4Dt} - kt \right)
+\]
+
+where \(M\) is the mass released.  
+
+This solution shows a **Gaussian plume** that spreads (due to diffusion), shifts downstream (due to advection), and decreases in height (due to decay).
+
+---
+
+### Numerical Solutions
+
+For realistic boundary conditions (finite rivers, variable flows), numerical methods such as **finite difference**, **finite element**, or **particle tracking** are used. These methods discretize space and time, approximating how concentration evolves step by step.
+
+---
+
+### Key Dimensionless Numbers
+
+Two ratios help characterize transport:
+
+- **Péclet Number (\(Pe\)):**  
+  \[
+  Pe = \frac{vL}{D}
+  \]  
+  Ratio of advection to diffusion. High \(Pe\) means transport is dominated by flow.  
+
+- **Damköhler Number (\(Da\)):**  
+  \[
+  Da = \frac{kL}{v}
+  \]  
+  Ratio of reaction/decay to advection. High \(Da\) means rapid decay compared to transport.  
+
+Together, \(Pe\) and \(Da\) guide whether a pollutant plume will spread, persist, or disappear quickly.
+
+---
+
+### Visualization
+
+- **Low velocity, high diffusion:** plume spreads symmetrically around the release point.  
+- **High velocity, low diffusion:** plume moves downstream as a narrow band.  
+- **Strong decay:** plume shrinks and may vanish before traveling far.  
+
+---
+
+### Reflection Questions
+
+1. Which term (advection, diffusion, or decay) dominates in a **fast-flowing river** vs. a **still pond**?  
+2. How does increasing \(D\) change the shape of a pollution plume?  
+3. What are the consequences of assuming one-dimensional flow when rivers have significant lateral mixing?  
+4. How might climate change (altered flow velocities, higher temperatures) affect ADE parameters?  
+
+
+
+
+
+
+
+

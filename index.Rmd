@@ -1,0 +1,15 @@
+--- 
+title: "Model Your World: Introduction to Modeling and Simulation"
+author: "Gaj Sivandran"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book     
+bibliography: [book.bib]  
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "A textbook companion to the Univeristy of Washington QSci 497 class"
+---
+
+# Welcome

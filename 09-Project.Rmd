@@ -1,0 +1,7 @@
+# Week 9: Final Project Development
+
+- Mon: Project proposals and scoping (emphasize solutions-oriented modeling — e.g., biochar, reforestation, enhanced weathering, marine permaculture)
+- Tue: Coding support workshop; use LLMs for prototype development
+- Wed: Group peer reviews
+- Thu: Gallery Walk: Students present in-progress models and get peer feedback
+- Fri: Open lab for modeling and feedback** Open lab for modeling and feedback

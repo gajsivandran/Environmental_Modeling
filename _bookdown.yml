@@ -1,0 +1,19 @@
+book_filename: "bookdown-demo"
+output_dir: "docs"
+clean: [packages.bib, bookdown.bbl]
+language:
+  ui:
+    chapter_name: "Chapter "
+    appendix_name: "Appendix "
+
+delete_merged_file: true
+
+output:
+  bookdown::gitbook:
+    css: style.css
+
+number_sections: true
+
+rmd_files:
+  - index.Rmd
+  - 01-Modeling.Rmd

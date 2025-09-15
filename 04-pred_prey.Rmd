@@ -1,0 +1,7 @@
+# Week 4: Predator-Prey, Feedback Systems, and Stabilization Strategies
+
+- Mon: Lotka-Volterra models and ecological feedback loops; explore resilience through managed interventions
+- Tue: Code predator-prey dynamics (e.g., wolves and elk in Yellowstone)
+- Wed: Group work: model interactions in a coastal marine food web
+- Thu: Storytelling with Models: Visualize and explain feedback loops to a non-expert audience
+- Fri: Use LLMs to vary assumptions and re-parameterize model code for ecosystem scenarios** Use LLMs to vary assumptions and re-parameterize model code for ecosystem scenarios
