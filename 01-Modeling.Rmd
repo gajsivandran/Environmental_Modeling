@@ -1,7 +1,5 @@
 # Week 1: What is Modeling?
 
-##test
-
 **Theme:** Orientation, purpose of modeling, and first steps in RStudio
 
 **Goal:** Set a positive tone, introduce modeling as a mindset, and start building confidence with tools like RStudio and LLMs.
