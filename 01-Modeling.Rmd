@@ -11,7 +11,7 @@
 
 - **Thu**: Build and sketch simple conceptual models. We'll talk about abstraction, simplification, and assumptions. You'll draw your own system and explore a visual tool like LOOPY.
 
-- **Fri**: Begin working in RStudio! We'll introduce the platform, walk through a tutorial, and use an LLM to help you write your first line of R code. This day is all about taking that first step—together.
+- **Fri**: Begin working in RStudio! We'll introduce the platform, walk through a tutorial, and use an LLM to help you write your first line of R code. This day is all about taking that first step—together. Brainstorm and team up for class projects.
 
 ## Learning Objectives
 By the end of Week 1, students should be able to:
@@ -21,6 +21,7 @@ By the end of Week 1, students should be able to:
 - Sketch and describe a simple conceptual model of a natural system.
 - Critically assess the usefulness and limitations of models.
 - Navigate basic RStudio functions and use LLMs to scaffold a simple model script.
+- Start to formulate your projects
 
 ## Do, Watch, Listen, Read: Student Preparation For The Week
 ### Download and Install RStudio
@@ -31,7 +32,7 @@ Go the the following link to download RStudio
 
 *Be sure to get RStudio - not R, RStudio includes everything you need and it creates a much easier user interface to work with*
 
-Now don't worry - the expectation for this course is you have never worked with a coding language before. The purpose of this course is to offer a low stakes way to engage with coding and modeling, see its potential, and *then* take several other courses that focus on coding.
+Now don't worry - the expectation for this course is you have never worked with a coding language before. The purpose of this course is to offer a low stakes way to engage with coding and modeling, see its potential, and *then* take several other courses that focus on coding. 
 
 ### Do this tutorial
 Before we can explore the environmental systems we care about—like climate change, conservation, and sustainability, we need tools to help us think clearly and creatively. One of those tools is RStudio.
@@ -163,9 +164,12 @@ Task:
 ## The Problem-Solving Process
 At the heart of modeling and simulation is a desire to solve real-world problems—questions about climate, conservation, cities, and sustainability that don’t have simple answers. To tackle those problems effectively, we need a clear and flexible process.
 
-<img src="C:\Users\gajan\OneDrive - UW\UW\Courses\497 - Simulation\Textbook_Project\bookdown_497_simulation\bookdown-demo_files\figure-html\Problem_solving.png" width="60%" style="display: block; margin: auto;" />
-
 Here’s a step-by-step framework we’ll use throughout this course:
+
+![](images/problem_solving.png){fig.alt='A flow digram that circles back on itself. Starts with define the problem which feeds to simplify and abstract, then build a model, simulate and explore, evaluate and refine and finally communicate' style="float:right"}
+
+
+
 
 ### Define the Problem
 Start by clearly stating:

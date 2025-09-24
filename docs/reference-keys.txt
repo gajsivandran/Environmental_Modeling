@@ -1,4 +1,11 @@
 welcome
+teaching-team-introductions-gaj-sivandran
+course-highlights
+what-are-the-learning-outcomes
+notes-and-textbooks
+course-topics
+classroom-etiquette
+assessment
 week-1-what-is-modeling
 what-we-will-be-doing-this-week
 learning-objectives
