@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Workbook Week 1: What is Modeling? | Model Your World: Introduction to Modeling and Simulation</title>
+  <title>Appendix A Project Week 1 – The ‘why’ and the ‘what’ | Model Your World: Introduction to Modeling and Simulation</title>
   <meta name="description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Workbook Week 1: What is Modeling? | Model Your World: Introduction to Modeling and Simulation" />
+  <meta property="og:title" content="Appendix A Project Week 1 – The ‘why’ and the ‘what’ | Model Your World: Introduction to Modeling and Simulation" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Workbook Week 1: What is Modeling? | Model Your World: Introduction to Modeling and Simulation" />
+  <meta name="twitter:title" content="Appendix A Project Week 1 – The ‘why’ and the ‘what’ | Model Your World: Introduction to Modeling and Simulation" />
   
   <meta name="twitter:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="week-1-what-is-modeling.html"/>
-<link rel="next" href="app-wk1.html"/>
+<link rel="prev" href="workbook-week-1-what-is-modeling.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,108 +136,126 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="workbook-week-1-what-is-modeling" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Workbook Week 1: What is Modeling?<a href="workbook-week-1-what-is-modeling.html#workbook-week-1-what-is-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="app-wk1" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Appendix A</span> Project Week 1 – The ‘why’ and the ‘what’<a href="app-wk1.html#app-wk1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="promptbox">
-<p><strong>Class Discussion</strong></p>
-<p>Lets build a working definition of the central components of this course.
-In your groups see if you can define</p>
+<p><strong><span class="math inline">\(Y^n\)</span></strong></p>
 <ul>
-<li>Coding
-<br><br><br><br><br><br></li>
-<li>Models/Modeling
-<br><br><br><br><br><br></li>
-<li>Simulation
-<br><br><br><br><br><br></li>
-<li>Systems
-<br><br><br><br><br><br></li>
-<li>Logic
-<br><br><br><br><br><br></li>
-<li>Syntax
-<br><br><br><br><br><br></li>
+<li>Pick a system and ask why about some part you are interested</li>
+<li>Then ask a why again</li>
+<li>Keep asking why till you cant find the answer anymore</li>
 </ul>
-</div>
-<div class="promptbox">
-<p>A key skill in being a modeler is the ability of abstraction</p>
-<p><strong>Sketching Exercise</strong></p>
-<p>A sketch is a visual model.
-Task:</p>
+<p><strong>Quick Demo</strong></p>
+<ol style="list-style-type: decimal">
+<li>Why does day length change?
+→ Because of the seasons.</li>
+</ol>
 <ul>
-<li>Draw a picture of a chair (1min)</li>
-<li>Share your picture with those around you</li>
-<li>What <strong>assumptions</strong> did you all make in your <strong>model</strong></li>
-<li>Which sketch was right?</li>
+<li>As Earth orbits the Sun, sometimes your hemisphere is tilted toward the Sun (summer, longer days) and sometimes away (winter, shorter days).</li>
 </ul>
-<p><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Systems Thinking - what do we mean by this?</strong></p>
-<p><br><br><br><br><br><br>
-Lets do my phd in 5 mins - plants in desert systems - lets think about this as a system.</p>
-<p><img src="images/problem_solving.png" style="float:right" fig.alt="A flow digram that circles back on itself. Starts with define the problem which feeds to simplify and abstract, then build a model, simulate and explore, evaluate and refine and finally communicate" /></p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Pseudo code</strong></p>
-<p>The art of writing good instructions</p>
-<p>I’m a robot, and you want me to toast a bagel and put Vegemite on it.
-Write me the pseudo code to make this happen.</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-<p><strong>This is what happens when you give bad instructions:</strong></p>
-<div style="text-align: center;">
-<iframe width="320" height="576" src="https://www.youtube.com/embed/ZrkAt_7qQb8" title="How to toast a bagel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
-</div>
-<strong>This is what’s possible with complete instructions:</strong>
-<div style="text-align: center;">
-<p><iframe width="560" height="315" 
-    src="https://www.youtube.com/embed/0eIryyzlRwA?si=K8Ajupl-4uugLgR2" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    allowfullscreen>
-</iframe></p>
-</div>
-<div class="promptbox">
-<p><strong>Group activity - Dice</strong>
-We want to know what the most likely total you would get from rolling two 6 sided die.
-Write some pseudo code to collect data to help you work this out.</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Guessing Game</strong></p>
-<p>Write pseudo code that would count how many guesses you would take to find a number between 1 and 10.</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Needle in a Haystack</strong></p>
-<p><img src="images/antimatter.png" style="float:right" fig.alt="Decorative" /></p>
-<p>In the Dan Brown novel ‘Angels and Demons’ the Vatican is about to be blown up by a antimatter device. In the movie, the <em>bad guys</em> has a webcam on the device. Someone has the idea of systematically cutting power to the different sectors of the power grid to narrow down the location. They dismiss is because they work out there isn’t enough time to cycle through all the sectors.</p>
-<p>But you took my class and actually make this idea work.</p>
-<p>Lets assume:</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Why do we have seasons?
+→ Because of the tilt of Earth’s axis.</li>
+</ol>
 <ul>
-<li>We have 1,048,576 possible sectors.</li>
-<li>It takes 1hr for a sector to respond to a change</li>
+<li>Earth’s axis is tilted about 23.5° relative to its orbit. This tilt changes how high the Sun appears in the sky and how long its path lasts each day.</li>
 </ul>
-<p>What’s the <strong>longest</strong> time it would take to find the sector?
-What is the <strong>shortest</strong> time it would take to be <strong>sure</strong> you found the sector?</p>
-<p>Write some pseudo code</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Why is Earth tilted?
+→ Because of a giant collision in the early solar system.</li>
+</ol>
+<ul>
+<li>A Mars-sized body (often called Theia) likely struck Earth 4.5 billion years ago. This impact knocked Earth off a straight-up orientation and also produced the Moon.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Why did that collision happen?
+→ Because the early solar system was chaotic.</li>
+</ol>
+<ul>
+<li>When the Sun first formed, space around it was full of rocky planetesimals (early building blocks of planets). Their orbits overlapped, and gravity pulled them into frequent, violent collisions.</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Why was there a disk of planetesimals in the first place?
+→ Because the solar system formed from a collapsing nebula.</li>
+</ol>
+<ul>
+<li>A cloud of gas and dust collapsed under gravity. As it collapsed, conservation of angular momentum caused the material to flatten into a spinning disk. Inside that disk, clumps grew into planetesimals and then planets.</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Why does the Earth spin in the first place?
+→ Because of angular momentum inherited from the disk.</li>
+</ol>
+<ul>
+<li>The collapsing nebula was already rotating. As clumps of matter formed into planets, they retained that spin. Collisions and impacts modified Earth’s rotation rate and axis, but didn’t stop the overall spin.</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Why did the nebula collapse?
+→ Because of gravity and outside triggers.</li>
+</ol>
+<ul>
+<li>Dense regions of interstellar gas clouds naturally collapse under their own weight. This process may have been accelerated by shock waves from a nearby supernova explosion.</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li>Why was there a cloud of gas and dust?
+→ Because of earlier generations of stars.</li>
+</ol>
+<ul>
+<li>Stars burn fuel and die. Supernovae scatter their contents into space, creating gas and dust clouds rich in heavy elements. Our solar system is made of this recycled stardust.</li>
+</ul>
+<ol start="9" style="list-style-type: decimal">
+<li>Why do stars form and die?
+→ Because of gravity and nuclear fusion.</li>
+</ol>
+<ul>
+<li>Gravity compresses gas until fusion ignites. Fusion powers stars until the fuel is gone, at which point they evolve into white dwarfs, neutron stars, or black holes.</li>
+</ul>
+<ol start="10" style="list-style-type: decimal">
+<li>Why does nuclear fusion work?
+→ Because of the fundamental forces of nature.</li>
+</ol>
+<ul>
+<li>Fusion is governed by gravity, electromagnetism, and the strong/weak nuclear forces. These make it possible for nuclei to fuse and release energy.</li>
+</ul>
+<ol start="11" style="list-style-type: decimal">
+<li>Why do these fundamental forces exist, and why do they have the values they do?
+→ That is an open question.</li>
+</ol>
+<p>Physics describes and measures these forces, but doesn’t explain why they exist at all. This is the frontier where science meets philosophy and cosmology.</p>
+<p><strong><span class="math inline">\(Y^{11}\)</span></strong></p>
+</div>
+<div class="promptbox">
+<p><strong>Task 1 - Group of 5</strong></p>
+<ul>
+<li>Workshop your individual ideas with your group</li>
+<li>Spend 3 mins on each person (I’ll set a timer)</li>
+<li>Ask <strong>y’s</strong></li>
+</ul>
+<p><br><br></p>
+</div>
+<div class="promptbox">
+<p><strong>Task 2 - 1 Line Description</strong></p>
+<p>Take a couple minutes and try to write down - in one line - where your idea is at.
+This is not your final project topic - just a progress report</p>
+<ul>
+<li>Post this after class in the discussion opened for project ideas [P&amp;P]</li>
+<li>Comment on 3 posts - ask another specific why? [P&amp;P]</li>
+</ul>
+<p><br><br></p>
+</div>
+<div class="promptbox">
+<p><strong>Task 3 - Network</strong></p>
+<p>Find the like minded people in the room
+Team up? Couple your models? Share thoughts</p>
 </div>
 
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="week-1-what-is-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="app-wk1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="workbook-week-1-what-is-modeling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -268,7 +286,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01wb-Modeling.Rmd",
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/90-Appendix.Rmd",
     "text": "Edit"
   },
   "history": {
