@@ -25,3 +25,4 @@ evaluate-and-refine
 communicate
 intro-to-prompt-engineering
 why-this-matters
+workbook-week-1-what-is-modeling
