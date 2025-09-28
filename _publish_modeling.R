@@ -1,135 +1,82 @@
 # _publish_modeling.R
-# Bookdown -> GitHub Pages (docs/) with auto-fixes for the Modeling book
 
-EXPECTED_REMOTE <- "https://github.com/gajsivandran/Environmental_Modeling.git"
-PAGES_URL       <- "https://gajsivandran.github.io/Environmental_Modeling/"
-BRANCH_OVERRIDE <- Sys.getenv("BRANCH_OVERRIDE", unset = NA_character_)  # e.g., "main2"
+library(bookdown)
+library(gert)
+library(glue)
+library(fs)
 
-suppressPackageStartupMessages({
-  if (!requireNamespace("gert", quietly = TRUE)) install.packages("gert")
-  if (!requireNamespace("bookdown", quietly = TRUE)) install.packages("bookdown")
-  if (!requireNamespace("yaml", quietly = TRUE)) install.packages("yaml")
-})
 
-# ---------- helpers ----------
-ensure_bookdown_outputs_to_docs <- function() {
-  yml_path <- "_bookdown.yml"
-  if (!file.exists(yml_path)) {
-    yaml::write_yaml(list(output_dir = "docs"), yml_path)
-    message("Created _bookdown.yml with output_dir: 'docs'")
-    return(invisible(TRUE))
-  }
-  y <- tryCatch(yaml::read_yaml(yml_path), error = function(e) NULL)
-  if (is.null(y)) stop("Could not read _bookdown.yml. Fix its syntax and re-run.")
-  if (is.null(y$output_dir) || !identical(y$output_dir, "docs")) {
-    y$output_dir <- "docs"
-    yaml::write_yaml(y, yml_path)
-    message("Set output_dir: 'docs' in _bookdown.yml")
-  }
-  invisible(TRUE)
-}
 
-ensure_nojekyll <- function() {
-  if (!dir.exists("docs")) dir.create("docs", recursive = TRUE, showWarnings = FALSE)
-  if (!file.exists("docs/.nojekyll")) {
-    file.create("docs/.nojekyll")
-    message("Created docs/.nojekyll")
-  }
-}
+repo_path <- "C:/Users/gajs/OneDrive - UW/UW/Courses/497 - Simulation/Textbook_Project/bookdown_497_simulation"
+remote_expected <- "https://github.com/gajsivandran/Environmental_Modeling.git"
+pages_url <- "https://gajsivandran.github.io/Environmental_Modeling/"
 
-ensure_gitignore_allows_docs <- function() {
-  gi <- ".gitignore"
-  if (!file.exists(gi)) return(invisible(TRUE))
-  lines <- readLines(gi, warn = FALSE)
-  bad <- grepl("^\\s*(/?)docs/?\\s*$", lines)
-  if (any(bad)) {
-    lines <- lines[!bad]
-    writeLines(lines, gi)
-    message("Removed 'docs' from .gitignore")
-  }
-  invisible(TRUE)
-}
+# 1) Sanity checks -----------------------------------------------------------
+stopifnot(dir_exists(repo_path))
+repo <- repo_path
 
-detect_branch <- function(repo) {
-  if (!is.na(BRANCH_OVERRIDE) && nzchar(BRANCH_OVERRIDE)) return(BRANCH_OVERRIDE)
-  cur <- tryCatch(gert::git_info(repo)$branch, error = function(e) NA_character_)
-  if (is.null(cur) || length(cur) != 1L || is.na(cur) || identical(cur, "")) "main" else cur
-}
+# Ensure we’re in a git repo
+git_info <- git_info(repo = repo)
 
-push_with_merge_if_needed <- function(repo, branch) {
-  push_once <- function() {
-    gert::git_push(
-      repo = repo, remote = "origin",
-      refspec = paste0("HEAD:refs/heads/", branch),
-      set_upstream = TRUE
-    )
-  }
-  tryCatch(
-    { push_once(); TRUE },
-    error = function(e) {
-      msg <- conditionMessage(e)
-      if (grepl("not present locally|non-fast-forward|contains commits", msg)) {
-        message("Remote ahead; fetching and merging origin/", branch, " ...")
-        gert::git_fetch(repo = repo, remote = "origin")
-        gert::git_merge(repo = repo, commit = paste0("origin/", branch))
-        st <- gert::git_status(repo = repo)
-        if (any(st$status == "conflicted")) {
-          stop("Merge conflicts detected. Resolve them, commit, then re-run.")
-        }
-        push_once(); TRUE
-      } else stop(e)
-    }
-  )
-}
-
-# ---------- main ----------
-repo <- tryCatch(gert::git_find("."), error = function(e)
-  stop("Not inside a git repo. Open the MODELING book project and run again.")
-)
-setwd(repo)
-if (!file.exists("index.Rmd")) stop("index.Rmd not found in: ", repo)
-
-# Ensure origin -> Modeling repo (auto-fix)
-rem <- gert::git_remote_list(repo = repo)
-if (nrow(rem) == 0) {
-  gert::git_remote_add(remote = "origin", url = EXPECTED_REMOTE, repo = repo)
-  message("Added origin: ", EXPECTED_REMOTE)
+# Ensure correct remote URL
+remotes <- git_remote_list(repo = repo)
+if (!any(remotes$name == "origin")) {
+  git_remote_add(name = "origin", url = remote_expected, repo = repo)
 } else {
-  origin_url <- rem$url[rem$name == "origin"][1]
-  if (!identical(origin_url, EXPECTED_REMOTE)) {
-    gert::git_remote_set_url(remote = "origin", url = EXPECTED_REMOTE, repo = repo)
-    message("Updated origin to: ", EXPECTED_REMOTE)
+  cur_url <- remotes$url[remotes$name == "origin"][1]
+  if (!identical(cur_url, remote_expected)) {
+    git_remote_set_url(remote = "origin", url = remote_expected, repo = repo)
   }
 }
 
-# Output dir/docs housekeeping
-ensure_bookdown_outputs_to_docs()
-ensure_nojekyll()
-ensure_gitignore_allows_docs()
+# Ensure we’re on 'main' (create/switch if needed)
+branch <- tryCatch(git_branch(repo = repo)$name, error = function(e) NA_character_)
+if (is.na(branch) || !nzchar(branch)) branch <- "main"
+if (branch != "main") {
+  # create local main if missing, then checkout
+  branches <- git_branch_list(repo = repo)$name
+  if (!"main" %in% branches) git_branch_create("main", checkout = FALSE, repo = repo)
+  git_branch_checkout("main", repo = repo)
+}
 
-# Branch
-branch <- detect_branch(repo)
-message("Repo   : ", repo)
-message("Origin : ", EXPECTED_REMOTE)
-message("Branch : ", branch)
+# 2) Build the book to docs/ ------------------------------------------------
+old_wd <- getwd()
+setwd(repo)
+on.exit(setwd(old_wd), add = TRUE)
+
+# Make sure docs exists and is not ignored
+dir_create("docs")
+
+# Optional: guard against docs being ignored
+ignored <- tryCatch(git_check_ignore(paths = "docs/index.html", repo = repo), error = function(e) character())
+if (length(ignored) > 0) {
+  message("⚠️  It looks like docs/ is ignored by .gitignore. Remove that rule and re-run.")
+  quit(status = 1)
+}
 
 # Build
-bookdown::clean_book(TRUE)
-bookdown::render_book("index.Rmd", "bookdown::gitbook")
-ensure_nojekyll()
-if (!file.exists("docs/index.html")) stop("Build failed: docs/index.html not found")
+render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir = "docs")
 
-# Commit + push (auto-handle remote-ahead)
-gert::git_add(repo = repo, files = ".")
-invisible(try(
-  gert::git_commit(
-    repo = repo,
-    message = sprintf("Publish (Modeling): rebuild @ %s",
-                      format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
-  ),
-  silent = TRUE
-))
-push_with_merge_if_needed(repo, branch)
+# 3) Stage, commit, push -----------------------------------------------------
+# Stage adds, modifications, and deletions inside docs/
+git_add("docs", repo = repo)
+# Handle deletions that git_add won't catch directly
+# (gert stages deletions when you add the directory, but we can be explicit)
+status <- git_status(repo = repo)
 
-message("✅ Published Modeling book to ", PAGES_URL, " (branch ", branch, ")")
-message("If the page looks stale, hard refresh the browser.")
+if (nrow(status) == 0) {
+  message("ℹ️  No changes to publish. The site is already up to date.")
+} else {
+  n_add <- sum(status$status %in% c("new","modified","typechange"))
+  n_del <- sum(status$status %in% c("deleted","renamed"))
+  msg <- glue("Publish site: {n_add} changes, {n_del} deletions in docs/")
+  git_commit(message = msg, repo = repo)
+  # Pull (rebase) just in case, then push
+  try(git_pull(repo = repo, fast_forward = TRUE), silent = TRUE)
+  git_push(repo = repo)
+  message("✅ Pushed changes.")
+}
+
+# 4) Final message -----------------------------------------------------------
+cat(glue("\n✅ Published Modeling book to {pages_url} (branch main /docs)\n"))
+cat("If the page looks stale, clear your browser cache or open a private window.\n")

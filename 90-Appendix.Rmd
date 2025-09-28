@@ -1,0 +1,110 @@
+# (APPENDIX) Appendices {-}
+
+# Project Week 1 – The 'why' and the 'what' {#app-wk1}
+
+
+::: promptbox
+**$Y^n$**
+
+- Pick a system and ask why about some part you are interested
+- Then ask a why again
+- Keep asking why till you cant find the answer anymore
+
+
+**Quick Demo**
+
+1. Why does day length change?
+→ Because of the seasons.
+
+- As Earth orbits the Sun, sometimes your hemisphere is tilted toward the Sun (summer, longer days) and sometimes away (winter, shorter days).
+
+2. Why do we have seasons?
+→ Because of the tilt of Earth’s axis.
+
+- Earth’s axis is tilted about 23.5° relative to its orbit. This tilt changes how high the Sun appears in the sky and how long its path lasts each day.
+
+3. Why is Earth tilted?
+→ Because of a giant collision in the early solar system.
+
+- A Mars-sized body (often called Theia) likely struck Earth 4.5 billion years ago. This impact knocked Earth off a straight-up orientation and also produced the Moon.
+
+4. Why did that collision happen?
+→ Because the early solar system was chaotic.
+
+- When the Sun first formed, space around it was full of rocky planetesimals (early building blocks of planets). Their orbits overlapped, and gravity pulled them into frequent, violent collisions.
+
+5. Why was there a disk of planetesimals in the first place?
+→ Because the solar system formed from a collapsing nebula.
+
+- A cloud of gas and dust collapsed under gravity. As it collapsed, conservation of angular momentum caused the material to flatten into a spinning disk. Inside that disk, clumps grew into planetesimals and then planets.
+
+6. Why does the Earth spin in the first place?
+→ Because of angular momentum inherited from the disk.
+
+- The collapsing nebula was already rotating. As clumps of matter formed into planets, they retained that spin. Collisions and impacts modified Earth’s rotation rate and axis, but didn’t stop the overall spin.
+
+7. Why did the nebula collapse?
+→ Because of gravity and outside triggers.
+
+- Dense regions of interstellar gas clouds naturally collapse under their own weight. This process may have been accelerated by shock waves from a nearby supernova explosion.
+
+8. Why was there a cloud of gas and dust?
+→ Because of earlier generations of stars.
+
+- Stars burn fuel and die. Supernovae scatter their contents into space, creating gas and dust clouds rich in heavy elements. Our solar system is made of this recycled stardust.
+
+9. Why do stars form and die?
+→ Because of gravity and nuclear fusion.
+
+- Gravity compresses gas until fusion ignites. Fusion powers stars until the fuel is gone, at which point they evolve into white dwarfs, neutron stars, or black holes.
+
+10. Why does nuclear fusion work?
+→ Because of the fundamental forces of nature.
+
+- Fusion is governed by gravity, electromagnetism, and the strong/weak nuclear forces. These make it possible for nuclei to fuse and release energy.
+
+11. Why do these fundamental forces exist, and why do they have the values they do?
+→ That is an open question.
+
+Physics describes and measures these forces, but doesn’t explain why they exist at all. This is the frontier where science meets philosophy and cosmology.
+
+**$Y^{11}$**
+:::
+
+
+
+::: promptbox
+
+**Task 1 - Group of 5**
+
+- Workshop your individual ideas with your group
+- Spend 3 mins on each person (I'll set a timer)
+- Ask **y's**
+
+<br><br>
+:::
+
+
+::: promptbox
+**Task 2 - 1 Line Description**
+
+Take a couple minutes and try to write down - in one line - where your idea is at.
+This is not your final project topic - just a progress report
+
+- Post this after class in the discussion opened for project ideas [P&P]
+- Comment on 3 posts - ask another specific why? [P&P]
+
+<br><br>
+
+:::
+
+::: promptbox
+
+**Task 3 - Network**
+
+Find the like minded people in the room
+Team up? Couple your models? Share thoughts
+
+:::
+
+

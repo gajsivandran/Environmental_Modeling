@@ -17,3 +17,5 @@ number_sections: true
 rmd_files:
   - index.Rmd
   - 01-Modeling.Rmd
+  - 90-Appendix.Rmd
+  - 101wb-Modeling.Rmd
