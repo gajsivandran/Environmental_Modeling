@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Week 2: LLMs and Modeling Support | Model Your World: Introduction to Modeling and Simulation</title>
+  <meta name="description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Week 2: LLMs and Modeling Support | Model Your World: Introduction to Modeling and Simulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Week 2: LLMs and Modeling Support | Model Your World: Introduction to Modeling and Simulation" />
+  
+  <meta name="twitter:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  
+
+<meta name="author" content="Gaj Sivandran" />
+
+
+<meta name="date" content="2025-09-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-1-what-is-modeling.html"/>
+<link rel="next" href="app-wk1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Q SCI 497</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching-team-introductions-gaj-sivandran"><i class="fa fa-check"></i><b>1.1</b> Teaching Team Introductions Gaj Sivandran</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-highlights"><i class="fa fa-check"></i><b>1.2</b> Course Highlights</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#what-are-the-learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> What are the learning outcomes</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#notes-and-textbooks"><i class="fa fa-check"></i><b>1.4</b> Notes and Textbooks</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-topics"><i class="fa fa-check"></i><b>1.5</b> Course Topics</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#classroom-etiquette"><i class="fa fa-check"></i><b>1.6</b> Classroom Etiquette</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.7</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>2</b> Week 1: What is Modeling?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-we-will-be-doing-this-week"><i class="fa fa-check"></i><b>2.1</b> What we will be doing this week</a></li>
+<li class="chapter" data-level="2.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#learning-objectives"><i class="fa fa-check"></i><b>2.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-watch-listen-read-student-preparation-for-the-week"><i class="fa fa-check"></i><b>2.3</b> Do, Watch, Listen, Read: Student Preparation For The Week</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#download-and-install-rstudio"><i class="fa fa-check"></i><b>2.3.1</b> Download and Install RStudio</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-this-tutorial"><i class="fa fa-check"></i><b>2.3.2</b> Do this tutorial</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#min-read"><i class="fa fa-check"></i><b>2.3.3</b> 5min Read</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#lets-build-a-model-of-learning"><i class="fa fa-check"></i><b>2.4</b> Let’s Build a Model of Learning</a></li>
+<li class="chapter" data-level="2.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-is-systems-thinking-and-simulation"><i class="fa fa-check"></i><b>2.5</b> What Is Systems Thinking and Simulation?</a></li>
+<li class="chapter" data-level="2.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#abstractionand-why-is-it-so-hard"><i class="fa fa-check"></i><b>2.6</b> Abstraction—and Why Is It So Hard?</a></li>
+<li class="chapter" data-level="2.7" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#the-problem-solving-process"><i class="fa fa-check"></i><b>2.7</b> The Problem-Solving Process</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#define-the-problem"><i class="fa fa-check"></i><b>2.7.1</b> Define the Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simplify-and-abstract"><i class="fa fa-check"></i><b>2.7.2</b> Simplify and Abstract</a></li>
+<li class="chapter" data-level="2.7.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#build-a-conceptual-or-mathematical-model"><i class="fa fa-check"></i><b>2.7.3</b> Build a Conceptual or Mathematical Model</a></li>
+<li class="chapter" data-level="2.7.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simulate-and-explore"><i class="fa fa-check"></i><b>2.7.4</b> Simulate and Explore</a></li>
+<li class="chapter" data-level="2.7.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#evaluate-and-refine"><i class="fa fa-check"></i><b>2.7.5</b> Evaluate and Refine</a></li>
+<li class="chapter" data-level="2.7.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#communicate"><i class="fa fa-check"></i><b>2.7.6</b> Communicate</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#intro-to-prompt-engineering"><i class="fa fa-check"></i><b>2.8</b> Intro to Prompt Engineering</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#why-this-matters"><i class="fa fa-check"></i><b>2.8.1</b> Why This Matters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html"><i class="fa fa-check"></i><b>3</b> Week 2: LLMs and Modeling Support</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#learning-goals"><i class="fa fa-check"></i><b>3.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="3.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#do-watch-listen-read-student-preparation-for-the-week-1"><i class="fa fa-check"></i><b>3.2</b> Do, Watch, Listen, Read: Student Preparation for the Week</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#do"><i class="fa fa-check"></i><b>3.2.1</b> Do</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#watch-video-for-discussion"><i class="fa fa-check"></i><b>3.2.2</b> Watch: Video for Discussion</a></li>
+<li class="chapter" data-level="3.2.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#read-reading-for-discussion"><i class="fa fa-check"></i><b>3.2.3</b> Read: Reading for Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#introduction-to-llms-in-modeling-mon"><i class="fa fa-check"></i><b>3.3</b> Introduction to LLMs in Modeling (Mon)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#what-are-llms"><i class="fa fa-check"></i><b>3.3.1</b> What Are LLMs?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#a-brief-history"><i class="fa fa-check"></i><b>3.3.2</b> A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#capabilities-and-limits-of-llms"><i class="fa fa-check"></i><b>3.4</b> Capabilities and Limits of LLMs</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#capabilities"><i class="fa fa-check"></i><b>3.4.1</b> Capabilities</a></li>
+<li class="chapter" data-level="3.4.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#limits"><i class="fa fa-check"></i><b>3.4.2</b> Limits</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#llms-in-environmental-modeling-workflows"><i class="fa fa-check"></i><b>3.5</b> LLMs in Environmental Modeling Workflows</a></li>
+<li class="chapter" data-level="3.6" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#prompt-engineering-for-model-development-tue-wed"><i class="fa fa-check"></i><b>3.6</b> Prompt Engineering for Model Development (Tue &amp; Wed)</a></li>
+<li class="chapter" data-level="3.7" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#learning-goals-1"><i class="fa fa-check"></i><b>3.7</b> Learning goals</a></li>
+<li class="chapter" data-level="3.8" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#principles-of-effective-prompts-clarity-context-constraints"><i class="fa fa-check"></i><b>3.8</b> Principles of effective prompts: clarity, context, constraints</a></li>
+<li class="chapter" data-level="3.9" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#prompt-types-zero-shot-few-shot-role-based-with-modeling-examples"><i class="fa fa-check"></i><b>3.9</b> Prompt types: zero-shot, few-shot, role-based (with modeling examples)</a></li>
+<li class="chapter" data-level="3.10" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#iterative-refinement-and-debugging-prompts-the-lei-loop"><i class="fa fa-check"></i><b>3.10</b> Iterative refinement and debugging prompts (the LEI loop)</a></li>
+<li class="chapter" data-level="3.11" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#ade-prompt-library-activity"><i class="fa fa-check"></i><b>3.11</b> ADE Prompt Library &amp; Activity</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#what-youll-build-at-a-glance"><i class="fa fa-check"></i><b>3.11.1</b> What you’ll build (at a glance)</a></li>
+<li class="chapter" data-level="3.11.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#spec-code"><i class="fa fa-check"></i><b>3.11.2</b> Spec → Code</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#critical-reflection-when-to-use-ai-tools"><i class="fa fa-check"></i><b>3.12</b> Critical Reflection: When to Use AI Tools</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#benefits"><i class="fa fa-check"></i><b>3.12.1</b> Benefits</a></li>
+<li class="chapter" data-level="3.12.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#risks-and-limits"><i class="fa fa-check"></i><b>3.12.2</b> Risks and Limits</a></li>
+<li class="chapter" data-level="3.12.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#guidelines-for-responsible-use-in-environmental-science"><i class="fa fa-check"></i><b>3.12.3</b> Guidelines for Responsible Use in Environmental Science</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#reproducibility-documentation-and-troubleshooting-fri"><i class="fa fa-check"></i><b>3.13</b> Reproducibility, Documentation, and Troubleshooting (Fri)</a></li>
+<li class="chapter" data-level="3.14" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#first-model---ade"><i class="fa fa-check"></i><b>3.14</b> First Model - ADE</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#general-form"><i class="fa fa-check"></i><b>3.14.1</b> General Form</a></li>
+<li class="chapter" data-level="3.14.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#term-by-term-meaning"><i class="fa fa-check"></i><b>3.14.2</b> Term-by-Term Meaning</a></li>
+<li class="chapter" data-level="3.14.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#assumptions-behind-the-ade"><i class="fa fa-check"></i><b>3.14.3</b> Assumptions Behind the ADE</a></li>
+<li class="chapter" data-level="3.14.4" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#applications-in-environmental-science"><i class="fa fa-check"></i><b>3.14.4</b> Applications in Environmental Science</a></li>
+<li class="chapter" data-level="3.14.5" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#analytical-solutions"><i class="fa fa-check"></i><b>3.14.5</b> Analytical Solutions</a></li>
+<li class="chapter" data-level="3.14.6" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#numerical-solutions"><i class="fa fa-check"></i><b>3.14.6</b> Numerical Solutions</a></li>
+<li class="chapter" data-level="3.14.7" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#key-dimensionless-numbers"><i class="fa fa-check"></i><b>3.14.7</b> Key Dimensionless Numbers</a></li>
+<li class="chapter" data-level="3.14.8" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#visualization-1"><i class="fa fa-check"></i><b>3.14.8</b> Visualization</a></li>
+<li class="chapter" data-level="3.14.9" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#reflection-questions"><i class="fa fa-check"></i><b>3.14.9</b> Reflection Questions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="app-wk1.html"><a href="app-wk1.html"><i class="fa fa-check"></i><b>A</b> Project Week 1 – The ‘why’ and the ‘what’</a></li>
+<li class="chapter" data-level="B" data-path="workbook-week-1-what-is-modeling.html"><a href="workbook-week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>B</b> Workbook Week 1: What is Modeling?</a></li>
+<li class="chapter" data-level="C" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html"><i class="fa fa-check"></i><b>C</b> Workbook Week 2: LLMs</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#how-to-build-complixity-into-a-problem"><i class="fa fa-check"></i><b>C.1</b> How to Build Complixity into a Problem</a></li>
+<li class="chapter" data-level="C.2" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#llms-and-modeling-support"><i class="fa fa-check"></i><b>C.2</b> LLMs and Modeling Support</a>
+<ul>
+<li class="chapter" data-level="C.2.1" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#learning-objectives-1"><i class="fa fa-check"></i><b>C.2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="C.2.2" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#coding-warmup"><i class="fa fa-check"></i><b>C.2.2</b> Coding warmup</a></li>
+<li class="chapter" data-level="C.2.3" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>C.2.3</b> What is a Large Language Model</a></li>
+<li class="chapter" data-level="C.2.4" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#pros-and-cons-of-high-parameter-models"><i class="fa fa-check"></i><b>C.2.4</b> Pros and Cons of High-Parameter Models</a></li>
+<li class="chapter" data-level="C.2.5" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#parameters-in-large-language-models-llms"><i class="fa fa-check"></i><b>C.2.5</b> Parameters in Large Language Models (LLMs)</a></li>
+<li class="chapter" data-level="C.2.6" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#capabilities-and-limits-of-llms-1"><i class="fa fa-check"></i><b>C.2.6</b> Capabilities and Limits of LLMs</a></li>
+<li class="chapter" data-level="C.2.7" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#llms-in-environmental-modeling-workflows-1"><i class="fa fa-check"></i><b>C.2.7</b> LLMs in environmental modeling workflows</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Model Your World: Introduction to Modeling and Simulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-2-llms-and-modeling-support" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Week 2: LLMs and Modeling Support<a href="week-2-llms-and-modeling-support.html#week-2-llms-and-modeling-support" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-goals" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Learning Goals<a href="week-2-llms-and-modeling-support.html#learning-goals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By the end of this week, students should be able to:</p>
+<ul>
+<li>Explain what large language models (LLMs) are and how they can support simulation and coding.<br />
+</li>
+<li>Apply prompt engineering techniques to improve model development.<br />
+</li>
+<li>Use LLMs to reframe and clarify environmental modeling challenges.<br />
+</li>
+<li>Critically evaluate when and how it is appropriate to use AI tools in science.<br />
+</li>
+<li>Incorporate LLMs into workflows for reproducibility, documentation, and troubleshooting in R.</li>
+</ul>
+<hr />
+</div>
+<div id="do-watch-listen-read-student-preparation-for-the-week-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Do, Watch, Listen, Read: Student Preparation for the Week<a href="week-2-llms-and-modeling-support.html#do-watch-listen-read-student-preparation-for-the-week-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="do" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Do<a href="week-2-llms-and-modeling-support.html#do" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Open an LLM tool (<a href="https://chat.openai.com/">ChatGPT</a>, <a href="https://claude.ai/">Claude</a>, <a href="https://gemini.google.com/">Gemini</a> and ask it to:
+<ol style="list-style-type: decimal">
+<li>Explain a simple scientific concept (e.g., greenhouse effect) in plain language.<br />
+</li>
+<li>Write R code to simulate 10 years of daily temperature with a slight warming trend.<br />
+</li>
+</ol></li>
+<li>Compare the outputs: What worked well? What didn’t?</li>
+</ul>
+</div>
+<div id="watch-video-for-discussion" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Watch: Video for Discussion<a href="week-2-llms-and-modeling-support.html#watch-video-for-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=PqfBeBt4FGE">Master 80% of Prompt Engineering In 10 Minutes!</a> (YouTube, 2024)</p>
+<p><strong>Intro:</strong><br />
+This short video introduces the foundations of prompt engineering and then builds into practical strategies. It explains the <strong>core elements of a good prompt</strong>, highlights <strong>three advanced techniques</strong>, and shares a few <strong>bonus tips</strong> for refining outputs. The goal is to show how structured, intentional prompting can make AI much more useful in practice—especially for coding, modeling, and explanation tasks.</p>
+<p><strong>Questions to Ponder While Watching:</strong></p>
+<ul>
+<li>What are the “core elements” of prompt design highlighted in the video? Why are they essential?<br />
+</li>
+<li>Which advanced technique seems most useful for environmental modeling tasks (e.g., generating R code, simulation explanations)?<br />
+</li>
+<li>How might you apply one of the bonus tips when working on your Week 2 activities?<br />
+</li>
+<li>Can you think of a situation where a poorly written prompt could cause confusion or errors in scientific modeling? How would you fix it?</li>
+</ul>
+</div>
+<div id="read-reading-for-discussion" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Read: Reading for Discussion<a href="week-2-llms-and-modeling-support.html#read-reading-for-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Article:</strong> <a href="https://www.nature.com/articles/s41598-024-76682-6">Reconciling the contrasting narratives on the environmental impact of large language models</a> (Nature Scientific Reports, 2024)</p>
+<p><strong>Intro:</strong><br />
+As we consider how to use large language models (LLMs) in environmental science, it’s important to recognize that these tools themselves have environmental costs. This article examines the energy use and carbon footprint of training and running LLMs, compares them with human labor, and discusses how different assumptions lead to contrasting narratives about their sustainability. It’s a nuanced look at the trade-offs between the benefits of AI and the resources required to power it.</p>
+<p><strong>Questions to Ponder While Reading:</strong></p>
+<ul>
+<li>What are the main sources of environmental impact from LLMs (training vs. deployment)?<br />
+</li>
+<li>How do the authors compare the impacts of LLMs to traditional human-driven approaches?<br />
+</li>
+<li>Which assumptions (e.g., electricity sources, hardware lifespans) most influence the conclusions?<br />
+</li>
+<li>How might these trade-offs shape your perspective on using LLMs in scientific modeling workflows?</li>
+</ul>
+<hr />
+<p>These materials will help you see both sides of using LLMs: as a tool for speeding up coding and simulation, and as a system with important limits you must understand as a scientist.</p>
+<hr />
+</div>
+</div>
+<div id="introduction-to-llms-in-modeling-mon" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Introduction to LLMs in Modeling (Mon)<a href="week-2-llms-and-modeling-support.html#introduction-to-llms-in-modeling-mon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Large language models (LLMs) are a new class of tools that can transform the way scientists and students approach coding, simulation, and communication. They are not replacements for human expertise, but they can act as collaborators—helping us generate ideas, translate complex models into accessible explanations, and troubleshoot code. In this chapter, we explore what LLMs are, how they developed, and how they connect to environmental modeling workflows.</p>
+<hr />
+<div id="what-are-llms" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> What Are LLMs?<a href="week-2-llms-and-modeling-support.html#what-are-llms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>large language model (LLM)</strong> is a type of artificial intelligence system trained on massive collections of text. The core idea is surprisingly simple: given a sequence of words, the model predicts the most likely <em>next word</em>. By stacking billions of parameters and training on billions of words, LLMs learn patterns of grammar, style, reasoning, and even coding syntax.</p>
+<p>Think of an LLM as a highly advanced autocomplete. Instead of only finishing a single word, it can continue a sentence, draft an essay, write a block of R code, or explain a scientific model in plain language.</p>
+<hr />
+</div>
+<div id="a-brief-history" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> A Brief History<a href="week-2-llms-and-modeling-support.html#a-brief-history" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Early 2010s:</strong> Models such as word2vec and GloVe mapped words into mathematical space, capturing similarities (“river” is close to “stream”).<br />
+</li>
+<li><strong>2017:</strong> The <em>transformer</em> architecture was introduced, allowing models to learn long-range patterns in text.<br />
+</li>
+<li><strong>2018–2020:</strong> OpenAI’s GPT-2 and GPT-3 showed that scaling up data and parameters led to dramatic improvements in fluency.<br />
+</li>
+<li><strong>2022–present:</strong> Public releases of GPT-4, Claude, Gemini, and other models made LLMs widely accessible for coding, writing, and research.</li>
+</ul>
+<p>This rapid evolution means today’s students can use tools that did not exist even a few years ago.</p>
+<div class="activity">
+<p><strong>Discussion</strong></p>
+<p>What do you think an appropriate use of LLMs are.
+Discuss with your table and lets see if we can build some community guidelines (for this class and beyond)</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="capabilities-and-limits-of-llms" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Capabilities and Limits of LLMs<a href="week-2-llms-and-modeling-support.html#capabilities-and-limits-of-llms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="capabilities" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Capabilities<a href="week-2-llms-and-modeling-support.html#capabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the reasons LLMs have gained such traction in research and education is their versatility. They are capable of <strong>generating readable text in many different styles</strong>, ranging from concise scientific summaries to conversational explanations that make technical concepts more approachable. This flexibility allows them to adapt their tone depending on the intended audience, whether it is a group of peers, policymakers, or the general public.</p>
+<p>Beyond writing, LLMs are particularly useful for <strong>producing and troubleshooting code</strong> across multiple languages, including R, Python, and MATLAB. Students working through simulations can quickly draft starter scripts, identify syntax errors, or explore alternative approaches to the same problem. In addition, LLMs can act as powerful <strong>summarization tools</strong>, condensing long articles, large datasets, or complex equations into clear, digestible insights that highlight key trends or ideas.</p>
+<p>Finally, perhaps one of their most accessible features is the ability to <strong>translate technical content into plain language</strong>, making specialized knowledge understandable to non-experts. This capacity to bridge the gap between complexity and clarity is especially valuable in environmental science, where communicating models and data to diverse audiences is critical for impact.</p>
+</div>
+<div id="limits" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Limits<a href="week-2-llms-and-modeling-support.html#limits" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Despite their impressive capabilities, LLMs come with important limitations that must be acknowledged. A well-documented issue is <strong>hallucination</strong>, where the model generates text that sounds plausible but is factually incorrect or even entirely fabricated. This can be especially problematic in scientific work, where accuracy is paramount.</p>
+<p>LLMs also reflect the <strong>biases present in their training data</strong>, which means that outputs may unintentionally reproduce stereotypes or emphasize certain perspectives while ignoring others. Another limitation is that these systems lack <strong>true reasoning or understanding</strong>—they do not “know” science in the way humans do, but instead predict patterns based on statistical relationships in text. This means their explanations can oversimplify concepts or miss critical assumptions.</p>
+<p>Finally, there are <strong>reproducibility challenges</strong>, since the same prompt can yield slightly different outputs depending on the model and context, making it harder to standardize results for scientific workflows. Recognizing these limits helps ensure that we use LLMs critically, as aids to human reasoning rather than substitutes for it.</p>
+<hr />
+<div class="activity">
+<p><strong>Reflection Prompt</strong><br />
+Think about a task in environmental modeling you’ve worked on recently (coding, data analysis, or communicating results).</p>
+<ul>
+<li>Which of the capabilities described here could have supported your work?<br />
+</li>
+<li>Which limitations would you need to watch out for?<br />
+</li>
+<li>How might you balance the efficiency of using an LLM with the need for accuracy and scientific rigor?</li>
+</ul>
+</div>
+<hr />
+</div>
+</div>
+<div id="llms-in-environmental-modeling-workflows" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> LLMs in Environmental Modeling Workflows<a href="week-2-llms-and-modeling-support.html#llms-in-environmental-modeling-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How do LLMs connect to the practice of environmental modeling? Their utility lies not in replacing the scientist, but in serving as a flexible assistant at different stages of the workflow. One of the most immediate applications is <strong>code generation</strong>. For instance, a student working on a logistic population growth model in R can prompt an LLM to draft the basic script. Even if the generated code is not perfect, it provides a working foundation that can be edited and refined, reducing the time spent on tedious setup.</p>
+<p>Similarly, LLMs can assist with <strong>documentation support</strong>. In RMarkdown or other coding environments, clear documentation is essential for reproducibility, yet students often overlook it. By asking an LLM to add explanatory comments, create section headers, or translate code into step-by-step descriptions, the workflow becomes easier to follow both for the original author and for future collaborators. Another important use is <strong>simulation explanation</strong>.</p>
+<p>Equations that may appear abstract to non-specialists—such as those describing exponential growth, diffusion, or temperature response—can be reframed by an LLM into accessible narratives. For example, the logistic growth equation can be explained as a story of a population that grows quickly at first but slows as resources become scarce, eventually leveling off at a carrying capacity.</p>
+<p>These applications highlight the potential of LLMs to streamline scientific work: they can help students start coding more quickly, reduce frustration by catching errors or filling in gaps, and make models more communicable to a wider audience. At the same time, none of these tasks can be fully delegated without oversight. Generated code must be tested for accuracy, documentation must be checked for completeness, and plain-language explanations must be reviewed to ensure they do not omit critical assumptions. In this way, LLMs become collaborative tools that support efficiency and clarity while keeping the responsibility for scientific rigor firmly in human hands.</p>
+<div class="activity">
+<p><strong>Activity: Explain a Complex Model with Stepwise Prompting</strong></p>
+<p>We’ll use <em>stepwise (chain-of-thought–style) prompting</em> to unpack a very complex partial differential equation into clear, audience-appropriate language <em>without</em> asking the AI to reveal its private reasoning. The goal is to force a structured, term-by-term explanation and surface assumptions.</p>
+<p>Note: we are purposefully using a complex example here so that we can really see the value and dangers of utilizing a LLM for environmental modeling.</p>
+<p><strong>Model</strong>
+The Advection–Diffusion (or Dispersion) Equation for pollutant transport in a river:
+<span class="math display">\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]</span>
+- <span class="math inline">\(C\)</span>: concentration at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span><br />
+- <span class="math inline">\(D\)</span>: diffusion coefficient (mixing)<br />
+- <span class="math inline">\(v\)</span>: flow velocity (downstream transport)<br />
+- <span class="math inline">\(k\)</span>: decay rate (removal)</p>
+<p><strong>Step 1 — Your Own Explanation</strong>
+Write a plain-language explanation for a non-scientist audience (e.g., a community group). If you have no idea whats going on - take a guess. Go term by term and see if you can decipher whats going on.</p>
+<p><strong>Step 2 — Baseline AI Explanation</strong>
+Ask an LLM for a plain-language explanation. Save the response.</p>
+<p>Baseline prompt:
+Explain the equation below in plain language for a non-scientist audience.<br />
+<span class="math display">\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]</span><br />
+Keep it to 6–8 sentences.</p>
+<p>Take a second here and compare your result with those at your table? Are thy idenitical?</p>
+<p><strong>Step 3 — Stepwise Prompting (Structured Sections)</strong></p>
+<p>Now force structure so the AI unpacks complexity term-by-term and surfaces assumptions.</p>
+<p><em>Stepwise prompt template (copy-paste)</em>
+Explain the equation below using <em>labeled sections</em>. Do <em>not</em> show your internal reasoning; present only your final explanation.<br />
+Sections (use headings):<br />
+1) <em>Term-by-term meaning</em> — explain each term in one sentence.<br />
+2) <em>Physical interpretation</em> — connect each term to a river process with a brief analogy.<br />
+3) <em>Assumptions</em> — list key modeling assumptions (e.g., dimensionality, parameter constancy, uniform mixing).<br />
+4) <em>Units &amp; parameters</em> — specify typical units for <span class="math inline">\(C, D, v, k\)</span>.<br />
+5) <em>Edge cases</em> — describe what happens if <span class="math inline">\(D=0\)</span>, <span class="math inline">\(v=0\)</span>, or <span class="math inline">\(k=0\)</span>.<br />
+6) <em>Plain-language summary</em> — 3 sentences for a public audience.</p>
+<p>Equation:<br />
+<span class="math display">\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]</span></p>
+<p><strong>Step 4 — Compare &amp; Critique </strong></p>
+<ul>
+<li><em>Clarity:</em> Which version (baseline vs. stepwise) is clearer and why?<br />
+</li>
+<li><em>Completeness:</em> Did the stepwise version expose assumptions or units the baseline missed?<br />
+</li>
+<li><em>Accuracy:</em> Note any incorrect claims or overconfidence.</li>
+</ul>
+<p>Most importantly - which version did you learn something from?</p>
+<p><strong>Step 5 — Constraint Refinement </strong>
+Re-prompt with tighter constraints to match a <em>specific audience</em>.</p>
+<p><em>Audience-tuning examples</em></p>
+<ul>
+<li>Policy brief style (≤150 words, 8th-grade reading level).<br />
+</li>
+<li>Technical appendix style (include parameter ranges and citations placeholder).<br />
+</li>
+<li>Infographic caption style (≤90 words, 3 bullets + 1 summary sentence).</li>
+</ul>
+<p><strong>Step 6 — Mini-Deliverable</strong></p>
+<p>Submit: (1) your own explanation, (2) baseline AI output, (3) stepwise output, (4) a 3–5 bullet critique comparing them, and (5) one audience-tuned version.</p>
+<p><strong>Extension (optional)</strong>
+Ask the AI to propose a simple diagram description (no image needed): axes, arrows for diffusion/advection, and a decay cue. Use this as a storyboard for a figure you might create later.</p>
+</div>
+<hr />
+</div>
+<div id="prompt-engineering-for-model-development-tue-wed" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Prompt Engineering for Model Development (Tue &amp; Wed)<a href="week-2-llms-and-modeling-support.html#prompt-engineering-for-model-development-tue-wed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Principles of effective prompts: clarity, context, constraints.<br />
+</li>
+<li>Prompt types: zero-shot, few-shot, role-based prompts.<br />
+</li>
+<li>Iterative refinement and debugging prompts.</li>
+</ul>
+<p><strong>Activity:</strong> Students write and test prompts for generating R code to simulate temperature data.</p>
+</div>
+<div id="learning-goals-1" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Learning goals<a href="week-2-llms-and-modeling-support.html#learning-goals-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By the end of today, students will be able to:
+- craft clear, contextualized, and constrained prompts that produce correct code and documentation;
+- select and combine zero-shot, few-shot, and role-based prompts for modeling tasks;
+- iteratively refine outputs using structured critique, unit tests, and debugging prompts;
+- apply these skills to build and explain a simple advection–diffusion–decay (ADE) model in R.</p>
+<hr />
+</div>
+<div id="principles-of-effective-prompts-clarity-context-constraints" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Principles of effective prompts: clarity, context, constraints<a href="week-2-llms-and-modeling-support.html#principles-of-effective-prompts-clarity-context-constraints" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Clarity (goal + audience):</strong> State the task and who it is for.<br />
+<em>“Write R code for first-year environmental science students.”</em></li>
+<li><strong>Context (problem + assumptions):</strong> Include the equation, domain, units, and assumptions.<br />
+<em>“1-D ADE, L = 10 km, v = 0.2 m/s, D = 10 m²/s, k = 1e-5 s⁻¹, Dirichlet at x = 0, Neumann at x = L.”</em></li>
+<li><strong>Constraints (format + checks):</strong> Specify interfaces, style, tests, plots, and failure modes.<br />
+<em>“Return a function <code>run_ade(params)</code>; add a CFL check; produce one line plot and one time-series plot; comment every major step.”</em></li>
+<li><strong>Success criteria:</strong> Tell the model how you will judge success.<br />
+<em>“Code must run without additional packages beyond ggplot2 and dplyr.”</em></li>
+</ul>
+<p><strong>Prompt template</strong></p>
+<blockquote>
+<p><strong>ASK:</strong> <code>&lt;what to build/explain&gt;</code><br />
+<strong>CONTEXT:</strong> <code>&lt;equations, domain, units, assumptions&gt;</code><br />
+<strong>CONSTRAINTS:</strong> <code>&lt;APIs, style, allowed packages, runtime, plots&gt;</code><br />
+<strong>CHECKS:</strong> <code>&lt;tests/diagnostics to include&gt;</code><br />
+<strong>OUTPUT FORMAT:</strong> <code>&lt;function name, file structure, markdown section, etc.&gt;</code><br />
+<strong>AUDIENCE:</strong> <code>&lt;novice, advanced, instructor notes&gt;</code></p>
+</blockquote>
+<hr />
+</div>
+<div id="prompt-types-zero-shot-few-shot-role-based-with-modeling-examples" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Prompt types: zero-shot, few-shot, role-based (with modeling examples)<a href="week-2-llms-and-modeling-support.html#prompt-types-zero-shot-few-shot-role-based-with-modeling-examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><strong>Zero-shot</strong> — no examples, just a precise specifiction (spec)<br />
+<em>“Implement a Crank–Nicolson diffusion step and 1st-order upwind advection for the 1-D ADE; include a CFL diagnostic and return a tibble of <code>(time_h, x, C)</code>.”</em></p></li>
+<li><p><strong>Few-shot</strong> — show a small, high-quality example to anchor style/format.<br />
+Provide a short example of a function signature and one test, then ask for an analogous function for ADE.</p></li>
+<li><p><strong>Role-based</strong> — assign the model a persona to set expectations and tone.<br />
+<em>“You are a hydrology TA. Produce commented, teachable R code and insert two discussion questions that probe assumptions.”</em></p></li>
+<li><p><strong>When to mix:</strong> Start role-based + zero-shot to draft; add few-shot when you need consistent structure (e.g., identical plotting themes across labs).</p></li>
+</ul>
+<hr />
+</div>
+<div id="iterative-refinement-and-debugging-prompts-the-lei-loop" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> Iterative refinement and debugging prompts (the LEI loop)<a href="week-2-llms-and-modeling-support.html#iterative-refinement-and-debugging-prompts-the-lei-loop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>L — Launch</strong> a first draft with strict constraints.<br />
+</li>
+<li><strong>E — Evaluate</strong> using tests, plots, and quick sanity checks (mass balance, units, stability numbers).<br />
+</li>
+<li><strong>I — Iterate</strong> with targeted prompts:</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><em>“Diagnose: Why does concentration become negative near the boundary? Propose two fixes and implement the safer one.”</em></li>
+<li><em>“Add input validation: stop with a clear message when CFL &gt; 0.9 or when <code>D &lt; 0</code>.”</em></li>
+<li><em>“Refactor into <code>setup_grid()</code>, <code>step_CN()</code>, <code>step_advect()</code>, <code>apply_decay()</code>. Return a named list.”</em></li>
+<li><em>“Generate three unit tests using <code>testthat</code> for: CFL computation, Neumann boundary, non-negative concentration.”</em></li>
+<li><em>“Write a 5-line docstring explaining assumptions and limitations for non-experts.”</em></li>
+</ul>
+<hr />
+</div>
+<div id="ade-prompt-library-activity" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> ADE Prompt Library &amp; Activity<a href="week-2-llms-and-modeling-support.html#ade-prompt-library-activity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our goal is to build and explain a simple <strong>Advection–Diffusion (ADE)</strong> model in class using careful prompts and iterative refinement.</p>
+<div id="what-youll-build-at-a-glance" class="section level3 hasAnchor" number="3.11.1">
+<h3><span class="header-section-number">3.11.1</span> What you’ll build (at a glance)<a href="week-2-llms-and-modeling-support.html#what-youll-build-at-a-glance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>An R function <code>run_ade(params)</code> that simulates
+<span class="math display">\[
+\frac{\partial C}{\partial t} \;=\; D\,\frac{\partial^2 C}{\partial x^2} \;-\; v\,\frac{\partial C}{\partial x} \;-\; k\,C
+\]</span>
+on <span class="math inline">\([0,L]\)</span> with <strong>Dirichlet</strong> at <span class="math inline">\(x=0\)</span> and <strong>zero-gradient (Neumann)</strong> at <span class="math inline">\(x=L\)</span>.</li>
+<li>Built-in checks for <strong>CFL</strong> and <strong>diffusion number <span class="math inline">\(r_D\)</span></strong>.</li>
+<li>Two plots: (i) spatial profiles at selected times, (ii) time series at stations.</li>
+<li>Short, plain-language documentation of assumptions and limitations.</li>
+</ul>
+<hr />
+</div>
+<div id="spec-code" class="section level3 hasAnchor" number="3.11.2">
+<h3><span class="header-section-number">3.11.2</span> Spec → Code<a href="week-2-llms-and-modeling-support.html#spec-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write an R function <code>run_ade(params)</code> that simulates the 1-D advection–diffusion equation
+<span class="math display">\[
+\frac{\partial C}{\partial t} = D\,\frac{\partial^2 C}{\partial x^2} - v\,\frac{\partial C}{\partial x} - k\,C
+\]</span>
+on the domain <span class="math inline">\([0, L]\)</span> with <strong>Dirichlet</strong> at <span class="math inline">\(x=0\)</span> and <strong>zero-gradient (Neumann)</strong> at <span class="math inline">\(x=L\)</span>.
+Include: a CFL check, diffusion number <span class="math inline">\(r_D\)</span>, two plots (profiles and station time-series),
+and comments suitable for first-year students.</p>
+<hr />
+<div id="explain-assumptions" class="section level4 hasAnchor" number="3.11.2.1">
+<h4><span class="header-section-number">3.11.2.1</span> Explain assumptions<a href="week-2-llms-and-modeling-support.html#explain-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In 5 bullets, state modeling assumptions (dimensionality, parameter constancy, mixing, linear decay) and one situation where each assumption breaks.</p>
+<hr />
+</div>
+<div id="stability-units" class="section level4 hasAnchor" number="3.11.2.2">
+<h4><span class="header-section-number">3.11.2.2</span> Stability &amp; units<a href="week-2-llms-and-modeling-support.html#stability-units" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Add a helper <code>diagnostics()</code> that prints <strong>CFL</strong>, <strong>Péclet</strong>, and a <strong>units table</strong>
+(C in mg/L, v in m/s, D in m²/s, k in 1/s). Warn when <code>CFL &gt; 0.9</code>.</p>
+<hr />
+</div>
+<div id="visualization" class="section level4 hasAnchor" number="3.11.2.3">
+<h4><span class="header-section-number">3.11.2.3</span> Visualization<a href="week-2-llms-and-modeling-support.html#visualization" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Plot profiles at <span class="math inline">\(t=\)</span> 0, 1, 3, 6 h and time-series at <span class="math inline">\(x=\)</span> 1, 5, 9 km.
+Use clear axis labels and a legend; keep plotting code under 20 lines.</p>
+<hr />
+<div class="activity">
+<p><strong>In-class group activity (45–50 min): “Prompt → Plan → Build → Verify”</strong></p>
+<ul>
+<li><p>Uses chain-of-thought prompting safely by asking the model to output a plan (step list/pseudocode) before code.</p></li>
+<li><p>Deliverables: prompt(s), plan, R script, two plots, short reflection.</p></li>
+</ul>
+</div>
+</div>
+<div id="common-pitfalls-how-to-prompt-around-them" class="section level4 hasAnchor" number="3.11.2.4">
+<h4><span class="header-section-number">3.11.2.4</span> Common pitfalls &amp; how to prompt around them<a href="week-2-llms-and-modeling-support.html#common-pitfalls-how-to-prompt-around-them" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Vague goals → meandering code</strong> →<br />
+<em>“Limit the solution to one function <code>run_ade</code>; ≤ 80 lines; include two plots and a diagnostics print.”</em></li>
+<li><strong>Hidden assumptions</strong> →<br />
+<em>“List all assumptions you made; mark each as ‘required’ or ‘replaceable’.”</em></li>
+<li><strong>Boundary errors</strong> →<br />
+<em>“Explain, in words, how you implement Dirichlet at <span class="math inline">\(x=0\)</span> and zero-gradient at <span class="math inline">\(x=L\)</span>; then show the exact index operations.”</em></li>
+<li><strong>Numerical instability</strong> →<br />
+<em>“Compute and print CFL and <span class="math inline">\(r_D\)</span>; if CFL &gt; 0.9, automatically shrink <code>dt</code> and state the new value.”</em></li>
+<li><strong>Over-fancy output</strong> →<br />
+<em>“No external packages beyond ggplot2/dplyr; avoid themes; keep defaults.”</em></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="critical-reflection-when-to-use-ai-tools" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> Critical Reflection: When to Use AI Tools<a href="week-2-llms-and-modeling-support.html#critical-reflection-when-to-use-ai-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Deciding when to use an LLM is not always straightforward. These tools offer powerful benefits but also come with risks and ethical concerns. As environmental scientists, we need to think critically about how AI fits into our workflows and how it might affect the quality, accessibility, and trustworthiness of science.</p>
+<div id="benefits" class="section level3 hasAnchor" number="3.12.1">
+<h3><span class="header-section-number">3.12.1</span> Benefits<a href="week-2-llms-and-modeling-support.html#benefits" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>LLMs can accelerate many parts of the research process. They provide <strong>speed</strong>, helping draft code, summaries, or explanations in seconds. They also increase <strong>accessibility</strong>, lowering the entry barrier for students or collaborators who may not yet have advanced coding or writing skills. LLMs often spark <strong>creativity</strong>, generating new ways of framing a problem or suggesting approaches we might not have considered. Finally, they offer <strong>support for non-experts</strong>: a student new to modeling can use an LLM to explain equations or code in plain language, building confidence and understanding more quickly.</p>
+</div>
+<div id="risks-and-limits" class="section level3 hasAnchor" number="3.12.2">
+<h3><span class="header-section-number">3.12.2</span> Risks and Limits<a href="week-2-llms-and-modeling-support.html#risks-and-limits" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>At the same time, AI-generated content comes with important limitations. The most pressing concern is <strong>accuracy</strong>: LLMs can produce convincing but incorrect answers. This problem, often called <strong>hallucination</strong>, makes it dangerous to rely on AI outputs without verification. Models also inherit <strong>biases</strong> from their training data, which can shape the tone, assumptions, or inclusivity of their responses. There are also <strong>ethical concerns</strong>, including the environmental cost of training large models, the potential for plagiarism or misuse, and broader questions about authorship and credit in scientific work. Recognizing these risks is essential for responsible use.</p>
+</div>
+<div id="guidelines-for-responsible-use-in-environmental-science" class="section level3 hasAnchor" number="3.12.3">
+<h3><span class="header-section-number">3.12.3</span> Guidelines for Responsible Use in Environmental Science<a href="week-2-llms-and-modeling-support.html#guidelines-for-responsible-use-in-environmental-science" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To make AI a constructive tool rather than a crutch, we can follow a few guidelines:</p>
+<ul>
+<li><strong>Use AI to support, not replace, expertise.</strong> Treat LLMs as collaborators that generate drafts, not as authorities.<br />
+</li>
+<li><strong>Verify and validate outputs.</strong> Always test AI-generated code and fact-check explanations.<br />
+</li>
+<li><strong>Document when AI was used.</strong> Transparency helps others understand how results were created.<br />
+</li>
+<li><strong>Consider the audience.</strong> Decide whether an AI-generated explanation is appropriate for a scientific paper, a classroom activity, or public communication.<br />
+</li>
+<li><strong>Reflect on ethics.</strong> Think about sustainability, fairness, and responsible authorship when integrating AI into research.</li>
+</ul>
+<hr />
+<div class="activity">
+<p><strong>Debate — Should We Use AI in Research?</strong>
+Divide into groups. Half the class argues <em>for</em> using LLMs in environmental research, and half argues <em>against</em>. Use examples from your own experience and the guidelines above. After the debate, reflect as a group:</p>
+<ul>
+<li>Which arguments were most persuasive?<br />
+</li>
+<li>What conditions or safeguards make AI use acceptable?<br />
+</li>
+<li>Where should we draw the line between helpful assistance and over-reliance?<br />
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="reproducibility-documentation-and-troubleshooting-fri" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> Reproducibility, Documentation, and Troubleshooting (Fri)<a href="week-2-llms-and-modeling-support.html#reproducibility-documentation-and-troubleshooting-fri" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using LLMs to improve reproducibility:</p>
+<ul>
+<li>RMarkdown templates, commenting code, documenting decisions.</li>
+</ul>
+<p><strong>Hands-on:</strong> Simulate a simple temperature model in R (linear warming trend + random noise).</p>
+<p>Use LLMs for:<br />
+- Suggesting code improvements.<br />
+- Adding explanations and comments.<br />
+- Identifying potential reproducibility pitfalls.</p>
+<p><strong>Reflection:</strong> How does AI support or hinder scientific reproducibility?</p>
+<hr />
+</div>
+<div id="first-model---ade" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> First Model - ADE<a href="week-2-llms-and-modeling-support.html#first-model---ade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>advection–diffusion equation (ADE)</strong> is a fundamental tool in environmental science for describing how substances such as pollutants, heat, or nutrients move and transform in natural systems. It combines three processes — <strong>advection</strong> (transport by bulk flow), <strong>diffusion</strong> (spreading due to mixing or molecular motion), and <strong>decay</strong> (loss by reaction, degradation, or uptake). Together, these processes govern how concentrations change in space and time.</p>
+<hr />
+<div id="general-form" class="section level3 hasAnchor" number="3.14.1">
+<h3><span class="header-section-number">3.14.1</span> General Form<a href="week-2-llms-and-modeling-support.html#general-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In one spatial dimension, the ADE is written as:</p>
+<p><span class="math display">\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
+\]</span></p>
+<p>where:<br />
+- <span class="math inline">\(C(x,t)\)</span> = concentration of the substance at location <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span><br />
+- <span class="math inline">\(D\)</span> = diffusion (or dispersion) coefficient <span class="math inline">\((\text{L}^2/\text{T})\)</span><br />
+- <span class="math inline">\(v\)</span> = advective velocity (bulk flow speed, <span class="math inline">\(\text{L}/\text{T}\)</span>)<br />
+- <span class="math inline">\(k\)</span> = decay rate constant <span class="math inline">\((1/\text{T})\)</span></p>
+<p>This is a <strong>partial differential equation (PDE)</strong> because it describes how concentration changes both with respect to time (<span class="math inline">\(t\)</span>) and space (<span class="math inline">\(x\)</span>).</p>
+<hr />
+</div>
+<div id="term-by-term-meaning" class="section level3 hasAnchor" number="3.14.2">
+<h3><span class="header-section-number">3.14.2</span> Term-by-Term Meaning<a href="week-2-llms-and-modeling-support.html#term-by-term-meaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><strong>Diffusion Term <span class="math inline">\((D \frac{\partial^2 C}{\partial x^2})\)</span>:</strong><br />
+Captures the natural tendency of a substance to spread out, whether through molecular diffusion (random particle motion) or turbulent mixing. In rivers, this reflects how pollutants disperse laterally and longitudinally.</p></li>
+<li><p><strong>Advection Term <span class="math inline">\((-v \frac{\partial C}{\partial x})\)</span>:</strong><br />
+Represents bulk transport due to flow. In a river, advection moves pollutants downstream at approximately the mean flow velocity.</p></li>
+<li><p><strong>Decay Term <span class="math inline">\((-kC)\)</span>:</strong><br />
+Accounts for processes that remove the substance over time. Examples include radioactive decay, microbial degradation of organic matter, or chemical reactions that break down contaminants.</p></li>
+</ul>
+<hr />
+</div>
+<div id="assumptions-behind-the-ade" class="section level3 hasAnchor" number="3.14.3">
+<h3><span class="header-section-number">3.14.3</span> Assumptions Behind the ADE<a href="week-2-llms-and-modeling-support.html#assumptions-behind-the-ade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like all models, the ADE relies on simplifying assumptions:<br />
+1. <strong>Homogeneity of parameters:</strong> <span class="math inline">\(D\)</span>, <span class="math inline">\(v\)</span>, and <span class="math inline">\(k\)</span> are assumed constant in space and time.<br />
+2. <strong>One-dimensional flow:</strong> The river or system is treated as a single streamline, ignoring lateral and vertical variation.<br />
+3. <strong>Continuum assumption:</strong> Concentration is treated as a smooth, continuous field rather than individual particles.<br />
+4. <strong>Linear processes:</strong> Each term acts independently and linearly, with no feedbacks or nonlinear effects.</p>
+<p>These assumptions make the equation mathematically tractable, but real systems often require adjustments or numerical solutions to capture complexity.</p>
+<hr />
+</div>
+<div id="applications-in-environmental-science" class="section level3 hasAnchor" number="3.14.4">
+<h3><span class="header-section-number">3.14.4</span> Applications in Environmental Science<a href="week-2-llms-and-modeling-support.html#applications-in-environmental-science" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Rivers and Streams:</strong> Tracking the downstream fate of pollutants (e.g., nutrients, heavy metals, thermal plumes).<br />
+</li>
+<li><strong>Atmosphere:</strong> Modeling dispersion of air pollutants under wind flow and turbulent mixing.<br />
+</li>
+<li><strong>Groundwater:</strong> Describing contaminant transport through porous media.<br />
+</li>
+<li><strong>Oceans and Lakes:</strong> Simulating nutrient plumes or thermal pollution.</li>
+</ul>
+<p>In each case, the relative importance of advection, diffusion, and decay depends on system parameters. A fast river with low diffusion behaves differently than a stagnant pond with strong decay.</p>
+<hr />
+</div>
+<div id="analytical-solutions" class="section level3 hasAnchor" number="3.14.5">
+<h3><span class="header-section-number">3.14.5</span> Analytical Solutions<a href="week-2-llms-and-modeling-support.html#analytical-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For simple cases, the ADE has analytical solutions. A classic example is the <strong>instantaneous point source</strong> (a sudden spill at <span class="math inline">\(x=0\)</span>, <span class="math inline">\(t=0\)</span>) in an infinite domain:</p>
+<p><span class="math display">\[
+C(x,t) = \frac{M}{\sqrt{4\pi D t}} \exp \left( -\frac{(x - vt)^2}{4Dt} - kt \right)
+\]</span></p>
+<p>where <span class="math inline">\(M\)</span> is the mass released.</p>
+<p>This solution shows a <strong>Gaussian plume</strong> that spreads (due to diffusion), shifts downstream (due to advection), and decreases in height (due to decay).</p>
+<hr />
+</div>
+<div id="numerical-solutions" class="section level3 hasAnchor" number="3.14.6">
+<h3><span class="header-section-number">3.14.6</span> Numerical Solutions<a href="week-2-llms-and-modeling-support.html#numerical-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For realistic boundary conditions (finite rivers, variable flows), numerical methods such as <strong>finite difference</strong>, <strong>finite element</strong>, or <strong>particle tracking</strong> are used. These methods discretize space and time, approximating how concentration evolves step by step.</p>
+<hr />
+</div>
+<div id="key-dimensionless-numbers" class="section level3 hasAnchor" number="3.14.7">
+<h3><span class="header-section-number">3.14.7</span> Key Dimensionless Numbers<a href="week-2-llms-and-modeling-support.html#key-dimensionless-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Two ratios help characterize transport:</p>
+<ul>
+<li><p><strong>Péclet Number (<span class="math inline">\(Pe\)</span>):</strong><br />
+<span class="math display">\[
+Pe = \frac{vL}{D}
+\]</span><br />
+Ratio of advection to diffusion. High <span class="math inline">\(Pe\)</span> means transport is dominated by flow.</p></li>
+<li><p><strong>Damköhler Number (<span class="math inline">\(Da\)</span>):</strong><br />
+<span class="math display">\[
+Da = \frac{kL}{v}
+\]</span><br />
+Ratio of reaction/decay to advection. High <span class="math inline">\(Da\)</span> means rapid decay compared to transport.</p></li>
+</ul>
+<p>Together, <span class="math inline">\(Pe\)</span> and <span class="math inline">\(Da\)</span> guide whether a pollutant plume will spread, persist, or disappear quickly.</p>
+<hr />
+</div>
+<div id="visualization-1" class="section level3 hasAnchor" number="3.14.8">
+<h3><span class="header-section-number">3.14.8</span> Visualization<a href="week-2-llms-and-modeling-support.html#visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Low velocity, high diffusion:</strong> plume spreads symmetrically around the release point.<br />
+</li>
+<li><strong>High velocity, low diffusion:</strong> plume moves downstream as a narrow band.<br />
+</li>
+<li><strong>Strong decay:</strong> plume shrinks and may vanish before traveling far.</li>
+</ul>
+<hr />
+</div>
+<div id="reflection-questions" class="section level3 hasAnchor" number="3.14.9">
+<h3><span class="header-section-number">3.14.9</span> Reflection Questions<a href="week-2-llms-and-modeling-support.html#reflection-questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Which term (advection, diffusion, or decay) dominates in a <strong>fast-flowing river</strong> vs. a <strong>still pond</strong>?<br />
+</li>
+<li>How does increasing <span class="math inline">\(D\)</span> change the shape of a pollution plume?<br />
+</li>
+<li>What are the consequences of assuming one-dimensional flow when rivers have significant lateral mixing?<br />
+</li>
+<li>How might climate change (altered flow velocities, higher temperatures) affect ADE parameters?</li>
+</ol>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-1-what-is-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="app-wk1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-LLMs.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

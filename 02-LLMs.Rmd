@@ -78,7 +78,7 @@ This rapid evolution means today’s students can use tools that did not exist e
 ::: activity
 **Discussion**
 
-What do you think an apporpriate use of LLMs are. 
+What do you think an appropriate use of LLMs are. 
 Discuss with your table and lets see if we can build some community guidelines (for this class and beyond)
 
 :::
@@ -88,10 +88,18 @@ Discuss with your table and lets see if we can build some community guidelines (
 ## Capabilities and Limits of LLMs
 
 ### Capabilities  
-One of the reasons LLMs have gained such traction in research and education is their versatility. They are capable of **generating readable text in many different styles**, ranging from concise scientific summaries to conversational explanations that make technical concepts more approachable. This flexibility allows them to adapt their tone depending on the intended audience, whether it is a group of peers, policymakers, or the general public. Beyond writing, LLMs are particularly useful for **producing and troubleshooting code** across multiple languages, including R, Python, and MATLAB. Students working through simulations can quickly draft starter scripts, identify syntax errors, or explore alternative approaches to the same problem. In addition, LLMs can act as powerful **summarization tools**, condensing long articles, large datasets, or complex equations into clear, digestible insights that highlight key trends or ideas. Finally, perhaps one of their most accessible features is the ability to **translate technical content into plain language**, making specialized knowledge understandable to non-experts. This capacity to bridge the gap between complexity and clarity is especially valuable in environmental science, where communicating models and data to diverse audiences is critical for impact.  
+One of the reasons LLMs have gained such traction in research and education is their versatility. They are capable of **generating readable text in many different styles**, ranging from concise scientific summaries to conversational explanations that make technical concepts more approachable. This flexibility allows them to adapt their tone depending on the intended audience, whether it is a group of peers, policymakers, or the general public. 
+
+Beyond writing, LLMs are particularly useful for **producing and troubleshooting code** across multiple languages, including R, Python, and MATLAB. Students working through simulations can quickly draft starter scripts, identify syntax errors, or explore alternative approaches to the same problem. In addition, LLMs can act as powerful **summarization tools**, condensing long articles, large datasets, or complex equations into clear, digestible insights that highlight key trends or ideas. 
+
+Finally, perhaps one of their most accessible features is the ability to **translate technical content into plain language**, making specialized knowledge understandable to non-experts. This capacity to bridge the gap between complexity and clarity is especially valuable in environmental science, where communicating models and data to diverse audiences is critical for impact.  
 
 ### Limits  
-Despite their impressive capabilities, LLMs come with important limitations that must be acknowledged. A well-documented issue is **hallucination**, where the model generates text that sounds plausible but is factually incorrect or even entirely fabricated. This can be especially problematic in scientific work, where accuracy is paramount. LLMs also reflect the **biases present in their training data**, which means that outputs may unintentionally reproduce stereotypes or emphasize certain perspectives while ignoring others. Another limitation is that these systems lack **true reasoning or understanding**—they do not “know” science in the way humans do, but instead predict patterns based on statistical relationships in text. This means their explanations can oversimplify concepts or miss critical assumptions. Finally, there are **reproducibility challenges**, since the same prompt can yield slightly different outputs depending on the model and context, making it harder to standardize results for scientific workflows. Recognizing these limits helps ensure that we use LLMs critically, as aids to human reasoning rather than substitutes for it.  
+Despite their impressive capabilities, LLMs come with important limitations that must be acknowledged. A well-documented issue is **hallucination**, where the model generates text that sounds plausible but is factually incorrect or even entirely fabricated. This can be especially problematic in scientific work, where accuracy is paramount. 
+
+LLMs also reflect the **biases present in their training data**, which means that outputs may unintentionally reproduce stereotypes or emphasize certain perspectives while ignoring others. Another limitation is that these systems lack **true reasoning or understanding**—they do not “know” science in the way humans do, but instead predict patterns based on statistical relationships in text. This means their explanations can oversimplify concepts or miss critical assumptions. 
+
+Finally, there are **reproducibility challenges**, since the same prompt can yield slightly different outputs depending on the model and context, making it harder to standardize results for scientific workflows. Recognizing these limits helps ensure that we use LLMs critically, as aids to human reasoning rather than substitutes for it.  
 
 ---
 
@@ -108,7 +116,11 @@ Think about a task in environmental modeling you’ve worked on recently (coding
 
 ## LLMs in Environmental Modeling Workflows
 
-How do LLMs connect to the practice of environmental modeling? Their utility lies not in replacing the scientist, but in serving as a flexible assistant at different stages of the workflow. One of the most immediate applications is **code generation**. For instance, a student working on a logistic population growth model in R can prompt an LLM to draft the basic script. Even if the generated code is not perfect, it provides a working foundation that can be edited and refined, reducing the time spent on tedious setup. Similarly, LLMs can assist with **documentation support**. In RMarkdown or other coding environments, clear documentation is essential for reproducibility, yet students often overlook it. By asking an LLM to add explanatory comments, create section headers, or translate code into step-by-step descriptions, the workflow becomes easier to follow both for the original author and for future collaborators. Another important use is **simulation explanation**. Equations that may appear abstract to non-specialists—such as those describing exponential growth, diffusion, or temperature response—can be reframed by an LLM into accessible narratives. For example, the logistic growth equation can be explained as a story of a population that grows quickly at first but slows as resources become scarce, eventually leveling off at a carrying capacity.  
+How do LLMs connect to the practice of environmental modeling? Their utility lies not in replacing the scientist, but in serving as a flexible assistant at different stages of the workflow. One of the most immediate applications is **code generation**. For instance, a student working on a logistic population growth model in R can prompt an LLM to draft the basic script. Even if the generated code is not perfect, it provides a working foundation that can be edited and refined, reducing the time spent on tedious setup. 
+
+Similarly, LLMs can assist with **documentation support**. In RMarkdown or other coding environments, clear documentation is essential for reproducibility, yet students often overlook it. By asking an LLM to add explanatory comments, create section headers, or translate code into step-by-step descriptions, the workflow becomes easier to follow both for the original author and for future collaborators. Another important use is **simulation explanation**. 
+
+Equations that may appear abstract to non-specialists—such as those describing exponential growth, diffusion, or temperature response—can be reframed by an LLM into accessible narratives. For example, the logistic growth equation can be explained as a story of a population that grows quickly at first but slows as resources become scarce, eventually leveling off at a carrying capacity.  
 
 These applications highlight the potential of LLMs to streamline scientific work: they can help students start coding more quickly, reduce frustration by catching errors or filling in gaps, and make models more communicable to a wider audience. At the same time, none of these tasks can be fully delegated without oversight. Generated code must be tested for accuracy, documentation must be checked for completeness, and plain-language explanations must be reviewed to ensure they do not omit critical assumptions. In this way, LLMs become collaborative tools that support efficiency and clarity while keeping the responsibility for scientific rigor firmly in human hands.  
 
@@ -385,13 +397,6 @@ Use LLMs for:
 **Reflection:** How does AI support or hinder scientific reproducibility?  
 
 ---
-
-
-
-
-
-
-
 
 ## First Model - ADE
 
