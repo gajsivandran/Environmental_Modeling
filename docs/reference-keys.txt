@@ -83,3 +83,17 @@ trend-in-llm-growth
 table-llms-and-parameter-counts
 capabilities-and-limits-of-llms-1
 llms-in-environmental-modeling-workflows-1
+tutorial-getting-started-with-rstudio
+what-is-rstudio
+the-rstudio-interface
+running-code
+projects-in-rstudio
+working-with-packages
+writing-and-saving-scripts
+r-scripts-.r-files
+rmarkdown-.rmd-files
+plotting-example
+example-1-simple-scatter-plot
+example-2-using-a-built-in-dataset-cars
+example-3-adding-a-trend-line
+ggplot2-version

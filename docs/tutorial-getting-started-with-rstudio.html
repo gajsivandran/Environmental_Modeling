@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Appendix C Workbook Week 2: LLMs | Model Your World: Introduction to Modeling and Simulation</title>
+  <title>Appendix D Tutorial: Getting Started with RStudio | Model Your World: Introduction to Modeling and Simulation</title>
   <meta name="description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Appendix C Workbook Week 2: LLMs | Model Your World: Introduction to Modeling and Simulation" />
+  <meta property="og:title" content="Appendix D Tutorial: Getting Started with RStudio | Model Your World: Introduction to Modeling and Simulation" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Appendix C Workbook Week 2: LLMs | Model Your World: Introduction to Modeling and Simulation" />
+  <meta name="twitter:title" content="Appendix D Tutorial: Getting Started with RStudio | Model Your World: Introduction to Modeling and Simulation" />
   
   <meta name="twitter:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="workbook-week-1-what-is-modeling.html"/>
-<link rel="next" href="tutorial-getting-started-with-rstudio.html"/>
+<link rel="prev" href="workbook-week-2-llms.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -283,484 +283,236 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="workbook-week-2-llms" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Appendix C</span> Workbook Week 2: LLMs<a href="workbook-week-2-llms.html#workbook-week-2-llms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="how-to-build-complixity-into-a-problem" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">C.1</span> How to Build Complixity into a Problem<a href="workbook-week-2-llms.html#how-to-build-complixity-into-a-problem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We briefly discussed the need to layer complexity when trying to model. Lets work through an example of that.</p>
-<div class="promptbox">
-<p><strong>Banksy’s Balloon Model</strong></p>
-<p><img src="images/Banksys.png" style="float:right" fig.alt="Decorative" />
-Have you ever wondered what happens to a helium filled balloon that is released?
-What we will do is build a mathematical model of the balloon to help answer this question.</p>
-<p><strong>What controls the height at which a the balloon will climb?</strong></p>
-<p><span class="math display">\[B(z) = f(\]</span>
-<br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Abstraction</strong></p>
-<p>What is the simplest form of the problem we could solve?</p>
-<p>What assumptions could we make to help us get started?</p>
-<p><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Neutral Buoyancy</strong></p>
-<p>Given the table below and the density information about helium.
-What height would the balloon get to?</p>
-<p>At sea-level conditions (about <span class="math inline">\(T = 288\,\text{K}\)</span>, <span class="math inline">\(P = 101{,}325\,\text{Pa}\)</span>):</p>
+<div id="tutorial-getting-started-with-rstudio" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Appendix D</span> Tutorial: Getting Started with RStudio<a href="tutorial-getting-started-with-rstudio.html#tutorial-getting-started-with-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="what-is-rstudio" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">D.1</span> 1. What is RStudio?<a href="tutorial-getting-started-with-rstudio.html#what-is-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Helium density:<br />
-<span class="math display">\[
-\rho_{\text{He}} \approx 0.1785\ \text{kg/m}^3
-\]</span></li>
-</ul>
-<p><img src="images/std-atmos-table.png" fig.alt="standard atmosphere table, relates Height, Temperature, Pressure and density" /></p>
-</div>
-<div class="promptbox">
-<p><strong>Evaluate and then add complexity</strong></p>
-<p>Does this feel right?</p>
-<p>What assumptions did we make that might have been <em>too</em> simplistic?</p>
-<p>What math model could we apply to add complexity?</p>
-<p><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Ideal Gas Law</strong></p>
-<p>The <strong>ideal gas law</strong> relates the pressure, volume, temperature, and number of moles of a gas:</p>
-<p><span class="math display">\[
-PV = nRT
-\]</span></p>
-<hr />
-<p><strong>Definitions</strong></p>
-<ul>
-<li><span class="math inline">\(P\)</span>: Pressure of the gas (Pa or atm)<br />
+<li><strong>R</strong> is a programming language for statistics, data analysis, and visualization.<br />
 </li>
-<li><span class="math inline">\(V\)</span>: Volume of the gas (m³ or L)<br />
-</li>
-<li><span class="math inline">\(n\)</span>: Number of moles of gas (mol)<br />
-</li>
-<li><span class="math inline">\(R\)</span>: Ideal gas constant
-<ul>
-<li><span class="math inline">\(8.314\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> (SI units)<br />
-</li>
-<li><span class="math inline">\(0.08206\ \text{L·atm·mol}^{-1}\text{·K}^{-1}\)</span> (common chemistry units)<br />
-</li>
-</ul></li>
-<li><span class="math inline">\(T\)</span>: Absolute temperature (Kelvin, K)</li>
+<li><strong>RStudio</strong> is an integrated development environment (IDE) that makes R easier to use with a friendly interface.</li>
 </ul>
 <hr />
-<p><strong>Notes</strong>
-- The equation assumes an <strong>ideal gas</strong> (no inter-molecular forces, particles take up negligible space).<br />
-- Works well for helium and other light gases at normal temperatures and pressures.<br />
-- Can be rearranged into useful forms, e.g. density:</p>
 </div>
-<div class="promptbox">
-<p><strong>Flexible Balloon</strong></p>
-<p>Let’s let the volume of the balloon change - removing the rigid balloon requirement.</p>
-<p><span class="math display">\[
-PV = nRT
-\]</span></p>
-<p>Rearranging for n:</p>
-<p><span class="math display">\[
-n = \frac{PV}{RT}
-\]</span></p>
-<p>We know <strong>n</strong> can’t change as the balloon isn’t leaking.
-So we can think of the balloon in two places</p>
-<p><span class="math display">\[
-n_{msl} = n_{top}
-\]</span></p>
-<p>so plug the rest in</p>
-<p><span class="math display">\[
-\frac{P_1V_1}{T_1}=\frac{P_2V_2}{T_2}
-\]</span></p>
-<p>Ask ourselves what changes based on out assumptions</p>
-<p><strong>What is going to happen to the volume of the balloon as it climbs?</strong></p>
-<p><br><br><br><br><br><br><br><br><br></p>
-<p><strong>What happens to the density of helium if the volume increases?</strong>
-<span class="math display">\[
-\rho = \frac{M}{V}
-\]</span></p>
-<p><br><br><br><br><br><br><br><br><br></p>
-<p><strong>Evaluate - Does this make sense?</strong>
-<br><br><br><br><br><br><br><br><br></p>
-</div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jXP-va2t4D8?si=3UgJ4TaXNXNT5DFq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
-<p>The next thing is to model where the balloon will land. This tool uses the near term forecast as well as the balloon’s parameters to determine the most likely trajectory.</p>
-<p><a href="https://predict.sondehub.org/" title="SondeHub balloon flight predictor">SondeHub Flight Predictor</a></p>
-</div>
-<div id="llms-and-modeling-support" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">C.2</span> LLMs and Modeling Support<a href="workbook-week-2-llms.html#llms-and-modeling-support" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="learning-objectives-1" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">C.2.1</span> Learning Objectives<a href="workbook-week-2-llms.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>By the end of this week, students should be able to:</p>
-<ul>
-<li>Explain what large language models (LLMs) are and how they can support simulation and coding.<br />
-</li>
-<li>Apply prompt engineering techniques to improve model development.<br />
-</li>
-<li>Use LLMs to re-frame and clarify environmental modeling challenges.<br />
-</li>
-<li>Critically evaluate when and how it is appropriate to use AI tools in science.<br />
-</li>
-<li>Incorporate LLMs into workflows for reproducibility, documentation, and troubleshooting in R.</li>
-</ul>
-</div>
-<div id="coding-warmup" class="section level3 hasAnchor" number="6.2.2">
-<h3><span class="header-section-number">C.2.2</span> Coding warmup<a href="workbook-week-2-llms.html#coding-warmup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="promptbox">
-<p><strong>Pseudo-code and r script activity</strong></p>
-<ul>
-<li><p>Create a script that fits a line of best fit to the following string of 10 numbers</p>
-<ul>
-<li>6,1,7,2,3,3,9,3,3,0</li>
-</ul></li>
-<li><p>Create the flexibility in the code to fit a nth order polynomial of your choosing.</p></li>
-<li><p>Before you run build an expectation</p>
-<ul>
-<li>What do expect the graph to look like with n=1</li>
-<li>n=5</li>
-<li>n=9</li>
-<li>n=12</li>
-</ul></li>
-<li><p>What evaluation tools/outputs could you create so that you can ‘test’ the output?</p></li>
-<li><p>Compare your expectations with your output</p></li>
-<li><p>Compare your outputs with the people around you</p></li>
-</ul>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-</div>
-<div id="what-is-a-large-language-model" class="section level3 hasAnchor" number="6.2.3">
-<h3><span class="header-section-number">C.2.3</span> What is a Large Language Model<a href="workbook-week-2-llms.html#what-is-a-large-language-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="promptbox">
-<p><strong>1 min Discussion</strong>
-What is a LLM and how does it work?</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Class Discussion</strong>
-What are the dangers of highly parameterized model?</p>
-<p>Pros and cons of parameter counts?</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-</div>
-<div id="pros-and-cons-of-high-parameter-models" class="section level3 hasAnchor" number="6.2.4">
-<h3><span class="header-section-number">C.2.4</span> Pros and Cons of High-Parameter Models<a href="workbook-week-2-llms.html#pros-and-cons-of-high-parameter-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>High-parameter (or “high-complexity”) models — like very high-degree polynomials, deep neural networks with many layers, or regression models with lots of predictors — have clear advantages and drawbacks.</p>
-<hr />
-<div id="pros" class="section level4 hasAnchor" number="6.2.4.1">
-<h4><span class="header-section-number">C.2.4.1</span> ✅ Pros<a href="workbook-week-2-llms.html#pros" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="the-rstudio-interface" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">D.2</span> 2. The RStudio Interface<a href="tutorial-getting-started-with-rstudio.html#the-rstudio-interface" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you open RStudio, you’ll usually see <strong>four main panes</strong>:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Flexibility &amp; Expressiveness</strong>
+<li><strong>Source Pane (Top-Left)</strong>
 <ul>
-<li>Can capture very complex relationships, including nonlinear patterns that simple models would miss.<br />
+<li>Where you write and edit R scripts (.R), RMarkdown (.Rmd), or notebooks.<br />
 </li>
-<li>For example: a 9th-degree polynomial can fit 10 points exactly.</li>
+<li>You can run code line by line or in chunks.</li>
 </ul></li>
-<li><strong>Low Training Error</strong>
+<li><strong>Console (Bottom-Left)</strong>
 <ul>
-<li>With enough parameters, the model can drive error on the training set down to nearly zero.<br />
+<li>Where R actually runs the code.<br />
 </li>
-<li>Useful if your goal is interpolation of the given data rather than generalization.</li>
+<li>You can type commands directly here for quick tests.</li>
 </ul></li>
-<li><strong>Captures Subtle Structure</strong>
+<li><strong>Environment/History (Top-Right)</strong>
 <ul>
-<li>Sometimes, especially with rich datasets, complexity helps reveal real underlying trends that simpler models would smooth over.</li>
+<li><strong>Environment:</strong> Shows the objects (data, variables, functions) you’ve created.<br />
+</li>
+<li><strong>History:</strong> Keeps track of commands you’ve previously run.</li>
+</ul></li>
+<li><strong>Files/Plots/Packages/Help/Viewer (Bottom-Right)</strong>
+<ul>
+<li><strong>Files:</strong> Navigate your project folder.<br />
+</li>
+<li><strong>Plots:</strong> Displays graphs you generate.<br />
+</li>
+<li><strong>Packages:</strong> Manage installed R packages.<br />
+</li>
+<li><strong>Help:</strong> Documentation for R functions.<br />
+</li>
+<li><strong>Viewer:</strong> Preview HTML outputs (e.g., from RMarkdown).</li>
 </ul></li>
 </ol>
 <hr />
 </div>
-<div id="cons" class="section level4 hasAnchor" number="6.2.4.2">
-<h4><span class="header-section-number">C.2.4.2</span> ❌ Cons<a href="workbook-week-2-llms.html#cons" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="running-code" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">D.3</span> 3. Running Code<a href="tutorial-getting-started-with-rstudio.html#running-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Type directly into the <strong>Console</strong> and hit <code>Enter</code>.<br />
+</li>
+<li>Or, write code in the <strong>Source Pane</strong> and:
+<ul>
+<li>Run a single line: <code>Ctrl + Enter</code> (Windows) or <code>Cmd + Enter</code> (Mac).<br />
+</li>
+<li>Run a whole script: <code>Source</code> button or <code>Ctrl + Shift + Enter</code>.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="projects-in-rstudio" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">D.4</span> 4. Projects in RStudio<a href="tutorial-getting-started-with-rstudio.html#projects-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Create a <strong>Project</strong> to keep related files together.<br />
+</li>
+<li><code>File → New Project → New Directory</code> (or link to an existing folder).<br />
+</li>
+<li>Projects make it easier to manage code, datasets, and outputs without breaking file paths.</li>
+</ul>
+<hr />
+</div>
+<div id="working-with-packages" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">D.5</span> 5. Working with Packages<a href="tutorial-getting-started-with-rstudio.html#working-with-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Packages are <strong>collections of R functions, data, and documentation</strong> bundled together to extend the capabilities of base R.</p>
+<p>Think of them like “apps” you install on your phone — R comes with some built-in tools, but packages let you do much more specialized tasks.</p>
+<ul>
+<li><p><strong>Why use packages?</strong><br />
+Packages provide extra functionality for tasks like data visualization, statistical modeling, spatial analysis, or machine learning.</p></li>
+<li><p><strong>Where do they come from?</strong><br />
+Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the Comprehensive R Archive Network), but you can also install from GitHub or other repositories.</p></li>
+<li><p><strong>How do you use them?</strong></p>
 <ol style="list-style-type: decimal">
-<li><strong>Overfitting</strong>
+<li><p><strong>Install once per computer</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tutorial-getting-started-with-rstudio.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div></li>
+<li><p><strong>Load every session</strong> (so R knows to use it)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="tutorial-getting-started-with-rstudio.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div></li>
+</ol></li>
+<li><p><strong>Examples of popular packages:</strong></p>
 <ul>
-<li>The model fits noise as if it were signal.<br />
+<li><code>ggplot2</code> → advanced graphics and plots<br />
 </li>
-<li>Predictions on new data are often unstable and inaccurate.</li>
-</ul></li>
-<li><strong>Interpretability</strong>
-<ul>
-<li>High-degree polynomials or models with many coefficients are hard to interpret or explain.<br />
+<li><code>dplyr</code> → data wrangling and manipulation<br />
 </li>
-<li>Coefficients may be large, unstable, or counter-intuitive.</li>
-</ul></li>
-<li><strong>Numerical Instability</strong>
-<ul>
-<li>High-order polynomials can produce <code>NA</code>s or huge coefficients due to ill-conditioning.<br />
+<li><code>tidyr</code> → reshaping datasets<br />
 </li>
-<li>Small changes in input lead to large swings in output.</li>
-</ul></li>
-<li><strong>Computational Cost</strong>
-<ul>
-<li>More parameters = more computation, longer training, and sometimes risk of convergence issues.</li>
-</ul></li>
-<li><strong>Generalization Risk</strong>
-<ul>
-<li>High training accuracy doesn’t guarantee real-world usefulness.<br />
+<li><code>readr</code> → reading CSV and text files<br />
 </li>
-<li>Models may fail badly outside the range of training data.</li>
+<li><code>shiny</code> → building interactive web apps in R</li>
 </ul></li>
-</ol>
+</ul>
+<p>✅ <strong>Key idea:</strong> Packages expand what R can do. Installing adds them to your computer, loading makes them available in your current session.</p>
+</div>
+<div id="writing-and-saving-scripts" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">D.6</span> 6. Writing and Saving Scripts<a href="tutorial-getting-started-with-rstudio.html#writing-and-saving-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you work in RStudio, you’ll often want to <strong>save your code</strong> so you can reuse it later, share it with others, or keep a record of what you did. This is where <strong>scripts</strong> come in.</p>
+<div id="r-scripts-.r-files" class="section level3 hasAnchor" number="7.6.1">
+<h3><span class="header-section-number">D.6.1</span> R Scripts (<code>.R</code> files)<a href="tutorial-getting-started-with-rstudio.html#r-scripts-.r-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>An R script is a <strong>plain text file</strong> that contains R code.<br />
+</li>
+<li>You can write multiple lines of code and run them whenever you want, instead of typing directly into the Console.<br />
+</li>
+<li>To create one:
+<ul>
+<li>Go to <code>File → New File → R Script</code> (or use <code>Ctrl + Shift + N</code> / <code>Cmd + Shift + N</code> on Mac).<br />
+</li>
+</ul></li>
+<li>To save:
+<ul>
+<li>Use <code>File → Save As...</code> and give your file a name ending in <code>.R</code>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="rmarkdown-.rmd-files" class="section level3 hasAnchor" number="7.6.2">
+<h3><span class="header-section-number">D.6.2</span> RMarkdown (<code>.Rmd</code> files)<a href="tutorial-getting-started-with-rstudio.html#rmarkdown-.rmd-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An RMarkdown file combines <strong>code, text, and output</strong> in one document.</p>
+<ul>
+<li>Useful for reports, homework assignments, or reproducible research.<br />
+</li>
+<li>To create one:
+<ul>
+<li><code>File → New File → RMarkdown</code><br />
+</li>
+</ul></li>
+<li>You can include code chunks (inside triple backticks <code>{r}</code>) along with explanations in plain English.<br />
+</li>
+<li>Output can be <strong>HTML, PDF, or Word documents</strong>.</li>
+</ul>
+</div>
+</div>
+<div id="plotting-example" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">D.7</span> 7. Plotting Example<a href="tutorial-getting-started-with-rstudio.html#plotting-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R makes it easy to create plots and visualize data. Plots always appear in the <strong>Plots tab</strong> (bottom-right pane in RStudio).</p>
 <hr />
+<div id="example-1-simple-scatter-plot" class="section level3 hasAnchor" number="7.7.1">
+<h3><span class="header-section-number">D.7.1</span> Example 1: Simple Scatter Plot<a href="tutorial-getting-started-with-rstudio.html#example-1-simple-scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can create your own vectors and plot them.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="tutorial-getting-started-with-rstudio.html#cb3-1" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb3-2"><a href="tutorial-getting-started-with-rstudio.html#cb3-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb3-3"><a href="tutorial-getting-started-with-rstudio.html#cb3-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-4"><a href="tutorial-getting-started-with-rstudio.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="tutorial-getting-started-with-rstudio.html#cb3-5" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
+<span id="cb3-6"><a href="tutorial-getting-started-with-rstudio.html#cb3-6" tabindex="-1"></a><span class="fu">plot</span>(x, y, </span>
+<span id="cb3-7"><a href="tutorial-getting-started-with-rstudio.html#cb3-7" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Simple Plot&quot;</span>, </span>
+<span id="cb3-8"><a href="tutorial-getting-started-with-rstudio.html#cb3-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, </span>
+<span id="cb3-9"><a href="tutorial-getting-started-with-rstudio.html#cb3-9" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;y^2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>This will generate a basic scatter plot of numbers 1–10 against their squares.</p>
 </div>
-</div>
-<div id="parameters-in-large-language-models-llms" class="section level3 hasAnchor" number="6.2.5">
-<h3><span class="header-section-number">C.2.5</span> Parameters in Large Language Models (LLMs)<a href="workbook-week-2-llms.html#parameters-in-large-language-models-llms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Large Language Models (LLMs) are defined in part by the <strong>number of parameters</strong> they contain — the trainable weights in their neural networks. These parameters are like knobs the model adjusts during training to learn patterns in data.</p>
-<hr />
-<div id="parameters-in-modern-llms" class="section level4 hasAnchor" number="6.2.5.1">
-<h4><span class="header-section-number">C.2.5.1</span> ⚙️ Parameters in Modern LLMs<a href="workbook-week-2-llms.html#parameters-in-modern-llms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-2-using-a-built-in-dataset-cars" class="section level3 hasAnchor" number="7.7.2">
+<h3><span class="header-section-number">D.7.2</span> Example 2: Using a Built-In Dataset (<code>cars</code>)<a href="tutorial-getting-started-with-rstudio.html#example-2-using-a-built-in-dataset-cars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R comes with many built-in datasets. The <code>cars</code> dataset contains two columns:</p>
 <ul>
-<li><strong>GPT-2 (2019)</strong> → ~1.5 <strong>billion</strong> parameters<br />
+<li><code>speed</code> → speed of cars (in mph)<br />
 </li>
-<li><strong>GPT-3 (2020)</strong> → 175 <strong>billion</strong> parameters<br />
-</li>
-<li><strong>PaLM (Google, 2022)</strong> → 540 <strong>billion</strong> parameters<br />
-</li>
-<li><strong>GPT-4 (2023)</strong> → parameter count not officially disclosed, but estimates suggest <strong>hundreds of billions to over a trillion</strong><br />
-</li>
-<li><strong>GPT-4 Turbo (2023, OpenAI API)</strong> → optimized variant, size undisclosed, but still in the “hundreds of billions” range<br />
-</li>
-<li><strong>Anthropic’s Claude 3 (2024)</strong> → not public, but assumed similar scale (hundreds of billions)<br />
-</li>
-<li><strong>Gemini Ultra (Google DeepMind, 2024)</strong> → also undisclosed, estimated <strong>trillion-scale</strong></li>
+<li><code>dist</code> → stopping distances (in feet)</li>
 </ul>
-<hr />
-</div>
-<div id="what-parameters-mean" class="section level4 hasAnchor" number="6.2.5.2">
-<h4><span class="header-section-number">C.2.5.2</span> 📊 What “Parameters” Mean<a href="#what-parameters-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can quickly make a scatter plot to explore the relationship.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="tutorial-getting-started-with-rstudio.html#cb4-1" tabindex="-1"></a><span class="co"># Look at the first rows of the dataset</span></span>
+<span id="cb4-2"><a href="tutorial-getting-started-with-rstudio.html#cb4-2" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tutorial-getting-started-with-rstudio.html#cb6-1" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb6-2"><a href="tutorial-getting-started-with-rstudio.html#cb6-2" tabindex="-1"></a><span class="fu">plot</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist, </span>
+<span id="cb6-3"><a href="tutorial-getting-started-with-rstudio.html#cb6-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Stopping Distance vs Speed&quot;</span>,</span>
+<span id="cb6-4"><a href="tutorial-getting-started-with-rstudio.html#cb6-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Speed (mph)&quot;</span>,</span>
+<span id="cb6-5"><a href="tutorial-getting-started-with-rstudio.html#cb6-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span>,</span>
+<span id="cb6-6"><a href="tutorial-getting-started-with-rstudio.html#cb6-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb6-7"><a href="tutorial-getting-started-with-rstudio.html#cb6-7" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <ul>
-<li><strong>Each parameter</strong> is just a number (a weight) that influences how input tokens get transformed through the layers of the neural net.<br />
-</li>
-<li>More parameters = more capacity to model complex relationships, but also:
-<ul>
-<li>Requires more <strong>data</strong> to train<br />
-</li>
-<li>Much more <strong>compute</strong> (training GPT-3 took thousands of GPUs for weeks)<br />
-</li>
-<li>Can increase risk of <strong>overfitting</strong> if not carefully regularized</li>
-</ul></li>
-</ul>
-<hr />
-</div>
-<div id="trend-in-llm-growth" class="section level4 hasAnchor" number="6.2.5.3">
-<h4><span class="header-section-number">C.2.5.3</span> 🚀 Trend in LLM Growth<a href="#trend-in-llm-growth" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ul>
-<li><strong>2018–2020</strong> → billions of parameters<br />
-</li>
-<li><strong>2021–2023</strong> → hundreds of billions<br />
-</li>
-<li><strong>2024 onward</strong> → trillion+ parameter models (but with a shift toward <em>efficiency</em> — smaller models trained better)</li>
-</ul>
-<p>Contextualizing these large numbers
-1 million seconds –&gt; 11.6 days
-1 billion seconds –&gt; 31.7 years (~1.5 of your lifetimes)
-1 trillion seconds –&gt; 31,700 years (~1,500 your lifetimes)</p>
-<hr />
-</div>
-<div id="table-llms-and-parameter-counts" class="section level4 hasAnchor" number="6.2.5.4">
-<h4><span class="header-section-number">C.2.5.4</span> 📑 Table: LLMs and Parameter Counts<a href="#table-llms-and-parameter-counts" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<table>
-<colgroup>
-<col width="41%" />
-<col width="10%" />
-<col width="36%" />
-<col width="11%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Model</th>
-<th>Year</th>
-<th>Parameters (approx.)</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>GPT-2</td>
-<td>2019</td>
-<td>1.5B</td>
-<td>First widely known OpenAI LLM</td>
-</tr>
-<tr class="even">
-<td>GPT-3</td>
-<td>2020</td>
-<td>175B</td>
-<td>Major leap in scale</td>
-</tr>
-<tr class="odd">
-<td>PaLM (Google)</td>
-<td>2022</td>
-<td>540B</td>
-<td>Pathways Language Model</td>
-</tr>
-<tr class="even">
-<td>GPT-4</td>
-<td>2023</td>
-<td>100B–1T (est.)</td>
-<td>Exact number undisclosed</td>
-</tr>
-<tr class="odd">
-<td>GPT-4 Turbo</td>
-<td>2023</td>
-<td>100B+ (est.)</td>
-<td>Optimized API variant</td>
-</tr>
-<tr class="even">
-<td>Claude 3 (Anthropic)</td>
-<td>2024</td>
-<td>100B+ (est.)</td>
-<td>Scale similar to GPT-4</td>
-</tr>
-<tr class="odd">
-<td>Gemini Ultra (Google)</td>
-<td>2024</td>
-<td>1T+ (est.)</td>
-<td>Trillion-scale model</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>✅ <strong>Summary</strong>: Modern LLMs like GPT-4, Claude 3, or Gemini are likely running in the <strong>hundreds of billions to trillions of parameters</strong> range.</p>
-</div>
-</div>
-<div id="capabilities-and-limits-of-llms-1" class="section level3 hasAnchor" number="6.2.6">
-<h3><span class="header-section-number">C.2.6</span> Capabilities and Limits of LLMs<a href="workbook-week-2-llms.html#capabilities-and-limits-of-llms-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="promptbox">
-<p><strong>Discussion</strong>: What are the Capabilities and Limits of LLMs
-<br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-</div>
-<div class="promptbox">
-<p><strong>Reflection Prompt</strong><br />
-<strong>Capabilities and Limits of LLMs</strong></p>
-<p><strong>✅ Capabilities of LLMs</strong></p>
-<ul>
-<li><strong>Generate readable text in many styles</strong>
-<ul>
-<li>Scientific summaries<br />
-</li>
-<li>Conversational explanations<br />
-</li>
-<li>Adapt tone for peers, policymakers, or the public</li>
-</ul></li>
-<li><strong>Produce and troubleshoot code</strong>
-<ul>
-<li>Works across multiple languages (R, Python, MATLAB)<br />
-</li>
-<li>Draft starter scripts, find syntax errors, explore alternatives</li>
-</ul></li>
-<li><strong>Summarization tools</strong>
-<ul>
-<li>Condense long articles, datasets, or equations<br />
-</li>
-<li>Highlight key insights and trends</li>
-</ul></li>
-<li><strong>Translate technical content into plain language</strong>
-<ul>
-<li>Make specialized knowledge understandable to non-experts<br />
-</li>
-<li>Support communication of environmental science to diverse audiences</li>
-</ul></li>
-</ul>
-<p><strong>⚠️ Limits of LLMs</strong></p>
-<ul>
-<li><strong>Hallucination</strong>
-<ul>
-<li>Can produce text that sounds plausible but is factually wrong</li>
-</ul></li>
-<li><strong>Bias in training data</strong>
-<ul>
-<li>May reproduce stereotypes or skew perspectives</li>
-</ul></li>
-<li><strong>Lack of true reasoning/understanding</strong>
-<ul>
-<li>Predicts patterns statistically, not by scientific comprehension<br />
-</li>
-<li>Explanations may oversimplify or omit key assumptions</li>
-</ul></li>
-<li><strong>Reproducibility challenges</strong>
-<ul>
-<li>Same prompt can yield different outputs<br />
-</li>
-<li>Hard to fully standardize in scientific workflows</li>
-</ul></li>
-<li>Which of the capabilities described here could have supported your work?<br />
-</li>
-<li>Which limitations would you need to watch out for?<br />
-</li>
-<li>How might you balance the efficiency of using an LLM with the need for accuracy and scientific rigor?</li>
+<li>col = “blue” makes the points blue.</li>
+<li>pch = 19 makes the points solid circles.</li>
 </ul>
 </div>
-</div>
-<div id="llms-in-environmental-modeling-workflows-1" class="section level3 hasAnchor" number="6.2.7">
-<h3><span class="header-section-number">C.2.7</span> LLMs in environmental modeling workflows<a href="workbook-week-2-llms.html#llms-in-environmental-modeling-workflows-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="activity">
-<p><strong>Activity: Explain a Complex Model with Stepwise Prompting</strong></p>
-<p>We’ll use <em>stepwise (chain-of-thought–style) prompting</em> to unpack a very complex partial differential equation into clear, audience-appropriate language <em>without</em> asking the AI to reveal its private reasoning. The goal is to force a structured, term-by-term explanation and surface assumptions.</p>
-<p>Note: we are purposefully using a complex example here so that we can really see the value and dangers of utilizing a LLM for environmental modeling.</p>
-<p><strong>Model</strong>
-The Advection–Diffusion (or Dispersion) Equation for pollutant transport in a river:
-<span class="math display">\[
-\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
-\]</span>
-- <span class="math inline">\(C\)</span>: concentration at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span><br />
-- <span class="math inline">\(D\)</span>: diffusion coefficient (mixing)<br />
-- <span class="math inline">\(v\)</span>: flow velocity (downstream transport)<br />
-- <span class="math inline">\(k\)</span>: decay rate (removal)</p>
-<p><strong>Step 1 — Your Own Explanation</strong>
-Write a plain-language explanation for a non-scientist audience (e.g., a community group). If you have no idea whats going on - take a guess. Go term by term and see if you can decipher whats going on.
-<br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-<p><strong>Step 2 — Baseline AI Explanation</strong>
-Ask an LLM for a plain-language explanation. Save the response.</p>
-<p>Baseline prompt:
-Explain the equation below in plain language for a non-scientist audience.<br />
-<span class="math display">\[
-\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
-\]</span><br />
-Keep it to 6–8 sentences.</p>
-<p>Take a second here and compare your result with those at your table? Are thy identical?</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-<p><strong>Step 3 — Stepwise Prompting (Structured Sections)</strong></p>
-<p>Now force structure so the AI unpacks complexity term-by-term and surfaces assumptions.</p>
-<p><em>Stepwise prompt template (copy-paste)</em>
-Explain the equation below using <em>labeled sections</em>. Do <em>not</em> show your internal reasoning; present only your final explanation.<br />
-Sections (use headings):<br />
-1) <em>Term-by-term meaning</em> — explain each term in one sentence.<br />
-2) <em>Physical interpretation</em> — connect each term to a river process with a brief analogy.<br />
-3) <em>Assumptions</em> — list key modeling assumptions (e.g., dimensionality, parameter constancy, uniform mixing).<br />
-4) <em>Units &amp; parameters</em> — specify typical units for <span class="math inline">\(C, D, v, k\)</span>.<br />
-5) <em>Edge cases</em> — describe what happens if <span class="math inline">\(D=0\)</span>, <span class="math inline">\(v=0\)</span>, or <span class="math inline">\(k=0\)</span>.<br />
-6) <em>Plain-language summary</em> — 3 sentences for a public audience.</p>
-<p>Equation:<br />
-<span class="math display">\[
-\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - v \frac{\partial C}{\partial x} - kC
-\]</span></p>
-<p><strong>Step 4 — Compare &amp; Critique </strong></p>
-<ul>
-<li><em>Clarity:</em> Which version (baseline vs. stepwise) is clearer and why?<br />
-</li>
-<li><em>Completeness:</em> Did the stepwise version expose assumptions or units the baseline missed?<br />
-</li>
-<li><em>Accuracy:</em> Note any incorrect claims or overconfidence.</li>
-</ul>
-<p>Most importantly - which version did you learn something from?
-<br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-<p><strong>Step 5 — Constraint Refinement </strong>
-Re-prompt with tighter constraints to match a <em>specific audience</em>.</p>
-<p><em>Audience-tuning examples</em></p>
-<ul>
-<li>Policy brief style (≤150 words, 8th-grade reading level).<br />
-</li>
-<li>Technical appendix style (include parameter ranges and citations placeholder).<br />
-</li>
-<li>Infographic caption style (≤90 words, 3 bullets + 1 summary sentence).</li>
-</ul>
-<p>How did it do <em>translating</em> complex ideas?</p>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
-<p><strong>Extension (optional)</strong>
-Ask the AI to propose a simple diagram description (no image needed): axes, arrows for diffusion/advection, and a decay curve. Use this as a storyboard for a figure you might create later.</p>
-</div>
+<div id="example-3-adding-a-trend-line" class="section level3 hasAnchor" number="7.7.3">
+<h3><span class="header-section-number">D.7.3</span> Example 3: Adding a Trend Line<a href="tutorial-getting-started-with-rstudio.html#example-3-adding-a-trend-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can add extra layers to your plots. For instance, let’s fit a simple linear model and add the regression line to the <code>cars</code> plot.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="tutorial-getting-started-with-rstudio.html#cb7-1" tabindex="-1"></a><span class="co"># Fit a linear model</span></span>
+<span id="cb7-2"><a href="tutorial-getting-started-with-rstudio.html#cb7-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
+<span id="cb7-3"><a href="tutorial-getting-started-with-rstudio.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="tutorial-getting-started-with-rstudio.html#cb7-4" tabindex="-1"></a><span class="co"># Plot again</span></span>
+<span id="cb7-5"><a href="tutorial-getting-started-with-rstudio.html#cb7-5" tabindex="-1"></a><span class="fu">plot</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist, </span>
+<span id="cb7-6"><a href="tutorial-getting-started-with-rstudio.html#cb7-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Stopping Distance vs Speed with Trend Line&quot;</span>,</span>
+<span id="cb7-7"><a href="tutorial-getting-started-with-rstudio.html#cb7-7" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Speed (mph)&quot;</span>,</span>
+<span id="cb7-8"><a href="tutorial-getting-started-with-rstudio.html#cb7-8" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span>,</span>
+<span id="cb7-9"><a href="tutorial-getting-started-with-rstudio.html#cb7-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>,</span>
+<span id="cb7-10"><a href="tutorial-getting-started-with-rstudio.html#cb7-10" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb7-11"><a href="tutorial-getting-started-with-rstudio.html#cb7-11" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="tutorial-getting-started-with-rstudio.html#cb7-12" tabindex="-1"></a><span class="co"># Add the fitted line</span></span>
+<span id="cb7-13"><a href="tutorial-getting-started-with-rstudio.html#cb7-13" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="ggplot2-version" class="section level4 hasAnchor" number="7.7.3.1">
+<h4><span class="header-section-number">D.7.3.1</span> ggplot2 Version<a href="tutorial-getting-started-with-rstudio.html#ggplot2-version" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>ggplot2</code> package provides more control and produces publication-quality graphics.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tutorial-getting-started-with-rstudio.html#cb8-1" tabindex="-1"></a><span class="co"># Load ggplot2</span></span>
+<span id="cb8-2"><a href="tutorial-getting-started-with-rstudio.html#cb8-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-3"><a href="tutorial-getting-started-with-rstudio.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="tutorial-getting-started-with-rstudio.html#cb8-4" tabindex="-1"></a><span class="co"># Create scatter plot with regression line</span></span>
+<span id="cb8-5"><a href="tutorial-getting-started-with-rstudio.html#cb8-5" tabindex="-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="tutorial-getting-started-with-rstudio.html#cb8-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="tutorial-getting-started-with-rstudio.html#cb8-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="tutorial-getting-started-with-rstudio.html#cb8-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-9"><a href="tutorial-getting-started-with-rstudio.html#cb8-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Stopping Distance vs Speed with Trend Line&quot;</span>,</span>
+<span id="cb8-10"><a href="tutorial-getting-started-with-rstudio.html#cb8-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Speed (mph)&quot;</span>,</span>
+<span id="cb8-11"><a href="tutorial-getting-started-with-rstudio.html#cb8-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span></span>
+<span id="cb8-12"><a href="tutorial-getting-started-with-rstudio.html#cb8-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>✅ Using base R, you get quick and simple plots.</p>
+<p>✅ Using ggplot2, you get more flexible, customizable, and professional-looking plots.</p>
 
+</div>
 </div>
 </div>
 </div>
@@ -769,8 +521,8 @@ Ask the AI to propose a simple diagram description (no image needed): axes, arro
           </div>
         </div>
       </div>
-<a href="workbook-week-1-what-is-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tutorial-getting-started-with-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="workbook-week-2-llms.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -801,7 +553,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/102wb-LLMs.Rmd",
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/999wb-r.Rmd",
     "text": "Edit"
   },
   "history": {
