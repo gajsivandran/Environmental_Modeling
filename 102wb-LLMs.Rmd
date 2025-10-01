@@ -384,6 +384,8 @@ Contextualizing these large numbers
 
 **Activity: Explain a Complex Model with Stepwise Prompting**
 
+[Google Doc For Group Notes](https://docs.google.com/document/d/1M3GD3C6T-Azt4RSFENwVoDUYLVunqg6iQtpQf5zUAJs/edit?usp=sharing)
+
 We’ll use *stepwise (chain-of-thought–style) prompting* to unpack a very complex partial differential equation into clear, audience-appropriate language *without* asking the AI to reveal its private reasoning. The goal is to force a structured, term-by-term explanation and surface assumptions.
 
 Note: we are purposefully using a complex example here so that we can really see the value and dangers of utilizing a LLM for environmental modeling.
