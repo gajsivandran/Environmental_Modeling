@@ -466,3 +466,96 @@ How did it do *translating* complex ideas?
 Ask the AI to propose a simple diagram description (no image needed): axes, arrows for diffusion/advection, and a decay curve. Use this as a storyboard for a figure you might create later.
 
 :::
+
+## Friday Discussion -  AI, Society & the Environment  
+
+Students will rotate through 6 stations, discussing and writing responses to each prompt.  
+
+
+
+::: promptbox
+**Station 1 – Environmental Applications**  
+**Prompt:**  
+*How could LLMs help in environmental science (climate modeling, biodiversity tracking, sustainability research)?*
+
+
+
+| Use | Description / Findings | Role of AI/LLMs | Citation |
+|---|---|---|---|
+| **Automated ecological data extraction** | LLMs used to parse ecological literature 50× faster than humans, with > 90% accuracy for categorical data. | *Text mining & knowledge extraction* | [Nature (2024)](https://www.nature.com/articles/s44185-024-00043-9?utm_source=chatgpt.com) |
+| **Biodiversity commitments vs renewables tradeoffs** | LLM + GIS framework to compare biodiversity promises vs real-world impacts in renewable energy projects. | *Synthesizing documents with spatial data* | [Purdue (2024)](https://docs.lib.purdue.edu/cib-conferences/vol1/iss1/105/?utm_source=chatgpt.com) |
+| **Policy & governance support** | LLM-based chatbot assisting with biodiversity treaty policy interpretation and decision-making. | *Policy Q&A, summarization & interpretation* | [Nature (2025)](https://www.nature.com/articles/s44183-025-00132-7?utm_source=chatgpt.com) |
+| **Land-use / biodiversity predictions** | Cambridge “Terra” AI tool predicts biodiversity impacts of land-use, supporting policy tradeoffs. | *Modeling + scenario analysis* | [Cambridge (2025)](https://www.cam.ac.uk/stories/ai-and-climate-and-nature?utm_source=chatgpt.com) |
+| **Biodiversity & conservation** | AI helps with species detection, habitat mapping, and biodiversity understanding. | *Pattern recognition (images, acoustics, mapping)* | [OSU Imageomics (2025)](https://imageomics.osu.edu/news/2025/02/ai-rescue-how-artificial-intelligence-helping-scientists-understand-biodiversity?utm_source=chatgpt.com) |
+| **Risks & benefits review** | Review article on how LLMs can support environmental participation but also bring risks. | *Framing debates, generating text & synthesis* | [ACS EST (2023)](https://pubs.acs.org/doi/10.1021/acs.est.3c01106?utm_source=chatgpt.com) |
+
+<br><br><br><br><br><br><br><br><br><br>
+:::
+
+
+
+::: promptbox
+**Station 2 – Risks in Science & Policy**  
+**Prompt:**  
+*What are the risks if AI models mislead scientists, policymakers, or the public about environmental issues?*  
+![](images/AI_sea-level.png){fig.alt='two headlines: FAKE - AI predicts catastrophic sea-level rise by 2050; REAL - AI downplays sea-level rise concerns'}
+<br><br><br><br><br><br><br><br><br><br>
+:::
+
+
+
+::: promptbox
+**Station 3 – Environmental Footprint of AI**  
+**Prompt:**  
+*LLMs require huge amounts of energy and water to run. Is their environmental cost justified by their benefits? Why or why not?*  ![](images/AIenergy.png){fig.alt='Bar chart comparing global electricity use by sector in ~2023 vs projected 2030. Industry is the largest user, rising from about 9,000 to 10,000 TWh. Residential increases from ~7,000 to 8,000 TWh. Commercial rises from ~4,000 to 4,500 TWh. Transport increases from ~2,500 to 3,500 TWh. Data centers grow sharply from ~415 TWh to ~945 TWh, highlighting their disproportionate growth compared to other sectors.'}
+
+
+**Water Use**
+
+ ![](images/AIwater.png){fig.alt='Stacked area and bar charts showing direct water consumption by data center type from 2014 to 2028. The left panel shows steady growth from ~20 billion liters/year in 2014 to over 100 billion liters/year in 2023, dominated by hyperscale (light blue) and large-scale colocation (dark blue) centers. The right panel projects future use with low and high estimates: around 70–90 billion liters/year by 2024, 140–150 billion liters/year by 2026, and 250–280 billion liters/year by 2028. Smaller categories (small/medium colocation, internal, communications service providers, enterprise, SMB, commercial edge, telco edge) contribute minimally compared to hyperscale and colocation growth.'}
+ 
+ 
+Sources: https://watercalculator.org/; Lawrence Berkeley National Labs
+
+| Scenario | Liters per person per year | People needed to reach 1B liters/year |
+|---|---|---|
+| Direct household use | ~114,000 L | ~8,800 people |
+| Full water footprint (direct + virtual) | ~2,842,000 L | ~350 people |
+<br><br><br><br><br><br><br><br><br><br>
+:::
+
+
+::: promptbox
+**Station 4 – Learning & Academic Integrity**  
+**Prompt:**  
+*How should students and researchers use AI responsibly in their work? Where’s the line between help and cheating?* 
+![](images/AI_usage.jpg){fig.alt='two headlines: FAKE - AI predicts catastrophic sea-level rise by 2050; REAL - AI downplays sea-level rise concerns'}
+Tokens processed - why the drop in the June?
+
+<br><br><br><br><br><br><br><br><br><br>
+:::
+
+
+
+::: promptbox
+**Station 5 – Equity & Bias**  
+**Prompt:**  
+*Who risks being excluded? How might biases in LLMs affect society and science?* 
+
+| Disparity / Exclusion / Bias | How / Why | Solution? |
+|---|---|---|
+
+
+<br><br><br><br><br><br><br><br><br><br>
+:::
+
+
+
+::: promptbox
+**Station 6 – Future of Work & Society**  
+**Prompt:**  
+*How might AI change jobs, communication, and decision-making in the next 10 years? What should never be automated?*  
+<br><br><br><br><br><br><br><br><br><br>
+:::
+
+
