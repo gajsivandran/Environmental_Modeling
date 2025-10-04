@@ -6,7 +6,8 @@ Mathematical models are **purposeful simplifications** of real-world systems. Th
 
 A good model balances **clarity and realism**. It should be simple enough to understand and compute, yet detailed enough to capture the processes that matter for the question at hand. Importantly, every model is conditional: its outputs reflect its **assumptions**, **inputs**, and **uncertainties**. Rather than delivering “truth,” models provide **structured what-ifs**—evidence-based scenarios that inform conservation planning, risk assessment, and policy.
 
-In this chapter we will:  
+In this chapter we will:
+
 - **Name the parts** of a model (variables, parameters, functions, initial/boundary conditions) and explain what each does.  
 - **Compare growth forms** (linear, exponential, logistic, decay, thresholds) and match them to ecological stories.  
 - **Fit models to data** and interpret parameters (e.g., growth rate \(r\), carrying capacity \(K\)) with attention to error and uncertainty.  
@@ -32,6 +33,7 @@ To anchor the model, we specify **initial conditions** that describe the system 
 Environmental systems are complex, operate across multiple scales, and are often studied with limited or imperfect data. Because of this, intuition alone is rarely enough to guide effective decision-making. Mathematical models provide a structured way to translate ecological processes, observations, and hypotheses into a form that can be tested, refined, and applied. They act as a bridge between raw data and actionable insight.  
 
 Models help us to:  
+
 - **Explain** assumptions about processes. For example, a snowmelt model can explicitly represent how warming temperatures drive runoff timing, making clear what processes are assumed to matter most.  
 - **Forecast** future states under different scenarios. With population models, we can project whether an endangered species will recover or decline under various management strategies.  
 - **Diagnose** key drivers and feedbacks. Climate-carbon cycle models, for instance, allow us to separate the influence of emissions, land-use change, and natural sinks in shaping atmospheric CO₂ levels.  
@@ -76,6 +78,7 @@ When building a mathematical model, one of the most important choices is how muc
 In practice, good modelers acknowledge these trade-offs openly and design models that are “as simple as possible, but not simpler” for the problem at hand.
 
 ---
+
 ### Example: Population Growth  
 
 Population growth is one of the most fundamental processes in ecology, and models of growth have been central to understanding species invasions, conservation, and sustainable harvest management. Two of the most widely used forms are the **exponential** and **logistic** models.  
@@ -100,12 +103,13 @@ Population growth is one of the most fundamental processes in ecology, and model
   - **Initial condition:** \(P(0) = P_0\).  
   - **Dynamics:** Growth is initially fast (similar to exponential growth), but slows as resources become limited. Eventually, the population levels off near \(K\), producing an S-shaped (sigmoid) curve.  
 
-- **Insights**  
-  - Population dynamics are **sensitive** to small changes in parameters. For example, a slightly higher \(r\) may cause a species to reach \(K\) much faster, while changes in \(K\) shift the long-term ceiling.  
-  - The logistic form highlights the role of **feedbacks**: the growth rate effectively decreases as population size increases.  
-  - These models are directly applicable to conservation and harvest decisions, helping managers set quotas, predict recovery times, or evaluate the risk of extinction.  
+  - **Insights**  
+    - Population dynamics are **sensitive** to small changes in parameters. For example, a slightly higher \(r\) may cause a species to reach \(K\) much faster, while changes in \(K\) shift the long-term ceiling.  
+    - The logistic form highlights the role of **feedbacks**: the growth rate effectively decreases as population size increases.  
+    - These models are directly applicable to conservation and harvest decisions, helping managers set quotas, predict recovery times, or evaluate the risk of extinction.  
 
-**Illustrative example.** Imagine an invasive mussel species introduced into a new lake. At first, the population grows nearly exponentially—food is plentiful and there are no natural predators—so the number of mussels doubles every few months. However, as the population expands, food resources become depleted and available habitat fills. At this point, exponential growth overestimates reality, and the logistic model provides a better description: growth slows and the population stabilizes around a carrying capacity determined by the lake’s productivity.  
+**Illustrative example.**\
+Imagine an invasive mussel species introduced into a new lake. At first, the population grows nearly exponentially—food is plentiful and there are no natural predators—so the number of mussels doubles every few months. However, as the population expands, food resources become depleted and available habitat fills. At this point, exponential growth overestimates reality, and the logistic model provides a better description: growth slows and the population stabilizes around a carrying capacity determined by the lake’s productivity.  
 
 Conversely, in conservation contexts, a logistic model can help predict recovery. Suppose a fish population in a marine reserve is protected from harvest. The logistic model allows managers to estimate how long it will take the population to rebuild to near carrying capacity, and to test different scenarios (e.g., reopening harvest at different times). These insights show how relatively simple growth models can guide real-world environmental decisions.  
 
@@ -122,6 +126,8 @@ Conversely, in conservation contexts, a logistic model can help predict recovery
 7. Run scenarios to inform decisions.  
 8. Iterate as new data or insights emerge.  
 
+Models are rarely 'completed'. The modeling development cycle results in updates to the model each iteration. Trying to produce a perfect model the first time through the cycle is not the goal. We learn with every development cycle, so we teh goal is always to get to a testable workable model, run it, test it, rethink it, improve it and repeat. 
+
 ---
 
 ### Choosing the Right Level of Detail  
@@ -134,7 +140,7 @@ A central challenge in modeling is deciding **how much detail is enough**. Every
   - For **policy or regulation**, more detail is often necessary. A government agency setting water-quality standards might need a physically based pollutant transport model that accounts for river flow, sediment interactions, and decay rates.  
 
 - **Match complexity to data availability**  
-  A model is only as good as the data available to support it. Overly detailed models with many parameters may look realistic but are prone to **overparameterization**—fitting noise instead of signal—if the necessary data are sparse or uncertain.  
+  A model is only as good as the data available to support it. Overly detailed models with many parameters may look realistic but are prone to **overparameterization**, fitting noise instead of signal, if the necessary data are sparse or uncertain.  
   - For example, if only basic annual counts of a fish population are available, a logistic growth model may be the best fit. Trying to build an age-structured model with dozens of parameters would not be justified without high-resolution demographic data.  
 
 - **Match complexity to computation needs**  
@@ -142,7 +148,8 @@ A central challenge in modeling is deciding **how much detail is enough**. Every
   - When running thousands of simulations for scenario testing or sensitivity analysis, **simpler models** (e.g., reduced-form climate models) may be preferable.  
   - More complex models (e.g., coupled climate–carbon cycle simulations) may provide greater realism but are too slow to be run repeatedly in real time.  
 
-**Example.** Consider modeling coastal flooding risk.  
+**Example.** Consider modeling coastal flooding risk.
+
 - A **simple model** might assume a uniform sea-level rise plus storm surge probability to give a quick estimate of risk for city planning workshops.  
 - A **more detailed model** might incorporate high-resolution topography, tide–surge interactions, and climate projections for use in designing levees or evacuation plans.  
 Both models serve important roles, but their usefulness depends on context—what decisions are being made, what data exist, and how quickly results are needed.  
@@ -164,7 +171,7 @@ Ultimately, the **art of modeling** lies in choosing the right level of detail�
 
 ---
 
-## 2. Components of a Mathematical Model  
+## Components of a Mathematical Model  
 
 Every mathematical model is built from a common set of ingredients. These components—variables, parameters, functions, initial conditions, and boundary conditions—define what the model represents, how it behaves, and how we interpret its results. Understanding these pieces is essential before moving on to growth models or more advanced formulations.  
 
@@ -183,6 +190,7 @@ P(t) \quad \text{population size over time}, \qquad C(x,t) \quad \text{pollutant
 \]  
 
 ---
+
 ### Parameters  
 
 Parameters are fixed values that influence how the system behaves. Unlike variables, they are usually assumed to remain constant during the simulation of a model, but they strongly shape its outcomes.  
@@ -197,6 +205,7 @@ Parameters are often unknown and must be estimated from data, experiments, or li
 
 **Do parameters always stay constant?**  
 Not necessarily. While many models assume fixed parameters for simplicity, parameters can themselves vary through time or depend on environmental conditions:  
+
 - A fish population’s **growth rate (\(r\))** might drop during drought years when food is scarce.  
 - The **carrying capacity (\(K\))** of a wetland may shift seasonally as water levels rise and fall.  
 - The **decay constant (\(\lambda\))** for a pollutant could change with temperature or pH.  
@@ -247,7 +256,7 @@ Boundary and initial conditions together ensure that the mathematical problem is
 ---
 
 
-## 3. Types of Mathematical Models  
+## Types of Mathematical Models  
 
 Mathematical models can be grouped in different ways depending on how they are constructed, what assumptions they make, and what role they serve. In environmental science, it is especially useful to distinguish between **conceptual**, **empirical**, **mechanistic**, **physically based**, **statistically based**, **probability-based**, and **discrete/continuous** models. Each of these types has strengths, limitations, and contexts where they are most useful.  
 
@@ -255,85 +264,134 @@ Mathematical models can be grouped in different ways depending on how they are c
 
 ### Conceptual Models  
 
-- Conceptual models are qualitative representations of systems.  
-- They take the form of flow diagrams, influence charts, or causal loop diagrams.  
-- They highlight the main components of a system and their connections without using formal equations.  
-- Example: a watershed model showing precipitation leading to runoff, infiltration, groundwater recharge, and river flow, without specifying the mathematical relationships.  
+Conceptual models are **qualitative representations** of systems. Rather than focusing on detailed equations or precise numerical predictions, they capture the **structure of a system**—its main components and how they are connected.  
 
-Conceptual models are powerful for communication, brainstorming, and scoping: they help us decide what processes should be included before moving to quantitative modeling.  
+- **Format.** Conceptual models often take the form of flow diagrams, influence charts, or causal loop diagrams. These visual tools show arrows linking drivers, processes, and outcomes, emphasizing relationships rather than calculations.  
+- **Purpose.** The goal is to build a shared mental map of the system, clarify assumptions, and decide which processes are most important to represent. By stripping away complexity, conceptual models help teams focus on the “big picture.”  
+- **Strengths.** They are simple, intuitive, and accessible to diverse audiences, making them powerful tools for communication, brainstorming, and scoping before moving into quantitative modeling.  
+- **Limitations.** Because they lack equations and numbers, conceptual models cannot generate predictions or quantify uncertainty. They are best viewed as a starting point, not an end product.  
+
+**Example.** A watershed conceptual model might show precipitation leading to runoff, infiltration, groundwater recharge, and river flow, without specifying the mathematical relationships. Such a diagram makes clear that rainfall drives multiple pathways of water movement, and that groundwater recharge links surface and subsurface systems. This helps scientists, managers, and stakeholders agree on what processes matter before investing in a quantitative hydrological model.  
+
+**Broader use.** Conceptual models are widely applied in ecology and environmental science. For example:  
+
+- In **conservation planning**, a conceptual model might link habitat loss, predator pressure, and food availability to species survival.
+![](images/conceptual_model.png){fig.alt='Conceptual model illustrating how fire influences ecosystem dynamics through linked ecological processes. At the top, four main boxes show the sequence of interactions: (1) Fire — alters vegetation structure, shelter availability, visibility, and sensory cues (olfactory/acoustic); (2) Predation Risk — expressed as P(k) = 1 - exp(-αdT), where α is encounter rate, d is probability of death given encounter, and T is time vulnerable to encounter; (3) Behavioural Responses — include changes in predation rates, fear/risk effects, foraging behavior, habitat use, activity times, and sheltering; and (4) Population Dynamics — encompassing health, survival, reproduction, and abundance. The central landscape shows a transition from lush green habitat with lions, zebras, and birds to a burned, sparse environment with predators such as cougars and raptors. Arrows connect these stages, showing feedback loops between fire, predation, and population outcomes. At the bottom, moderating factors are shown: Fire characteristics (size, season, frequency, wildfire vs. prescribed burn, severity, intensity); Spatial and temporal scales (<1 m to >100 km, <1 hr to >5 yrs); and Environmental characteristics (predator–prey assemblages, rainfall, vegetation type, food availability, management activities). The diagram illustrates how fire reshapes habitat and risk dynamics, influencing animal behavior and population-level outcomes across multiple scales.'}
+
+- In **climate science**, diagrams often depict the carbon cycle, showing how carbon moves among the atmosphere, biosphere, and oceans. 
+![](images/conceptual_carbon.png){fig.alt='Illustration of the carbon cycle showing how carbon moves between the atmosphere, plants, animals, soil, and human activities. Sunlight enables photosynthesis in plants, which draw CO₂ from the atmosphere and store it as organic carbon. Animals consume plants and release CO₂ back into the air through respiration. Factories and vehicles emit CO₂ through transportation and industrial processes. Below ground, root respiration, decomposition of dead organisms and waste products, and fossil fuel formation return carbon to the atmosphere when burned. The diagram highlights the continuous exchange of carbon among biological, geological, and human systems.'}
+
+- In **restoration ecology**, managers might sketch how reconnecting wetlands to floodplains influences nutrient cycling, fish migration, and water quality.  
+![](images/conceptual_restoration.png){fig.alt='Illustration of carbon storage and ecosystem services across coastal habitats from upland to subtidal zones. The diagram is divided into four regions: Upland, Tidal Marsh, Mangrove Forest, and Tidal Flat, with mean high and low tide levels indicated. Upland areas contribute freshwater through drainage into the coastal wetland. In the Tidal Marsh, plants absorb CO₂ and store organic carbon (OC) in vegetation and sediments, providing carbon storage, water purification, recreation, and coastal protection. In the Mangrove Forest, mangrove trees capture CO₂, store OC in their roots and sediments, and offer carbon storage, biodiversity maintenance, coastal protection, and water purification. The Tidal Flat supports biodiversity maintenance, coastal protection, and food provision, with people collecting shellfish and fishers operating boats near the subtidal zone. Birds, fish, and aquatic organisms illustrate the ecological connectivity among these zones. The image emphasizes how different coastal ecosystems collectively provide carbon sequestration and essential ecosystem services.'}
+
+
+In all of these cases, the conceptual model serves as a **foundation**: it identifies key components, reveals possible feedbacks, and ensures that stakeholders have a common understanding before quantitative equations are developed.  
+
 
 ---
 
 ### Empirical Models  
 
-- Empirical models are constructed directly from data and attempt to capture observed patterns without explaining the underlying processes.  
-- Example: a regression model linking crop yield to rainfall.  
-- They can be highly accurate within the range of observed data but may fail when applied outside those conditions.  
+Empirical models are constructed **directly from observed data** and aim to capture patterns without necessarily explaining the underlying processes. They are often built using regression, curve-fitting, or other statistical approaches.  
 
-Empirical models are easy to build when data are plentiful. They are often the first step in modeling because they can reveal relationships that inspire mechanistic or physically based models.  
+- **Strengths.** Empirical models are quick to build when data are plentiful and can be highly accurate within the range of observed conditions. They are particularly useful for prediction tasks where explanation is less important.  
+- **Limitations.** Because they are not tied to underlying mechanisms, empirical models may fail when applied outside the range of the data (poor extrapolation). They also provide little insight into *why* a system behaves the way it does.  
+
+**Example.** A regression model might link crop yield to rainfall amount, showing that higher rainfall generally leads to higher yields up to a point. While the model captures the correlation, it does not explain the underlying processes of soil moisture dynamics, plant physiology, or nutrient cycling.  
+![](images/emprial_model.png){fig.alt='Scatter plot showing the relationship between rainfall amount and crop yield with fitted regression lines. Each point represents an observed field, showing that yield generally increases with rainfall up to an optimal level before declining slightly. Two regression curves are overlaid: a linear fit, showing a steady positive trend, and a quadratic fit, which captures diminishing returns at higher rainfall levels. Axes are labeled “Rainfall during growing season (mm)” and “Crop yield (tons/ha),” with a title reading “Crop Yield vs. Rainfall: Empirical Regression Example.” The plot illustrates how empirical regression models capture observed correlations without explicitly modeling underlying processes such as soil moisture, plant physiology, or nutrient cycling.'}
+
+Empirical models are often a **first step in modeling**, helping reveal relationships that can later inspire more mechanistic or physically based models.  
 
 ---
 
 ### Mechanistic Models  
 
-- Mechanistic (or process-based) models attempt to represent the actual physical, chemical, or biological **mechanisms** of a system.  
-- They are usually expressed in terms of equations that represent process rates or interactions.  
-- Example: a predator–prey model in ecology that represents how predator consumption rates depend on prey abundance.  
-- These models often require more assumptions and data, but they offer deeper explanatory power and can be applied to new conditions.  
+Mechanistic (or process-based) models attempt to represent the **actual physical, chemical, or biological mechanisms** driving a system. They are usually expressed in terms of equations that represent process rates or interactions.  
 
-Mechanistic models are especially useful when the goal is to understand *why* a system behaves as it does, not just to predict outcomes.  
+- **Strengths.** Mechanistic models provide deeper explanatory power by focusing on *why* a system behaves in a particular way. Because they are based on processes, they can often be applied to new situations outside the range of existing data.  
+- **Limitations.** These models often require more assumptions, more data, and more expertise to build and calibrate.  
+
+**Example.** A predator–prey model (Lotka–Volterra equations) represents how predator consumption rates depend on prey abundance, and how prey populations decline or increase depending on predator pressure. Such models capture the interaction mechanisms rather than just observed correlations. ![](images/mechanistic_PP.png){fig.alt='Conceptual diagram of predator–prey dynamics based on the Lotka–Volterra equations. On the left, a green rabbit represents the prey population with the equation dx/dt = αx − βxy. On the right, a brown fox represents the predator population with the equation dy/dt = δxy − γ. A blue arrow labeled “Prey consumed” points from the rabbit to the fox, indicating energy transfer from prey to predator. An orange arrow labeled “Predation pressure” points from the fox back to the rabbit, showing that predation reduces prey abundance. The figure title reads “Predator–Prey Dynamics (Lotka–Volterra Equations)” and illustrates the feedback loop between predator consumption and prey growth.'}
+
+
+Mechanistic models are particularly valuable when the goal is **understanding causation**, not just prediction.  
 
 ---
 
 ### Physically Based Models  
 
-- Physically based models are a subset of mechanistic models that rely explicitly on **laws of physics** such as conservation of mass, energy, and momentum.  
-- Example: the advection–dispersion equation for pollutant transport in groundwater, which is grounded in fluid mechanics.  
-- They are often considered more “trustworthy” because they rest on universal principles, but they can be computationally demanding and data-intensive.  
+Physically based models are a subset of mechanistic models that rely explicitly on **fundamental physical laws**, such as conservation of mass, energy, and momentum.  
 
-Physically based models are essential in hydrology, climate science, and atmospheric modeling, where conservation principles govern large-scale dynamics.  
+- **Strengths.** Because they are grounded in universal principles, they are often considered more “trustworthy” and generalizable. They can be applied to different systems without retraining or refitting, as long as the physics remain the same.  
+- **Limitations.** They are often data-intensive and computationally demanding, which can make them challenging to apply in data-limited or resource-constrained contexts.  
+
+**Example.** The advection–dispersion equation in hydrology models pollutant transport in groundwater. It explicitly represents the physical processes of advection (movement with flow), dispersion (spreading), and decay.
+![](images/physical_ADE.png){fig.alt='Conceptual diagram illustrating pollutant transport in groundwater using the advection–dispersion equation. The image shows a soil cross-section with groundwater flowing horizontally. Arrows indicate three main processes: Advection (horizontal movement of contaminants with the water flow), Dispersion (spreading of the pollutant plume downstream and outward), and Decay (gradual reduction of pollutant concentration). Above the soil surface, a tree and soil layer represent the land source of the contaminant. The mathematical form of the advection–dispersion equation is shown: ∂C/∂t = –v ∂C/∂x + ∂²C/∂x² – λC, representing how concentration C changes over time due to flow velocity v, spreading, and decay. The diagram visually communicates how pollutants move, spread, and degrade as they travel through groundwater.'}
+
+
+Physically based models are essential in **hydrology, climate science, and atmospheric modeling**, where conservation principles govern large-scale dynamics.  
 
 ---
 
 ### Statistically Based Models  
 
-- Statistically based models rely on patterns and correlations in observed data rather than explicit mechanisms.  
-- Example: a multiple regression predicting air quality index (AQI) from temperature, wind speed, and traffic counts.  
-- These models are flexible, relatively quick to build, and can handle messy datasets, but they may lack interpretability and are not easily generalizable to new contexts.  
+Statistically based models focus on **patterns and correlations** in observed data rather than explicit mechanisms. They can include regression, generalized linear models, and modern statistical learning methods.  
+
+- **Strengths.** They are flexible, relatively quick to build, and effective at handling noisy or messy datasets. They are often useful when mechanisms are poorly understood but data are available.  
+- **Limitations.** These models can lack interpretability, may be limited to the conditions where data were collected, and can be prone to spurious correlations.  
+
+**Example.** A multiple regression predicting air quality index (AQI) from temperature, wind speed, and traffic counts. This model may predict AQI well in urban areas with similar conditions, but may not generalize to other contexts or explain the underlying atmospheric chemistry.  
 
 ---
 
 ### Hybrid Models  
 
-- Hybrid models combine physically based or mechanistic components with statistical elements.  
-- Example: a climate model that simulates radiation balance using physical laws but represents cloud processes statistically.  
-- Increasingly, hybrid models include machine learning components to approximate or “emulate” sub-processes that are too complex to model explicitly.  
+Hybrid models combine **mechanistic or physically based components** with **statistical or empirical elements**. Increasingly, they also incorporate machine learning to approximate processes that are too complex to model explicitly.  
 
-Hybrid approaches are powerful because they balance explanatory depth with predictive performance.  
+- **Strengths.** They balance explanatory depth with predictive accuracy, making them powerful tools for modern environmental modeling. They can use physics where mechanisms are well understood and statistics where processes are uncertain.  
+- **Limitations.** Hybrids can be complex to implement, requiring both strong process knowledge and advanced statistical or computational skills.  
+
+**Example.** A climate model might use physical laws to simulate radiation balance while representing cloud formation statistically, since clouds are too complex to simulate explicitly at global scales.  
+
+Hybrid approaches are especially useful for **large, complex systems** where no single modeling approach is sufficient.  
 
 ---
 
 ### Probability-Based Models  
 
-- Probability-based models incorporate randomness and uncertainty explicitly.  
-- **Stochastic models** allow variables to fluctuate randomly (e.g., rainfall arrivals modeled as a Poisson process).  
-- **Monte Carlo simulations** use repeated random sampling to explore uncertainty in parameters or inputs.  
-- **Markov models** describe transitions between discrete states with probabilities (e.g., land cover change from forest to agriculture).  
-- Example: wildfire spread models that capture random ignition events, wind shifts, and fuel variation.  
+Probability-based models incorporate **randomness and uncertainty explicitly** into the modeling process.  
 
-Probability-based models are especially useful in risk analysis, where the question is not “what will happen?” but “what is likely to happen, and with what probability?”  
+- **Types.**  
+  - **Stochastic models**: allow variables to fluctuate randomly (e.g., rainfall arrivals modeled as a Poisson process).  
+  - **Monte Carlo simulations**: use repeated random sampling to explore uncertainty in parameters or inputs.  
+  - **Markov models**: describe transitions between discrete states with probabilities (e.g., land cover change from forest to agriculture).  
+
+- **Strengths.** These models are well-suited for risk analysis and decision-making under uncertainty, since they provide probabilities rather than deterministic outcomes.  
+- **Limitations.** They require careful specification of probability distributions, and results can be sensitive to those assumptions.  
+
+**Example.** Wildfire spread models often use probabilistic elements to capture random ignition events, wind shifts, and fuel variability. While no one can predict the exact path of a fire, probability-based models estimate likely outcomes and risks.  
+![](images/probability_fire.png){fig.alt='Conceptual diagram showing a probability-based wildfire spread model using a grid of trees. On the left, a coin labeled “Ignition probability” represents the random chance of fire starting, with fire and no-fire outcomes. The main grid shows rows of green trees, one of which is burning, indicating a fire event influenced by probabilistic ignition. An arrow labeled “Wind” points in the direction of fire spread, representing environmental factors affecting likelihood. The figure title reads “Probability-Based Wildfire Spread Model” and conveys that wildfire models estimate likelihoods of fire spread rather than deterministic outcomes.'}
+
+
 
 ---
 
 ### Discrete vs Continuous Models  
 
+The choice between **discrete** and **continuous** models depends on how processes unfold and how data are collected.  
+
 - **Discrete models** describe systems in stepwise updates, often expressed as difference equations.  
-  - Example: annual updates of a fish population with seasonal reproduction.  
+  - **Example.** Annual updates of a fish population with seasonal reproduction, where population counts are only recorded once a year.  
 
 - **Continuous models** describe change as a smooth process in time or space, often expressed as differential equations.  
-  - Example: continuous logistic growth or chemical reaction kinetics.  
+  - **Example.** Logistic growth of a population or chemical reaction kinetics, where changes occur continuously over time.  
 
-The choice depends on the system and data: if processes happen in pulses or measurements are only periodic, discrete models are more natural; if change is ongoing and smooth, continuous models are preferable.  
+- **Comparison.**  
+  - Discrete models are natural when processes occur in pulses (e.g., seasonal breeding) or when data are only periodic.  
+  - Continuous models are appropriate when change is ongoing and smooth (e.g., temperature variation through the day).  
+
+In practice, modelers often switch between discrete and continuous formulations depending on data availability, computational needs, and the nature of the process being studied.  
+
 
 ---
 
@@ -344,9 +402,11 @@ These categories—conceptual, empirical, mechanistic, physically based, statist
 ---
 
 
-## 4. Growth Models  
+## Growth Models  
 
-Growth models describe how quantities change over time. They are among the most widely used mathematical models in environmental science because they capture how populations expand, resources are consumed, or pollutants accumulate and decline. Each model makes assumptions about what drives growth, what limits it, and whether change is smooth or sudden. Below we introduce several canonical growth forms.  
+Growth models describe how quantities change over time. They are among the most widely used mathematical models in environmental science because they capture how populations expand, resources are consumed, or pollutants accumulate and decline. Each model makes assumptions about what drives growth, what limits it, and whether change is smooth or sudden. Below we introduce several canonical growth forms. 
+![](images/growth_models.png){fig.alt='Four-panel figure comparing common mathematical models of change. Top left: Linear Growth shows a straight line increasing steadily over time. Top right: Exponential Growth (green) rises steeply, while Exponential Decay (red) starts at an initial value of 4000 and decreases smoothly toward zero. Bottom left: Logistic Growth shows an S-shaped curve leveling off near a carrying capacity of 100. Bottom right: Threshold Model shows a flat line until a threshold at t = 10 (dashed vertical line), after which it rises linearly. Each subplot is labeled with axes for time (t) and value y(t).'}
+
 
 ---
 
@@ -405,6 +465,7 @@ y(t) = \frac{K}{1 + A e^{-rt}}, \quad A = \frac{K - y_0}{y_0}
 **Environmental example.** A fish population in a lake may grow quickly when small but will slow as competition for food intensifies, eventually stabilizing around a carrying capacity.  
 
 **Key features.**  
+
 - Growth is fast at first, then slows as \(y(t)\) approaches \(K\).  
 - Produces an S-shaped (sigmoid) curve.  
 - Sensitive to both the growth rate \(r\) and the initial population \(y_0\).  
@@ -425,6 +486,7 @@ y(t) = y_0 e^{-\lambda t}
 - \(y_0\) is the initial value at \(t=0\).  
 
 **Environmental examples.**  
+
 - Pollutant concentrations decline after a cleanup effort.  
 - Radioactive isotopes lose mass at a fixed half-life.  
 
@@ -460,6 +522,7 @@ Some systems behave differently depending on conditions. **Piecewise** or **thre
 ### Putting It All Together  
 
 Each of these growth models represents a different **story of change**:  
+
 - Linear growth assumes constant addition.  
 - Exponential growth assumes self-reinforcing acceleration.  
 - Logistic growth assumes feedback and limits.  
@@ -471,7 +534,7 @@ In environmental modeling, these forms are often combined or extended. For insta
 ---
 
 
-## 5. Parameters in Growth Models  
+## Parameters in Growth Models  
 
 Growth models are defined not just by their structure (linear, exponential, logistic, etc.) but also by their **parameters**. Parameters are the constants that govern how the system behaves. In growth models, the most common parameters include the **intrinsic growth rate** (\(r\)), the **carrying capacity** (\(K\)), and the **decay constant** (\(\lambda\)). By adjusting these parameters, the same mathematical structure can represent very different ecological or environmental realities.  
 
@@ -514,6 +577,12 @@ Parameter sweeps reveal families of curves and make the sensitivity of the syste
 
 *Environmental example.* Suppose two wetlands support frog populations with the same growth rate (\(r\)) but different carrying capacities (\(K=500\) vs. \(K=1000\)). A visualization would show both populations growing rapidly at first, but one leveling off sooner due to lower resource limits.  
 
+
+![](images/param_sweep1.png){fig.alt='Logistic growth parameter sweep over r with K fixed at 800. Family of S-shaped curves starting at 50; higher r values rise and level off faster at 800.'}
+
+
+![](images/param_sweep2.png){fig.alt='Logistic growth parameter sweep over K with r fixed at 0.2. Family of S-shaped curves with asymptotes at K = 500, 800, 1000, and 1500, showing higher ceilings for larger K.'}
+
 ---
 
 ### Comparing Competing Species  
@@ -522,7 +591,12 @@ Parameters also allow us to compare species or systems in meaningful ways.
 
 - **Example: Competing plants.** Two plant species colonize a disturbed site. Species A has a higher growth rate (\(r\)) but a lower carrying capacity (\(K\)) due to limited resource efficiency. Species B has a slower growth rate but a higher carrying capacity. Which species dominates depends on the timescale of interest: in the short term, Species A may dominate, but in the long term, Species B may outlast it.  
 
+![](images/compet1.png){fig.alt='Plot comparing two competing plant species using logistic growth. Species A (green) has a higher growth rate and quickly rises but levels off near a lower carrying capacity of 300. Species B (blue) grows more slowly but eventually surpasses Species A, leveling off near a higher carrying capacity of 800. The x-axis shows time, and the y-axis shows population P(t), illustrating how Species A dominates early but Species B outlasts it in the long term.'}
+
+
 - **Example: Invasive vs native fish.** An invasive fish species may have a larger \(r\), allowing it to spread quickly, while a native species may be closer to carrying capacity. Understanding both parameters can guide whether intervention is urgent.  
+
+![](images/compet2.png){fig.alt='Plot showing invasive vs native fish populations under logistic growth. The invasive fish (red) starts smaller but has a higher growth rate, rising quickly and leveling off near a carrying capacity of 600. The native fish (blue) starts with a larger initial population, grows more slowly, and levels off near a higher carrying capacity of 1000. The x-axis shows time, and the y-axis shows population P(t). The figure illustrates how the invasive species spreads rapidly in the short term, while the native species maintains dominance in the long term.'}
 
 ---
 
@@ -533,7 +607,7 @@ Parameters are the levers of growth models. By adjusting \(r\), \(K\), or \(\lam
 ---
 
 
-## 6. Fitting Models to Data  
+## Fitting Models to Data  
 
 So far we have introduced growth models as equations with parameters like \(r\), \(K\), or \(\lambda\). But how do we actually determine the values of these parameters for a real-world system? This is where **fitting models to data** comes in. By comparing model predictions with observational data, we can estimate parameter values, assess how well the model represents reality, and quantify uncertainty.  
 
@@ -544,9 +618,15 @@ So far we have introduced growth models as equations with parameters like \(r\),
 Environmental systems are usually monitored through field measurements, laboratory experiments, or remote sensing. These observations give us time series or spatial data that can be compared with model outputs.  
 
 - **Example.** Suppose we have a dataset of fish population counts from annual surveys of a lake. We can use these observations to estimate the growth rate \(r\) and carrying capacity \(K\) in a logistic model.  
-- **Example.** Air quality data (CO\(_2\) concentrations over time) can be used to fit an exponential decay model to see how quickly pollutants disperse after an emission reduction.  
 
-The goal is to adjust model parameters so that the model trajectory matches the observed data as closely as possible.  
+Our first decision is which model suits this situation.
+
+![](images/which_model.png){fig.alt='Plot showing synthetic population data points (black dots) with three fitted models. The linear model (blue dashed) increases steadily but does not capture leveling off. The exponential model (green dashed) rises too steeply and overshoots at later times. The logistic model (red solid) follows the data closely, capturing the S-shaped curve and plateau near carrying capacity. This illustrates how different model choices can fit the same data with varying accuracy.'}
+Once we decide on a model form, we then need to determine the best **parameter set**.
+![](images/param_set.png){fig.alt='Plot showing synthetic population data points (black dots) with three logistic model fits using very close parameter values. The blue curve (r=0.28, K=95) rises slightly more slowly and levels off just below 100. The red curve (r=0.30, K=100) fits near the observed data and stabilizes at 100. The green curve (r=0.32, K=105) grows slightly faster and levels off just above 100. The three curves overlap strongly, illustrating how subtle parameter changes produce only small differences in logistic growth behavior.'}
+
+
+The goal is to select the right model and adjust model parameters so that the model trajectory matches the observed data as closely as possible.  
 
 ---
 
@@ -571,27 +651,6 @@ Several approaches exist for estimating parameters from data. The choice depends
 
 ---
 
-### Worked Example: Logistic Growth  
-
-Imagine a dataset of annual counts of deer in a reserve. The data show slow growth at first, rapid expansion in the middle years, and then a leveling off near 800 individuals. This suggests a logistic growth process.  
-
-The logistic model is:  
-\[
-P(t) = \frac{K}{1 + A e^{-rt}}, \qquad A = \frac{K - P_0}{P_0}.
-\]  
-
-By fitting this model to the observed population time series, we can estimate:  
-- \(r\): the intrinsic growth rate, telling us how quickly the population grows when small.  
-- \(K\): the carrying capacity, indicating the maximum sustainable population size.  
-
-Using nonlinear regression or least squares, we might find:  
-- \(r = 0.22\) per year  
-- \(K = 820\) individuals  
-
-These estimates allow us not only to describe the past but also to project how the population will behave in future years under current conditions.  
-
----
-
 ### Uncertainty and Error  
 
 No parameter estimate is exact. Uncertainty arises from measurement error, sampling variability, and model assumptions. Good modeling practice requires quantifying and communicating this uncertainty.  
@@ -610,126 +669,6 @@ Fitting models to data is the bridge between theory and reality. Observations al
 
 ---
 
-## 7. Case Studies in Environmental Modeling  
 
-Case studies provide a bridge between abstract growth models and the real-world problems faced in environmental science. Each example below demonstrates how simple equations, parameters, and conditions can be used to describe, analyze, and forecast environmental dynamics.  
 
----
-
-### Deer Population Growth in a Reserve  
-
-A wildlife reserve is established to protect a population of deer. Annual monitoring counts show that the population starts at around 100 individuals, grows quickly for several years, and then levels off at just under 800.  
-
-- **Model choice.** A **logistic growth model** captures this pattern:  
-  \[
-  P(t) = \frac{K}{1 + A e^{-rt}}
-  \]  
-  where \(r\) is the growth rate, \(K\) is the carrying capacity, and \(P(0)\) is the initial population.  
-
-- **Parameter interpretation.** Fitting the model to the data might reveal \(r = 0.2\) per year and \(K = 780\). These values tell us that the deer population grows rapidly at first but stabilizes as food and space become limiting.  
-
-- **Management use.** The model helps managers decide on sustainable harvest limits or predict the impacts of habitat expansion. It also allows “what if” scenarios, such as introducing a predator or reducing forage availability.  
-
----
-
-### Spread of Invasive Plants  
-
-An invasive plant species colonizes a grassland after being introduced accidentally. Early monitoring shows that its area doubles every two years, covering 10 hectares at the start and over 80 hectares by year 6.  
-
-- **Model choice.** Early invasion is best captured by an **exponential growth model**:  
-  \[
-  A(t) = A_0 e^{rt}
-  \]  
-  where \(A(t)\) is the invaded area.  
-
-- **Parameter interpretation.** With a doubling time of 2 years, the growth rate is \(r = \ln(2)/2 \approx 0.35\) per year.  
-
-- **Extension to logistic growth.** Eventually, spread slows due to competition with native vegetation or physical limits on available land. A logistic model with a carrying capacity \(K\) equal to the total habitat area provides a better long-term fit.  
-
-- **Management use.** The model helps estimate how quickly intervention is needed and whether control measures (e.g., herbicide, mowing) can slow the invasion before the species dominates.  
-
----
-
-### Pollutant Decay in Groundwater  
-
-A chemical spill introduces pollutants into an aquifer. Measurements downstream show concentrations falling over time and distance, though not linearly.  
-
-- **Model choice.** A **decay model** combined with transport processes can be used:  
-  \[
-  C(t) = C_0 e^{-\lambda t}
-  \]  
-  for decay, and  
-  \[
-  \frac{\partial C}{\partial t} = -u \frac{\partial C}{\partial x} + D \frac{\partial^2 C}{\partial x^2} - \lambda C
-  \]  
-  for advection–dispersion–decay dynamics in space and time.  
-
-- **Parameter interpretation.**  
-  - \(\lambda\): chemical breakdown rate.  
-  - \(u\): groundwater velocity.  
-  - \(D\): dispersion coefficient.  
-
-- **Management use.** The model helps predict how long it will take for pollutant concentrations to fall below safety standards at a drinking-water well and whether engineered remediation is necessary.  
-
----
-
-### CO₂ Emissions Growth vs Stabilization  
-
-Rising atmospheric CO₂ concentrations are one of the defining environmental challenges of our time. Models allow us to link human emissions to concentration growth and to test stabilization scenarios.  
-
-- **Model choice.** A simple **box model** relates emissions \(E(t)\) to atmospheric carbon \(C(t)\):  
-  \[
-  \frac{dC}{dt} = E(t) - k\,[C(t)-C_{\mathrm{eq}}]
-  \]  
-  where \(k\) represents net removal by oceans and land.  
-
-- **Scenario analysis.**  
-  - Under business-as-usual, emissions remain high, and \(C(t)\) grows nearly exponentially.  
-  - Under stabilization, emissions decline toward zero, and \(C(t)\) approaches a new equilibrium.  
-
-- **Management use.** These models provide the backbone for climate policy debates, showing how different emissions pathways lead to different levels of warming. While simple, such models illustrate the importance of rapid action to stabilize atmospheric concentrations.  
-
----
-
-### Summary  
-
-These case studies highlight the versatility of growth and decay models in environmental science.  
-- Deer populations illustrate logistic growth and the concept of carrying capacity.  
-- Invasive plants show exponential growth during early spread and logistic growth at saturation.  
-- Pollutant decay in groundwater demonstrates exponential decline and the importance of transport processes.  
-- CO₂ emissions link human activity to long-term planetary change through coupled growth and stabilization dynamics.  
-
-Each example underscores the same lesson: **parameters and structure matter**, and choosing the right model helps translate messy environmental data into meaningful insights for science and policy.  
-
----
-
----
-
-## 8. Practice & Exploration  
-
-::: promptbox
-**Conceptual prompts**  
-- What is the difference between a variable and a parameter?  
-- Why might logistic growth be more realistic than exponential growth?  
-:::
-
-::: promptbox
-**Applied problems**  
-- Fit a logistic curve to salmon population data.  
-- Model exponential decay of pollutants after a cleanup.  
-:::
-
-::: examplebox
-**Coding Extension (R/Python)**  
-Simulate logistic growth with sliders for *r* and *K*.  
-Explore how different initial conditions affect outcomes.  
-:::
-
----
-
-## 9. Summary & Key Takeaways  
-- Models simplify reality but highlight key patterns  
-- Parameters + initial/boundary conditions → define behavior  
-- Growth and decay models capture different ecological processes  
-- Physically based, statistically based, and probability-based approaches all have roles in environmental modeling  
 

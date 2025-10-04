@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Week 3: Mathematical Models – Parameters, Functions, and Growth | Model Your World: Introduction to Modeling and Simulation</title>
+  <meta name="description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Week 3: Mathematical Models – Parameters, Functions, and Growth | Model Your World: Introduction to Modeling and Simulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Week 3: Mathematical Models – Parameters, Functions, and Growth | Model Your World: Introduction to Modeling and Simulation" />
+  
+  <meta name="twitter:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  
+
+<meta name="author" content="Gaj Sivandran" />
+
+
+<meta name="date" content="2025-10-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-2-llms-and-modeling-support.html"/>
+<link rel="next" href="app-wk1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Q SCI 497</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching-team-introductions-gaj-sivandran"><i class="fa fa-check"></i><b>1.1</b> Teaching Team Introductions Gaj Sivandran</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-highlights"><i class="fa fa-check"></i><b>1.2</b> Course Highlights</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#what-are-the-learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> What are the learning outcomes</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#notes-and-textbooks"><i class="fa fa-check"></i><b>1.4</b> Notes and Textbooks</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-topics"><i class="fa fa-check"></i><b>1.5</b> Course Topics</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#classroom-etiquette"><i class="fa fa-check"></i><b>1.6</b> Classroom Etiquette</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.7</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>2</b> Week 1: What is Modeling?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-we-will-be-doing-this-week"><i class="fa fa-check"></i><b>2.1</b> What we will be doing this week</a></li>
+<li class="chapter" data-level="2.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#learning-objectives"><i class="fa fa-check"></i><b>2.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-watch-listen-read-student-preparation-for-the-week"><i class="fa fa-check"></i><b>2.3</b> Do, Watch, Listen, Read: Student Preparation For The Week</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#download-and-install-rstudio"><i class="fa fa-check"></i><b>2.3.1</b> Download and Install RStudio</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-this-tutorial"><i class="fa fa-check"></i><b>2.3.2</b> Do this tutorial</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#min-read"><i class="fa fa-check"></i><b>2.3.3</b> 5min Read</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#lets-build-a-model-of-learning"><i class="fa fa-check"></i><b>2.4</b> Let’s Build a Model of Learning</a></li>
+<li class="chapter" data-level="2.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-is-systems-thinking-and-simulation"><i class="fa fa-check"></i><b>2.5</b> What Is Systems Thinking and Simulation?</a></li>
+<li class="chapter" data-level="2.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#abstractionand-why-is-it-so-hard"><i class="fa fa-check"></i><b>2.6</b> Abstraction—and Why Is It So Hard?</a></li>
+<li class="chapter" data-level="2.7" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#the-problem-solving-process"><i class="fa fa-check"></i><b>2.7</b> The Problem-Solving Process</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#define-the-problem"><i class="fa fa-check"></i><b>2.7.1</b> Define the Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simplify-and-abstract"><i class="fa fa-check"></i><b>2.7.2</b> Simplify and Abstract</a></li>
+<li class="chapter" data-level="2.7.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#build-a-conceptual-or-mathematical-model"><i class="fa fa-check"></i><b>2.7.3</b> Build a Conceptual or Mathematical Model</a></li>
+<li class="chapter" data-level="2.7.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simulate-and-explore"><i class="fa fa-check"></i><b>2.7.4</b> Simulate and Explore</a></li>
+<li class="chapter" data-level="2.7.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#evaluate-and-refine"><i class="fa fa-check"></i><b>2.7.5</b> Evaluate and Refine</a></li>
+<li class="chapter" data-level="2.7.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#communicate"><i class="fa fa-check"></i><b>2.7.6</b> Communicate</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#intro-to-prompt-engineering"><i class="fa fa-check"></i><b>2.8</b> Intro to Prompt Engineering</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#why-this-matters"><i class="fa fa-check"></i><b>2.8.1</b> Why This Matters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html"><i class="fa fa-check"></i><b>3</b> Week 2: LLMs and Modeling Support</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#learning-goals"><i class="fa fa-check"></i><b>3.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="3.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#do-watch-listen-read-student-preparation-for-the-week-1"><i class="fa fa-check"></i><b>3.2</b> Do, Watch, Listen, Read: Student Preparation for the Week</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#do"><i class="fa fa-check"></i><b>3.2.1</b> Do</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#watch-video-for-discussion"><i class="fa fa-check"></i><b>3.2.2</b> Watch: Video for Discussion</a></li>
+<li class="chapter" data-level="3.2.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#read-reading-for-discussion"><i class="fa fa-check"></i><b>3.2.3</b> Read: Reading for Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#introduction-to-llms-in-modeling-mon"><i class="fa fa-check"></i><b>3.3</b> Introduction to LLMs in Modeling (Mon)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#what-are-llms"><i class="fa fa-check"></i><b>3.3.1</b> What Are LLMs?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#a-brief-history"><i class="fa fa-check"></i><b>3.3.2</b> A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#capabilities-and-limits-of-llms"><i class="fa fa-check"></i><b>3.4</b> Capabilities and Limits of LLMs</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#capabilities"><i class="fa fa-check"></i><b>3.4.1</b> Capabilities</a></li>
+<li class="chapter" data-level="3.4.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#limits"><i class="fa fa-check"></i><b>3.4.2</b> Limits</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#llms-in-environmental-modeling-workflows"><i class="fa fa-check"></i><b>3.5</b> LLMs in Environmental Modeling Workflows</a></li>
+<li class="chapter" data-level="3.6" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#prompt-engineering-for-model-development-tue-wed"><i class="fa fa-check"></i><b>3.6</b> Prompt Engineering for Model Development (Tue &amp; Wed)</a></li>
+<li class="chapter" data-level="3.7" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#learning-goals-1"><i class="fa fa-check"></i><b>3.7</b> Learning goals</a></li>
+<li class="chapter" data-level="3.8" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#principles-of-effective-prompts-clarity-context-constraints"><i class="fa fa-check"></i><b>3.8</b> Principles of effective prompts: clarity, context, constraints</a></li>
+<li class="chapter" data-level="3.9" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#prompt-types-zero-shot-few-shot-role-based-with-modeling-examples"><i class="fa fa-check"></i><b>3.9</b> Prompt types: zero-shot, few-shot, role-based (with modeling examples)</a></li>
+<li class="chapter" data-level="3.10" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#iterative-refinement-and-debugging-prompts-the-lei-loop"><i class="fa fa-check"></i><b>3.10</b> Iterative refinement and debugging prompts (the LEI loop)</a></li>
+<li class="chapter" data-level="3.11" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#ade-prompt-library-activity"><i class="fa fa-check"></i><b>3.11</b> ADE Prompt Library &amp; Activity</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#what-youll-build-at-a-glance"><i class="fa fa-check"></i><b>3.11.1</b> What you’ll build (at a glance)</a></li>
+<li class="chapter" data-level="3.11.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#spec-code"><i class="fa fa-check"></i><b>3.11.2</b> Spec → Code</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#critical-reflection-when-to-use-ai-tools"><i class="fa fa-check"></i><b>3.12</b> Critical Reflection: When to Use AI Tools</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#benefits"><i class="fa fa-check"></i><b>3.12.1</b> Benefits</a></li>
+<li class="chapter" data-level="3.12.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#risks-and-limits"><i class="fa fa-check"></i><b>3.12.2</b> Risks and Limits</a></li>
+<li class="chapter" data-level="3.12.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#guidelines-for-responsible-use-in-environmental-science"><i class="fa fa-check"></i><b>3.12.3</b> Guidelines for Responsible Use in Environmental Science</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#reproducibility-documentation-and-troubleshooting-fri"><i class="fa fa-check"></i><b>3.13</b> Reproducibility, Documentation, and Troubleshooting (Fri)</a></li>
+<li class="chapter" data-level="3.14" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#first-model---ade"><i class="fa fa-check"></i><b>3.14</b> First Model - ADE</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#general-form"><i class="fa fa-check"></i><b>3.14.1</b> General Form</a></li>
+<li class="chapter" data-level="3.14.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#term-by-term-meaning"><i class="fa fa-check"></i><b>3.14.2</b> Term-by-Term Meaning</a></li>
+<li class="chapter" data-level="3.14.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#assumptions-behind-the-ade"><i class="fa fa-check"></i><b>3.14.3</b> Assumptions Behind the ADE</a></li>
+<li class="chapter" data-level="3.14.4" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#applications-in-environmental-science"><i class="fa fa-check"></i><b>3.14.4</b> Applications in Environmental Science</a></li>
+<li class="chapter" data-level="3.14.5" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#analytical-solutions"><i class="fa fa-check"></i><b>3.14.5</b> Analytical Solutions</a></li>
+<li class="chapter" data-level="3.14.6" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#numerical-solutions"><i class="fa fa-check"></i><b>3.14.6</b> Numerical Solutions</a></li>
+<li class="chapter" data-level="3.14.7" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#key-dimensionless-numbers"><i class="fa fa-check"></i><b>3.14.7</b> Key Dimensionless Numbers</a></li>
+<li class="chapter" data-level="3.14.8" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#visualization-1"><i class="fa fa-check"></i><b>3.14.8</b> Visualization</a></li>
+<li class="chapter" data-level="3.14.9" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#reflection-questions"><i class="fa fa-check"></i><b>3.14.9</b> Reflection Questions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html"><i class="fa fa-check"></i><b>4</b> Week 3: Mathematical Models – Parameters, Functions, and Growth</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#what-is-a-mathematical-model"><i class="fa fa-check"></i><b>4.1.1</b> What is a Mathematical Model?</a></li>
+<li class="chapter" data-level="4.1.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#why-models-matter-in-environmental-science"><i class="fa fa-check"></i><b>4.1.2</b> Why Models Matter in Environmental Science</a></li>
+<li class="chapter" data-level="4.1.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-balance-between-simplification-and-realism"><i class="fa fa-check"></i><b>4.1.3</b> The Balance Between Simplification and Realism</a></li>
+<li class="chapter" data-level="4.1.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#example-population-growth"><i class="fa fa-check"></i><b>4.1.4</b> Example: Population Growth</a></li>
+<li class="chapter" data-level="4.1.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-modeling-cycle"><i class="fa fa-check"></i><b>4.1.5</b> The Modeling Cycle</a></li>
+<li class="chapter" data-level="4.1.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#choosing-the-right-level-of-detail"><i class="fa fa-check"></i><b>4.1.6</b> Choosing the Right Level of Detail</a></li>
+<li class="chapter" data-level="4.1.7" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary"><i class="fa fa-check"></i><b>4.1.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#components-of-a-mathematical-model"><i class="fa fa-check"></i><b>4.2</b> Components of a Mathematical Model</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#variables"><i class="fa fa-check"></i><b>4.2.1</b> Variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#parameters"><i class="fa fa-check"></i><b>4.2.2</b> Parameters</a></li>
+<li class="chapter" data-level="4.2.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#functions"><i class="fa fa-check"></i><b>4.2.3</b> Functions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#initial-conditions"><i class="fa fa-check"></i><b>4.2.4</b> Initial Conditions</a></li>
+<li class="chapter" data-level="4.2.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#boundary-conditions"><i class="fa fa-check"></i><b>4.2.5</b> Boundary Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#types-of-mathematical-models"><i class="fa fa-check"></i><b>4.3</b> Types of Mathematical Models</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#conceptual-models"><i class="fa fa-check"></i><b>4.3.1</b> Conceptual Models</a></li>
+<li class="chapter" data-level="4.3.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#empirical-models"><i class="fa fa-check"></i><b>4.3.2</b> Empirical Models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#mechanistic-models"><i class="fa fa-check"></i><b>4.3.3</b> Mechanistic Models</a></li>
+<li class="chapter" data-level="4.3.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#physically-based-models"><i class="fa fa-check"></i><b>4.3.4</b> Physically Based Models</a></li>
+<li class="chapter" data-level="4.3.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#statistically-based-models"><i class="fa fa-check"></i><b>4.3.5</b> Statistically Based Models</a></li>
+<li class="chapter" data-level="4.3.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#hybrid-models"><i class="fa fa-check"></i><b>4.3.6</b> Hybrid Models</a></li>
+<li class="chapter" data-level="4.3.7" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#probability-based-models"><i class="fa fa-check"></i><b>4.3.7</b> Probability-Based Models</a></li>
+<li class="chapter" data-level="4.3.8" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#discrete-vs-continuous-models"><i class="fa fa-check"></i><b>4.3.8</b> Discrete vs Continuous Models</a></li>
+<li class="chapter" data-level="4.3.9" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-1"><i class="fa fa-check"></i><b>4.3.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#growth-models"><i class="fa fa-check"></i><b>4.4</b> Growth Models</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#linear-growth"><i class="fa fa-check"></i><b>4.4.1</b> Linear Growth</a></li>
+<li class="chapter" data-level="4.4.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#exponential-growth"><i class="fa fa-check"></i><b>4.4.2</b> Exponential Growth</a></li>
+<li class="chapter" data-level="4.4.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#logistic-growth"><i class="fa fa-check"></i><b>4.4.3</b> Logistic Growth</a></li>
+<li class="chapter" data-level="4.4.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#decay-models"><i class="fa fa-check"></i><b>4.4.4</b> Decay Models</a></li>
+<li class="chapter" data-level="4.4.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#piecewise-threshold-models"><i class="fa fa-check"></i><b>4.4.5</b> Piecewise / Threshold Models</a></li>
+<li class="chapter" data-level="4.4.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.4.6</b> Putting It All Together</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#parameters-in-growth-models"><i class="fa fa-check"></i><b>4.5</b> Parameters in Growth Models</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-role-of-parameters"><i class="fa fa-check"></i><b>4.5.1</b> The Role of Parameters</a></li>
+<li class="chapter" data-level="4.5.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#sensitivity-analysis"><i class="fa fa-check"></i><b>4.5.2</b> Sensitivity Analysis</a></li>
+<li class="chapter" data-level="4.5.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#visualization-with-parameter-sweeps"><i class="fa fa-check"></i><b>4.5.3</b> Visualization with Parameter Sweeps</a></li>
+<li class="chapter" data-level="4.5.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#comparing-competing-species"><i class="fa fa-check"></i><b>4.5.4</b> Comparing Competing Species</a></li>
+<li class="chapter" data-level="4.5.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-2"><i class="fa fa-check"></i><b>4.5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#fitting-models-to-data"><i class="fa fa-check"></i><b>4.6</b> Fitting Models to Data</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#from-observations-to-parameters"><i class="fa fa-check"></i><b>4.6.1</b> From Observations to Parameters</a></li>
+<li class="chapter" data-level="4.6.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#methods-of-parameter-estimation"><i class="fa fa-check"></i><b>4.6.2</b> Methods of Parameter Estimation</a></li>
+<li class="chapter" data-level="4.6.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#uncertainty-and-error"><i class="fa fa-check"></i><b>4.6.3</b> Uncertainty and Error</a></li>
+<li class="chapter" data-level="4.6.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-3"><i class="fa fa-check"></i><b>4.6.4</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="app-wk1.html"><a href="app-wk1.html"><i class="fa fa-check"></i><b>A</b> Project Week 1 – The ‘why’ and the ‘what’</a></li>
+<li class="chapter" data-level="B" data-path="workbook-week-1-what-is-modeling.html"><a href="workbook-week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>B</b> Workbook Week 1: What is Modeling?</a></li>
+<li class="chapter" data-level="C" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html"><i class="fa fa-check"></i><b>C</b> Workbook Week 2: LLMs</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#how-to-build-complixity-into-a-problem"><i class="fa fa-check"></i><b>C.1</b> How to Build Complixity into a Problem</a></li>
+<li class="chapter" data-level="C.2" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#llms-and-modeling-support"><i class="fa fa-check"></i><b>C.2</b> LLMs and Modeling Support</a>
+<ul>
+<li class="chapter" data-level="C.2.1" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#learning-objectives-1"><i class="fa fa-check"></i><b>C.2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="C.2.2" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#coding-warmup"><i class="fa fa-check"></i><b>C.2.2</b> Coding warmup</a></li>
+<li class="chapter" data-level="C.2.3" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>C.2.3</b> What is a Large Language Model</a></li>
+<li class="chapter" data-level="C.2.4" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#pros-and-cons-of-high-parameter-models"><i class="fa fa-check"></i><b>C.2.4</b> Pros and Cons of High-Parameter Models</a></li>
+<li class="chapter" data-level="C.2.5" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#parameters-in-large-language-models-llms"><i class="fa fa-check"></i><b>C.2.5</b> Parameters in Large Language Models (LLMs)</a></li>
+<li class="chapter" data-level="C.2.6" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#capabilities-and-limits-of-llms-1"><i class="fa fa-check"></i><b>C.2.6</b> Capabilities and Limits of LLMs</a></li>
+<li class="chapter" data-level="C.2.7" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#llms-in-environmental-modeling-workflows-1"><i class="fa fa-check"></i><b>C.2.7</b> LLMs in environmental modeling workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#friday-discussion---ai-society-the-environment"><i class="fa fa-check"></i><b>C.3</b> Friday Discussion - AI, Society &amp; the Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>D</b> Tutorial: Getting Started with RStudio</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>D.1</b> 1. What is RStudio?</a></li>
+<li class="chapter" data-level="D.2" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#the-rstudio-interface"><i class="fa fa-check"></i><b>D.2</b> 2. The RStudio Interface</a></li>
+<li class="chapter" data-level="D.3" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#running-code"><i class="fa fa-check"></i><b>D.3</b> 3. Running Code</a></li>
+<li class="chapter" data-level="D.4" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#projects-in-rstudio"><i class="fa fa-check"></i><b>D.4</b> 4. Projects in RStudio</a></li>
+<li class="chapter" data-level="D.5" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#working-with-packages"><i class="fa fa-check"></i><b>D.5</b> 5. Working with Packages</a></li>
+<li class="chapter" data-level="D.6" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#writing-and-saving-scripts"><i class="fa fa-check"></i><b>D.6</b> 6. Writing and Saving Scripts</a>
+<ul>
+<li class="chapter" data-level="D.6.1" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#r-scripts-.r-files"><i class="fa fa-check"></i><b>D.6.1</b> R Scripts (<code>.R</code> files)</a></li>
+<li class="chapter" data-level="D.6.2" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#rmarkdown-.rmd-files"><i class="fa fa-check"></i><b>D.6.2</b> RMarkdown (<code>.Rmd</code> files)</a></li>
+</ul></li>
+<li class="chapter" data-level="D.7" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#plotting-example"><i class="fa fa-check"></i><b>D.7</b> 7. Plotting Example</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#example-1-simple-scatter-plot"><i class="fa fa-check"></i><b>D.7.1</b> Example 1: Simple Scatter Plot</a></li>
+<li class="chapter" data-level="D.7.2" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#example-2-using-a-built-in-dataset-cars"><i class="fa fa-check"></i><b>D.7.2</b> Example 2: Using a Built-In Dataset (<code>cars</code>)</a></li>
+<li class="chapter" data-level="D.7.3" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#example-3-adding-a-trend-line"><i class="fa fa-check"></i><b>D.7.3</b> Example 3: Adding a Trend Line</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Model Your World: Introduction to Modeling and Simulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-3-mathematical-models-parameters-functions-and-growth" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Week 3: Mathematical Models – Parameters, Functions, and Growth<a href="week-3-mathematical-models-parameters-functions-and-growth.html#week-3-mathematical-models-parameters-functions-and-growth" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduction<a href="week-3-mathematical-models-parameters-functions-and-growth.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mathematical models are <strong>purposeful simplifications</strong> of real-world systems. They distill complex environmental processes—like population change, heat transfer, carbon cycling, or pollutant transport—into a small set of variables, parameters, and rules. By translating mechanisms into equations or algorithms, models help us <strong>forecast</strong> likely futures, <strong>analyze</strong> drivers and feedbacks, and <strong>make decisions</strong> when data are limited or stakes are high.</p>
+<p>A good model balances <strong>clarity and realism</strong>. It should be simple enough to understand and compute, yet detailed enough to capture the processes that matter for the question at hand. Importantly, every model is conditional: its outputs reflect its <strong>assumptions</strong>, <strong>inputs</strong>, and <strong>uncertainties</strong>. Rather than delivering “truth,” models provide <strong>structured what-ifs</strong>—evidence-based scenarios that inform conservation planning, risk assessment, and policy.</p>
+<p>In this chapter we will:</p>
+<ul>
+<li><strong>Name the parts</strong> of a model (variables, parameters, functions, initial/boundary conditions) and explain what each does.<br />
+</li>
+<li><strong>Compare growth forms</strong> (linear, exponential, logistic, decay, thresholds) and match them to ecological stories.<br />
+</li>
+<li><strong>Fit models to data</strong> and interpret parameters (e.g., growth rate <span class="math inline">\(r\)</span>, carrying capacity <span class="math inline">\(K\)</span>) with attention to error and uncertainty.<br />
+</li>
+<li><strong>Test end-cases</strong> and sensitivity to identify which assumptions/parameters drive outcomes.<br />
+</li>
+<li><strong>Connect to decisions</strong>, using scenarios to explore management options and communicate uncertainty clearly.</li>
+</ul>
+<p>By the end, you should be able to look at an environmental problem, <strong>choose an appropriate model form</strong>, <strong>justify its assumptions</strong>, <strong>estimate its key parameters</strong>, and <strong>use it responsibly</strong> to support real-world decisions.</p>
+<hr />
+<div id="what-is-a-mathematical-model" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> What is a Mathematical Model?<a href="week-3-mathematical-models-parameters-functions-and-growth.html#what-is-a-mathematical-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A mathematical model is a framework that encodes assumptions about how a system changes using symbols, functions, and relationships. Within a model, <strong>variables</strong> represent system states that change over time or space, such as population size <span class="math inline">\(P(t)\)</span>, pollutant concentration <span class="math inline">\(C(x,t)\)</span>, or temperature <span class="math inline">\(T(t)\)</span>. These variables are influenced by <strong>parameters</strong>, which are fixed values that shape system behavior—for example, the growth rate <span class="math inline">\(r\)</span>, the decay constant <span class="math inline">\(\lambda\)</span>, or the carrying capacity <span class="math inline">\(K\)</span>.</p>
+<p>To anchor the model, we specify <strong>initial conditions</strong> that describe the system at the starting point (e.g., <span class="math inline">\(P(0) = P_0\)</span>) and <strong>boundary conditions</strong> that define how the system interacts with its environment, such as pollutant inputs at the upstream end of a river. The dynamics of the system are then expressed through <strong>equations</strong>, whether algebraic, difference, or differential, that link variables and parameters together. Depending on the purpose and data available, models can take many forms: mechanistic or physically based models grounded in process understanding, statistically based models built from data patterns, probability-based models that capture randomness, or hybrids that combine multiple approaches.</p>
+<hr />
+</div>
+<div id="why-models-matter-in-environmental-science" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Why Models Matter in Environmental Science<a href="week-3-mathematical-models-parameters-functions-and-growth.html#why-models-matter-in-environmental-science" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Environmental systems are complex, operate across multiple scales, and are often studied with limited or imperfect data. Because of this, intuition alone is rarely enough to guide effective decision-making. Mathematical models provide a structured way to translate ecological processes, observations, and hypotheses into a form that can be tested, refined, and applied. They act as a bridge between raw data and actionable insight.</p>
+<p>Models help us to:</p>
+<ul>
+<li><strong>Explain</strong> assumptions about processes. For example, a snowmelt model can explicitly represent how warming temperatures drive runoff timing, making clear what processes are assumed to matter most.<br />
+</li>
+<li><strong>Forecast</strong> future states under different scenarios. With population models, we can project whether an endangered species will recover or decline under various management strategies.<br />
+</li>
+<li><strong>Diagnose</strong> key drivers and feedbacks. Climate-carbon cycle models, for instance, allow us to separate the influence of emissions, land-use change, and natural sinks in shaping atmospheric CO₂ levels.<br />
+</li>
+<li><strong>Design &amp; Manage</strong> interventions. Harvest models can reveal what fishing quotas are sustainable, while restoration models can test whether habitat improvements are sufficient to support species recovery.<br />
+</li>
+<li><strong>Quantify uncertainty</strong> and communicate confidence. No prediction is perfect, but models allow us to show a range of outcomes—helping managers and policymakers make informed decisions even when data are limited.</li>
+</ul>
+<div class="promptbox">
+<p><strong>Decision Contexts</strong></p>
+<ul>
+<li><em>Regulation</em>: Will pollutant concentrations in a river exceed safe drinking-water thresholds under typical or extreme flow conditions?<br />
+</li>
+<li><em>Conservation</em>: What harvest rate or protected-area size will keep a fish population near its target biomass while still allowing human use?<br />
+</li>
+<li><em>Climate adaptation</em>: How might different greenhouse gas emissions scenarios affect the number of extreme-heat days in a city, and what does this imply for public health planning?<br />
+</li>
+<li><em>Restoration</em>: If wetlands are reconnected to a floodplain, how long will it take for bird populations to rebound, and what level of uncertainty surrounds that estimate?<br />
+</li>
+</ul>
+</div>
+<p>In short, models matter because they provide a <strong>laboratory for ideas</strong>—a place where scientists and decision-makers can explore “what if” questions, test assumptions, and evaluate possible futures before they unfold in the real world.</p>
+<hr />
+</div>
+<div id="the-balance-between-simplification-and-realism" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> The Balance Between Simplification and Realism<a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-balance-between-simplification-and-realism" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When building a mathematical model, one of the most important choices is how much detail to include. Every model is a simplification of reality, but the degree of simplification can make the difference between a model that is clear and useful, and one that is either too crude to be informative or too complicated to be tractable.</p>
+<ul>
+<li><p><strong>Simplification benefits</strong><br />
+Simplified models strip away many of the messy details of real-world systems in order to focus on core dynamics. Because they involve fewer parameters, they are easier to build with limited data, faster to compute, and easier to explain to diverse audiences. For instance, an exponential growth equation can help illustrate why invasive species may spread rapidly, even if it does not capture every factor influencing their establishment.</p></li>
+<li><p><strong>Realism benefits</strong><br />
+More realistic models incorporate mechanisms, thresholds, or feedbacks that can matter in specific contexts. They may include spatial variation, seasonality, or nonlinear processes that strongly affect system outcomes. Realistic models can therefore give more accurate predictions for particular systems, especially when management or policy depends on fine-scale details.</p></li>
+<li><p><strong>Trade-offs</strong><br />
+Every choice involves a trade-off. A model that is too simple risks <strong>underfitting</strong>—failing to capture critical dynamics. A model that is too complex risks <strong>overfitting</strong>—matching noise in the data rather than true processes. More detailed models also require more data and can be more sensitive to parameter uncertainty. Striking the right balance means aligning the model with the purpose: is it meant for teaching a concept, exploring scenarios broadly, or providing site-specific policy advice?</p></li>
+</ul>
+<p><strong>Example.</strong> Consider modeling the population of salmon in a river system. A simplified logistic growth model may capture the overall idea that the population grows quickly at first and then levels off at a carrying capacity due to limited habitat. This is useful for teaching and for exploring general harvest rules. But for management decisions about a particular salmon run, a more realistic model may be needed—one that accounts for age structure, seasonal migration, water temperature, and spawning habitat availability. The simple model is easier to communicate and requires fewer data, while the realistic model is harder to build but can give more reliable forecasts for that river system.</p>
+<p><strong>Common Pitfalls</strong></p>
+<ul>
+<li>Treating model outputs as absolute facts instead of scenario-conditioned projections.<br />
+</li>
+<li>Adding unnecessary complexity that the data cannot support.<br />
+</li>
+<li>Ignoring uncertainty in parameters, model structure, or future scenarios, which can lead to misplaced confidence in results.</li>
+</ul>
+<p>In practice, good modelers acknowledge these trade-offs openly and design models that are “as simple as possible, but not simpler” for the problem at hand.</p>
+<hr />
+</div>
+<div id="example-population-growth" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Example: Population Growth<a href="week-3-mathematical-models-parameters-functions-and-growth.html#example-population-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Population growth is one of the most fundamental processes in ecology, and models of growth have been central to understanding species invasions, conservation, and sustainable harvest management. Two of the most widely used forms are the <strong>exponential</strong> and <strong>logistic</strong> models.</p>
+<ul>
+<li><strong>Exponential model</strong><br />
+<span class="math display">\[
+P(t) = P_0 e^{rt}
+\]</span><br />
+In this model, the rate of change is proportional to the current population size. This leads to accelerating growth: the larger the population gets, the faster it increases.
+<ul>
+<li><strong>Ecological interpretation:</strong> Exponential growth captures the early stages of colonization or invasion, when resources are abundant and limiting factors such as predation or competition are minimal.<br />
+</li>
+<li><strong>Parameter:</strong> The intrinsic growth rate <span class="math inline">\(r\)</span> determines how rapidly the population increases. The <strong>doubling time</strong> is given by<br />
+<span class="math display">\[
+t_d = \frac{\ln 2}{r},
+\]</span><br />
+meaning populations with larger <span class="math inline">\(r\)</span> double in size much faster.</li>
+</ul></li>
+<li><strong>Logistic model</strong><br />
+<span class="math display">\[
+P(t) = \frac{K}{1 + A e^{-rt}}, \quad A=\frac{K-P_0}{P_0}.
+\]</span><br />
+The logistic model modifies exponential growth by adding a <strong>carrying capacity</strong> <span class="math inline">\(K\)</span>, representing the maximum sustainable population size given environmental limits such as food, space, or habitat quality.
+<ul>
+<li><p><strong>Initial condition:</strong> <span class="math inline">\(P(0) = P_0\)</span>.<br />
+</p></li>
+<li><p><strong>Dynamics:</strong> Growth is initially fast (similar to exponential growth), but slows as resources become limited. Eventually, the population levels off near <span class="math inline">\(K\)</span>, producing an S-shaped (sigmoid) curve.</p></li>
+<li><p><strong>Insights</strong></p>
+<ul>
+<li>Population dynamics are <strong>sensitive</strong> to small changes in parameters. For example, a slightly higher <span class="math inline">\(r\)</span> may cause a species to reach <span class="math inline">\(K\)</span> much faster, while changes in <span class="math inline">\(K\)</span> shift the long-term ceiling.<br />
+</li>
+<li>The logistic form highlights the role of <strong>feedbacks</strong>: the growth rate effectively decreases as population size increases.<br />
+</li>
+<li>These models are directly applicable to conservation and harvest decisions, helping managers set quotas, predict recovery times, or evaluate the risk of extinction.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Illustrative example.</strong><br />
+Imagine an invasive mussel species introduced into a new lake. At first, the population grows nearly exponentially—food is plentiful and there are no natural predators—so the number of mussels doubles every few months. However, as the population expands, food resources become depleted and available habitat fills. At this point, exponential growth overestimates reality, and the logistic model provides a better description: growth slows and the population stabilizes around a carrying capacity determined by the lake’s productivity.</p>
+<p>Conversely, in conservation contexts, a logistic model can help predict recovery. Suppose a fish population in a marine reserve is protected from harvest. The logistic model allows managers to estimate how long it will take the population to rebuild to near carrying capacity, and to test different scenarios (e.g., reopening harvest at different times). These insights show how relatively simple growth models can guide real-world environmental decisions.</p>
+<hr />
+</div>
+<div id="the-modeling-cycle" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> The Modeling Cycle<a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-modeling-cycle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Define the scientific or decision question.<br />
+</li>
+<li>Identify variables, processes, and scales.<br />
+</li>
+<li>Choose model type and specify equations, ICs, and BCs.<br />
+</li>
+<li>Estimate parameters from literature or data.<br />
+</li>
+<li>Calibrate to part of the data and validate with another.<br />
+</li>
+<li>Analyze sensitivity and uncertainty.<br />
+</li>
+<li>Run scenarios to inform decisions.<br />
+</li>
+<li>Iterate as new data or insights emerge.</li>
+</ol>
+<p>Models are rarely ‘completed’. The modeling development cycle results in updates to the model each iteration. Trying to produce a perfect model the first time through the cycle is not the goal. We learn with every development cycle, so we teh goal is always to get to a testable workable model, run it, test it, rethink it, improve it and repeat.</p>
+<hr />
+</div>
+<div id="choosing-the-right-level-of-detail" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> Choosing the Right Level of Detail<a href="week-3-mathematical-models-parameters-functions-and-growth.html#choosing-the-right-level-of-detail" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A central challenge in modeling is deciding <strong>how much detail is enough</strong>. Every model is an abstraction of reality, but the level of abstraction should be tailored to the problem being addressed. Too simple, and the model may miss key dynamics; too complex, and it may become impossible to calibrate, explain, or use in decision-making.</p>
+<ul>
+<li><strong>Match complexity to purpose</strong><br />
+The right level of detail depends on what the model is meant to achieve.
+<ul>
+<li>For <strong>teaching or communication</strong>, simple models are often best. An exponential or logistic growth model can clearly illustrate fundamental ideas like compounding growth or resource limits without overwhelming the learner.<br />
+</li>
+<li>For <strong>policy or regulation</strong>, more detail is often necessary. A government agency setting water-quality standards might need a physically based pollutant transport model that accounts for river flow, sediment interactions, and decay rates.</li>
+</ul></li>
+<li><strong>Match complexity to data availability</strong><br />
+A model is only as good as the data available to support it. Overly detailed models with many parameters may look realistic but are prone to <strong>overparameterization</strong>, fitting noise instead of signal, if the necessary data are sparse or uncertain.
+<ul>
+<li>For example, if only basic annual counts of a fish population are available, a logistic growth model may be the best fit. Trying to build an age-structured model with dozens of parameters would not be justified without high-resolution demographic data.</li>
+</ul></li>
+<li><strong>Match complexity to computation needs</strong><br />
+The practical use of a model also depends on how much time and computational power is available.
+<ul>
+<li>When running thousands of simulations for scenario testing or sensitivity analysis, <strong>simpler models</strong> (e.g., reduced-form climate models) may be preferable.<br />
+</li>
+<li>More complex models (e.g., coupled climate–carbon cycle simulations) may provide greater realism but are too slow to be run repeatedly in real time.</li>
+</ul></li>
+</ul>
+<p><strong>Example.</strong> Consider modeling coastal flooding risk.</p>
+<ul>
+<li>A <strong>simple model</strong> might assume a uniform sea-level rise plus storm surge probability to give a quick estimate of risk for city planning workshops.<br />
+</li>
+<li>A <strong>more detailed model</strong> might incorporate high-resolution topography, tide–surge interactions, and climate projections for use in designing levees or evacuation plans.<br />
+Both models serve important roles, but their usefulness depends on context—what decisions are being made, what data exist, and how quickly results are needed.</li>
+</ul>
+<p>In practice, good modeling involves finding the “sweet spot” where the model is <strong>complex enough to capture the essential dynamics</strong> but <strong>simple enough to be applied, tested, and communicated effectively</strong>.</p>
+<hr />
+</div>
+<div id="summary" class="section level3 hasAnchor" number="4.1.7">
+<h3><span class="header-section-number">4.1.7</span> Summary<a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mathematical models are simplified yet powerful tools that help us connect environmental processes to mathematical structures. They provide a way to translate complexity into variables, parameters, and equations that can be analyzed, tested, and applied to real-world decisions. Good models balance <strong>simplicity</strong>—which aids clarity, computation, and communication—with <strong>realism</strong>, which improves accuracy and relevance for specific contexts.</p>
+<p>Models matter because they allow us to <strong>explain processes</strong>, <strong>forecast future states</strong>, <strong>diagnose key drivers</strong>, <strong>design management strategies</strong>, and <strong>quantify uncertainty</strong>. They are not absolute truths but structured “what-if” experiments that reveal how assumptions and inputs shape outcomes.</p>
+<p>Examples such as <strong>population growth</strong> show how different model structures tell different ecological stories: exponential growth captures early invasions, while logistic growth highlights resource limits and feedbacks. Other examples, like climate–carbon models or pollutant transport equations, illustrate how models can range from very simple to highly detailed, depending on the purpose, data availability, and computational needs.</p>
+<p>Ultimately, the <strong>art of modeling</strong> lies in choosing the right level of detail—complex enough to capture the dynamics that matter, but simple enough to remain tractable and interpretable. When used thoughtfully, models serve as both conceptual laboratories for testing ideas and practical tools for guiding conservation, regulation, and climate adaptation decisions.</p>
+<hr />
+</div>
+</div>
+<div id="components-of-a-mathematical-model" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Components of a Mathematical Model<a href="week-3-mathematical-models-parameters-functions-and-growth.html#components-of-a-mathematical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every mathematical model is built from a common set of ingredients. These components—variables, parameters, functions, initial conditions, and boundary conditions—define what the model represents, how it behaves, and how we interpret its results. Understanding these pieces is essential before moving on to growth models or more advanced formulations.</p>
+<hr />
+<div id="variables" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Variables<a href="week-3-mathematical-models-parameters-functions-and-growth.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variables are the quantities in a model that can change. They capture the dynamic aspects of a system.</p>
+<ul>
+<li><strong>Independent variables</strong> are inputs that we control or that act as the “clock” or “map” of the system. Time is the most common independent variable, but space (location along a river, depth in a lake, elevation on a mountain) often serves the same role.<br />
+</li>
+<li><strong>Dependent variables</strong> are the outputs that depend on the independent variables. For instance, population size depends on time, dissolved oxygen concentration depends on depth, and temperature depends on both latitude and elevation.</li>
+</ul>
+<p>In notation, we usually write dependent variables as functions of independent ones:<br />
+<span class="math display">\[
+P(t) \quad \text{population size over time}, \qquad C(x,t) \quad \text{pollutant concentration in space and time}.
+\]</span></p>
+<hr />
+</div>
+<div id="parameters" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Parameters<a href="week-3-mathematical-models-parameters-functions-and-growth.html#parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Parameters are fixed values that influence how the system behaves. Unlike variables, they are usually assumed to remain constant during the simulation of a model, but they strongly shape its outcomes.</p>
+<ul>
+<li><strong>Growth rate (<span class="math inline">\(r\)</span>)</strong> determines how fast a population or process increases.<br />
+</li>
+<li><strong>Carrying capacity (<span class="math inline">\(K\)</span>)</strong> sets the maximum sustainable population size in a logistic model.<br />
+</li>
+<li><strong>Decay constant (<span class="math inline">\(\lambda\)</span>)</strong> defines the speed of exponential decay, such as how quickly pollutants break down or isotopes lose radioactivity.</li>
+</ul>
+<p>Parameters are often unknown and must be estimated from data, experiments, or literature. Changing parameter values can drastically alter model behavior, which makes sensitivity analysis a crucial step in modeling.</p>
+<p><em>Example.</em> Radiocarbon dating relies on the fact that carbon-14 decays at a fixed rate. The decay constant <span class="math inline">\(\lambda\)</span> gives the half-life of the isotope and allows us to estimate the age of archaeological samples.</p>
+<p><strong>Do parameters always stay constant?</strong><br />
+Not necessarily. While many models assume fixed parameters for simplicity, parameters can themselves vary through time or depend on environmental conditions:</p>
+<ul>
+<li>A fish population’s <strong>growth rate (<span class="math inline">\(r\)</span>)</strong> might drop during drought years when food is scarce.<br />
+</li>
+<li>The <strong>carrying capacity (<span class="math inline">\(K\)</span>)</strong> of a wetland may shift seasonally as water levels rise and fall.<br />
+</li>
+<li>The <strong>decay constant (<span class="math inline">\(\lambda\)</span>)</strong> for a pollutant could change with temperature or pH.</li>
+</ul>
+<p>When parameters vary during a simulation, the model becomes more realistic but also more complex. These cases often require functions (e.g., <span class="math inline">\(K(t)\)</span>, <span class="math inline">\(r(T)\)</span>) instead of constants, which better reflect dynamic environmental conditions. This introduces an important modeling choice: keep parameters constant for tractability, or allow them to vary to capture richer system behavior.</p>
+<hr />
+</div>
+<div id="functions" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Functions<a href="week-3-mathematical-models-parameters-functions-and-growth.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Functions define the mathematical relationship between inputs (independent variables) and outputs (dependent variables). They are the backbone of a model, expressing how change happens.</p>
+<ul>
+<li><strong>Deterministic functions</strong> produce the same output every time for a given input (e.g., a logistic growth equation).<br />
+</li>
+<li><strong>Stochastic functions</strong> include randomness, producing different outputs each time even with the same inputs (e.g., rainfall arrival modeled as a random process).<br />
+</li>
+<li><strong>Linear functions</strong> imply proportionality, such as a young tree’s height increasing linearly with age.<br />
+</li>
+<li><strong>Nonlinear functions</strong> capture thresholds, feedbacks, or saturation effects, such as logistic population growth leveling off at a carrying capacity.</li>
+</ul>
+<p><em>Example.</em> A tree might grow roughly linearly in height during its early years but eventually slow as it approaches a biological maximum, a shift that requires a nonlinear model to represent correctly.</p>
+<hr />
+</div>
+<div id="initial-conditions" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Initial Conditions<a href="week-3-mathematical-models-parameters-functions-and-growth.html#initial-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Initial conditions specify the starting state of the system. Without them, many equations have infinitely many possible solutions, so they are essential for uniqueness.</p>
+<ul>
+<li><strong>Purpose.</strong> They “anchor” the model at time zero.<br />
+</li>
+<li><strong>Examples.</strong>
+<ul>
+<li><span class="math inline">\(P(0)=100\)</span>: a salmon population of 100 individuals at the beginning of the study.<br />
+</li>
+<li><span class="math inline">\(C(x,0)=0\)</span>: no pollutant present in the river at the start.</li>
+</ul></li>
+</ul>
+<p>Changing the initial condition can dramatically alter system outcomes, especially in nonlinear systems. For example, a small population may fail to establish due to demographic stochasticity, while a slightly larger one might grow to carrying capacity.</p>
+<hr />
+</div>
+<div id="boundary-conditions" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Boundary Conditions<a href="week-3-mathematical-models-parameters-functions-and-growth.html#boundary-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Boundary conditions describe what happens at the edges of the system in space or time. They are critical when we model processes that unfold in rivers, landscapes, or the atmosphere, because what happens at the boundaries influences the interior.</p>
+<ul>
+<li><strong>Dirichlet conditions</strong> fix the value at a boundary (e.g., the pollutant concentration at the upstream end of a river is set by an industrial discharge).<br />
+</li>
+<li><strong>Neumann conditions</strong> fix the rate of change or flux at a boundary (e.g., no heat flow across an insulated wall).<br />
+</li>
+<li><strong>Mixed conditions</strong> combine aspects of both (e.g., pollutant concentration at a boundary depends partly on inflow and partly on exchange with the environment).</li>
+</ul>
+<p><em>Example.</em> In modeling stream pollution, we might set a Dirichlet condition at the upstream boundary to represent the known concentration coming in from a factory, and a Neumann condition at the downstream end to represent no net flux leaving the system beyond the reach of interest.</p>
+<p>Boundary and initial conditions together ensure that the mathematical problem is well-posed, meaning that the model has a unique and physically meaningful solution.</p>
+<hr />
+</div>
+</div>
+<div id="types-of-mathematical-models" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Types of Mathematical Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#types-of-mathematical-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mathematical models can be grouped in different ways depending on how they are constructed, what assumptions they make, and what role they serve. In environmental science, it is especially useful to distinguish between <strong>conceptual</strong>, <strong>empirical</strong>, <strong>mechanistic</strong>, <strong>physically based</strong>, <strong>statistically based</strong>, <strong>probability-based</strong>, and <strong>discrete/continuous</strong> models. Each of these types has strengths, limitations, and contexts where they are most useful.</p>
+<hr />
+<div id="conceptual-models" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Conceptual Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#conceptual-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Conceptual models are <strong>qualitative representations</strong> of systems. Rather than focusing on detailed equations or precise numerical predictions, they capture the <strong>structure of a system</strong>—its main components and how they are connected.</p>
+<ul>
+<li><strong>Format.</strong> Conceptual models often take the form of flow diagrams, influence charts, or causal loop diagrams. These visual tools show arrows linking drivers, processes, and outcomes, emphasizing relationships rather than calculations.<br />
+</li>
+<li><strong>Purpose.</strong> The goal is to build a shared mental map of the system, clarify assumptions, and decide which processes are most important to represent. By stripping away complexity, conceptual models help teams focus on the “big picture.”<br />
+</li>
+<li><strong>Strengths.</strong> They are simple, intuitive, and accessible to diverse audiences, making them powerful tools for communication, brainstorming, and scoping before moving into quantitative modeling.<br />
+</li>
+<li><strong>Limitations.</strong> Because they lack equations and numbers, conceptual models cannot generate predictions or quantify uncertainty. They are best viewed as a starting point, not an end product.</li>
+</ul>
+<p><strong>Example.</strong> A watershed conceptual model might show precipitation leading to runoff, infiltration, groundwater recharge, and river flow, without specifying the mathematical relationships. Such a diagram makes clear that rainfall drives multiple pathways of water movement, and that groundwater recharge links surface and subsurface systems. This helps scientists, managers, and stakeholders agree on what processes matter before investing in a quantitative hydrological model.</p>
+<p><strong>Broader use.</strong> Conceptual models are widely applied in ecology and environmental science. For example:</p>
+<ul>
+<li><p>In <strong>conservation planning</strong>, a conceptual model might link habitat loss, predator pressure, and food availability to species survival.
+<img src="images/conceptual_model.png" fig.alt="Conceptual model illustrating how fire influences ecosystem dynamics through linked ecological processes. At the top, four main boxes show the sequence of interactions: (1) Fire — alters vegetation structure, shelter availability, visibility, and sensory cues (olfactory/acoustic); (2) Predation Risk — expressed as P(k) = 1 - exp(-αdT), where α is encounter rate, d is probability of death given encounter, and T is time vulnerable to encounter; (3) Behavioural Responses — include changes in predation rates, fear/risk effects, foraging behavior, habitat use, activity times, and sheltering; and (4) Population Dynamics — encompassing health, survival, reproduction, and abundance. The central landscape shows a transition from lush green habitat with lions, zebras, and birds to a burned, sparse environment with predators such as cougars and raptors. Arrows connect these stages, showing feedback loops between fire, predation, and population outcomes. At the bottom, moderating factors are shown: Fire characteristics (size, season, frequency, wildfire vs. prescribed burn, severity, intensity); Spatial and temporal scales (&lt;1 m to &gt;100 km, &lt;1 hr to &gt;5 yrs); and Environmental characteristics (predator–prey assemblages, rainfall, vegetation type, food availability, management activities). The diagram illustrates how fire reshapes habitat and risk dynamics, influencing animal behavior and population-level outcomes across multiple scales." /></p></li>
+<li><p>In <strong>climate science</strong>, diagrams often depict the carbon cycle, showing how carbon moves among the atmosphere, biosphere, and oceans.
+<img src="images/conceptual_carbon.png" fig.alt="Illustration of the carbon cycle showing how carbon moves between the atmosphere, plants, animals, soil, and human activities. Sunlight enables photosynthesis in plants, which draw CO₂ from the atmosphere and store it as organic carbon. Animals consume plants and release CO₂ back into the air through respiration. Factories and vehicles emit CO₂ through transportation and industrial processes. Below ground, root respiration, decomposition of dead organisms and waste products, and fossil fuel formation return carbon to the atmosphere when burned. The diagram highlights the continuous exchange of carbon among biological, geological, and human systems." /></p></li>
+<li><p>In <strong>restoration ecology</strong>, managers might sketch how reconnecting wetlands to floodplains influences nutrient cycling, fish migration, and water quality.<br />
+<img src="images/conceptual_restoration.png" fig.alt="Illustration of carbon storage and ecosystem services across coastal habitats from upland to subtidal zones. The diagram is divided into four regions: Upland, Tidal Marsh, Mangrove Forest, and Tidal Flat, with mean high and low tide levels indicated. Upland areas contribute freshwater through drainage into the coastal wetland. In the Tidal Marsh, plants absorb CO₂ and store organic carbon (OC) in vegetation and sediments, providing carbon storage, water purification, recreation, and coastal protection. In the Mangrove Forest, mangrove trees capture CO₂, store OC in their roots and sediments, and offer carbon storage, biodiversity maintenance, coastal protection, and water purification. The Tidal Flat supports biodiversity maintenance, coastal protection, and food provision, with people collecting shellfish and fishers operating boats near the subtidal zone. Birds, fish, and aquatic organisms illustrate the ecological connectivity among these zones. The image emphasizes how different coastal ecosystems collectively provide carbon sequestration and essential ecosystem services." /></p></li>
+</ul>
+<p>In all of these cases, the conceptual model serves as a <strong>foundation</strong>: it identifies key components, reveals possible feedbacks, and ensures that stakeholders have a common understanding before quantitative equations are developed.</p>
+<hr />
+</div>
+<div id="empirical-models" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Empirical Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#empirical-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Empirical models are constructed <strong>directly from observed data</strong> and aim to capture patterns without necessarily explaining the underlying processes. They are often built using regression, curve-fitting, or other statistical approaches.</p>
+<ul>
+<li><strong>Strengths.</strong> Empirical models are quick to build when data are plentiful and can be highly accurate within the range of observed conditions. They are particularly useful for prediction tasks where explanation is less important.<br />
+</li>
+<li><strong>Limitations.</strong> Because they are not tied to underlying mechanisms, empirical models may fail when applied outside the range of the data (poor extrapolation). They also provide little insight into <em>why</em> a system behaves the way it does.</li>
+</ul>
+<p><strong>Example.</strong> A regression model might link crop yield to rainfall amount, showing that higher rainfall generally leads to higher yields up to a point. While the model captures the correlation, it does not explain the underlying processes of soil moisture dynamics, plant physiology, or nutrient cycling.<br />
+<img src="images/emprial_model.png" fig.alt="Scatter plot showing the relationship between rainfall amount and crop yield with fitted regression lines. Each point represents an observed field, showing that yield generally increases with rainfall up to an optimal level before declining slightly. Two regression curves are overlaid: a linear fit, showing a steady positive trend, and a quadratic fit, which captures diminishing returns at higher rainfall levels. Axes are labeled “Rainfall during growing season (mm)” and “Crop yield (tons/ha),” with a title reading “Crop Yield vs. Rainfall: Empirical Regression Example.” The plot illustrates how empirical regression models capture observed correlations without explicitly modeling underlying processes such as soil moisture, plant physiology, or nutrient cycling." /></p>
+<p>Empirical models are often a <strong>first step in modeling</strong>, helping reveal relationships that can later inspire more mechanistic or physically based models.</p>
+<hr />
+</div>
+<div id="mechanistic-models" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Mechanistic Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#mechanistic-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mechanistic (or process-based) models attempt to represent the <strong>actual physical, chemical, or biological mechanisms</strong> driving a system. They are usually expressed in terms of equations that represent process rates or interactions.</p>
+<ul>
+<li><strong>Strengths.</strong> Mechanistic models provide deeper explanatory power by focusing on <em>why</em> a system behaves in a particular way. Because they are based on processes, they can often be applied to new situations outside the range of existing data.<br />
+</li>
+<li><strong>Limitations.</strong> These models often require more assumptions, more data, and more expertise to build and calibrate.</li>
+</ul>
+<p><strong>Example.</strong> A predator–prey model (Lotka–Volterra equations) represents how predator consumption rates depend on prey abundance, and how prey populations decline or increase depending on predator pressure. Such models capture the interaction mechanisms rather than just observed correlations. <img src="images/mechanistic_PP.png" fig.alt="Conceptual diagram of predator–prey dynamics based on the Lotka–Volterra equations. On the left, a green rabbit represents the prey population with the equation dx/dt = αx − βxy. On the right, a brown fox represents the predator population with the equation dy/dt = δxy − γ. A blue arrow labeled “Prey consumed” points from the rabbit to the fox, indicating energy transfer from prey to predator. An orange arrow labeled “Predation pressure” points from the fox back to the rabbit, showing that predation reduces prey abundance. The figure title reads “Predator–Prey Dynamics (Lotka–Volterra Equations)” and illustrates the feedback loop between predator consumption and prey growth." /></p>
+<p>Mechanistic models are particularly valuable when the goal is <strong>understanding causation</strong>, not just prediction.</p>
+<hr />
+</div>
+<div id="physically-based-models" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Physically Based Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#physically-based-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Physically based models are a subset of mechanistic models that rely explicitly on <strong>fundamental physical laws</strong>, such as conservation of mass, energy, and momentum.</p>
+<ul>
+<li><strong>Strengths.</strong> Because they are grounded in universal principles, they are often considered more “trustworthy” and generalizable. They can be applied to different systems without retraining or refitting, as long as the physics remain the same.<br />
+</li>
+<li><strong>Limitations.</strong> They are often data-intensive and computationally demanding, which can make them challenging to apply in data-limited or resource-constrained contexts.</li>
+</ul>
+<p><strong>Example.</strong> The advection–dispersion equation in hydrology models pollutant transport in groundwater. It explicitly represents the physical processes of advection (movement with flow), dispersion (spreading), and decay.
+<img src="images/physical_ADE.png" fig.alt="Conceptual diagram illustrating pollutant transport in groundwater using the advection–dispersion equation. The image shows a soil cross-section with groundwater flowing horizontally. Arrows indicate three main processes: Advection (horizontal movement of contaminants with the water flow), Dispersion (spreading of the pollutant plume downstream and outward), and Decay (gradual reduction of pollutant concentration). Above the soil surface, a tree and soil layer represent the land source of the contaminant. The mathematical form of the advection–dispersion equation is shown: ∂C/∂t = –v ∂C/∂x + ∂²C/∂x² – λC, representing how concentration C changes over time due to flow velocity v, spreading, and decay. The diagram visually communicates how pollutants move, spread, and degrade as they travel through groundwater." /></p>
+<p>Physically based models are essential in <strong>hydrology, climate science, and atmospheric modeling</strong>, where conservation principles govern large-scale dynamics.</p>
+<hr />
+</div>
+<div id="statistically-based-models" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Statistically Based Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#statistically-based-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Statistically based models focus on <strong>patterns and correlations</strong> in observed data rather than explicit mechanisms. They can include regression, generalized linear models, and modern statistical learning methods.</p>
+<ul>
+<li><strong>Strengths.</strong> They are flexible, relatively quick to build, and effective at handling noisy or messy datasets. They are often useful when mechanisms are poorly understood but data are available.<br />
+</li>
+<li><strong>Limitations.</strong> These models can lack interpretability, may be limited to the conditions where data were collected, and can be prone to spurious correlations.</li>
+</ul>
+<p><strong>Example.</strong> A multiple regression predicting air quality index (AQI) from temperature, wind speed, and traffic counts. This model may predict AQI well in urban areas with similar conditions, but may not generalize to other contexts or explain the underlying atmospheric chemistry.</p>
+<hr />
+</div>
+<div id="hybrid-models" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Hybrid Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#hybrid-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hybrid models combine <strong>mechanistic or physically based components</strong> with <strong>statistical or empirical elements</strong>. Increasingly, they also incorporate machine learning to approximate processes that are too complex to model explicitly.</p>
+<ul>
+<li><strong>Strengths.</strong> They balance explanatory depth with predictive accuracy, making them powerful tools for modern environmental modeling. They can use physics where mechanisms are well understood and statistics where processes are uncertain.<br />
+</li>
+<li><strong>Limitations.</strong> Hybrids can be complex to implement, requiring both strong process knowledge and advanced statistical or computational skills.</li>
+</ul>
+<p><strong>Example.</strong> A climate model might use physical laws to simulate radiation balance while representing cloud formation statistically, since clouds are too complex to simulate explicitly at global scales.</p>
+<p>Hybrid approaches are especially useful for <strong>large, complex systems</strong> where no single modeling approach is sufficient.</p>
+<hr />
+</div>
+<div id="probability-based-models" class="section level3 hasAnchor" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> Probability-Based Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#probability-based-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Probability-based models incorporate <strong>randomness and uncertainty explicitly</strong> into the modeling process.</p>
+<ul>
+<li><strong>Types.</strong>
+<ul>
+<li><strong>Stochastic models</strong>: allow variables to fluctuate randomly (e.g., rainfall arrivals modeled as a Poisson process).<br />
+</li>
+<li><strong>Monte Carlo simulations</strong>: use repeated random sampling to explore uncertainty in parameters or inputs.<br />
+</li>
+<li><strong>Markov models</strong>: describe transitions between discrete states with probabilities (e.g., land cover change from forest to agriculture).</li>
+</ul></li>
+<li><strong>Strengths.</strong> These models are well-suited for risk analysis and decision-making under uncertainty, since they provide probabilities rather than deterministic outcomes.<br />
+</li>
+<li><strong>Limitations.</strong> They require careful specification of probability distributions, and results can be sensitive to those assumptions.</li>
+</ul>
+<p><strong>Example.</strong> Wildfire spread models often use probabilistic elements to capture random ignition events, wind shifts, and fuel variability. While no one can predict the exact path of a fire, probability-based models estimate likely outcomes and risks.<br />
+<img src="images/probability_fire.png" fig.alt="Conceptual diagram showing a probability-based wildfire spread model using a grid of trees. On the left, a coin labeled “Ignition probability” represents the random chance of fire starting, with fire and no-fire outcomes. The main grid shows rows of green trees, one of which is burning, indicating a fire event influenced by probabilistic ignition. An arrow labeled “Wind” points in the direction of fire spread, representing environmental factors affecting likelihood. The figure title reads “Probability-Based Wildfire Spread Model” and conveys that wildfire models estimate likelihoods of fire spread rather than deterministic outcomes." /></p>
+<hr />
+</div>
+<div id="discrete-vs-continuous-models" class="section level3 hasAnchor" number="4.3.8">
+<h3><span class="header-section-number">4.3.8</span> Discrete vs Continuous Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#discrete-vs-continuous-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The choice between <strong>discrete</strong> and <strong>continuous</strong> models depends on how processes unfold and how data are collected.</p>
+<ul>
+<li><strong>Discrete models</strong> describe systems in stepwise updates, often expressed as difference equations.
+<ul>
+<li><strong>Example.</strong> Annual updates of a fish population with seasonal reproduction, where population counts are only recorded once a year.</li>
+</ul></li>
+<li><strong>Continuous models</strong> describe change as a smooth process in time or space, often expressed as differential equations.
+<ul>
+<li><strong>Example.</strong> Logistic growth of a population or chemical reaction kinetics, where changes occur continuously over time.</li>
+</ul></li>
+<li><strong>Comparison.</strong>
+<ul>
+<li>Discrete models are natural when processes occur in pulses (e.g., seasonal breeding) or when data are only periodic.<br />
+</li>
+<li>Continuous models are appropriate when change is ongoing and smooth (e.g., temperature variation through the day).</li>
+</ul></li>
+</ul>
+<p>In practice, modelers often switch between discrete and continuous formulations depending on data availability, computational needs, and the nature of the process being studied.</p>
+<hr />
+</div>
+<div id="summary-1" class="section level3 hasAnchor" number="4.3.9">
+<h3><span class="header-section-number">4.3.9</span> Summary<a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These categories—conceptual, empirical, mechanistic, physically based, statistically based, hybrid, probability-based, discrete, and continuous—are not mutually exclusive. Many real-world models blend features from several categories. For example, a water quality model might use physically based equations for pollutant transport (continuous), include a statistical relationship for uncertain decay rates, and apply Monte Carlo simulations to capture uncertainty. The art of modeling lies in choosing the right combination of approaches that best fits the scientific or management question at hand.</p>
+<hr />
+</div>
+</div>
+<div id="growth-models" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Growth Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#growth-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Growth models describe how quantities change over time. They are among the most widely used mathematical models in environmental science because they capture how populations expand, resources are consumed, or pollutants accumulate and decline. Each model makes assumptions about what drives growth, what limits it, and whether change is smooth or sudden. Below we introduce several canonical growth forms.
+<img src="images/growth_models.png" fig.alt="Four-panel figure comparing common mathematical models of change. Top left: Linear Growth shows a straight line increasing steadily over time. Top right: Exponential Growth (green) rises steeply, while Exponential Decay (red) starts at an initial value of 4000 and decreases smoothly toward zero. Bottom left: Logistic Growth shows an S-shaped curve leveling off near a carrying capacity of 100. Bottom right: Threshold Model shows a flat line until a threshold at t = 10 (dashed vertical line), after which it rises linearly. Each subplot is labeled with axes for time (t) and value y(t)." /></p>
+<hr />
+<div id="linear-growth" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Linear Growth<a href="week-3-mathematical-models-parameters-functions-and-growth.html#linear-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The simplest growth model is <strong>linear growth</strong>, where change occurs at a constant rate:</p>
+<p><span class="math display">\[
+y(t) = y_0 + rt
+\]</span></p>
+<ul>
+<li>Here, <span class="math inline">\(y_0\)</span> is the initial value and <span class="math inline">\(r\)</span> is the constant rate of change.<br />
+</li>
+<li>The relationship is straightforward: every unit of time adds the same amount.</li>
+</ul>
+<p><strong>Environmental example.</strong> If a forest loses 1,000 hectares per year due to logging, the total deforested area increases linearly with time.</p>
+<p><strong>Strengths and limitations.</strong> Linear growth is intuitive and easy to apply, but it rarely captures long-term dynamics because most systems eventually accelerate, decelerate, or fluctuate rather than changing at a constant rate.</p>
+<hr />
+</div>
+<div id="exponential-growth" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Exponential Growth<a href="week-3-mathematical-models-parameters-functions-and-growth.html#exponential-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Exponential growth occurs when the rate of change is proportional to the current size:</p>
+<p><span class="math display">\[
+y(t) = y_0 e^{rt}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(r\)</span> is the intrinsic growth rate, and <span class="math inline">\(y_0\)</span> is the initial value.<br />
+</li>
+<li>Growth accelerates as the quantity increases, leading to the famous “hockey-stick” curve.</li>
+</ul>
+<p><strong>Environmental example.</strong> An invasive species introduced to a new habitat may grow exponentially at first, since resources are abundant and predators are absent.</p>
+<p><strong>Key property.</strong> Exponential growth has a doubling time given by:</p>
+<p><span class="math display">\[
+t_d = \frac{\ln 2}{r}
+\]</span></p>
+<p><strong>Strengths and limitations.</strong> Exponential models are powerful for short-term predictions but unrealistic over long periods, since no population or pollutant can grow without bound.</p>
+<hr />
+</div>
+<div id="logistic-growth" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Logistic Growth<a href="week-3-mathematical-models-parameters-functions-and-growth.html#logistic-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To incorporate resource limits, the <strong>logistic growth model</strong> modifies exponential growth by adding a ceiling:</p>
+<p><span class="math display">\[
+y(t) = \frac{K}{1 + A e^{-rt}}, \quad A = \frac{K - y_0}{y_0}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(K\)</span> is the <strong>carrying capacity</strong>, the maximum sustainable level.<br />
+</li>
+<li><span class="math inline">\(r\)</span> is the intrinsic growth rate.<br />
+</li>
+<li><span class="math inline">\(y_0\)</span> sets the initial condition.</li>
+</ul>
+<p><strong>Environmental example.</strong> A fish population in a lake may grow quickly when small but will slow as competition for food intensifies, eventually stabilizing around a carrying capacity.</p>
+<p><strong>Key features.</strong></p>
+<ul>
+<li>Growth is fast at first, then slows as <span class="math inline">\(y(t)\)</span> approaches <span class="math inline">\(K\)</span>.<br />
+</li>
+<li>Produces an S-shaped (sigmoid) curve.<br />
+</li>
+<li>Sensitive to both the growth rate <span class="math inline">\(r\)</span> and the initial population <span class="math inline">\(y_0\)</span>.</li>
+</ul>
+<p><strong>Strengths and limitations.</strong> Logistic models capture the idea of limits and feedbacks, making them more realistic than exponential growth. However, real systems may not have fixed carrying capacities—they can change seasonally or due to human interventions.</p>
+<hr />
+</div>
+<div id="decay-models" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Decay Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#decay-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Not all processes involve growth. Many environmental problems involve <strong>decay</strong>, where a quantity decreases over time, often following an exponential law:</p>
+<p><span class="math display">\[
+y(t) = y_0 e^{-\lambda t}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\lambda\)</span> is the decay constant.<br />
+</li>
+<li><span class="math inline">\(y_0\)</span> is the initial value at <span class="math inline">\(t=0\)</span>.</li>
+</ul>
+<p><strong>Environmental examples.</strong></p>
+<ul>
+<li>Pollutant concentrations decline after a cleanup effort.<br />
+</li>
+<li>Radioactive isotopes lose mass at a fixed half-life.</li>
+</ul>
+<p><strong>Key property.</strong> The half-life is given by:</p>
+<p><span class="math display">\[
+t_{1/2} = \frac{\ln 2}{\lambda}
+\]</span></p>
+<p><strong>Strengths and limitations.</strong> Decay models are excellent first approximations but may oversimplify when multiple processes (e.g., mixing, resuspension, or nonlinear reactions) occur simultaneously.</p>
+<hr />
+</div>
+<div id="piecewise-threshold-models" class="section level3 hasAnchor" number="4.4.5">
+<h3><span class="header-section-number">4.4.5</span> Piecewise / Threshold Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#piecewise-threshold-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some systems behave differently depending on conditions. <strong>Piecewise</strong> or <strong>threshold models</strong> capture these shifts by switching between rules depending on whether a threshold is crossed.</p>
+<ul>
+<li>Example function:<br />
+<span class="math display">\[
+f(x) =
+\begin{cases}
+  0 &amp; \text{if } T \leq 0^\circ C \\
+  r(T) &amp; \text{if } T &gt; 0^\circ C
+\end{cases}
+\]</span></li>
+</ul>
+<p><strong>Environmental example.</strong> Snowpack remains stable when air temperatures are below freezing but begins to melt rapidly once temperatures exceed 0 °C. Similarly, algal blooms may only occur when nutrient concentrations exceed a critical threshold.</p>
+<p><strong>Strengths and limitations.</strong> Threshold models are powerful for representing abrupt changes, but they can be difficult to calibrate because identifying the exact threshold requires detailed data.</p>
+<hr />
+</div>
+<div id="putting-it-all-together" class="section level3 hasAnchor" number="4.4.6">
+<h3><span class="header-section-number">4.4.6</span> Putting It All Together<a href="week-3-mathematical-models-parameters-functions-and-growth.html#putting-it-all-together" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each of these growth models represents a different <strong>story of change</strong>:</p>
+<ul>
+<li>Linear growth assumes constant addition.<br />
+</li>
+<li>Exponential growth assumes self-reinforcing acceleration.<br />
+</li>
+<li>Logistic growth assumes feedback and limits.<br />
+</li>
+<li>Decay assumes continual decline.<br />
+</li>
+<li>Threshold models assume sudden shifts once a condition is met.</li>
+</ul>
+<p>In environmental modeling, these forms are often combined or extended. For instance, population models might include logistic growth with seasonal thresholds, while pollutant decay models might combine exponential decline with inflow terms. Choosing the right growth model is less about mathematical elegance and more about capturing the <strong>essential dynamics</strong> of the system under study.</p>
+<hr />
+</div>
+</div>
+<div id="parameters-in-growth-models" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Parameters in Growth Models<a href="week-3-mathematical-models-parameters-functions-and-growth.html#parameters-in-growth-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Growth models are defined not just by their structure (linear, exponential, logistic, etc.) but also by their <strong>parameters</strong>. Parameters are the constants that govern how the system behaves. In growth models, the most common parameters include the <strong>intrinsic growth rate</strong> (<span class="math inline">\(r\)</span>), the <strong>carrying capacity</strong> (<span class="math inline">\(K\)</span>), and the <strong>decay constant</strong> (<span class="math inline">\(\lambda\)</span>). By adjusting these parameters, the same mathematical structure can represent very different ecological or environmental realities.</p>
+<hr />
+<div id="the-role-of-parameters" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> The Role of Parameters<a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-role-of-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Growth rate (<span class="math inline">\(r\)</span>)</strong> determines how quickly a population expands or a pollutant concentration changes. A higher <span class="math inline">\(r\)</span> means faster growth or decline.<br />
+</li>
+<li><strong>Carrying capacity (<span class="math inline">\(K\)</span>)</strong> represents the maximum sustainable size of a population given resource constraints. It can change with environmental conditions such as food availability, habitat size, or climate.<br />
+</li>
+<li><strong>Decay constant (<span class="math inline">\(\lambda\)</span>)</strong> dictates how quickly a substance or population decreases, often through chemical breakdown, radioactive decay, or mortality.</li>
+</ul>
+<p>Without parameters, models would be abstract formulas with no connection to the real world. Parameter values bring models to life by grounding them in observed systems.</p>
+<hr />
+</div>
+<div id="sensitivity-analysis" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Sensitivity Analysis<a href="week-3-mathematical-models-parameters-functions-and-growth.html#sensitivity-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A key step in working with models is asking: <strong>how sensitive is the outcome to the values of the parameters?</strong></p>
+<ul>
+<li>If a small change in <span class="math inline">\(r\)</span> leads to a large change in population size over time, then accurate estimation of <span class="math inline">\(r\)</span> is crucial.<br />
+</li>
+<li>If the outcome hardly changes when <span class="math inline">\(K\)</span> is varied, then the model may be robust to uncertainty in that parameter.</li>
+</ul>
+<p>Sensitivity analysis helps us:<br />
+1. Identify which parameters matter most.<br />
+2. Focus data collection on the most influential parameters.<br />
+3. Understand the uncertainty in model predictions.</p>
+<p><strong>Example.</strong> A fish population with a growth rate <span class="math inline">\(r=0.2\)</span> per year reaches its carrying capacity in about 20 years. If <span class="math inline">\(r\)</span> is actually 0.25, the same population may reach capacity in only 15 years. Such differences have direct management implications for harvest rules.</p>
+<hr />
+</div>
+<div id="visualization-with-parameter-sweeps" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Visualization with Parameter Sweeps<a href="week-3-mathematical-models-parameters-functions-and-growth.html#visualization-with-parameter-sweeps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One effective way to explore parameter influence is through <strong>parameter sweeps</strong>—systematically varying one parameter while holding others constant and plotting the results.</p>
+<ul>
+<li>Plotting logistic growth curves for several values of <span class="math inline">\(r\)</span> shows how faster growth accelerates the time to reach carrying capacity.<br />
+</li>
+<li>Plotting curves for different <span class="math inline">\(K\)</span> values illustrates how the ceiling of growth changes.</li>
+</ul>
+<p>Parameter sweeps reveal families of curves and make the sensitivity of the system visually clear.</p>
+<p><em>Environmental example.</em> Suppose two wetlands support frog populations with the same growth rate (<span class="math inline">\(r\)</span>) but different carrying capacities (<span class="math inline">\(K=500\)</span> vs. <span class="math inline">\(K=1000\)</span>). A visualization would show both populations growing rapidly at first, but one leveling off sooner due to lower resource limits.</p>
+<p><img src="images/param_sweep1.png" fig.alt="Logistic growth parameter sweep over r with K fixed at 800. Family of S-shaped curves starting at 50; higher r values rise and level off faster at 800." /></p>
+<p><img src="images/param_sweep2.png" fig.alt="Logistic growth parameter sweep over K with r fixed at 0.2. Family of S-shaped curves with asymptotes at K = 500, 800, 1000, and 1500, showing higher ceilings for larger K." /></p>
+<hr />
+</div>
+<div id="comparing-competing-species" class="section level3 hasAnchor" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Comparing Competing Species<a href="week-3-mathematical-models-parameters-functions-and-growth.html#comparing-competing-species" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Parameters also allow us to compare species or systems in meaningful ways.</p>
+<ul>
+<li><strong>Example: Competing plants.</strong> Two plant species colonize a disturbed site. Species A has a higher growth rate (<span class="math inline">\(r\)</span>) but a lower carrying capacity (<span class="math inline">\(K\)</span>) due to limited resource efficiency. Species B has a slower growth rate but a higher carrying capacity. Which species dominates depends on the timescale of interest: in the short term, Species A may dominate, but in the long term, Species B may outlast it.</li>
+</ul>
+<p><img src="images/compet1.png" fig.alt="Plot comparing two competing plant species using logistic growth. Species A (green) has a higher growth rate and quickly rises but levels off near a lower carrying capacity of 300. Species B (blue) grows more slowly but eventually surpasses Species A, leveling off near a higher carrying capacity of 800. The x-axis shows time, and the y-axis shows population P(t), illustrating how Species A dominates early but Species B outlasts it in the long term." /></p>
+<ul>
+<li><strong>Example: Invasive vs native fish.</strong> An invasive fish species may have a larger <span class="math inline">\(r\)</span>, allowing it to spread quickly, while a native species may be closer to carrying capacity. Understanding both parameters can guide whether intervention is urgent.</li>
+</ul>
+<p><img src="images/compet2.png" fig.alt="Plot showing invasive vs native fish populations under logistic growth. The invasive fish (red) starts smaller but has a higher growth rate, rising quickly and leveling off near a carrying capacity of 600. The native fish (blue) starts with a larger initial population, grows more slowly, and levels off near a higher carrying capacity of 1000. The x-axis shows time, and the y-axis shows population P(t). The figure illustrates how the invasive species spreads rapidly in the short term, while the native species maintains dominance in the long term." /></p>
+<hr />
+</div>
+<div id="summary-2" class="section level3 hasAnchor" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> Summary<a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Parameters are the levers of growth models. By adjusting <span class="math inline">\(r\)</span>, <span class="math inline">\(K\)</span>, or <span class="math inline">\(\lambda\)</span>, the same mathematical structure can represent radically different ecological stories. Sensitivity analysis and parameter sweeps help identify which parameters drive system behavior, while comparative studies show how parameter differences can explain species competition and coexistence. In practice, estimating parameters from data is one of the most challenging but most important aspects of environmental modeling.</p>
+<hr />
+</div>
+</div>
+<div id="fitting-models-to-data" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Fitting Models to Data<a href="week-3-mathematical-models-parameters-functions-and-growth.html#fitting-models-to-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far we have introduced growth models as equations with parameters like <span class="math inline">\(r\)</span>, <span class="math inline">\(K\)</span>, or <span class="math inline">\(\lambda\)</span>. But how do we actually determine the values of these parameters for a real-world system? This is where <strong>fitting models to data</strong> comes in. By comparing model predictions with observational data, we can estimate parameter values, assess how well the model represents reality, and quantify uncertainty.</p>
+<hr />
+<div id="from-observations-to-parameters" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> From Observations to Parameters<a href="week-3-mathematical-models-parameters-functions-and-growth.html#from-observations-to-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Environmental systems are usually monitored through field measurements, laboratory experiments, or remote sensing. These observations give us time series or spatial data that can be compared with model outputs.</p>
+<ul>
+<li><strong>Example.</strong> Suppose we have a dataset of fish population counts from annual surveys of a lake. We can use these observations to estimate the growth rate <span class="math inline">\(r\)</span> and carrying capacity <span class="math inline">\(K\)</span> in a logistic model.</li>
+</ul>
+<p>Our first decision is which model suits this situation.</p>
+<p><img src="images/which_model.png" fig.alt="Plot showing synthetic population data points (black dots) with three fitted models. The linear model (blue dashed) increases steadily but does not capture leveling off. The exponential model (green dashed) rises too steeply and overshoots at later times. The logistic model (red solid) follows the data closely, capturing the S-shaped curve and plateau near carrying capacity. This illustrates how different model choices can fit the same data with varying accuracy." />
+Once we decide on a model form, we then need to determine the best <strong>parameter set</strong>.
+<img src="images/param_set.png" fig.alt="Plot showing synthetic population data points (black dots) with three logistic model fits using very close parameter values. The blue curve (r=0.28, K=95) rises slightly more slowly and levels off just below 100. The red curve (r=0.30, K=100) fits near the observed data and stabilizes at 100. The green curve (r=0.32, K=105) grows slightly faster and levels off just above 100. The three curves overlap strongly, illustrating how subtle parameter changes produce only small differences in logistic growth behavior." /></p>
+<p>The goal is to select the right model and adjust model parameters so that the model trajectory matches the observed data as closely as possible.</p>
+<hr />
+</div>
+<div id="methods-of-parameter-estimation" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Methods of Parameter Estimation<a href="week-3-mathematical-models-parameters-functions-and-growth.html#methods-of-parameter-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Several approaches exist for estimating parameters from data. The choice depends on the model type, the data available, and the assumptions we are willing to make.</p>
+<ul>
+<li><strong>Regression methods.</strong>
+<ul>
+<li>Linear regression is used when the model can be written in a straight-line form.<br />
+</li>
+<li>Nonlinear regression extends this to curves like logistic or exponential models.</li>
+</ul></li>
+<li><strong>Least squares estimation.</strong>
+<ul>
+<li>One of the most common approaches is to minimize the <strong>sum of squared errors</strong> (SSE) between observed values and model predictions:<br />
+<span class="math display">\[
+SSE = \sum_{i=1}^n \big(y_{\text{obs},i} - y_{\text{model},i}\big)^2
+\]</span><br />
+</li>
+<li>The parameter values that minimize the SSE are considered the best fit.</li>
+</ul></li>
+<li><strong>Maximum likelihood estimation (MLE).</strong>
+<ul>
+<li>A more general method that finds parameters most likely to produce the observed data under a given probability distribution.<br />
+</li>
+<li>Often used when data are noisy or when errors do not follow a simple normal distribution.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="uncertainty-and-error" class="section level3 hasAnchor" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Uncertainty and Error<a href="week-3-mathematical-models-parameters-functions-and-growth.html#uncertainty-and-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No parameter estimate is exact. Uncertainty arises from measurement error, sampling variability, and model assumptions. Good modeling practice requires quantifying and communicating this uncertainty.</p>
+<ul>
+<li><strong>Confidence intervals</strong> around parameter estimates show the plausible range of values.<br />
+</li>
+<li><strong>Residual analysis</strong> (examining the differences between observed and predicted values) helps detect patterns that indicate model misfit.<br />
+</li>
+<li><strong>Cross-validation</strong> (fitting the model to part of the data and testing it on the rest) helps assess predictive power.</li>
+</ul>
+<p>In some cases, uncertainty in parameters can be propagated through the model using techniques such as Monte Carlo simulation, producing a range of possible outcomes rather than a single prediction.</p>
+<hr />
+</div>
+<div id="summary-3" class="section level3 hasAnchor" number="4.6.4">
+<h3><span class="header-section-number">4.6.4</span> Summary<a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Fitting models to data is the bridge between theory and reality. Observations allow us to estimate parameters, while regression and least squares methods provide systematic ways to find the best fit. A logistic fit to population data is a classic example, but the same principles apply to pollutant decay, climate trends, or forest growth. Always remember that parameter estimates come with uncertainty, and acknowledging error is just as important as reporting the “best” values.</p>
+<hr />
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-2-llms-and-modeling-support.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="app-wk1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-Pop_dyn.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -18,6 +18,7 @@ rmd_files:
   - index.Rmd
   - 01-Modeling.Rmd
   - 02-LLMs.Rmd
+  - 03-Pop_dyn.Rmd
   - 90-Appendix.Rmd
   - 101wb-Modeling.Rmd
   - 102wb-LLMs.Rmd
