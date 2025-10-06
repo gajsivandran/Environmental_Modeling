@@ -1,0 +1,254 @@
+# Workbook Week 3: Models and Growth
+## Learning Goals
+
+In this chapter, you’ll build both **conceptual understanding** and **practical modeling skills**.  
+By the end, you should be able to:
+
+1. **Explain the structure of a mathematical model**  
+   - Identify **variables**, **parameters**, **functions**, **initial conditions**, and **boundary conditions** in an environmental system.
+
+2. **Construct a conceptual model**  
+   - Create a **diagram or influence map** showing the main components and feedbacks in a system (e.g., a fishery, carbon cycle, or pollutant pathway).  
+   - Translate that conceptual model into a quantitative form—an equation or simulation—that captures its essential dynamics.
+
+3. **Simulate system behavior**  
+   - Work directly with a provided R model (linear, exponential, or logistic) to explore how changes in parameters such as the growth rate (\(r\)) or carrying capacity (\(K\)) affect system outcomes.
+
+4. **Fit models to data**  
+   - Use observational data (e.g., cod fishery population time series) to estimate parameters, visualize model fits, and interpret model accuracy (RMSE, residuals).
+
+5. **Interpret model parameters ecologically**  
+   - Describe what each parameter represents in real terms—e.g., how \(r\) relates to reproduction or how \(K\) reflects habitat limits.
+
+6. **Explore uncertainty and sensitivity**  
+   - Conduct **parameter sweeps** and “what-if” simulations to see which assumptions most influence model predictions.
+
+7. **Evaluate models as decision tools**  
+   - Use the logistic-harvest model to test management scenarios (e.g., sustainable vs. overharvest conditions).  
+   - Discuss the implications of stochasticity (“bad years”) for population resilience.
+
+8. **Reflect on the modeling process**  
+   - Compare your conceptual model with the mathematical one and explain what each form helps you understand.  
+   - Articulate how model simplicity versus realism affects insight and decision-making.
+
+---
+
+> 💡 **Purpose of this section:**  
+> You’ll not only learn how to *fit and simulate models*, but also how to *think like a modeler*—starting from a conceptual diagram of a system, translating it into equations, running simulations, and interpreting what the results tell us about environmental processes and management trade-offs.
+
+
+::: promptbox
+**Working Definitions**
+
+In your own words define the following
+
+- Variable
+<br><br><br><br>
+
+- Parameter
+<br><br><br><br>
+
+- Function
+<br><br><br><br>
+
+- Initial Condition
+<br><br><br><br>
+
+- Boundary Condition
+<br><br><br><br>
+
+:::
+
+
+::: promptbox
+**Activity: Build a Conceptual Model — “Water Levels in Lake Washington”**
+
+**🎯 Purpose**: To practice thinking like a modeler by building a **conceptual model** of water balance in Lake Washington. You’ll identify the main **inputs**, **outputs**, **controls**, and **feedbacks** that determine how lake levels rise and fall — just as we do in environmental modeling.
+
+---
+
+**🌊 Background**: Lake Washington’s water level is managed through the **Hiram M. Chittenden (Ballard) Locks**, which connect the lake to Puget Sound. Its level fluctuates with **precipitation**, **river inflow**, **groundwater exchange**, **evaporation**, and **controlled outflow** to the Locks. In summer, levels are lowered to protect dock structures and fish migration; in winter, levels rise naturally with rainfall. In short — Lake Washington is a dynamic system influenced by **climate, management, and human use**.
+
+---
+
+**🧠 Part 1: Brainstorm the System**: In small groups, sketch a **conceptual model** (boxes and arrows) of Lake Washington’s water balance.
+
+- **Stocks (state variables):**  
+<br><br><br><br><br>
+
+- **Inflows:**  
+<br><br><br><br><br>
+
+- **Outflows:**  
+<br><br><br><br><br>
+
+- **Drivers and Controls:**  
+<br><br><br><br><br>
+
+---
+
+**🔄 Part 2: Identify Feedbacks**
+
+- **Positive feedbacks** (reinforcing):  
+  <br><br><br><br><br>
+
+- **Negative feedbacks** (stabilizing):  
+<br><br><br><br><br>
+
+Label feedbacks with (+) or (–) arrows in your diagram.
+
+---
+
+**🧩 Part 3: Translate to a Quantitative Model **
+
+Now imagine you had to model lake level \(L(t)\) mathematically.
+
+- Try an write a **functional relationship** for the system.
+- Identify your output variable and its relation to the input variables 
+
+---
+
+**💬 Part 4: Reflect**\
+
+Discuss as a group:
+
+1. Which factors are **natural** and which are **human-controlled**?  
+2. How might **climate change** affect this system?  
+3. How could your conceptual model inform **management decisions** about flood control, salmon passage, or recreation?  
+4. If you were to create a simulation model of this system - what kind of model category would it fall into?
+5. If you were to simulate this system in R, what assumptions would you need to make?
+<br><br><br><br><br><br><br><br><br><br>
+
+---
+
+
+> 💡 **Takeaway:**  
+> Conceptual models help simplify complex systems like Lake Washington into a few key relationships.  
+> Before we ever write an equation or a line of code, conceptual modeling helps us clarify what processes matter — and how they interact.
+
+:::
+
+
+::: promptbox
+**Introduction to Curve Fitting**  
+
+In science and engineering, we often collect data that show a clear trend — but rarely follow a perfect mathematical formula. **Curve fitting** is the process of finding a mathematical function that best describes the relationship between variables in a dataset.  
+
+By fitting a curve, we can:
+
+- **Summarize** complex data with a simple equation.  
+- **Estimate** values between or beyond measured points (interpolation and extrapolation).  
+- **Compare** theoretical models to real-world observations.  
+- **Identify** patterns that reveal underlying processes — for example, exponential population growth, logistic saturation, or seasonal oscillations.  
+
+Curve fitting bridges the gap between data and models. It allows us to test hypotheses (“Does this population follow logistic growth?”), estimate parameters (like growth rate or carrying capacity), and assess how well our chosen model represents reality.  
+**How Fitting Is Achieved**  
+
+Curve fitting involves adjusting the parameters of a chosen mathematical model so that it best matches the observed data. The goal is to minimize the **difference** between the model’s predicted values and the actual data points — these differences are called **residuals**.  
+
+The most common method is **least squares fitting**, which minimizes the sum of the squared residuals. For a dataset with observed values \( y_i \) and model predictions \( \hat{y}_i \), the **sum of squared errors (SSE)** is:
+
+\[
+SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]
+
+The fitting process adjusts model parameters (such as slope, intercept, or growth rate) to make this SSE as small as possible.  
+
+A related measure is the **Root Mean Square Error (RMSE)**, which provides an interpretable measure of average error in the same units as the data:
+
+\[
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+\]
+
+While the least squares method minimizes the total squared error, the RMSE summarizes how far, on average, the predictions are from the observed data. Lower RMSE values indicate a better fit.  
+
+In practice, curve fitting tools in R, Python, or MATLAB use numerical optimization algorithms to minimize SSE or RMSE automatically, allowing us to identify the parameters that best describe the observed trend.  
+
+:::
+
+::: promptbox
+**Curve Fitting Example - CO2**
+```{r}
+# Load data, skipping metadata lines that start with '#'
+co2_data <- read.table("Models/data/co2_data.txt",
+                       header = FALSE,
+                       comment.char = "#",
+                       col.names = c("Year", "Month", "DecimalDate", 
+                                     "CO2_Monthly", "CO2_Deseason", 
+                                     "NumDays", "StdDev", "Uncertainty"))
+
+# Check the first few rows
+head(co2_data)
+
+
+library(ggplot2)
+
+ggplot(co2_data, aes(x = DecimalDate, y = CO2_Monthly)) +
+  geom_line(color = "steelblue") +
+  labs(title = "Mauna Loa C02 Record",
+       x = "Year",
+       y = expression("CO"[2]*" concentration (ppm)")) +
+  theme_minimal()
+
+```
+:::
+
+::: promptbox
+**Fit a linear model By Eye**
+
+- Open and run curve_fit_co2_1.R
+- Try to fit a trend line?
+- What would make this task easier?
+<br><br><br><br><br><br><br>
+:::
+
+::: promptbox
+**Fit a linear model By Eye Using Residuals**
+
+- Open and run curve_fit_co2_2.R
+- How do the residuals help?
+- What are you aiming for?
+<br><br><br><br><br><br><br>
+:::
+
+
+::: promptbox
+**Fit a linear model to a Subset of the Data**
+
+- Open and run curve_fit_co2_3.R
+- This app includes a magic butting that fits the parameters for you.
+- Play around, see if you can fit a line to the last 10 years
+- What is happening to the residuals?
+- Ideas on how to fix this?
+
+<br><br><br><br><br><br><br>
+:::
+
+::: promptbox
+**Fit an exponential model to a Subset of the Data**
+
+- Open and run curve_fit_co2_4.R
+- Play around, see if you can fit a model to the last 10 years
+- What is happening to the residuals?
+- Ideas on how to fix this?
+
+<br><br><br><br><br><br><br>
+:::
+
+
+
+::: promptbox
+**Fit an complex model**
+
+- Open and run curve_fit_co2_5.R
+
+We've been layering complexity onto this model
+
+Adding a sinusoid is a modeling trick - given the residuals have a sinusoidal shape, that gives us a hint that whatever we are 'missing' in our model could be represented as a sinusoid.
+
+Play around
+<br><br><br><br><br><br><br>
+:::
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/t0dXjmoA0dw?si=UI1L7pU5iHEP6tqJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

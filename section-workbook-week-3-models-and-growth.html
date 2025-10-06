@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Workbook Week 3: Models and Growth | 103wb-Pop_dyn.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Workbook Week 3: Models and Growth | 103wb-Pop_dyn.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Workbook Week 3: Models and Growth | 103wb-Pop_dyn.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="C:/Users/gajs/OneDrive - UW/UW/Courses/497 - Simulation/Textbook_Project/bookdown_497_simulation/libs/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Q SCI 497</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#section-workbook-week-3-models-and-growth"><i class="fa fa-check"></i><b>1</b> Workbook Week 3: Models and Growth</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#section-learning-goals"><i class="fa fa-check"></i><b>1.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="section-workbook-week-3-models-and-growth" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Workbook Week 3: Models and Growth<a href="#section-workbook-week-3-models-and-growth" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="section-learning-goals" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Learning Goals<a href="#section-learning-goals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter, you’ll build both <strong>conceptual understanding</strong> and <strong>practical modeling skills</strong>.<br />
+By the end, you should be able to:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Explain the structure of a mathematical model</strong>
+<ul>
+<li>Identify <strong>variables</strong>, <strong>parameters</strong>, <strong>functions</strong>, <strong>initial conditions</strong>, and <strong>boundary conditions</strong> in an environmental system.</li>
+</ul></li>
+<li><strong>Construct a conceptual model</strong>
+<ul>
+<li>Create a <strong>diagram or influence map</strong> showing the main components and feedbacks in a system (e.g., a fishery, carbon cycle, or pollutant pathway).<br />
+</li>
+<li>Translate that conceptual model into a quantitative form—an equation or simulation—that captures its essential dynamics.</li>
+</ul></li>
+<li><strong>Simulate system behavior</strong>
+<ul>
+<li>Work directly with a provided R model (linear, exponential, or logistic) to explore how changes in parameters such as the growth rate (<span class="math inline">\(r\)</span>) or carrying capacity (<span class="math inline">\(K\)</span>) affect system outcomes.</li>
+</ul></li>
+<li><strong>Fit models to data</strong>
+<ul>
+<li>Use observational data (e.g., cod fishery population time series) to estimate parameters, visualize model fits, and interpret model accuracy (RMSE, residuals).</li>
+</ul></li>
+<li><strong>Interpret model parameters ecologically</strong>
+<ul>
+<li>Describe what each parameter represents in real terms—e.g., how <span class="math inline">\(r\)</span> relates to reproduction or how <span class="math inline">\(K\)</span> reflects habitat limits.</li>
+</ul></li>
+<li><strong>Explore uncertainty and sensitivity</strong>
+<ul>
+<li>Conduct <strong>parameter sweeps</strong> and “what-if” simulations to see which assumptions most influence model predictions.</li>
+</ul></li>
+<li><strong>Evaluate models as decision tools</strong>
+<ul>
+<li>Use the logistic-harvest model to test management scenarios (e.g., sustainable vs. overharvest conditions).<br />
+</li>
+<li>Discuss the implications of stochasticity (“bad years”) for population resilience.</li>
+</ul></li>
+<li><strong>Reflect on the modeling process</strong>
+<ul>
+<li>Compare your conceptual model with the mathematical one and explain what each form helps you understand.<br />
+</li>
+<li>Articulate how model simplicity versus realism affects insight and decision-making.</li>
+</ul></li>
+</ol>
+<hr />
+<blockquote>
+<p>💡 <strong>Purpose of this section:</strong><br />
+You’ll not only learn how to <em>fit and simulate models</em>, but also how to <em>think like a modeler</em>—starting from a conceptual diagram of a system, translating it into equations, running simulations, and interpreting what the results tell us about environmental processes and management trade-offs.</p>
+</blockquote>
+<div class="promptbox">
+<p><strong>Working Definitions</strong></p>
+<p>In your own words define the following</p>
+<ul>
+<li><p>Variable
+<br><br><br><br></p></li>
+<li><p>Parameter
+<br><br><br><br></p></li>
+<li><p>Function
+<br><br><br><br></p></li>
+<li><p>Initial Condition
+<br><br><br><br></p></li>
+<li><p>Boundary Condition
+<br><br><br><br></p></li>
+</ul>
+</div>
+<div class="promptbox">
+<p><strong>Activity: Build a Conceptual Model — “Water Levels in Lake Washington”</strong></p>
+<p><strong>🎯 Purpose</strong>: To practice thinking like a modeler by building a <strong>conceptual model</strong> of water balance in Lake Washington. You’ll identify the main <strong>inputs</strong>, <strong>outputs</strong>, <strong>controls</strong>, and <strong>feedbacks</strong> that determine how lake levels rise and fall — just as we do in environmental modeling.</p>
+<hr />
+<p><strong>🌊 Background</strong>: Lake Washington’s water level is managed through the <strong>Hiram M. Chittenden (Ballard) Locks</strong>, which connect the lake to Puget Sound. Its level fluctuates with <strong>precipitation</strong>, <strong>river inflow</strong>, <strong>groundwater exchange</strong>, <strong>evaporation</strong>, and <strong>controlled outflow</strong> to the Locks. In summer, levels are lowered to protect dock structures and fish migration; in winter, levels rise naturally with rainfall. In short — Lake Washington is a dynamic system influenced by <strong>climate, management, and human use</strong>.</p>
+<hr />
+<p><strong>🧠 Part 1: Brainstorm the System</strong>: In small groups, sketch a <strong>conceptual model</strong> (boxes and arrows) of Lake Washington’s water balance.</p>
+<ul>
+<li><p><strong>Stocks (state variables):</strong><br />
+<br><br><br><br><br></p></li>
+<li><p><strong>Inflows:</strong><br />
+<br><br><br><br><br></p></li>
+<li><p><strong>Outflows:</strong><br />
+<br><br><br><br><br></p></li>
+<li><p><strong>Drivers and Controls:</strong><br />
+<br><br><br><br><br></p></li>
+</ul>
+<hr />
+<p><strong>🔄 Part 2: Identify Feedbacks</strong></p>
+<ul>
+<li><p><strong>Positive feedbacks</strong> (reinforcing):<br />
+<br><br><br><br><br></p></li>
+<li><p><strong>Negative feedbacks</strong> (stabilizing):<br />
+<br><br><br><br><br></p></li>
+</ul>
+<p>Label feedbacks with (+) or (–) arrows in your diagram.</p>
+<hr />
+<p><strong>🧩 Part 3: Translate to a Quantitative Model </strong></p>
+<p>Now imagine you had to model lake level <span class="math inline">\(L(t)\)</span> mathematically.</p>
+<ul>
+<li>Try an write a <strong>functional relationship</strong> for the system.</li>
+<li>Identify your output variable and its relation to the input variables</li>
+</ul>
+<hr />
+<p><strong>💬 Part 4: Reflect</strong><br />
+</p>
+<p>Discuss as a group:</p>
+<ol style="list-style-type: decimal">
+<li>Which factors are <strong>natural</strong> and which are <strong>human-controlled</strong>?<br />
+</li>
+<li>How might <strong>climate change</strong> affect this system?<br />
+</li>
+<li>How could your conceptual model inform <strong>management decisions</strong> about flood control, salmon passage, or recreation?<br />
+</li>
+<li>If you were to create a simulation model of this system - what kind of model category would it fall into?</li>
+<li>If you were to simulate this system in R, what assumptions would you need to make?
+<br><br><br><br><br><br><br><br><br><br></li>
+</ol>
+<hr />
+<blockquote>
+<p>💡 <strong>Takeaway:</strong><br />
+Conceptual models help simplify complex systems like Lake Washington into a few key relationships.<br />
+Before we ever write an equation or a line of code, conceptual modeling helps us clarify what processes matter — and how they interact.</p>
+</blockquote>
+</div>
+<div class="promptbox">
+<p><strong>Introduction to Curve Fitting</strong></p>
+<p>In science and engineering, we often collect data that show a clear trend — but rarely follow a perfect mathematical formula. <strong>Curve fitting</strong> is the process of finding a mathematical function that best describes the relationship between variables in a dataset.</p>
+<p>By fitting a curve, we can:</p>
+<ul>
+<li><strong>Summarize</strong> complex data with a simple equation.<br />
+</li>
+<li><strong>Estimate</strong> values between or beyond measured points (interpolation and extrapolation).<br />
+</li>
+<li><strong>Compare</strong> theoretical models to real-world observations.<br />
+</li>
+<li><strong>Identify</strong> patterns that reveal underlying processes — for example, exponential population growth, logistic saturation, or seasonal oscillations.</li>
+</ul>
+<p>Curve fitting bridges the gap between data and models. It allows us to test hypotheses (“Does this population follow logistic growth?”), estimate parameters (like growth rate or carrying capacity), and assess how well our chosen model represents reality.<br />
+<strong>How Fitting Is Achieved</strong></p>
+<p>Curve fitting involves adjusting the parameters of a chosen mathematical model so that it best matches the observed data. The goal is to minimize the <strong>difference</strong> between the model’s predicted values and the actual data points — these differences are called <strong>residuals</strong>.</p>
+<p>The most common method is <strong>least squares fitting</strong>, which minimizes the sum of the squared residuals. For a dataset with observed values <span class="math inline">\(y_i\)</span> and model predictions <span class="math inline">\(\hat{y}_i\)</span>, the <strong>sum of squared errors (SSE)</strong> is:</p>
+<p><span class="math display">\[
+SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</span></p>
+<p>The fitting process adjusts model parameters (such as slope, intercept, or growth rate) to make this SSE as small as possible.</p>
+<p>A related measure is the <strong>Root Mean Square Error (RMSE)</strong>, which provides an interpretable measure of average error in the same units as the data:</p>
+<p><span class="math display">\[
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+\]</span></p>
+<p>While the least squares method minimizes the total squared error, the RMSE summarizes how far, on average, the predictions are from the observed data. Lower RMSE values indicate a better fit.</p>
+<p>In practice, curve fitting tools in R, Python, or MATLAB use numerical optimization algorithms to minimize SSE or RMSE automatically, allowing us to identify the parameters that best describe the observed trend.</p>
+</div>
+<div class="promptbox">
+<p><strong>Curve Fitting Example - CO2</strong></p>
+<div class="sourceCode" id="section-cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb1-1"><a href="#section-cb1-1" tabindex="-1"></a><span class="co"># Load data, skipping metadata lines that start with &#39;#&#39;</span></span>
+<span id="section-cb1-2"><a href="#section-cb1-2" tabindex="-1"></a>co2_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Models/data/co2_data.txt&quot;</span>,</span>
+<span id="section-cb1-3"><a href="#section-cb1-3" tabindex="-1"></a>                       <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="section-cb1-4"><a href="#section-cb1-4" tabindex="-1"></a>                       <span class="at">comment.char =</span> <span class="st">&quot;#&quot;</span>,</span>
+<span id="section-cb1-5"><a href="#section-cb1-5" tabindex="-1"></a>                       <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;DecimalDate&quot;</span>, </span>
+<span id="section-cb1-6"><a href="#section-cb1-6" tabindex="-1"></a>                                     <span class="st">&quot;CO2_Monthly&quot;</span>, <span class="st">&quot;CO2_Deseason&quot;</span>, </span>
+<span id="section-cb1-7"><a href="#section-cb1-7" tabindex="-1"></a>                                     <span class="st">&quot;NumDays&quot;</span>, <span class="st">&quot;StdDev&quot;</span>, <span class="st">&quot;Uncertainty&quot;</span>))</span>
+<span id="section-cb1-8"><a href="#section-cb1-8" tabindex="-1"></a></span>
+<span id="section-cb1-9"><a href="#section-cb1-9" tabindex="-1"></a><span class="co"># Check the first few rows</span></span>
+<span id="section-cb1-10"><a href="#section-cb1-10" tabindex="-1"></a><span class="fu">head</span>(co2_data)</span></code></pre></div>
+<pre><code>##   Year Month DecimalDate CO2_Monthly CO2_Deseason NumDays StdDev Uncertainty
+## 1 1958     3    1958.203      315.71       314.44      -1  -9.99       -0.99
+## 2 1958     4    1958.288      317.45       315.16      -1  -9.99       -0.99
+## 3 1958     5    1958.370      317.51       314.69      -1  -9.99       -0.99
+## 4 1958     6    1958.455      317.27       315.15      -1  -9.99       -0.99
+## 5 1958     7    1958.537      315.87       315.20      -1  -9.99       -0.99
+## 6 1958     8    1958.622      314.93       316.21      -1  -9.99       -0.99</code></pre>
+<div class="sourceCode" id="section-cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb3-1"><a href="#section-cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="section-cb3-2"><a href="#section-cb3-2" tabindex="-1"></a></span>
+<span id="section-cb3-3"><a href="#section-cb3-3" tabindex="-1"></a><span class="fu">ggplot</span>(co2_data, <span class="fu">aes</span>(<span class="at">x =</span> DecimalDate, <span class="at">y =</span> CO2_Monthly)) <span class="sc">+</span></span>
+<span id="section-cb3-4"><a href="#section-cb3-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="section-cb3-5"><a href="#section-cb3-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mauna Loa C02 Record&quot;</span>,</span>
+<span id="section-cb3-6"><a href="#section-cb3-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="section-cb3-7"><a href="#section-cb3-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">&quot;CO&quot;</span>[<span class="dv">2</span>]<span class="sc">*</span><span class="st">&quot; concentration (ppm)&quot;</span>)) <span class="sc">+</span></span>
+<span id="section-cb3-8"><a href="#section-cb3-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="C:/Users/gajs/OneDrive - UW/UW/Courses/497 - Simulation/Textbook_Project/bookdown_497_simulation/libs/Users/gajs/AppData/Local/Temp/gajs/rmarkdown/d32a45c22ac5d9c9786cb3f6232c3c08/rmd_d32a45c22ac5d9c9786cb3f6232c3c08_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div class="sourceCode" id="section-cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb4-1"><a href="#section-cb4-1" tabindex="-1"></a><span class="co"># app.R</span></span>
+<span id="section-cb4-2"><a href="#section-cb4-2" tabindex="-1"></a><span class="co"># -------------------------------------------------------------</span></span>
+<span id="section-cb4-3"><a href="#section-cb4-3" tabindex="-1"></a><span class="co"># Interactive curve fitting for Mauna Loa CO2</span></span>
+<span id="section-cb4-4"><a href="#section-cb4-4" tabindex="-1"></a><span class="co"># Models:</span></span>
+<span id="section-cb4-5"><a href="#section-cb4-5" tabindex="-1"></a><span class="co"># 1) Linear</span></span>
+<span id="section-cb4-6"><a href="#section-cb4-6" tabindex="-1"></a><span class="co"># 2) Exponential</span></span>
+<span id="section-cb4-7"><a href="#section-cb4-7" tabindex="-1"></a><span class="co"># 3) Linear + Sinusoid</span></span>
+<span id="section-cb4-8"><a href="#section-cb4-8" tabindex="-1"></a><span class="co"># 4) Exponential + Sinusoid</span></span>
+<span id="section-cb4-9"><a href="#section-cb4-9" tabindex="-1"></a><span class="co"># Students can adjust parameters and see RMSE.</span></span>
+<span id="section-cb4-10"><a href="#section-cb4-10" tabindex="-1"></a><span class="co"># -------------------------------------------------------------</span></span>
+<span id="section-cb4-11"><a href="#section-cb4-11" tabindex="-1"></a></span>
+<span id="section-cb4-12"><a href="#section-cb4-12" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="section-cb4-13"><a href="#section-cb4-13" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="section-cb4-14"><a href="#section-cb4-14" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="section-cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb8-1"><a href="#section-cb8-1" tabindex="-1"></a><span class="co"># ---- Load data ----</span></span>
+<span id="section-cb8-2"><a href="#section-cb8-2" tabindex="-1"></a>co2_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Models/data/co2_data.txt&quot;</span>,</span>
+<span id="section-cb8-3"><a href="#section-cb8-3" tabindex="-1"></a>                       <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="section-cb8-4"><a href="#section-cb8-4" tabindex="-1"></a>                       <span class="at">comment.char =</span> <span class="st">&quot;#&quot;</span>,</span>
+<span id="section-cb8-5"><a href="#section-cb8-5" tabindex="-1"></a>                       <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Month&quot;</span>,<span class="st">&quot;DecimalDate&quot;</span>,</span>
+<span id="section-cb8-6"><a href="#section-cb8-6" tabindex="-1"></a>                                     <span class="st">&quot;CO2_Monthly&quot;</span>,<span class="st">&quot;CO2_Deseason&quot;</span>,</span>
+<span id="section-cb8-7"><a href="#section-cb8-7" tabindex="-1"></a>                                     <span class="st">&quot;NumDays&quot;</span>,<span class="st">&quot;StdDev&quot;</span>,<span class="st">&quot;Uncertainty&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="section-cb8-8"><a href="#section-cb8-8" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="section-cb8-9"><a href="#section-cb8-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DecimalDate), <span class="sc">!</span><span class="fu">is.na</span>(CO2_Monthly))</span>
+<span id="section-cb8-10"><a href="#section-cb8-10" tabindex="-1"></a></span>
+<span id="section-cb8-11"><a href="#section-cb8-11" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> <span class="fu">min</span>(co2_data<span class="sc">$</span>DecimalDate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># origin for stability</span></span>
+<span id="section-cb8-12"><a href="#section-cb8-12" tabindex="-1"></a></span>
+<span id="section-cb8-13"><a href="#section-cb8-13" tabindex="-1"></a><span class="co"># ---- Helper: RMSE ----</span></span>
+<span id="section-cb8-14"><a href="#section-cb8-14" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(y, yhat) <span class="fu">sqrt</span>(<span class="fu">mean</span>((y <span class="sc">-</span> yhat)<span class="sc">^</span><span class="dv">2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="section-cb8-15"><a href="#section-cb8-15" tabindex="-1"></a></span>
+<span id="section-cb8-16"><a href="#section-cb8-16" tabindex="-1"></a><span class="co"># ---- UI ----</span></span>
+<span id="section-cb8-17"><a href="#section-cb8-17" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="section-cb8-18"><a href="#section-cb8-18" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Curve Fitting Explorer: Mauna Loa CO₂&quot;</span>),</span>
+<span id="section-cb8-19"><a href="#section-cb8-19" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="section-cb8-20"><a href="#section-cb8-20" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="section-cb8-21"><a href="#section-cb8-21" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;model_type&quot;</span>, <span class="st">&quot;Choose model:&quot;</span>,</span>
+<span id="section-cb8-22"><a href="#section-cb8-22" tabindex="-1"></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Line&quot;</span> <span class="ot">=</span> <span class="st">&quot;lin&quot;</span>,</span>
+<span id="section-cb8-23"><a href="#section-cb8-23" tabindex="-1"></a>                              <span class="st">&quot;Exponential&quot;</span> <span class="ot">=</span> <span class="st">&quot;exp&quot;</span>,</span>
+<span id="section-cb8-24"><a href="#section-cb8-24" tabindex="-1"></a>                              <span class="st">&quot;Line + Sinusoid&quot;</span> <span class="ot">=</span> <span class="st">&quot;lin_sin&quot;</span>,</span>
+<span id="section-cb8-25"><a href="#section-cb8-25" tabindex="-1"></a>                              <span class="st">&quot;Exponential + Sinusoid&quot;</span> <span class="ot">=</span> <span class="st">&quot;exp_sin&quot;</span>),</span>
+<span id="section-cb8-26"><a href="#section-cb8-26" tabindex="-1"></a>                  <span class="at">selected =</span> <span class="st">&quot;lin_sin&quot;</span>),</span>
+<span id="section-cb8-27"><a href="#section-cb8-27" tabindex="-1"></a>      tags<span class="sc">$</span><span class="fu">hr</span>(),</span>
+<span id="section-cb8-28"><a href="#section-cb8-28" tabindex="-1"></a></span>
+<span id="section-cb8-29"><a href="#section-cb8-29" tabindex="-1"></a>      <span class="co"># ----- Linear parameters -----</span></span>
+<span id="section-cb8-30"><a href="#section-cb8-30" tabindex="-1"></a>      <span class="fu">conditionalPanel</span>(</span>
+<span id="section-cb8-31"><a href="#section-cb8-31" tabindex="-1"></a>        <span class="at">condition =</span> <span class="st">&quot;[&#39;lin&#39;,&#39;lin_sin&#39;].includes(input.model_type)&quot;</span>,</span>
+<span id="section-cb8-32"><a href="#section-cb8-32" tabindex="-1"></a>        <span class="fu">h4</span>(<span class="st">&quot;Linear trend:  y = a + b·(t - t0)&quot;</span>),</span>
+<span id="section-cb8-33"><a href="#section-cb8-33" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;a_lin&quot;</span>, <span class="st">&quot;a (intercept @ t0)&quot;</span>, <span class="at">min =</span> <span class="dv">250</span>, <span class="at">max =</span> <span class="dv">400</span>, <span class="at">value =</span> <span class="dv">315</span>, <span class="at">step =</span> <span class="fl">0.5</span>),</span>
+<span id="section-cb8-34"><a href="#section-cb8-34" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;b_lin&quot;</span>, <span class="st">&quot;b (ppm per year)&quot;</span>,  <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>,  <span class="at">max =</span> <span class="dv">5</span>,   <span class="at">value =</span> <span class="fl">1.5</span>, <span class="at">step =</span> <span class="fl">0.05</span>)</span>
+<span id="section-cb8-35"><a href="#section-cb8-35" tabindex="-1"></a>      ),</span>
+<span id="section-cb8-36"><a href="#section-cb8-36" tabindex="-1"></a></span>
+<span id="section-cb8-37"><a href="#section-cb8-37" tabindex="-1"></a>      <span class="co"># ----- Exponential parameters -----</span></span>
+<span id="section-cb8-38"><a href="#section-cb8-38" tabindex="-1"></a>      <span class="fu">conditionalPanel</span>(</span>
+<span id="section-cb8-39"><a href="#section-cb8-39" tabindex="-1"></a>        <span class="at">condition =</span> <span class="st">&quot;[&#39;exp&#39;,&#39;exp_sin&#39;].includes(input.model_type)&quot;</span>,</span>
+<span id="section-cb8-40"><a href="#section-cb8-40" tabindex="-1"></a>        <span class="fu">h4</span>(<span class="st">&quot;Exponential trend:  y = B + A·exp(r·(t - t0))&quot;</span>),</span>
+<span id="section-cb8-41"><a href="#section-cb8-41" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;B_exp&quot;</span>, <span class="st">&quot;B (baseline)&quot;</span>, <span class="at">min =</span> <span class="dv">250</span>, <span class="at">max =</span> <span class="dv">400</span>, <span class="at">value =</span> <span class="dv">300</span>, <span class="at">step =</span> <span class="fl">0.5</span>),</span>
+<span id="section-cb8-42"><a href="#section-cb8-42" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;A_exp&quot;</span>, <span class="st">&quot;A (scale)&quot;</span>,    <span class="at">min =</span>  <span class="dv">1</span>,  <span class="at">max =</span> <span class="dv">100</span>, <span class="at">value =</span> <span class="dv">30</span>,  <span class="at">step =</span> <span class="dv">1</span>),</span>
+<span id="section-cb8-43"><a href="#section-cb8-43" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;r_exp&quot;</span>, <span class="st">&quot;r (rate/yr)&quot;</span>,  <span class="at">min =</span> <span class="dv">0</span>,   <span class="at">max =</span> <span class="fl">0.05</span>, <span class="at">value =</span> <span class="fl">0.01</span>, <span class="at">step =</span> <span class="fl">0.001</span>)</span>
+<span id="section-cb8-44"><a href="#section-cb8-44" tabindex="-1"></a>      ),</span>
+<span id="section-cb8-45"><a href="#section-cb8-45" tabindex="-1"></a></span>
+<span id="section-cb8-46"><a href="#section-cb8-46" tabindex="-1"></a>      <span class="co"># ----- Sinusoid parameters -----</span></span>
+<span id="section-cb8-47"><a href="#section-cb8-47" tabindex="-1"></a>      <span class="fu">conditionalPanel</span>(</span>
+<span id="section-cb8-48"><a href="#section-cb8-48" tabindex="-1"></a>        <span class="at">condition =</span> <span class="st">&quot;[&#39;lin_sin&#39;,&#39;exp_sin&#39;].includes(input.model_type)&quot;</span>,</span>
+<span id="section-cb8-49"><a href="#section-cb8-49" tabindex="-1"></a>        <span class="fu">h4</span>(<span class="st">&quot;Seasonality:  + Asin · sin(2π·(t - φ))&quot;</span>),</span>
+<span id="section-cb8-50"><a href="#section-cb8-50" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;A_sin&quot;</span>, <span class="st">&quot;Asin (amplitude, ppm)&quot;</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">10</span>, <span class="at">value =</span> <span class="dv">3</span>, <span class="at">step =</span> <span class="fl">0.1</span>),</span>
+<span id="section-cb8-51"><a href="#section-cb8-51" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;phi&quot;</span>,   <span class="st">&quot;φ (phase shift, years)&quot;</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>, <span class="at">value =</span> <span class="fl">0.3</span>, <span class="at">step =</span> <span class="fl">0.01</span>),</span>
+<span id="section-cb8-52"><a href="#section-cb8-52" tabindex="-1"></a>        <span class="fu">helpText</span>(<span class="st">&quot;Frequency fixed at 1 cycle/year to represent annual seasonality.&quot;</span>)</span>
+<span id="section-cb8-53"><a href="#section-cb8-53" tabindex="-1"></a>      ),</span>
+<span id="section-cb8-54"><a href="#section-cb8-54" tabindex="-1"></a></span>
+<span id="section-cb8-55"><a href="#section-cb8-55" tabindex="-1"></a>      <span class="fu">checkboxInput</span>(<span class="st">&quot;show_deseason&quot;</span>, <span class="st">&quot;Also show deseasonalized series&quot;</span>, <span class="at">value =</span> <span class="cn">FALSE</span>),</span>
+<span id="section-cb8-56"><a href="#section-cb8-56" tabindex="-1"></a>      <span class="fu">checkboxInput</span>(<span class="st">&quot;show_resid&quot;</span>, <span class="st">&quot;Show residuals panel&quot;</span>, <span class="at">value =</span> <span class="cn">FALSE</span>)</span>
+<span id="section-cb8-57"><a href="#section-cb8-57" tabindex="-1"></a>    ),</span>
+<span id="section-cb8-58"><a href="#section-cb8-58" tabindex="-1"></a></span>
+<span id="section-cb8-59"><a href="#section-cb8-59" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="section-cb8-60"><a href="#section-cb8-60" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;fit_plot&quot;</span>, <span class="at">height =</span> <span class="st">&quot;450px&quot;</span>),</span>
+<span id="section-cb8-61"><a href="#section-cb8-61" tabindex="-1"></a>      tags<span class="sc">$</span><span class="fu">br</span>(),</span>
+<span id="section-cb8-62"><a href="#section-cb8-62" tabindex="-1"></a>      <span class="fu">strong</span>(<span class="fu">textOutput</span>(<span class="st">&quot;rmse_text&quot;</span>)),</span>
+<span id="section-cb8-63"><a href="#section-cb8-63" tabindex="-1"></a>      <span class="fu">conditionalPanel</span>(</span>
+<span id="section-cb8-64"><a href="#section-cb8-64" tabindex="-1"></a>        <span class="at">condition =</span> <span class="st">&quot;input.show_resid&quot;</span>,</span>
+<span id="section-cb8-65"><a href="#section-cb8-65" tabindex="-1"></a>        tags<span class="sc">$</span><span class="fu">hr</span>(),</span>
+<span id="section-cb8-66"><a href="#section-cb8-66" tabindex="-1"></a>        <span class="fu">plotOutput</span>(<span class="st">&quot;resid_plot&quot;</span>, <span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span>
+<span id="section-cb8-67"><a href="#section-cb8-67" tabindex="-1"></a>      )</span>
+<span id="section-cb8-68"><a href="#section-cb8-68" tabindex="-1"></a>    )</span>
+<span id="section-cb8-69"><a href="#section-cb8-69" tabindex="-1"></a>  )</span>
+<span id="section-cb8-70"><a href="#section-cb8-70" tabindex="-1"></a>)</span>
+<span id="section-cb8-71"><a href="#section-cb8-71" tabindex="-1"></a></span>
+<span id="section-cb8-72"><a href="#section-cb8-72" tabindex="-1"></a><span class="co"># ---- Server ----</span></span>
+<span id="section-cb8-73"><a href="#section-cb8-73" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="section-cb8-74"><a href="#section-cb8-74" tabindex="-1"></a></span>
+<span id="section-cb8-75"><a href="#section-cb8-75" tabindex="-1"></a>  preds <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="section-cb8-76"><a href="#section-cb8-76" tabindex="-1"></a>    t <span class="ot">&lt;-</span> co2_data<span class="sc">$</span>DecimalDate</span>
+<span id="section-cb8-77"><a href="#section-cb8-77" tabindex="-1"></a>    y <span class="ot">&lt;-</span> co2_data<span class="sc">$</span>CO2_Monthly</span>
+<span id="section-cb8-78"><a href="#section-cb8-78" tabindex="-1"></a>    tau <span class="ot">&lt;-</span> t <span class="sc">-</span> t0</span>
+<span id="section-cb8-79"><a href="#section-cb8-79" tabindex="-1"></a></span>
+<span id="section-cb8-80"><a href="#section-cb8-80" tabindex="-1"></a>    <span class="co"># Base components</span></span>
+<span id="section-cb8-81"><a href="#section-cb8-81" tabindex="-1"></a>    trend <span class="ot">&lt;-</span> <span class="cf">switch</span>(input<span class="sc">$</span>model_type,</span>
+<span id="section-cb8-82"><a href="#section-cb8-82" tabindex="-1"></a>                    <span class="st">&quot;lin&quot;</span>     <span class="ot">=</span> input<span class="sc">$</span>a_lin <span class="sc">+</span> input<span class="sc">$</span>b_lin <span class="sc">*</span> tau,</span>
+<span id="section-cb8-83"><a href="#section-cb8-83" tabindex="-1"></a>                    <span class="st">&quot;lin_sin&quot;</span> <span class="ot">=</span> input<span class="sc">$</span>a_lin <span class="sc">+</span> input<span class="sc">$</span>b_lin <span class="sc">*</span> tau,</span>
+<span id="section-cb8-84"><a href="#section-cb8-84" tabindex="-1"></a>                    <span class="st">&quot;exp&quot;</span>     <span class="ot">=</span> input<span class="sc">$</span>B_exp <span class="sc">+</span> input<span class="sc">$</span>A_exp <span class="sc">*</span> <span class="fu">exp</span>(input<span class="sc">$</span>r_exp <span class="sc">*</span> tau),</span>
+<span id="section-cb8-85"><a href="#section-cb8-85" tabindex="-1"></a>                    <span class="st">&quot;exp_sin&quot;</span> <span class="ot">=</span> input<span class="sc">$</span>B_exp <span class="sc">+</span> input<span class="sc">$</span>A_exp <span class="sc">*</span> <span class="fu">exp</span>(input<span class="sc">$</span>r_exp <span class="sc">*</span> tau))</span>
+<span id="section-cb8-86"><a href="#section-cb8-86" tabindex="-1"></a></span>
+<span id="section-cb8-87"><a href="#section-cb8-87" tabindex="-1"></a>    seas <span class="ot">&lt;-</span> <span class="cf">switch</span>(input<span class="sc">$</span>model_type,</span>
+<span id="section-cb8-88"><a href="#section-cb8-88" tabindex="-1"></a>                   <span class="st">&quot;lin&quot;</span>     <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="section-cb8-89"><a href="#section-cb8-89" tabindex="-1"></a>                   <span class="st">&quot;exp&quot;</span>     <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="section-cb8-90"><a href="#section-cb8-90" tabindex="-1"></a>                   <span class="st">&quot;lin_sin&quot;</span> <span class="ot">=</span> input<span class="sc">$</span>A_sin <span class="sc">*</span> <span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>(t <span class="sc">-</span> input<span class="sc">$</span>phi)),</span>
+<span id="section-cb8-91"><a href="#section-cb8-91" tabindex="-1"></a>                   <span class="st">&quot;exp_sin&quot;</span> <span class="ot">=</span> input<span class="sc">$</span>A_sin <span class="sc">*</span> <span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>(t <span class="sc">-</span> input<span class="sc">$</span>phi)))</span>
+<span id="section-cb8-92"><a href="#section-cb8-92" tabindex="-1"></a></span>
+<span id="section-cb8-93"><a href="#section-cb8-93" tabindex="-1"></a>    yhat <span class="ot">&lt;-</span> trend <span class="sc">+</span> seas</span>
+<span id="section-cb8-94"><a href="#section-cb8-94" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">t =</span> t, <span class="at">y =</span> y, <span class="at">yhat =</span> yhat)</span>
+<span id="section-cb8-95"><a href="#section-cb8-95" tabindex="-1"></a>  })</span>
+<span id="section-cb8-96"><a href="#section-cb8-96" tabindex="-1"></a></span>
+<span id="section-cb8-97"><a href="#section-cb8-97" tabindex="-1"></a>  output<span class="sc">$</span>fit_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="section-cb8-98"><a href="#section-cb8-98" tabindex="-1"></a>    pr <span class="ot">&lt;-</span> <span class="fu">preds</span>()</span>
+<span id="section-cb8-99"><a href="#section-cb8-99" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(co2_data, <span class="fu">aes</span>(<span class="at">x =</span> DecimalDate, <span class="at">y =</span> CO2_Monthly)) <span class="sc">+</span></span>
+<span id="section-cb8-100"><a href="#section-cb8-100" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="section-cb8-101"><a href="#section-cb8-101" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pr<span class="sc">$</span>yhat), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="section-cb8-102"><a href="#section-cb8-102" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Curve Fitting Explorer&quot;</span>,</span>
+<span id="section-cb8-103"><a href="#section-cb8-103" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Model:&quot;</span>, <span class="cf">switch</span>(input<span class="sc">$</span>model_type,</span>
+<span id="section-cb8-104"><a href="#section-cb8-104" tabindex="-1"></a>                                             <span class="at">lin =</span> <span class="st">&quot;Line&quot;</span>,</span>
+<span id="section-cb8-105"><a href="#section-cb8-105" tabindex="-1"></a>                                             <span class="at">exp =</span> <span class="st">&quot;Exponential&quot;</span>,</span>
+<span id="section-cb8-106"><a href="#section-cb8-106" tabindex="-1"></a>                                             <span class="at">lin_sin =</span> <span class="st">&quot;Line + Sinusoid&quot;</span>,</span>
+<span id="section-cb8-107"><a href="#section-cb8-107" tabindex="-1"></a>                                             <span class="at">exp_sin =</span> <span class="st">&quot;Exponential + Sinusoid&quot;</span>)),</span>
+<span id="section-cb8-108"><a href="#section-cb8-108" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="section-cb8-109"><a href="#section-cb8-109" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">&quot;CO&quot;</span>[<span class="dv">2</span>]<span class="sc">*</span><span class="st">&quot; (ppm)&quot;</span>)) <span class="sc">+</span></span>
+<span id="section-cb8-110"><a href="#section-cb8-110" tabindex="-1"></a>      <span class="fu">theme_minimal</span>()</span>
+<span id="section-cb8-111"><a href="#section-cb8-111" tabindex="-1"></a></span>
+<span id="section-cb8-112"><a href="#section-cb8-112" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>show_deseason) {</span>
+<span id="section-cb8-113"><a href="#section-cb8-113" tabindex="-1"></a>      p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> CO2_Deseason), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span>
+<span id="section-cb8-114"><a href="#section-cb8-114" tabindex="-1"></a>    }</span>
+<span id="section-cb8-115"><a href="#section-cb8-115" tabindex="-1"></a>    p</span>
+<span id="section-cb8-116"><a href="#section-cb8-116" tabindex="-1"></a>  })</span>
+<span id="section-cb8-117"><a href="#section-cb8-117" tabindex="-1"></a></span>
+<span id="section-cb8-118"><a href="#section-cb8-118" tabindex="-1"></a>  output<span class="sc">$</span>rmse_text <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="section-cb8-119"><a href="#section-cb8-119" tabindex="-1"></a>    pr <span class="ot">&lt;-</span> <span class="fu">preds</span>()</span>
+<span id="section-cb8-120"><a href="#section-cb8-120" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">&quot;RMSE: &quot;</span>, <span class="fu">round</span>(<span class="fu">rmse</span>(pr<span class="sc">$</span>y, pr<span class="sc">$</span>yhat), <span class="dv">3</span>), <span class="st">&quot; ppm&quot;</span>)</span>
+<span id="section-cb8-121"><a href="#section-cb8-121" tabindex="-1"></a>  })</span>
+<span id="section-cb8-122"><a href="#section-cb8-122" tabindex="-1"></a></span>
+<span id="section-cb8-123"><a href="#section-cb8-123" tabindex="-1"></a>  output<span class="sc">$</span>resid_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="section-cb8-124"><a href="#section-cb8-124" tabindex="-1"></a>    pr <span class="ot">&lt;-</span> <span class="fu">preds</span>()</span>
+<span id="section-cb8-125"><a href="#section-cb8-125" tabindex="-1"></a>    resid <span class="ot">&lt;-</span> pr<span class="sc">$</span>y <span class="sc">-</span> pr<span class="sc">$</span>yhat</span>
+<span id="section-cb8-126"><a href="#section-cb8-126" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">DecimalDate =</span> pr<span class="sc">$</span>t, <span class="at">Residual =</span> resid),</span>
+<span id="section-cb8-127"><a href="#section-cb8-127" tabindex="-1"></a>           <span class="fu">aes</span>(<span class="at">x =</span> DecimalDate, <span class="at">y =</span> Residual)) <span class="sc">+</span></span>
+<span id="section-cb8-128"><a href="#section-cb8-128" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="section-cb8-129"><a href="#section-cb8-129" tabindex="-1"></a>      <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="section-cb8-130"><a href="#section-cb8-130" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Residuals (Observed - Predicted)&quot;</span>,</span>
+<span id="section-cb8-131"><a href="#section-cb8-131" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;ppm&quot;</span>) <span class="sc">+</span></span>
+<span id="section-cb8-132"><a href="#section-cb8-132" tabindex="-1"></a>      <span class="fu">theme_minimal</span>()</span>
+<span id="section-cb8-133"><a href="#section-cb8-133" tabindex="-1"></a>  })</span>
+<span id="section-cb8-134"><a href="#section-cb8-134" tabindex="-1"></a>}</span>
+<span id="section-cb8-135"><a href="#section-cb8-135" tabindex="-1"></a></span>
+<span id="section-cb8-136"><a href="#section-cb8-136" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<iframe data-deferred-src="appa332cce4965d487039bb516b825ea395/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/%s",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": false,
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -22,5 +22,6 @@ rmd_files:
   - 90-Appendix.Rmd
   - 101wb-Modeling.Rmd
   - 102wb-LLMs.Rmd
+  - 103wb-Pop_dyn.Rmd
   - 999wb-r.Rmd
 
