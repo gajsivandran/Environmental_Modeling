@@ -1,12 +1,12 @@
 # Tutorial: Getting Started with RStudio
 
-## 1. What is RStudio?
+## What is RStudio?
 - **R** is a programming language for statistics, data analysis, and visualization.  
 - **RStudio** is an integrated development environment (IDE) that makes R easier to use with a friendly interface.  
 
 ---
 
-## 2. The RStudio Interface
+## The RStudio Interface
 When you open RStudio, you’ll usually see **four main panes**:
 
 1. **Source Pane (Top-Left)**  
@@ -30,7 +30,7 @@ When you open RStudio, you’ll usually see **four main panes**:
 
 ---
 
-## 3. Running Code
+## Running Code
 - Type directly into the **Console** and hit `Enter`.  
 - Or, write code in the **Source Pane** and:  
   - Run a single line: `Ctrl + Enter` (Windows) or `Cmd + Enter` (Mac).  
@@ -38,14 +38,14 @@ When you open RStudio, you’ll usually see **four main panes**:
 
 ---
 
-## 4. Projects in RStudio
+## Projects in RStudio
 - Create a **Project** to keep related files together.  
 - `File → New Project → New Directory` (or link to an existing folder).  
 - Projects make it easier to manage code, datasets, and outputs without breaking file paths.  
 
 ---
 
-## 5. Working with Packages
+## Working with Packages
 
 Packages are **collections of R functions, data, and documentation** bundled together to extend the capabilities of base R.  
 
@@ -76,7 +76,7 @@ Think of them like "apps" you install on your phone — R comes with some built-
 
 ✅ **Key idea:** Packages expand what R can do. Installing adds them to your computer, loading makes them available in your current session.
 
-## 6. Writing and Saving Scripts
+## Writing and Saving Scripts
 
 When you work in RStudio, you’ll often want to **save your code** so you can reuse it later, share it with others, or keep a record of what you did. This is where **scripts** come in.
 
@@ -98,8 +98,7 @@ An RMarkdown file combines **code, text, and output** in one document.
 - You can include code chunks (inside triple backticks ```{r}```) along with explanations in plain English.  
 - Output can be **HTML, PDF, or Word documents**.
 
-
-## 7. Plotting Example
+## Plotting Example
 
 R makes it easy to create plots and visualize data. Plots always appear in the **Plots tab** (bottom-right pane in RStudio).
 
@@ -189,3 +188,14 @@ ggplot(cars, aes(x = speed, y = dist)) +
 ✅ Using base R, you get quick and simple plots.
 
 ✅ Using ggplot2, you get more flexible, customizable, and professional-looking plots.
+
+## Data Visualization Tutorial 
+
+The focus of today's session will be developing your data visualization skills.  
+Visualizations are more than just decoration — they are essential tools for both **communication** and **analysis**. A clear, well-designed plot can reveal relationships, trends, and outliers that might be hidden in raw data, helping you generate insights and guide further exploration. At the same time, effective visualizations allow you to communicate those insights to others in a way that is intuitive and impactful, bridging the gap between data and understanding.
+
+Work through this tutorial at your own pace:  
+[Data visualization – R for Data Science](https://r4ds.hadley.nz/data-visualize.html)
+
+
+
