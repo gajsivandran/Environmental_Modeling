@@ -1,0 +1,74 @@
+# Test Review Material
+
+## Instructions
+Below are the general instructions for all tests
+
+- You will get a chance to **retake** this. Your **highest** score counts toward your final grade.  
+- Follow the guidance for each part and **show all work** for full credit.  
+- **Non-graphical calculators** are allowed.  
+- **One page (two sides)** of handwritten (or font size 8) notes are allowed.
+- The equation sheet from the textbook is included as part of the test pack (it doesn't count as note pages)
+
+
+## Practice Test 1
+### Spring 2025
+**Short-Answer Questions (20 points)**
+
+1. **(4 pts)** Explain how to test if a **limit** exists at a point on a function.
+
+2. **(4 pts)** What is the difference between **secant** and **tangent** lines?  
+   Explain using a **sketch** and how they relate to **rates of change**.
+
+3. **(4 pts)** Identify a scenario where a function has a **sharp corner or cusp** and explain why the **derivative does not exist** there.  
+   Include **sketches**.
+
+4. **(4 pts)** What do the points where \(f'(x)=0\) represent on the graph of \(f(x)\)?  
+   Include a **sketch** in your answer.
+
+5. **(4 pts)** List the **conditions required** for a function to be **differentiable** at a point.  
+   How do you test for these **two conditions**?
+
+---
+
+**Problems (30 points)**
+
+### Problem 1
+
+Let \( f(x)=10x^{2}+e^{x} \).
+
+1. **(3 pts)** Find the **average velocity** on the interval \([2,6]\).  
+2. **(3 pts)** **Estimate**, using the **limit definition** of the derivative, the **instantaneous velocity** at \(x=4\).
+
+---
+
+### Problem 2
+
+Using the **limit definition** of the derivative, let \( f(x)=x^{2}-4x \).
+
+1. **(3 pts)** Find an expression for \(f'(x)\).  
+2. **(2 pts)** Find the derivative at \(x=3\).  
+3. **(3 pts)** Find the **equation of the tangent line** at \(x=3\).  
+4. **(2 pts)** Using \(f'(x)\), determine where the **rate of change** of \(f(x)\) is **zero**.  
+5. **(2 pts)** Explain how you would **adapt the limit definition** of a **first derivative** to find the **second derivative**.  
+   *(Do not actually compute \(f''(x)\).)*  
+6. **(2 pts)** In words, what does the **second derivative** mean?
+
+---
+
+### Problem 3
+
+The **graph of a function** \(h(x)\) is shown below. Use it to answer the questions.
+![](images/test_1.png)
+
+*(Insert image here — e.g., `![](test1_q3_graph.png)`)*
+
+1. **(2 pts)** Identify all points where \(h(x)\) has **no limit**. Explain why.  
+2. **(2 pts)** Identify all points where \(h(x)\) is **not continuous**. Explain why.  
+3. **(2 pts)** Identify all points where \(h(x)\) is **not differentiable**. Explain why.  
+4. **(4 pts)** **Roughly sketch** the derivative \(h'(x)\).
+
+---
+
+<!-- Optional section for derivative/formula sheet if desired -->
+
+## Test 1 Spring 2025 Retake

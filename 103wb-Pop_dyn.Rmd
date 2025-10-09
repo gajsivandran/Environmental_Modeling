@@ -252,3 +252,174 @@ Play around
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/t0dXjmoA0dw?si=UI1L7pU5iHEP6tqJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+
+## Lab: Building Your Own Population Model
+### Overview {-}
+In this lab, you will build, test, and refine population models using real or simulated ecological data.  
+By the end, you should be able to:
+
+- Load and visualize population data  
+- Construct a conceptual model of population dynamics  
+- Fit and compare different population growth models  
+- Interpret model parameters in ecological terms  
+- Extend models to include harvesting and environmental variability  
+
+---
+
+### Task 1 – Load and Explore the Data {-}
+
+Load the dataset into R and create a simple plot to visualize the population through time.  
+Look for general patterns (growth, plateaus, declines, disturbances) and write down your observations.
+
+::: promptbox
+**Reflection:**  
+What trends do you see? 
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 2 – Build a Conceptual Model{-}
+
+Draw a **conceptual diagram** (no equations yet).  
+Use boxes for key variables and arrows for relationships or feedbacks.
+
+::: promptbox
+**Reflection:**  
+
+- What controls population growth?  
+- What limits it?  
+- What external factors could influence it?
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 3 – Start Simple: Linear Growth Model{-}
+
+Write **pseudo code** to fit a *linear growth model* to the data.  
+Use a **stepwise prompting strategy** — begin with a basic line, then add complexity:
+
+1. Add interactive sliders to adjust parameters.  
+2. Add diagnostic metrics (e.g., RMSE) to assess fit quality.  
+3. Allow model fitting to subsets of the data.
+
+::: promptbox
+**Reflection:**
+
+- Why start with a linear model?  
+- Are there time periods where the population appears roughly linear?  
+- What questions could you answer with a linear model?
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 4 – Extend to Logistic Growth{-}
+
+Replace the linear model with a **logistic model**:
+
+\[
+P(t) = \frac{K}{1 + A e^{-r t}}
+\]
+
+Before coding, analyze this function **analytically**:
+
+- What happens as each parameter (\(A\), \(K\), \(r\)) becomes small, large, or negative?  
+- What are reasonable ecological constraints on these parameters?  
+- What does each parameter represent in real-world terms?
+
+::: promptbox
+**Reflection:**  
+Summarize your reasoning and expectations before testing numerically.  
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 5 – Fit the Logistic Model{-}
+
+Using the same stepwise prompting strategy, implement and test the logistic model numerically.
+
+- Compare numerical results to your analytical expectations.  
+- Add plot features (e.g., equilibrium lines, shaded regions) to support your interpretation.
+
+::: promptbox
+**Reflection:**  
+Did your results confirm your intuition?  
+How could you visualize uncertainty or residuals?  
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 6 – Introduce Harvesting{-}
+
+**Scenario:**  
+This species of fish was overfished in the 1970s. In the 1980s, fishing was banned to allow recovery.
+
+Modify your logistic model to include a **harvesting term**.  
+Explore how harvesting rate affects long-term equilibrium and recovery trajectories.
+
+::: promptbox
+**Reflection:**  
+- How does equilibrium population change with harvesting rate \(H\)?  
+- What happens if you extrapolate beyond your data?  
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 7 – Parameter Sensitivity (Sweep Analysis){-}
+
+Write pseudo code to explore parameter sensitivity using loops.
+
+Create visualizations showing:
+
+- Equilibrium population vs. harvesting rate  
+- Sensitivity of population recovery to historical or future harvests  
+
+Be creative—surface plots, contour maps, or animations are all valid.
+
+::: promptbox
+**Reflection:**  
+What parameters is the system most sensitive to?  
+What management implications might this have?  
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+
+---
+
+### Task 8 – Adding Environmental Variability {-}
+
+Now lets question one of our model assumptions:  
+Is \(r\) (the intrinsic growth rate) really constant?
+
+Create pseudo code that allows \(r\) to vary between **good years** and **bad years**:
+
+- In a *good year*, \(r\) stays the same.  
+- In a *bad year*, \(r\) is scaled by a factor between 0 and 1.  
+
+Add sliders to adjust:
+- The frequency of bad years  
+- The scaling factor for \(r\)
+
+::: promptbox
+**Reflection:**  
+- How does stochasticity affect population resilience?  
+- How could models like this support adaptive management or conservation policy?  
+
+<br><br><br><br><br><br><br><br><br><br><br>
+:::
+

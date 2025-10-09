@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-07" />
+<meta name="date" content="2025-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -305,6 +305,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="D" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html"><i class="fa fa-check"></i><b>D</b> Workbook Week 3: Models and Growth</a>
 <ul>
 <li class="chapter" data-level="D.1" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#learning-goals-2"><i class="fa fa-check"></i><b>D.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="D.2" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#lab-building-your-own-population-model"><i class="fa fa-check"></i><b>D.2</b> Lab: Building Your Own Population Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-1-load-and-explore-the-data"><i class="fa fa-check"></i>Task 1 – Load and Explore the Data</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-2-build-a-conceptual-model"><i class="fa fa-check"></i>Task 2 – Build a Conceptual Model</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-3-start-simple-linear-growth-model"><i class="fa fa-check"></i>Task 3 – Start Simple: Linear Growth Model</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-4-extend-to-logistic-growth"><i class="fa fa-check"></i>Task 4 – Extend to Logistic Growth</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-5-fit-the-logistic-model"><i class="fa fa-check"></i>Task 5 – Fit the Logistic Model</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-6-introduce-harvesting"><i class="fa fa-check"></i>Task 6 – Introduce Harvesting</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-7-parameter-sensitivity-sweep-analysis"><i class="fa fa-check"></i>Task 7 – Parameter Sensitivity (Sweep Analysis)</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-8-adding-environmental-variability"><i class="fa fa-check"></i>Task 8 – Adding Environmental Variability</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="E" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>E</b> Tutorial: Getting Started with RStudio</a>
 <ul>
@@ -509,12 +521,12 @@ RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
 <span id="cb1-9"><a href="workbook-week-3-models-and-growth.html#cb1-9" tabindex="-1"></a><span class="co"># Check the first few rows</span></span>
 <span id="cb1-10"><a href="workbook-week-3-models-and-growth.html#cb1-10" tabindex="-1"></a><span class="fu">head</span>(co2_data)</span></code></pre></div>
 <pre><code>##   Year Month DecimalDate CO2_Monthly CO2_Deseason NumDays StdDev Uncertainty
-## 1 1958     3        1958       315.7        314.4      -1  -9.99       -0.99
-## 2 1958     4        1958       317.4        315.2      -1  -9.99       -0.99
-## 3 1958     5        1958       317.5        314.7      -1  -9.99       -0.99
-## 4 1958     6        1958       317.3        315.1      -1  -9.99       -0.99
-## 5 1958     7        1959       315.9        315.2      -1  -9.99       -0.99
-## 6 1958     8        1959       314.9        316.2      -1  -9.99       -0.99</code></pre>
+## 1 1958     3    1958.203      315.71       314.44      -1  -9.99       -0.99
+## 2 1958     4    1958.288      317.45       315.16      -1  -9.99       -0.99
+## 3 1958     5    1958.370      317.51       314.69      -1  -9.99       -0.99
+## 4 1958     6    1958.455      317.27       315.15      -1  -9.99       -0.99
+## 5 1958     7    1958.537      315.87       315.20      -1  -9.99       -0.99
+## 6 1958     8    1958.622      314.93       316.21      -1  -9.99       -0.99</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="workbook-week-3-models-and-growth.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-2"><a href="workbook-week-3-models-and-growth.html#cb3-2" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="workbook-week-3-models-and-growth.html#cb3-3" tabindex="-1"></a><span class="fu">ggplot</span>(co2_data, <span class="fu">aes</span>(<span class="at">x =</span> DecimalDate, <span class="at">y =</span> CO2_Monthly)) <span class="sc">+</span></span>
@@ -576,7 +588,168 @@ RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
 </div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/t0dXjmoA0dw?si=UI1L7pU5iHEP6tqJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
+</div>
+<div id="lab-building-your-own-population-model" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">D.2</span> Lab: Building Your Own Population Model<a href="workbook-week-3-models-and-growth.html#lab-building-your-own-population-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="overview" class="section level3 unnumbered hasAnchor">
+<h3>Overview<a href="workbook-week-3-models-and-growth.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this lab, you will build, test, and refine population models using real or simulated ecological data.<br />
+By the end, you should be able to:</p>
+<ul>
+<li>Load and visualize population data<br />
+</li>
+<li>Construct a conceptual model of population dynamics<br />
+</li>
+<li>Fit and compare different population growth models<br />
+</li>
+<li>Interpret model parameters in ecological terms<br />
+</li>
+<li>Extend models to include harvesting and environmental variability</li>
+</ul>
+<hr />
+</div>
+<div id="task-1-load-and-explore-the-data" class="section level3 unnumbered hasAnchor">
+<h3>Task 1 – Load and Explore the Data<a href="workbook-week-3-models-and-growth.html#task-1-load-and-explore-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Load the dataset into R and create a simple plot to visualize the population through time.<br />
+Look for general patterns (growth, plateaus, declines, disturbances) and write down your observations.</p>
+<div class="promptbox">
+<p><strong>Reflection:</strong><br />
+What trends do you see?</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-2-build-a-conceptual-model" class="section level3 unnumbered hasAnchor">
+<h3>Task 2 – Build a Conceptual Model<a href="workbook-week-3-models-and-growth.html#task-2-build-a-conceptual-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Draw a <strong>conceptual diagram</strong> (no equations yet).<br />
+Use boxes for key variables and arrows for relationships or feedbacks.</p>
+<div class="promptbox">
+<p><strong>Reflection:</strong></p>
+<ul>
+<li>What controls population growth?<br />
+</li>
+<li>What limits it?<br />
+</li>
+<li>What external factors could influence it?</li>
+</ul>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-3-start-simple-linear-growth-model" class="section level3 unnumbered hasAnchor">
+<h3>Task 3 – Start Simple: Linear Growth Model<a href="workbook-week-3-models-and-growth.html#task-3-start-simple-linear-growth-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write <strong>pseudo code</strong> to fit a <em>linear growth model</em> to the data.<br />
+Use a <strong>stepwise prompting strategy</strong> — begin with a basic line, then add complexity:</p>
+<ol style="list-style-type: decimal">
+<li>Add interactive sliders to adjust parameters.<br />
+</li>
+<li>Add diagnostic metrics (e.g., RMSE) to assess fit quality.<br />
+</li>
+<li>Allow model fitting to subsets of the data.</li>
+</ol>
+<div class="promptbox">
+<p><strong>Reflection:</strong></p>
+<ul>
+<li>Why start with a linear model?<br />
+</li>
+<li>Are there time periods where the population appears roughly linear?<br />
+</li>
+<li>What questions could you answer with a linear model?</li>
+</ul>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-4-extend-to-logistic-growth" class="section level3 unnumbered hasAnchor">
+<h3>Task 4 – Extend to Logistic Growth<a href="workbook-week-3-models-and-growth.html#task-4-extend-to-logistic-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Replace the linear model with a <strong>logistic model</strong>:</p>
+<p><span class="math display">\[
+P(t) = \frac{K}{1 + A e^{-r t}}
+\]</span></p>
+<p>Before coding, analyze this function <strong>analytically</strong>:</p>
+<ul>
+<li>What happens as each parameter (<span class="math inline">\(A\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(r\)</span>) becomes small, large, or negative?<br />
+</li>
+<li>What are reasonable ecological constraints on these parameters?<br />
+</li>
+<li>What does each parameter represent in real-world terms?</li>
+</ul>
+<div class="promptbox">
+<p><strong>Reflection:</strong><br />
+Summarize your reasoning and expectations before testing numerically.</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-5-fit-the-logistic-model" class="section level3 unnumbered hasAnchor">
+<h3>Task 5 – Fit the Logistic Model<a href="workbook-week-3-models-and-growth.html#task-5-fit-the-logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the same stepwise prompting strategy, implement and test the logistic model numerically.</p>
+<ul>
+<li>Compare numerical results to your analytical expectations.<br />
+</li>
+<li>Add plot features (e.g., equilibrium lines, shaded regions) to support your interpretation.</li>
+</ul>
+<div class="promptbox">
+<p><strong>Reflection:</strong><br />
+Did your results confirm your intuition?<br />
+How could you visualize uncertainty or residuals?</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-6-introduce-harvesting" class="section level3 unnumbered hasAnchor">
+<h3>Task 6 – Introduce Harvesting<a href="workbook-week-3-models-and-growth.html#task-6-introduce-harvesting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Scenario:</strong><br />
+This species of fish was overfished in the 1970s. In the 1980s, fishing was banned to allow recovery.</p>
+<p>Modify your logistic model to include a <strong>harvesting term</strong>.<br />
+Explore how harvesting rate affects long-term equilibrium and recovery trajectories.</p>
+<div class="promptbox">
+<p><strong>Reflection:</strong><br />
+- How does equilibrium population change with harvesting rate <span class="math inline">\(H\)</span>?<br />
+- What happens if you extrapolate beyond your data?</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-7-parameter-sensitivity-sweep-analysis" class="section level3 unnumbered hasAnchor">
+<h3>Task 7 – Parameter Sensitivity (Sweep Analysis)<a href="workbook-week-3-models-and-growth.html#task-7-parameter-sensitivity-sweep-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write pseudo code to explore parameter sensitivity using loops.</p>
+<p>Create visualizations showing:</p>
+<ul>
+<li>Equilibrium population vs. harvesting rate<br />
+</li>
+<li>Sensitivity of population recovery to historical or future harvests</li>
+</ul>
+<p>Be creative—surface plots, contour maps, or animations are all valid.</p>
+<div class="promptbox">
+<p><strong>Reflection:</strong><br />
+What parameters is the system most sensitive to?<br />
+What management implications might this have?</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="task-8-adding-environmental-variability" class="section level3 unnumbered hasAnchor">
+<h3>Task 8 – Adding Environmental Variability<a href="workbook-week-3-models-and-growth.html#task-8-adding-environmental-variability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now lets question one of our model assumptions:<br />
+Is <span class="math inline">\(r\)</span> (the intrinsic growth rate) really constant?</p>
+<p>Create pseudo code that allows <span class="math inline">\(r\)</span> to vary between <strong>good years</strong> and <strong>bad years</strong>:</p>
+<ul>
+<li>In a <em>good year</em>, <span class="math inline">\(r\)</span> stays the same.<br />
+</li>
+<li>In a <em>bad year</em>, <span class="math inline">\(r\)</span> is scaled by a factor between 0 and 1.</li>
+</ul>
+<p>Add sliders to adjust:
+- The frequency of bad years<br />
+- The scaling factor for <span class="math inline">\(r\)</span></p>
+<div class="promptbox">
+<p><strong>Reflection:</strong><br />
+- How does stochasticity affect population resilience?<br />
+- How could models like this support adaptive management or conservation policy?</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</div>
 
+</div>
 </div>
 </div>
             </section>
