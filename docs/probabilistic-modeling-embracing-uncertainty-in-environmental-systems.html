@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Probabilistic Modeling: Embracing Uncertainty in Environmental Systems | Model Your World: Introduction to Modeling and Simulation</title>
+  <meta name="description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Probabilistic Modeling: Embracing Uncertainty in Environmental Systems | Model Your World: Introduction to Modeling and Simulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Probabilistic Modeling: Embracing Uncertainty in Environmental Systems | Model Your World: Introduction to Modeling and Simulation" />
+  
+  <meta name="twitter:description" content="A textbook companion to the Univeristy of Washington QSci 497 class" />
+  
+
+<meta name="author" content="Gaj Sivandran" />
+
+
+<meta name="date" content="2025-10-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-3-mathematical-models-parameters-functions-and-growth.html"/>
+<link rel="next" href="app-wk1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Q SCI 497</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching-team-introductions-gaj-sivandran"><i class="fa fa-check"></i><b>1.1</b> Teaching Team Introductions Gaj Sivandran</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-highlights"><i class="fa fa-check"></i><b>1.2</b> Course Highlights</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#what-are-the-learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> What are the learning outcomes</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#notes-and-textbooks"><i class="fa fa-check"></i><b>1.4</b> Notes and Textbooks</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-topics"><i class="fa fa-check"></i><b>1.5</b> Course Topics</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#classroom-etiquette"><i class="fa fa-check"></i><b>1.6</b> Classroom Etiquette</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.7</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>2</b> Week 1: What is Modeling?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-we-will-be-doing-this-week"><i class="fa fa-check"></i><b>2.1</b> What we will be doing this week</a></li>
+<li class="chapter" data-level="2.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#learning-objectives"><i class="fa fa-check"></i><b>2.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-watch-listen-read-student-preparation-for-the-week"><i class="fa fa-check"></i><b>2.3</b> Do, Watch, Listen, Read: Student Preparation For The Week</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#download-and-install-rstudio"><i class="fa fa-check"></i><b>2.3.1</b> Download and Install RStudio</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#do-this-tutorial"><i class="fa fa-check"></i><b>2.3.2</b> Do this tutorial</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#min-read"><i class="fa fa-check"></i><b>2.3.3</b> 5min Read</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#lets-build-a-model-of-learning"><i class="fa fa-check"></i><b>2.4</b> Let’s Build a Model of Learning</a></li>
+<li class="chapter" data-level="2.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#what-is-systems-thinking-and-simulation"><i class="fa fa-check"></i><b>2.5</b> What Is Systems Thinking and Simulation?</a></li>
+<li class="chapter" data-level="2.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#abstractionand-why-is-it-so-hard"><i class="fa fa-check"></i><b>2.6</b> Abstraction—and Why Is It So Hard?</a></li>
+<li class="chapter" data-level="2.7" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#the-problem-solving-process"><i class="fa fa-check"></i><b>2.7</b> The Problem-Solving Process</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#define-the-problem"><i class="fa fa-check"></i><b>2.7.1</b> Define the Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simplify-and-abstract"><i class="fa fa-check"></i><b>2.7.2</b> Simplify and Abstract</a></li>
+<li class="chapter" data-level="2.7.3" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#build-a-conceptual-or-mathematical-model"><i class="fa fa-check"></i><b>2.7.3</b> Build a Conceptual or Mathematical Model</a></li>
+<li class="chapter" data-level="2.7.4" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#simulate-and-explore"><i class="fa fa-check"></i><b>2.7.4</b> Simulate and Explore</a></li>
+<li class="chapter" data-level="2.7.5" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#evaluate-and-refine"><i class="fa fa-check"></i><b>2.7.5</b> Evaluate and Refine</a></li>
+<li class="chapter" data-level="2.7.6" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#communicate"><i class="fa fa-check"></i><b>2.7.6</b> Communicate</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#intro-to-prompt-engineering"><i class="fa fa-check"></i><b>2.8</b> Intro to Prompt Engineering</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="week-1-what-is-modeling.html"><a href="week-1-what-is-modeling.html#why-this-matters"><i class="fa fa-check"></i><b>2.8.1</b> Why This Matters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html"><i class="fa fa-check"></i><b>3</b> Week 2: LLMs and Modeling Support</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#learning-goals"><i class="fa fa-check"></i><b>3.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="3.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#do-watch-listen-read-student-preparation-for-the-week-1"><i class="fa fa-check"></i><b>3.2</b> Do, Watch, Listen, Read: Student Preparation for the Week</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#do"><i class="fa fa-check"></i><b>3.2.1</b> Do</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#watch-video-for-discussion"><i class="fa fa-check"></i><b>3.2.2</b> Watch: Video for Discussion</a></li>
+<li class="chapter" data-level="3.2.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#read-reading-for-discussion"><i class="fa fa-check"></i><b>3.2.3</b> Read: Reading for Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#introduction-to-llms-in-modeling-mon"><i class="fa fa-check"></i><b>3.3</b> Introduction to LLMs in Modeling (Mon)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#what-are-llms"><i class="fa fa-check"></i><b>3.3.1</b> What Are LLMs?</a></li>
+<li class="chapter" data-level="3.3.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#a-brief-history"><i class="fa fa-check"></i><b>3.3.2</b> A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#capabilities-and-limits-of-llms"><i class="fa fa-check"></i><b>3.4</b> Capabilities and Limits of LLMs</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#capabilities"><i class="fa fa-check"></i><b>3.4.1</b> Capabilities</a></li>
+<li class="chapter" data-level="3.4.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#limits"><i class="fa fa-check"></i><b>3.4.2</b> Limits</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#llms-in-environmental-modeling-workflows"><i class="fa fa-check"></i><b>3.5</b> LLMs in Environmental Modeling Workflows</a></li>
+<li class="chapter" data-level="3.6" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#prompt-engineering-for-model-development-tue-wed"><i class="fa fa-check"></i><b>3.6</b> Prompt Engineering for Model Development (Tue &amp; Wed)</a></li>
+<li class="chapter" data-level="3.7" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#learning-goals-1"><i class="fa fa-check"></i><b>3.7</b> Learning goals</a></li>
+<li class="chapter" data-level="3.8" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#principles-of-effective-prompts-clarity-context-constraints"><i class="fa fa-check"></i><b>3.8</b> Principles of effective prompts: clarity, context, constraints</a></li>
+<li class="chapter" data-level="3.9" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#prompt-types-zero-shot-few-shot-role-based-with-modeling-examples"><i class="fa fa-check"></i><b>3.9</b> Prompt types: zero-shot, few-shot, role-based (with modeling examples)</a></li>
+<li class="chapter" data-level="3.10" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#iterative-refinement-and-debugging-prompts-the-lei-loop"><i class="fa fa-check"></i><b>3.10</b> Iterative refinement and debugging prompts (the LEI loop)</a></li>
+<li class="chapter" data-level="3.11" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#ade-prompt-library-activity"><i class="fa fa-check"></i><b>3.11</b> ADE Prompt Library &amp; Activity</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#what-youll-build-at-a-glance"><i class="fa fa-check"></i><b>3.11.1</b> What you’ll build (at a glance)</a></li>
+<li class="chapter" data-level="3.11.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#spec-code"><i class="fa fa-check"></i><b>3.11.2</b> Spec → Code</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#critical-reflection-when-to-use-ai-tools"><i class="fa fa-check"></i><b>3.12</b> Critical Reflection: When to Use AI Tools</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#benefits"><i class="fa fa-check"></i><b>3.12.1</b> Benefits</a></li>
+<li class="chapter" data-level="3.12.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#risks-and-limits"><i class="fa fa-check"></i><b>3.12.2</b> Risks and Limits</a></li>
+<li class="chapter" data-level="3.12.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#guidelines-for-responsible-use-in-environmental-science"><i class="fa fa-check"></i><b>3.12.3</b> Guidelines for Responsible Use in Environmental Science</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#reproducibility-documentation-and-troubleshooting-fri"><i class="fa fa-check"></i><b>3.13</b> Reproducibility, Documentation, and Troubleshooting (Fri)</a></li>
+<li class="chapter" data-level="3.14" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#first-model---ade"><i class="fa fa-check"></i><b>3.14</b> First Model - ADE</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#general-form"><i class="fa fa-check"></i><b>3.14.1</b> General Form</a></li>
+<li class="chapter" data-level="3.14.2" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#term-by-term-meaning"><i class="fa fa-check"></i><b>3.14.2</b> Term-by-Term Meaning</a></li>
+<li class="chapter" data-level="3.14.3" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#assumptions-behind-the-ade"><i class="fa fa-check"></i><b>3.14.3</b> Assumptions Behind the ADE</a></li>
+<li class="chapter" data-level="3.14.4" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#applications-in-environmental-science"><i class="fa fa-check"></i><b>3.14.4</b> Applications in Environmental Science</a></li>
+<li class="chapter" data-level="3.14.5" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#analytical-solutions"><i class="fa fa-check"></i><b>3.14.5</b> Analytical Solutions</a></li>
+<li class="chapter" data-level="3.14.6" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#numerical-solutions"><i class="fa fa-check"></i><b>3.14.6</b> Numerical Solutions</a></li>
+<li class="chapter" data-level="3.14.7" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#key-dimensionless-numbers"><i class="fa fa-check"></i><b>3.14.7</b> Key Dimensionless Numbers</a></li>
+<li class="chapter" data-level="3.14.8" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#visualization-1"><i class="fa fa-check"></i><b>3.14.8</b> Visualization</a></li>
+<li class="chapter" data-level="3.14.9" data-path="week-2-llms-and-modeling-support.html"><a href="week-2-llms-and-modeling-support.html#reflection-questions"><i class="fa fa-check"></i><b>3.14.9</b> Reflection Questions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html"><i class="fa fa-check"></i><b>4</b> Week 3: Mathematical Models – Parameters, Functions, and Growth</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#what-is-a-mathematical-model"><i class="fa fa-check"></i><b>4.1.1</b> What is a Mathematical Model?</a></li>
+<li class="chapter" data-level="4.1.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#why-models-matter-in-environmental-science"><i class="fa fa-check"></i><b>4.1.2</b> Why Models Matter in Environmental Science</a></li>
+<li class="chapter" data-level="4.1.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-balance-between-simplification-and-realism"><i class="fa fa-check"></i><b>4.1.3</b> The Balance Between Simplification and Realism</a></li>
+<li class="chapter" data-level="4.1.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#example-population-growth"><i class="fa fa-check"></i><b>4.1.4</b> Example: Population Growth</a></li>
+<li class="chapter" data-level="4.1.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-modeling-cycle"><i class="fa fa-check"></i><b>4.1.5</b> The Modeling Cycle</a></li>
+<li class="chapter" data-level="4.1.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#choosing-the-right-level-of-detail"><i class="fa fa-check"></i><b>4.1.6</b> Choosing the Right Level of Detail</a></li>
+<li class="chapter" data-level="4.1.7" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary"><i class="fa fa-check"></i><b>4.1.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#components-of-a-mathematical-model"><i class="fa fa-check"></i><b>4.2</b> Components of a Mathematical Model</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#variables"><i class="fa fa-check"></i><b>4.2.1</b> Variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#parameters"><i class="fa fa-check"></i><b>4.2.2</b> Parameters</a></li>
+<li class="chapter" data-level="4.2.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#functions"><i class="fa fa-check"></i><b>4.2.3</b> Functions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#initial-conditions"><i class="fa fa-check"></i><b>4.2.4</b> Initial Conditions</a></li>
+<li class="chapter" data-level="4.2.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#boundary-conditions"><i class="fa fa-check"></i><b>4.2.5</b> Boundary Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#types-of-mathematical-models"><i class="fa fa-check"></i><b>4.3</b> Types of Mathematical Models</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#conceptual-models"><i class="fa fa-check"></i><b>4.3.1</b> Conceptual Models</a></li>
+<li class="chapter" data-level="4.3.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#empirical-models"><i class="fa fa-check"></i><b>4.3.2</b> Empirical Models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#mechanistic-models"><i class="fa fa-check"></i><b>4.3.3</b> Mechanistic Models</a></li>
+<li class="chapter" data-level="4.3.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#physically-based-models"><i class="fa fa-check"></i><b>4.3.4</b> Physically Based Models</a></li>
+<li class="chapter" data-level="4.3.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#statistically-based-models"><i class="fa fa-check"></i><b>4.3.5</b> Statistically Based Models</a></li>
+<li class="chapter" data-level="4.3.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#hybrid-models"><i class="fa fa-check"></i><b>4.3.6</b> Hybrid Models</a></li>
+<li class="chapter" data-level="4.3.7" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#probability-based-models"><i class="fa fa-check"></i><b>4.3.7</b> Probability-Based Models</a></li>
+<li class="chapter" data-level="4.3.8" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#discrete-vs-continuous-models"><i class="fa fa-check"></i><b>4.3.8</b> Discrete vs Continuous Models</a></li>
+<li class="chapter" data-level="4.3.9" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-1"><i class="fa fa-check"></i><b>4.3.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#growth-models"><i class="fa fa-check"></i><b>4.4</b> Growth Models</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#linear-growth"><i class="fa fa-check"></i><b>4.4.1</b> Linear Growth</a></li>
+<li class="chapter" data-level="4.4.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#exponential-growth"><i class="fa fa-check"></i><b>4.4.2</b> Exponential Growth</a></li>
+<li class="chapter" data-level="4.4.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#logistic-growth"><i class="fa fa-check"></i><b>4.4.3</b> Logistic Growth</a></li>
+<li class="chapter" data-level="4.4.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#decay-models"><i class="fa fa-check"></i><b>4.4.4</b> Decay Models</a></li>
+<li class="chapter" data-level="4.4.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#piecewise-threshold-models"><i class="fa fa-check"></i><b>4.4.5</b> Piecewise / Threshold Models</a></li>
+<li class="chapter" data-level="4.4.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.4.6</b> Putting It All Together</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#parameters-in-growth-models"><i class="fa fa-check"></i><b>4.5</b> Parameters in Growth Models</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#the-role-of-parameters"><i class="fa fa-check"></i><b>4.5.1</b> The Role of Parameters</a></li>
+<li class="chapter" data-level="4.5.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#sensitivity-analysis"><i class="fa fa-check"></i><b>4.5.2</b> Sensitivity Analysis</a></li>
+<li class="chapter" data-level="4.5.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#visualization-with-parameter-sweeps"><i class="fa fa-check"></i><b>4.5.3</b> Visualization with Parameter Sweeps</a></li>
+<li class="chapter" data-level="4.5.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#comparing-competing-species"><i class="fa fa-check"></i><b>4.5.4</b> Comparing Competing Species</a></li>
+<li class="chapter" data-level="4.5.5" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-2"><i class="fa fa-check"></i><b>4.5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#fitting-models-to-data"><i class="fa fa-check"></i><b>4.6</b> Fitting Models to Data</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#from-observations-to-parameters"><i class="fa fa-check"></i><b>4.6.1</b> From Observations to Parameters</a></li>
+<li class="chapter" data-level="4.6.2" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#methods-of-parameter-estimation"><i class="fa fa-check"></i><b>4.6.2</b> Methods of Parameter Estimation</a></li>
+<li class="chapter" data-level="4.6.3" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#uncertainty-and-error"><i class="fa fa-check"></i><b>4.6.3</b> Uncertainty and Error</a></li>
+<li class="chapter" data-level="4.6.4" data-path="week-3-mathematical-models-parameters-functions-and-growth.html"><a href="week-3-mathematical-models-parameters-functions-and-growth.html#summary-3"><i class="fa fa-check"></i><b>4.6.4</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><i class="fa fa-check"></i><b>5</b> Probabilistic Modeling: Embracing Uncertainty in Environmental Systems</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#introduction-why-probabilities-matter"><i class="fa fa-check"></i><b>5.1</b> Introduction: Why Probabilities Matter</a></li>
+<li class="chapter" data-level="5.2" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#sources-of-uncertainty"><i class="fa fa-check"></i><b>5.2</b> Sources of Uncertainty</a></li>
+<li class="chapter" data-level="5.3" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#primer-probability-pdfs-and-cdfs"><i class="fa fa-check"></i><b>5.3</b> Primer: Probability, PDFs, and CDFs</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#probability-basics"><i class="fa fa-check"></i><b>5.3.1</b> Probability Basics</a></li>
+<li class="chapter" data-level="5.3.2" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#probability-density-function-pdf"><i class="fa fa-check"></i><b>5.3.2</b> Probability Density Function (PDF)</a></li>
+<li class="chapter" data-level="5.3.3" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#cumulative-distribution-function-cdf"><i class="fa fa-check"></i><b>5.3.3</b> Cumulative Distribution Function (CDF)</a></li>
+<li class="chapter" data-level="5.3.4" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#discrete-vs-continuous-distributions"><i class="fa fa-check"></i><b>5.3.4</b> Discrete vs Continuous Distributions</a></li>
+<li class="chapter" data-level="5.3.5" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#moments-mean-variance-and-shape"><i class="fa fa-check"></i><b>5.3.5</b> Moments: Mean, Variance, and Shape</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#visualizing-probability-distributions"><i class="fa fa-check"></i><b>5.4</b> Visualizing Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#normal-gaussian"><i class="fa fa-check"></i><b>5.4.1</b> Normal (Gaussian)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#lognormal"><i class="fa fa-check"></i><b>5.4.2</b> Lognormal</a></li>
+<li class="chapter" data-level="5.4.3" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#gamma"><i class="fa fa-check"></i><b>5.4.3</b> Gamma</a></li>
+<li class="chapter" data-level="5.4.4" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#exponential"><i class="fa fa-check"></i><b>5.4.4</b> Exponential</a></li>
+<li class="chapter" data-level="5.4.5" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#weibull"><i class="fa fa-check"></i><b>5.4.5</b> Weibull</a></li>
+<li class="chapter" data-level="5.4.6" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#poisson-discrete-counts"><i class="fa fa-check"></i><b>5.4.6</b> Poisson (Discrete Counts)</a></li>
+<li class="chapter" data-level="5.4.7" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#gumbel-extreme-value-type-i-emphasizing-fat-tails"><i class="fa fa-check"></i><b>5.4.7</b> Gumbel (Extreme Value Type I): Emphasizing Fat Tails</a></li>
+<li class="chapter" data-level="5.4.8" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#quick-guidance-on-when-to-use-which"><i class="fa fa-check"></i><b>5.4.8</b> Quick guidance on <strong>when to use which</strong></a></li>
+<li class="chapter" data-level="5.4.9" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#from-probability-to-modeling"><i class="fa fa-check"></i><b>5.4.9</b> From Probability to Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#representing-uncertainty-with-probability-distributions"><i class="fa fa-check"></i><b>5.5</b> Representing Uncertainty with Probability Distributions</a></li>
+<li class="chapter" data-level="5.6" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#deterministic-vs-stochastic-models"><i class="fa fa-check"></i><b>5.6</b> Deterministic vs Stochastic Models</a></li>
+<li class="chapter" data-level="5.7" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>5.7</b> Monte Carlo Simulation</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#how-it-works"><i class="fa fa-check"></i><b>5.7.1</b> <strong>How it works</strong></a></li>
+<li class="chapter" data-level="5.7.2" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#example-simulating-casino-winnings"><i class="fa fa-check"></i><b>5.7.2</b> <strong>Example: Simulating Casino Winnings</strong></a></li>
+<li class="chapter" data-level="5.7.3" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#monte-carlo-in-action"><i class="fa fa-check"></i><b>5.7.3</b> <strong>Monte Carlo in action</strong></a></li>
+<li class="chapter" data-level="5.7.4" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#takeaway"><i class="fa fa-check"></i><b>5.7.4</b> <strong>Takeaway</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#markov-and-transition-models"><i class="fa fa-check"></i><b>5.8</b> Markov and Transition Models</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#core-pieces"><i class="fa fa-check"></i><b>5.8.1</b> <strong>Core Pieces</strong></a></li>
+<li class="chapter" data-level="5.8.2" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#example-transition-matrix-annual"><i class="fa fa-check"></i><b>5.8.2</b> <strong>Example Transition Matrix (Annual)</strong></a></li>
+<li class="chapter" data-level="5.8.3" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#from-whats-next-to-where-does-it-settle"><i class="fa fa-check"></i><b>5.8.3</b> <strong>From “What’s Next?” to “Where Does It Settle?”</strong></a></li>
+<li class="chapter" data-level="5.8.4" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#reading-the-matrix-like-an-ecologist-or-planner"><i class="fa fa-check"></i><b>5.8.4</b> <strong>Reading the Matrix Like an Ecologist or Planner</strong></a></li>
+<li class="chapter" data-level="5.8.5" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#special-structures"><i class="fa fa-check"></i><b>5.8.5</b> <strong>Special Structures</strong></a></li>
+<li class="chapter" data-level="5.8.6" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#estimating-transition-matrices"><i class="fa fa-check"></i><b>5.8.6</b> <strong>Estimating Transition Matrices</strong></a></li>
+<li class="chapter" data-level="5.8.7" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#what-markov-models-answer-well"><i class="fa fa-check"></i><b>5.8.7</b> <strong>What Markov Models Answer Well</strong></a></li>
+<li class="chapter" data-level="5.8.8" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#environmental-applications"><i class="fa fa-check"></i><b>5.8.8</b> <strong>Environmental Applications</strong></a></li>
+<li class="chapter" data-level="5.8.9" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#common-pitfalls-and-fixes"><i class="fa fa-check"></i><b>5.8.9</b> <strong>Common Pitfalls and Fixes</strong></a></li>
+<li class="chapter" data-level="5.8.10" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#mini-worked-example"><i class="fa fa-check"></i><b>5.8.10</b> <strong>Mini Worked Example</strong></a></li>
+<li class="chapter" data-level="5.8.11" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#key-takeaway"><i class="fa fa-check"></i><b>5.8.11</b> <strong>Key Takeaway</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#communicating-probabilistic-results"><i class="fa fa-check"></i><b>5.9</b> Communicating Probabilistic Results</a></li>
+<li class="chapter" data-level="5.10" data-path="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html"><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#summary-and-reflection"><i class="fa fa-check"></i><b>5.10</b> Summary and Reflection</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="app-wk1.html"><a href="app-wk1.html"><i class="fa fa-check"></i><b>A</b> Project Week 1 – The ‘why’ and the ‘what’</a></li>
+<li class="chapter" data-level="B" data-path="workbook-week-1-what-is-modeling.html"><a href="workbook-week-1-what-is-modeling.html"><i class="fa fa-check"></i><b>B</b> Workbook Week 1: What is Modeling?</a></li>
+<li class="chapter" data-level="C" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html"><i class="fa fa-check"></i><b>C</b> Workbook Week 2: LLMs</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#how-to-build-complixity-into-a-problem"><i class="fa fa-check"></i><b>C.1</b> How to Build Complixity into a Problem</a></li>
+<li class="chapter" data-level="C.2" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#llms-and-modeling-support"><i class="fa fa-check"></i><b>C.2</b> LLMs and Modeling Support</a>
+<ul>
+<li class="chapter" data-level="C.2.1" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#learning-objectives-1"><i class="fa fa-check"></i><b>C.2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="C.2.2" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#coding-warmup"><i class="fa fa-check"></i><b>C.2.2</b> Coding warmup</a></li>
+<li class="chapter" data-level="C.2.3" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>C.2.3</b> What is a Large Language Model</a></li>
+<li class="chapter" data-level="C.2.4" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#pros-and-cons-of-high-parameter-models"><i class="fa fa-check"></i><b>C.2.4</b> Pros and Cons of High-Parameter Models</a></li>
+<li class="chapter" data-level="C.2.5" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#parameters-in-large-language-models-llms"><i class="fa fa-check"></i><b>C.2.5</b> Parameters in Large Language Models (LLMs)</a></li>
+<li class="chapter" data-level="C.2.6" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#capabilities-and-limits-of-llms-1"><i class="fa fa-check"></i><b>C.2.6</b> Capabilities and Limits of LLMs</a></li>
+<li class="chapter" data-level="C.2.7" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#llms-in-environmental-modeling-workflows-1"><i class="fa fa-check"></i><b>C.2.7</b> LLMs in environmental modeling workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="workbook-week-2-llms.html"><a href="workbook-week-2-llms.html#friday-discussion---ai-society-the-environment"><i class="fa fa-check"></i><b>C.3</b> Friday Discussion - AI, Society &amp; the Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html"><i class="fa fa-check"></i><b>D</b> Workbook Week 3: Models and Growth</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#learning-goals-2"><i class="fa fa-check"></i><b>D.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="D.2" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#lab-building-your-own-population-model"><i class="fa fa-check"></i><b>D.2</b> Lab: Building Your Own Population Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-1-load-and-explore-the-data"><i class="fa fa-check"></i>Task 1 – Load and Explore the Data</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-2-build-a-conceptual-model"><i class="fa fa-check"></i>Task 2 – Build a Conceptual Model</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-3-start-simple-linear-growth-model"><i class="fa fa-check"></i>Task 3 – Start Simple: Linear Growth Model</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-4-extend-to-logistic-growth"><i class="fa fa-check"></i>Task 4 – Extend to Logistic Growth</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-5-fit-the-logistic-model"><i class="fa fa-check"></i>Task 5 – Fit the Logistic Model</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-6-introduce-harvesting"><i class="fa fa-check"></i>Task 6 – Introduce Harvesting</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-7-parameter-sensitivity-sweep-analysis"><i class="fa fa-check"></i>Task 7 – Parameter Sensitivity (Sweep Analysis)</a></li>
+<li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#task-8-adding-environmental-variability"><i class="fa fa-check"></i>Task 8 – Adding Environmental Variability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>E</b> Tutorial: Getting Started with RStudio</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>E.1</b> What is RStudio?</a></li>
+<li class="chapter" data-level="E.2" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#the-rstudio-interface"><i class="fa fa-check"></i><b>E.2</b> The RStudio Interface</a></li>
+<li class="chapter" data-level="E.3" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#running-code"><i class="fa fa-check"></i><b>E.3</b> Running Code</a></li>
+<li class="chapter" data-level="E.4" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#projects-in-rstudio"><i class="fa fa-check"></i><b>E.4</b> Projects in RStudio</a></li>
+<li class="chapter" data-level="E.5" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#working-with-packages"><i class="fa fa-check"></i><b>E.5</b> Working with Packages</a></li>
+<li class="chapter" data-level="E.6" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#writing-and-saving-scripts"><i class="fa fa-check"></i><b>E.6</b> Writing and Saving Scripts</a>
+<ul>
+<li class="chapter" data-level="E.6.1" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#r-scripts-.r-files"><i class="fa fa-check"></i><b>E.6.1</b> R Scripts (<code>.R</code> files)</a></li>
+<li class="chapter" data-level="E.6.2" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#rmarkdown-.rmd-files"><i class="fa fa-check"></i><b>E.6.2</b> RMarkdown (<code>.Rmd</code> files)</a></li>
+</ul></li>
+<li class="chapter" data-level="E.7" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#plotting-example"><i class="fa fa-check"></i><b>E.7</b> Plotting Example</a>
+<ul>
+<li class="chapter" data-level="E.7.1" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#example-1-simple-scatter-plot"><i class="fa fa-check"></i><b>E.7.1</b> Example 1: Simple Scatter Plot</a></li>
+<li class="chapter" data-level="E.7.2" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#example-2-using-a-built-in-dataset-cars"><i class="fa fa-check"></i><b>E.7.2</b> Example 2: Using a Built-In Dataset (<code>cars</code>)</a></li>
+<li class="chapter" data-level="E.7.3" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#example-3-adding-a-trend-line"><i class="fa fa-check"></i><b>E.7.3</b> Example 3: Adding a Trend Line</a></li>
+</ul></li>
+<li class="chapter" data-level="E.8" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html#data-visualization-tutorial"><i class="fa fa-check"></i><b>E.8</b> Data Visualization Tutorial</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Model Your World: Introduction to Modeling and Simulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilistic-modeling-embracing-uncertainty-in-environmental-systems" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Probabilistic Modeling: Embracing Uncertainty in Environmental Systems<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#probabilistic-modeling-embracing-uncertainty-in-environmental-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Environmental systems are complex and variable. No two days of rainfall, no two migration seasons, and no two pollution events are exactly alike. Traditional deterministic models give a single outcome for a given set of inputs, but real-world systems are rarely that predictable.</p>
+<p>This chapter introduces <strong>probabilistic modeling</strong>—an approach that explicitly represents <strong>uncertainty</strong>, <strong>randomness</strong>, and <strong>variability</strong>. You’ll learn how to use probability distributions, random sampling, and simulation to describe and analyze environmental systems where outcomes are not fixed but occur within a range of possibilities.</p>
+<hr />
+<div id="introduction-why-probabilities-matter" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introduction: Why Probabilities Matter<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#introduction-why-probabilities-matter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Deterministic models are powerful but limited—they produce only one trajectory of change. In environmental systems, variability is the rule, not the exception. Probabilistic models help us ask questions in terms of likelihoods rather than certainties.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>What is the probability that river flow will exceed flood stage next year?<br />
+</li>
+<li>How likely is it that a pollutant will stay above a safe concentration threshold?<br />
+</li>
+<li>What are the chances a species population will persist for 50 years?</li>
+</ul>
+<p>By framing predictions probabilistically, we not only acknowledge uncertainty but also make models more informative and realistic for decision-making.</p>
+<hr />
+</div>
+<div id="sources-of-uncertainty" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Sources of Uncertainty<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#sources-of-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uncertainty enters environmental models from several directions. Recognizing its sources helps us model it appropriately.</p>
+<ul>
+<li><strong>Aleatory uncertainty</strong> refers to natural randomness—unpredictable fluctuations inherent to the system. Weather, genetic variation, or random seed dispersal are examples.<br />
+</li>
+<li><strong>Epistemic uncertainty</strong> comes from lack of knowledge. We might not know the true growth rate of a species or the exact decay constant of a pollutant.<br />
+</li>
+<li><strong>Model structural uncertainty</strong> arises from simplifications and missing processes.<br />
+</li>
+<li><strong>Measurement error</strong> comes from noisy or biased observations.</li>
+</ul>
+<p>In practice, all four interact. A rainfall–runoff model, for example, has aleatory uncertainty in rainfall, epistemic uncertainty in soil properties, and structural uncertainty in how infiltration is represented.</p>
+<hr />
+</div>
+<div id="primer-probability-pdfs-and-cdfs" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Primer: Probability, PDFs, and CDFs<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#primer-probability-pdfs-and-cdfs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we build probabilistic models, we need to understand the language of probability. Probability gives us a way to quantify uncertainty—the likelihood of different outcomes.</p>
+<div id="probability-basics" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Probability Basics<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#probability-basics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A <strong>random variable</strong> represents a quantity that can take on different values, each with some probability.<br />
+</li>
+<li>For discrete variables, we use <span class="math inline">\(P(X = x)\)</span>.<br />
+</li>
+<li>For continuous variables, we consider ranges: <span class="math inline">\(P(a &lt; X &lt; b)\)</span>.</li>
+</ul>
+<p><em>Example:</em> Let <span class="math inline">\(R\)</span> be daily rainfall. <span class="math inline">\(R\)</span> can take any non-negative value, and we might ask, “What is the probability that rainfall tomorrow exceeds 10 mm?”</p>
+<hr />
+</div>
+<div id="probability-density-function-pdf" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Probability Density Function (PDF)<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#probability-density-function-pdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>probability density function</strong> (PDF) describes how probability is distributed over the range of possible values.</p>
+<p><span class="math display">\[
+P(a &lt; X &lt; b) = \int_a^b f(x)\,dx = 1
+\]</span></p>
+<ul>
+<li>The total area under the curve equals 1.<br />
+</li>
+<li>The height of <span class="math inline">\(f(x)\)</span> at any point shows relative likelihood, not actual probability.</li>
+</ul>
+<p><strong>Environmental interpretation:</strong><br />
+Rainfall PDFs are often skewed right—many dry days, fewer wet ones, and rare extreme storms.</p>
+<hr />
+<div class="promptbox">
+<p><strong>Activity: PDFs</strong></p>
+<p>For each of the distributions below, interpret the pdfs with respect to the system variables they represent.</p>
+<p>Think about the features of the pdf curve and what they mean with respect to the variable.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-3.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-4.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-5.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-6.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-7.png" width="672" /></p>
+</div>
+<div class="promptbox">
+<p><strong>Activity: CDFs</strong></p>
+<p>For each of the distributions below, interpret the cdfs with respect to the system variables they represent.</p>
+<p>Think about the features of the cdf curve and what they mean with respect to the variable.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-3.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-4.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-5.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-6.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-7.png" width="672" /></p>
+</div>
+</div>
+<div id="cumulative-distribution-function-cdf" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Cumulative Distribution Function (CDF)<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#cumulative-distribution-function-cdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>cumulative distribution function</strong> (CDF) gives the probability that a variable is less than or equal to a value <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+F(x) = P(X \le x) = \int_{-\infty}^{x} f(t)\,dt
+\]</span></p>
+<p>CDFs rise from 0 to 1, showing cumulative probability. If <span class="math inline">\(F(10) = 0.8\)</span>, there’s an 80% chance rainfall will be below 10 mm on a given day.</p>
+<p><strong>How to see this visually.</strong> The shaded area under the <strong>PDF</strong> from the minimum up to a threshold <span class="math inline">\(x_0\)</span> <em>is exactly</em> the CDF value <span class="math inline">\(F(x_0)\)</span>. The plot below shows (left) a right-skewed rainfall PDF with area shaded up to <span class="math inline">\(x_0\)</span>, and (right) the corresponding CDF with the point <span class="math inline">\((x_0, F(x_0))\)</span> highlighted.</p>
+<p><img src="bookdown-demo_files/figure-html/cdf_explainer_gamma-1.png" width="672" /></p>
+</div>
+<div id="discrete-vs-continuous-distributions" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Discrete vs Continuous Distributions<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#discrete-vs-continuous-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Probability models can describe two broad types of random variables — <strong>discrete</strong> and <strong>continuous</strong> — depending on whether outcomes take on isolated values or form a continuum.</p>
+<div id="discrete-distributions" class="section level4 hasAnchor" number="5.3.4.1">
+<h4><span class="header-section-number">5.3.4.1</span> Discrete Distributions<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#discrete-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Discrete variables take on <strong>countable</strong> values — often whole numbers that represent distinct events or outcomes. Examples include the number of storms in a season, the number of trees in a plot, or the number of salmon successfully migrating past a dam.<br />
+These are described by a <strong>probability mass function (PMF)</strong>, which gives the probability of each possible outcome:</p>
+<p><span class="math display">\[
+P(X = x_i)
+\]</span></p>
+<p>The sum of all probabilities across possible outcomes equals 1. For instance, if <span class="math inline">\(X\)</span> is the number of successful seed germinations out of 20 seeds with a germination probability of 0.7, <span class="math inline">\(X\)</span> follows a <strong>Binomial distribution</strong>.</p>
+<p>Similarly, if <span class="math inline">\(X\)</span> represents the number of storms in a year, it may follow a <strong>Poisson distribution</strong>, which models the number of events that occur within a fixed interval given an average rate.</p>
+<p>Discrete distributions are often used for <strong>event counts</strong>, <strong>success/failure outcomes</strong>, and <strong>presence/absence data</strong> in environmental systems.</p>
+</div>
+<div id="continuous-distributions" class="section level4 hasAnchor" number="5.3.4.2">
+<h4><span class="header-section-number">5.3.4.2</span> Continuous Distributions<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#continuous-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Continuous variables, on the other hand, can take on <strong>any value within a range</strong> — often representing measurements such as rainfall depth, temperature, river flow, or wind speed.<br />
+These are described by a <strong>probability density function (PDF)</strong>, which defines the <em>relative likelihood</em> of observing values near a given point. Because there are infinitely many possible values, the probability of observing any <em>exact</em> value is zero; instead, we compute probabilities over intervals:</p>
+<p><span class="math display">\[
+P(a &lt; X &lt; b) = \int_a^b f(x)\,dx
+\]</span></p>
+<p>Common continuous distributions in environmental science include:</p>
+<ul>
+<li>The <strong>Normal distribution</strong>, used for temperature anomalies or measurement errors.<br />
+</li>
+<li>The <strong>Exponential distribution</strong>, often used for modeling time between events like rainfall or wildfires.<br />
+</li>
+<li>The <strong>Gamma distribution</strong>, commonly used for rainfall depth or pollutant concentration.</li>
+</ul>
+<p>Continuous models are particularly useful when representing <strong>natural variability</strong> and <strong>measurement uncertainty</strong> in environmental systems.</p>
+</div>
+<div id="summary-comparison" class="section level4 hasAnchor" number="5.3.4.3">
+<h4><span class="header-section-number">5.3.4.3</span> Summary Comparison<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#summary-comparison" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="23%" />
+<col width="20%" />
+<col width="28%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Example Variable</th>
+<th>Representation</th>
+<th>Example Distribution</th>
+<th>Visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Discrete</strong></td>
+<td>Number of storms per year</td>
+<td>Probability <strong>Mass</strong> Function (PMF)</td>
+<td>Binomial, Poisson</td>
+<td>Bars for individual outcomes</td>
+</tr>
+<tr class="even">
+<td><strong>Continuous</strong></td>
+<td>Rainfall depth, temperature</td>
+<td>Probability Density Function (PDF)</td>
+<td>Normal, Exponential, Gamma</td>
+<td>Smooth continuous curve</td>
+</tr>
+</tbody>
+</table>
+<p><strong>In practice:</strong> Many environmental datasets blur this distinction. For example, rainfall measured to the nearest millimeter is technically discrete but is often modeled as continuous because the measurement resolution is fine enough to approximate a continuum.</p>
+</div>
+</div>
+<div id="moments-mean-variance-and-shape" class="section level3 hasAnchor" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Moments: Mean, Variance, and Shape<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#moments-mean-variance-and-shape" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Moments describe the key numerical characteristics of a probability distribution — they quantify its <strong>center</strong>, <strong>spread</strong>, <strong>asymmetry</strong>, and <strong>tail behavior</strong>.</p>
+<p>In environmental systems, moments help us summarize how variable, extreme, or asymmetric natural processes can be — for example, how storm intensity may increase even if the mean annual rainfall stays constant.</p>
+<ul>
+<li><strong>Mean (<span class="math inline">\(\mu\)</span>)</strong> — the <em>expected value</em> or long-term average. It represents the “center of mass” of the distribution:<br />
+<span class="math display">\[
+\mu = E[X] = \int_{-\infty}^{\infty} x\,f(x)\,dx
+\]</span></li>
+<li><strong>Variance (<span class="math inline">\(\sigma^2\)</span>)</strong> — measures the <em>spread</em> or dispersion around the mean:<br />
+<span class="math display">\[
+\sigma^2 = E[(X - \mu)^2]
+\]</span>
+A high variance indicates that outcomes fluctuate widely (e.g., highly variable daily precipitation).<br />
+</li>
+<li><strong>Skewness</strong> — captures <em>asymmetry</em>. Right-skewed distributions (positive skew) have long tails toward large values, as seen in rainfall or pollutant concentrations.<br />
+</li>
+<li><strong>Kurtosis</strong> — measures the <em>heaviness of the tails</em> relative to a normal distribution. High kurtosis implies more frequent extreme events — like rare but severe floods.</li>
+</ul>
+<p>Moments collectively describe how variable and extreme environmental conditions can be, guiding modelers toward more realistic representations of uncertainty and risk.</p>
+<hr />
+<div id="visualizing-moments-on-a-pdf-and-cdf" class="section level4 hasAnchor" number="5.3.5.1">
+<h4><span class="header-section-number">5.3.5.1</span> Visualizing Moments on a PDF and CDF<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#visualizing-moments-on-a-pdf-and-cdf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The annotated plots below show how these statistical moments appear on a probability distribution.<br />
+We use a <strong>Gamma distribution</strong> as an example for <strong>daily rainfall (mm)</strong> — a right-skewed, non-negative continuous variable common in environmental modeling.</p>
+<p><img src="bookdown-demo_files/figure-html/pdf_and_cdf_labeled_separate_fast-1.png" width="768" /><img src="bookdown-demo_files/figure-html/pdf_and_cdf_labeled_separate_fast-2.png" width="768" /></p>
+<p>This plot shows a <strong>Gamma probability density function (PDF)</strong> modeling daily rainfall.<br />
+Key annotations:</p>
+<ul>
+<li><strong>Mean, Median, and Mode</strong> — Indicate the central tendency measures; note the skewed shape where mean &gt; median &gt; mode.<br />
+</li>
+<li><strong>Central 90% Interval (blue shaded)</strong> — Encloses the middle 90% of all rainfall outcomes; only 5% fall below and 5% above this range.<br />
+</li>
+<li><strong>Exceedance Probability (red shaded)</strong> — The probability that rainfall exceeds a threshold <span class="math inline">\(x_0\)</span>, here approximately 0.155 (15.5%).<br />
+</li>
+<li>The plot emphasizes how rainfall distributions are often <strong>positively skewed</strong>, with most days having modest rainfall and a few days of heavy rain.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="visualizing-probability-distributions" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Visualizing Probability Distributions<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#visualizing-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Visuals make distributions intuitive:<br />
+- <strong>PDFs/PMFs</strong> show which values are most likely (shape, skew, tails).<br />
+- <strong>CDFs</strong> show the cumulative probability up to any value.</p>
+<p>Below are common distributions in environmental modeling.<br />
+For <strong>each distribution</strong>, you’ll see the <strong>equation</strong>, <strong>parameters</strong>, <strong>use cases</strong>, and two <strong>separate plots</strong> — <strong>PDF/PMF first</strong>, <strong>CDF second</strong>.</p>
+<hr />
+<div id="normal-gaussian" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Normal (Gaussian)<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#normal-gaussian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Normal distribution</strong>, also called the <strong>Gaussian distribution</strong>, is one of the most fundamental probability models in environmental science and statistics. It describes random variables that tend to cluster around a mean value, with smaller probabilities for values farther away from that mean. Many natural processes — such as temperature variation, measurement error, and small perturbations around equilibrium — often follow this bell-shaped pattern due to the <strong>Central Limit Theorem</strong>, which states that the sum of many small independent effects tends to be normally distributed.</p>
+<hr />
+<p><strong>Probability Density Function (PDF)</strong></p>
+<p><span class="math display">\[
+f(x\mid \mu,\sigma)=\frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]</span></p>
+<ul>
+<li>The function is symmetric around the mean <span class="math inline">\(\mu\)</span>.<br />
+</li>
+<li>The height of the curve at any <span class="math inline">\(x\)</span> represents the <em>relative likelihood</em> of that value.<br />
+</li>
+<li>The spread is controlled by the standard deviation <span class="math inline">\(\sigma\)</span>: larger <span class="math inline">\(\sigma\)</span> values create flatter, wider curves; smaller <span class="math inline">\(\sigma\)</span> values create narrower peaks.</li>
+</ul>
+<hr />
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><span class="math inline">\(\mu\)</span>: <strong>Mean</strong> — the central tendency or expected value of the distribution.<br />
+</li>
+<li><span class="math inline">\(\sigma&gt;0\)</span>: <strong>Standard deviation</strong> — a measure of variability or spread around the mean.</li>
+</ul>
+<p><strong>Key properties:</strong></p>
+<ul>
+<li>About 68% of values fall within one standard deviation of the mean (<span class="math inline">\(\mu \pm \sigma\)</span>).<br />
+</li>
+<li>About 95% within two (<span class="math inline">\(\mu \pm 2\sigma\)</span>).<br />
+</li>
+<li>About 99.7% within three (<span class="math inline">\(\mu \pm 3\sigma\)</span>).<br />
+</li>
+<li>The distribution is defined for all real numbers (<span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>).</li>
+</ul>
+<hr />
+<p><strong>Environmental examples:</strong></p>
+<ul>
+<li><strong>Temperature anomalies:</strong> Daily or annual temperature deviations from a long-term mean are often approximately Normal, especially after removing seasonal cycles.<br />
+</li>
+<li><strong>Measurement errors:</strong> Instrument noise and random observational error frequently follow Normal patterns due to the aggregation of many small random effects.<br />
+</li>
+<li><strong>Biological growth:</strong> Traits like plant height or leaf size may approximate a Normal distribution in large, uniform populations.</li>
+</ul>
+<hr />
+<p><img src="bookdown-demo_files/figure-html/normal_pdf_cdf-1.png" width="576" /><img src="bookdown-demo_files/figure-html/normal_pdf_cdf-2.png" width="576" /></p>
+</div>
+<div id="lognormal" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Lognormal<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#lognormal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Lognormal distribution</strong> models positive quantities whose logarithm is normally distributed. In other words, if <span class="math inline">\(Y = \ln(X)\)</span> follows a Normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then <span class="math inline">\(X\)</span> follows a Lognormal distribution.</p>
+<p>This distribution is <strong>right-skewed</strong>, meaning it captures phenomena where small values are common but large, extreme values occasionally occur. Such asymmetry is typical of environmental data like rainfall, pollutant concentration, or river discharge — where values cannot go below zero, yet large events can occasionally dominate the total.</p>
+<hr />
+<p><strong>Probability Density Function (PDF)</strong></p>
+<p><span class="math display">\[
+f(x\mid \mu,\sigma)=\frac{1}{x\,\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(\ln x-\mu)^2}{2\sigma^2}\right),\quad x&gt;0
+\]</span></p>
+<hr />
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><span class="math inline">\(\mu\)</span>: <strong>Mean of the log-transformed variable</strong> (<span class="math inline">\(\ln X\)</span>), determining the central tendency in log-space.<br />
+</li>
+<li><span class="math inline">\(\sigma&gt;0\)</span>: <strong>Standard deviation of <span class="math inline">\(\ln X\)</span></strong>, controlling the spread and skewness.<br />
+Larger <span class="math inline">\(\sigma\)</span> values make the distribution more skewed and heavy-tailed.</li>
+</ul>
+<p><strong>Key properties:</strong></p>
+<ul>
+<li>Mean <span class="math inline">\(E[X] = e^{\mu+\sigma^2/2}\)</span><br />
+</li>
+<li>Median <span class="math inline">\(= e^{\mu}\)</span><br />
+</li>
+<li>Mode <span class="math inline">\(= e^{\mu-\sigma^2}\)</span><br />
+</li>
+<li>Defined only for <span class="math inline">\(x&gt;0\)</span>.</li>
+</ul>
+<hr />
+<p><strong>Environmental examples:</strong></p>
+<ul>
+<li><strong>Rainfall amounts:</strong> Many small precipitation events occur, but occasional intense storms create a long right tail.<br />
+</li>
+<li><strong>River discharge:</strong> Streamflow over time shows frequent moderate flows and rare floods.<br />
+</li>
+<li><strong>Air pollutants (PM₂.₅, ozone):</strong> Concentrations are positive, right-skewed, and vary multiplicatively with meteorological conditions.</li>
+</ul>
+<hr />
+<p><img src="bookdown-demo_files/figure-html/lognormal_pdf_cdf-1.png" width="576" /><img src="bookdown-demo_files/figure-html/lognormal_pdf_cdf-2.png" width="576" /></p>
+<hr />
+</div>
+<div id="gamma" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Gamma<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#gamma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Gamma distribution</strong> is a flexible model for positive, continuous data that are right-skewed. It’s often used to represent <strong>waiting times</strong>, <strong>rates</strong>, and <strong>environmental magnitudes</strong> like rainfall totals, pollutant concentrations, or groundwater recharge rates.</p>
+<p>The Gamma family includes a range of shapes:</p>
+<ul>
+<li>When the shape parameter <span class="math inline">\(k\)</span> is small, the distribution is highly skewed (many small events, few large ones).<br />
+</li>
+<li>As <span class="math inline">\(k\)</span> increases, the curve becomes more symmetric and approaches a Normal shape.</li>
+</ul>
+<p>This flexibility makes the Gamma distribution one of the most common in environmental and hydrological modeling.</p>
+<hr />
+<p><strong>Probability Density Function (PDF)</strong></p>
+<p><span class="math display">\[
+f(x\mid k,\theta)=\frac{1}{\Gamma(k)\,\theta^k}\,x^{k-1}e^{-x/\theta},\quad x&gt;0
+\]</span></p>
+<ul>
+<li><span class="math inline">\(k\)</span>: <strong>Shape parameter</strong> — controls the skewness.<br />
+</li>
+<li><span class="math inline">\(\theta\)</span>: <strong>Scale parameter</strong> — stretches or compresses the distribution horizontally.<br />
+</li>
+<li><span class="math inline">\(\Gamma(k)\)</span> is the <strong>gamma function</strong>, a continuous extension of the factorial.</li>
+</ul>
+<hr />
+<p><strong>Key properties:</strong></p>
+<ul>
+<li>Mean <span class="math inline">\(E[X] = k\theta\)</span><br />
+</li>
+<li>Variance <span class="math inline">\(Var[X] = k\theta^2\)</span><br />
+</li>
+<li>Mode (for <span class="math inline">\(k&gt;1\)</span>) <span class="math inline">\(= (k-1)\theta\)</span><br />
+</li>
+<li>Skewness <span class="math inline">\(= 2/\sqrt{k}\)</span> (decreases as <span class="math inline">\(k\)</span> increases).</li>
+</ul>
+<hr />
+<p><strong>Environmental examples:</strong></p>
+<ul>
+<li><strong>Rainfall amounts:</strong> Daily or monthly precipitation totals often follow a Gamma distribution — many small rain events and occasional heavy storms.<br />
+</li>
+<li><strong>Pollutant concentrations:</strong> Skewed positive values due to occasional high-emission days.<br />
+</li>
+<li><strong>Hydrologic response times:</strong> Waiting time between flow events or recharge occurrences.</li>
+</ul>
+<hr />
+<p><img src="bookdown-demo_files/figure-html/gamma_pdf_cdf-1.png" width="576" /><img src="bookdown-demo_files/figure-html/gamma_pdf_cdf-2.png" width="576" /></p>
+<hr />
+</div>
+<div id="exponential" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Exponential<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#exponential" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Exponential distribution</strong> is one of the simplest continuous probability models. It describes the time between random, independent events occurring at a constant average rate — such as the time until the next rainfall, the duration between earthquakes, or the decay of a pollutant.</p>
+<p>Mathematically, it is a <strong>special case of the Gamma distribution</strong> where the shape parameter <span class="math inline">\(k = 1\)</span>. Despite its simplicity, the exponential model provides powerful insight into systems governed by <strong>memoryless processes</strong>, meaning the probability of an event occurring in the future is independent of how much time has already passed.</p>
+<hr />
+<p><strong>Probability Density Function (PDF)</strong></p>
+<p><span class="math display">\[
+f(x\mid \lambda)=\lambda e^{-\lambda x}, \quad x \ge 0
+\]</span></p>
+<hr />
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><span class="math inline">\(\lambda&gt;0\)</span>: <strong>Rate parameter</strong>, representing the average frequency of events per unit time.
+<ul>
+<li>Mean <span class="math inline">\(E[X] = 1/\lambda\)</span><br />
+</li>
+<li>Variance <span class="math inline">\(Var[X] = 1/\lambda^2\)</span></li>
+</ul></li>
+</ul>
+<p><strong>Key property:</strong></p>
+<p>The Exponential distribution is <strong>memoryless</strong>:
+<span class="math display">\[
+P(X &gt; s + t \mid X &gt; s) = P(X &gt; t)
+\]</span>
+This makes it ideal for modeling systems with constant hazard rates, such as radioactive decay or Poisson event arrivals.</p>
+<hr />
+<p><strong>Environmental examples:</strong></p>
+<ul>
+<li><strong>Time between rainfall events:</strong> Days between consecutive storms often follow an exponential pattern during a rainy season.<br />
+</li>
+<li><strong>Pollutant decay:</strong> Concentration of a dissolved chemical decreasing exponentially over time due to natural degradation or dilution.<br />
+</li>
+<li><strong>Streamflow recovery:</strong> Time between flow spikes after storm events.</li>
+</ul>
+<hr />
+<p><img src="bookdown-demo_files/figure-html/exponential_pdf_cdf-1.png" width="576" /><img src="bookdown-demo_files/figure-html/exponential_pdf_cdf-2.png" width="576" /></p>
+<hr />
+</div>
+<div id="weibull" class="section level3 hasAnchor" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> Weibull<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#weibull" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Weibull distribution</strong> is a versatile model that generalizes the Exponential distribution by introducing a <strong>shape parameter</strong>. It’s widely used in environmental and engineering applications to represent phenomena such as <strong>wind speeds</strong>, <strong>drought durations</strong>, <strong>extreme wave heights</strong>, or <strong>time-to-failure</strong> processes.</p>
+<p>When the shape parameter <span class="math inline">\(k = 1\)</span>, the Weibull reduces to the Exponential distribution, meaning events occur at a constant rate. When <span class="math inline">\(k \ne 1\)</span>, the event rate changes over time — increasing for <span class="math inline">\(k &gt; 1\)</span> (aging systems) or decreasing for <span class="math inline">\(k &lt; 1\)</span> (infant mortality or early failures).</p>
+<hr />
+<p><strong>Probability Density Function (PDF)</strong></p>
+<p><span class="math display">\[
+f(x\mid k,\lambda)=\frac{k}{\lambda}\left(\frac{x}{\lambda}\right)^{k-1}
+\exp\!\left[-\left(\frac{x}{\lambda}\right)^k\right], \quad x\ge 0
+\]</span></p>
+<hr />
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><span class="math inline">\(k&gt;0\)</span>: <strong>Shape parameter</strong>, controls the slope and skewness.
+<ul>
+<li><span class="math inline">\(k &lt; 1\)</span>: decreasing rate (events most likely early).<br />
+</li>
+<li><span class="math inline">\(k = 1\)</span>: constant rate (Exponential case).<br />
+</li>
+<li><span class="math inline">\(k &gt; 1\)</span>: increasing rate (events more likely later).<br />
+</li>
+</ul></li>
+<li><span class="math inline">\(\lambda&gt;0\)</span>: <strong>Scale parameter</strong>, stretches the distribution horizontally; larger <span class="math inline">\(\lambda\)</span> means longer time scales or higher magnitudes.</li>
+</ul>
+<p><strong>Key properties:</strong></p>
+<ul>
+<li>Mean <span class="math inline">\(E[X] = \lambda\,\Gamma(1 + 1/k)\)</span><br />
+</li>
+<li>Variance <span class="math inline">\(Var[X] = \lambda^2 [\Gamma(1 + 2/k) - \Gamma(1 + 1/k)^2]\)</span><br />
+</li>
+<li>Mode (for <span class="math inline">\(k &gt; 1\)</span>) <span class="math inline">\(= \lambda[(k-1)/k]^{1/k}\)</span></li>
+</ul>
+<hr />
+<p><strong>Environmental examples:</strong></p>
+<ul>
+<li><strong>Wind speeds:</strong> Weibull provides excellent fits to observed wind speed distributions — used in wind energy assessment.<br />
+</li>
+<li><strong>Drought durations:</strong> The shape parameter <span class="math inline">\(k\)</span> captures the likelihood of prolonged dry spells.<br />
+</li>
+<li><strong>Wave heights or storm durations:</strong> Often right-skewed and bounded below by zero, well-suited to Weibull modeling.<br />
+</li>
+<li><strong>Failure time models:</strong> Used for lifespan analysis of sensors, equipment, or biological survival times.</li>
+</ul>
+<hr />
+<p><img src="bookdown-demo_files/figure-html/weibull_pdf_cdf-1.png" width="576" /><img src="bookdown-demo_files/figure-html/weibull_pdf_cdf-2.png" width="576" /></p>
+<hr />
+</div>
+<div id="poisson-discrete-counts" class="section level3 hasAnchor" number="5.4.6">
+<h3><span class="header-section-number">5.4.6</span> Poisson (Discrete Counts)<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#poisson-discrete-counts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Poisson distribution</strong> models the probability of a given number of discrete events occurring in a fixed interval of time or space, <strong>assuming events occur independently and at a constant average rate</strong>.</p>
+<p>It’s a cornerstone of environmental and ecological modeling — ideal for situations where we count occurrences, such as the number of storms per year, lightning strikes per month, or invasive species arrivals at a site.</p>
+<hr />
+<p><strong>Probability Mass Function (PMF)</strong></p>
+<p><span class="math display">\[
+P(X = x \mid \lambda) = \frac{e^{-\lambda}\lambda^x}{x!}, \quad x = 0,1,2,\ldots
+\]</span></p>
+<hr />
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><span class="math inline">\(\lambda&gt;0\)</span>: <strong>Rate parameter</strong> — the average number of occurrences per interval.
+<ul>
+<li>Mean <span class="math inline">\(E[X] = \lambda\)</span><br />
+</li>
+<li>Variance <span class="math inline">\(Var[X] = \lambda\)</span></li>
+</ul></li>
+</ul>
+<p><strong>Key properties:</strong></p>
+<ul>
+<li>Models <em>counts</em> (integer values).<br />
+</li>
+<li>Appropriate when events are rare and independent.<br />
+</li>
+<li>The variance equals the mean — an important diagnostic property for checking fit.</li>
+</ul>
+<hr />
+<p><strong>Environmental examples:</strong></p>
+<ul>
+<li><strong>Storm frequency:</strong> Number of rainstorms per month or year.<br />
+</li>
+<li><strong>Wildfire ignitions:</strong> Count of new fires detected in a region during summer.<br />
+</li>
+<li><strong>Earthquake counts:</strong> Number of earthquakes above a threshold magnitude per year.<br />
+</li>
+<li><strong>Pollution events:</strong> Number of exceedances over a safe limit within a week.</li>
+</ul>
+<hr />
+<p><img src="bookdown-demo_files/figure-html/poisson_pmf_cdf-1.png" width="576" /><img src="bookdown-demo_files/figure-html/poisson_pmf_cdf-2.png" width="576" /></p>
+<hr />
+</div>
+<div id="gumbel-extreme-value-type-i-emphasizing-fat-tails" class="section level3 hasAnchor" number="5.4.7">
+<h3><span class="header-section-number">5.4.7</span> Gumbel (Extreme Value Type I): Emphasizing Fat Tails<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#gumbel-extreme-value-type-i-emphasizing-fat-tails" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In extreme-value work we care about the <strong>upper tail</strong>: rare, very large events (e.g., record floods). Compared to a Normal distribution (whose tail probability decays roughly like <span class="math inline">\(\exp(-x^2)\)</span>), the <strong>Gumbel tail decays exponentially</strong>:
+<span class="math display">\[
+\bar F(x)=1-F(x)\approx \exp\!\left(-\frac{x-\mu}{\beta}\right)\quad\text{for large }x,
+\]</span>
+which is <strong>heavier (fatter)</strong> than the Normal’s “thin” tail. A fatter tail means <strong>higher probability of extremes</strong> than you’d expect if you (incorrectly) used a Normal model.</p>
+<p>Two visual cues help students see this:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Tail shading (PDF &amp; CDF):</strong> Shade the region beyond high quantiles (e.g., 95th and 99th percentiles).<br />
+</li>
+<li><strong>Return level marker:</strong> Show the <strong><span class="math inline">\(T\)</span>-year return level</strong> <span class="math inline">\(x_T\)</span> (e.g., <span class="math inline">\(T=100\)</span> years), which satisfies <span class="math inline">\(F(x_T)=1-1/T\)</span>. On the CDF this is a horizontal line at <span class="math inline">\(1-1/T\)</span> and a vertical line at <span class="math inline">\(x_T\)</span>.</li>
+</ol>
+<p><img src="bookdown-demo_files/figure-html/gumbel_pdf_cdf_fattail-1.png" width="576" /><img src="bookdown-demo_files/figure-html/gumbel_pdf_cdf_fattail-2.png" width="576" /></p>
+<hr />
+</div>
+<div id="quick-guidance-on-when-to-use-which" class="section level3 hasAnchor" number="5.4.8">
+<h3><span class="header-section-number">5.4.8</span> Quick guidance on <strong>when to use which</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#quick-guidance-on-when-to-use-which" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Normal</strong>: deviations around a mean; symmetric noise; aggregated processes.<br />
+</li>
+<li><strong>Lognormal</strong>: <strong>positive</strong> and <strong>right-skewed</strong> (products of factors) — flows, concentrations.<br />
+</li>
+<li><strong>Gamma</strong>: flexible right-skew for <strong>amounts</strong> like rainfall depth.<br />
+</li>
+<li><strong>Exponential</strong>: <strong>waiting times</strong> with memoryless property (simple storm arrivals).<br />
+</li>
+<li><strong>Weibull</strong>: <strong>wind speed</strong>, lifetimes; shape controls tail and peak.<br />
+</li>
+<li><strong>Poisson</strong>: <strong>counts</strong> of events per interval (storms, fires).<br />
+</li>
+<li><strong>Gumbel</strong>: <strong>block maxima</strong> (flood peaks, annual max rainfall) when GEV shape ≈ 0.</li>
+</ul>
+</div>
+<div id="from-probability-to-modeling" class="section level3 hasAnchor" number="5.4.9">
+<h3><span class="header-section-number">5.4.9</span> From Probability to Modeling<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#from-probability-to-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In deterministic models, parameters are fixed values. In probabilistic models, those parameters are <em>random variables</em> drawn from PDFs that describe uncertainty.</p>
+<p>Running the same model many times with randomly drawn parameters produces a <strong>distribution of outcomes</strong> rather than a single number. The result is a richer understanding of what could happen—and with what likelihood.</p>
+<div class="promptbox">
+<p><strong>Reflection</strong><br />
+Why might it be more informative to say “There is a 25% chance that nitrate concentrations will exceed the safe limit” rather than “Nitrate concentrations will be 12 mg/L next month”?</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="representing-uncertainty-with-probability-distributions" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Representing Uncertainty with Probability Distributions<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#representing-uncertainty-with-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Probability distributions allow us to mathematically describe and model uncertainty.</p>
+<p>Common distributions in environmental modeling include:</p>
+<ul>
+<li><strong>Normal distribution:</strong> temperature fluctuations around a mean.<br />
+</li>
+<li><strong>Exponential distribution:</strong> time between random rainfall events.<br />
+</li>
+<li><strong>Poisson distribution:</strong> number of storms per year.<br />
+</li>
+<li><strong>Binomial distribution:</strong> number of successful seed germinations out of <span class="math inline">\(n\)</span> attempts.<br />
+</li>
+<li><strong>Uniform distribution:</strong> when all values within a range are equally likely.</li>
+</ul>
+<p>Selecting an appropriate distribution depends on the process being modeled. For instance, rainfall is often modeled with a <strong>Gamma</strong> or <strong>Weibull</strong> distribution to capture its right-skewed nature.</p>
+<hr />
+</div>
+<div id="deterministic-vs-stochastic-models" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Deterministic vs Stochastic Models<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#deterministic-vs-stochastic-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>deterministic model</strong> produces the same outcome every time for the same inputs.<br />
+A <strong>stochastic model</strong> includes random variation—each run produces a slightly different result.</p>
+<p><strong>Example:</strong><br />
+<span class="math display">\[
+N_{t+1} = rN_t(1 - N_t/K)
+\]</span>
+is deterministic, while<br />
+<span class="math display">\[
+N_{t+1} = rN_t(1 - N_t/K) + \varepsilon_t
+\]</span>
+is stochastic, where <span class="math inline">\(\varepsilon_t\)</span> represents random environmental noise.</p>
+<p>Stochasticity can be added to:</p>
+<ul>
+<li><strong>Parameters:</strong> growth rate <span class="math inline">\(r\)</span> varies yearly.<br />
+</li>
+<li><strong>Inputs:</strong> rainfall or temperature fluctuate randomly.<br />
+</li>
+<li><strong>Processes:</strong> survival or reproduction are probabilistic.</li>
+</ul>
+<p>Deterministic models show the mean trajectory; stochastic models show the variability around that trajectory.</p>
+<hr />
+</div>
+<div id="monte-carlo-simulation" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Monte Carlo Simulation<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#monte-carlo-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Monte Carlo simulation is the <strong>workhorse of probabilistic modeling</strong> — a powerful way to explore uncertainty when outcomes depend on random events.<br />
+Its name comes from <strong>Monte Carlo, Monaco</strong>, home to one of the world’s most famous casinos. Just as dice rolls, card draws, and slot spins involve chance, Monte Carlo methods rely on <strong>repeated random sampling</strong> to understand what outcomes are likely — and how variable they are.</p>
+<hr />
+<div id="how-it-works" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> <strong>How it works</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#how-it-works" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Define <strong>probability distributions</strong> for uncertain inputs (like dice rolls, card values, or interest rates).<br />
+</li>
+<li><strong>Randomly sample</strong> values from those distributions.<br />
+</li>
+<li><strong>Run the model</strong> or “game” using those sampled values.<br />
+</li>
+<li><strong>Repeat</strong> the process many times — hundreds or thousands of rounds.<br />
+</li>
+<li><strong>Analyze</strong> the resulting spread of outcomes to see probabilities, risks, and likely ranges.</li>
+</ol>
+<hr />
+</div>
+<div id="example-simulating-casino-winnings" class="section level3 hasAnchor" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> <strong>Example: Simulating Casino Winnings</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#example-simulating-casino-winnings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Imagine you’re playing a simple casino game — betting $10 on <strong>red</strong> in roulette.<br />
+You have an 18 out of 38 chance (in American roulette) of winning $10, and a 20 out of 38 chance of losing $10.</p>
+<p>We can simulate this:</p>
+<ul>
+<li>Each spin = one random trial.<br />
+</li>
+<li>The outcome is either +10 or −10.<br />
+</li>
+<li>Repeat for, say, 1,000 spins and record your cumulative winnings.</li>
+</ul>
+<hr />
+</div>
+<div id="monte-carlo-in-action" class="section level3 hasAnchor" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span> <strong>Monte Carlo in action</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#monte-carlo-in-action" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>By running this simulation thousands of times:</p>
+<ul>
+<li>You can estimate your <strong>expected return</strong> (average winnings per spin).<br />
+</li>
+<li>You can visualize the <strong>distribution</strong> of possible final balances after 1,000 spins.<br />
+</li>
+<li>You’ll likely see a <strong>bell-shaped spread</strong> centered below $0 — meaning the casino wins in the long run.</li>
+</ul>
+<p>Each individual player’s outcome is uncertain, but across thousands of simulated players, patterns emerge. This is the power of Monte Carlo simulation: it turns randomness into <strong>predictable probabilities</strong>.</p>
+<hr />
+</div>
+<div id="takeaway" class="section level3 hasAnchor" number="5.7.4">
+<h3><span class="header-section-number">5.7.4</span> <strong>Takeaway</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Monte Carlo simulations aren’t limited to casinos — they’re used anywhere uncertainty matters:<br />
+from <strong>finance</strong> (forecasting returns) to <strong>engineering</strong> (safety margins) to <strong>science</strong> (climate models).</p>
+<p>The key idea:</p>
+<blockquote>
+<p>Instead of solving uncertainty analytically, we <strong>simulate it repeatedly</strong> and let probability reveal the shape of possible futures.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="markov-and-transition-models" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Markov and Transition Models<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#markov-and-transition-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Many environmental systems move among a <strong>finite set of states</strong> over time (e.g., land cover: <em>forest</em>, <em>agriculture</em>, <em>urban</em>; ecosystem health: <em>healthy</em>, <em>stressed</em>, <em>degraded</em>). <strong>Markov models</strong> capture these dynamics when the <em>next</em> state depends <strong>only on the current state</strong>, not on the full history (the <strong>Markov property</strong>).</p>
+<hr />
+<div id="core-pieces" class="section level3 hasAnchor" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> <strong>Core Pieces</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#core-pieces" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>States:</strong> <span class="math inline">\(S = \{1, \dots, K\}\)</span> (e.g., Forest, Agriculture, Urban).<br />
+</li>
+<li><strong>Time:</strong> typically discrete steps (year, decade, season).<br />
+</li>
+<li><strong>Transition matrix</strong> <span class="math inline">\(\mathbf{P}\)</span> (row-stochastic):<br />
+<span class="math display">\[
+P_{ij} = \Pr\{X_{t+1} = j \mid X_t = i\}, \quad \text{where } \sum_j P_{ij} = 1.
+\]</span><br />
+</li>
+<li><strong>State distribution</strong> (row vector) at time <span class="math inline">\(t\)</span>:<br />
+<span class="math display">\[
+\boldsymbol{\pi}_t = [\Pr(X_t=1), \dots, \Pr(X_t=K)].
+\]</span></li>
+</ul>
+<p><strong>Forward projection:</strong>
+<span class="math display">\[
+\boldsymbol{\pi}_{t+1} = \boldsymbol{\pi}_t \mathbf{P}, \quad
+\boldsymbol{\pi}_{t+h} = \boldsymbol{\pi}_t \mathbf{P}^h
+\]</span></p>
+<hr />
+</div>
+<div id="example-transition-matrix-annual" class="section level3 hasAnchor" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> <strong>Example Transition Matrix (Annual)</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#example-transition-matrix-annual" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>From  To</th>
+<th align="right">Forest</th>
+<th align="right">Agriculture</th>
+<th align="right">Urban</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Forest</strong></td>
+<td align="right">0.85</td>
+<td align="right">0.10</td>
+<td align="right">0.05</td>
+</tr>
+<tr class="even">
+<td><strong>Agriculture</strong></td>
+<td align="right">0.05</td>
+<td align="right">0.85</td>
+<td align="right">0.10</td>
+</tr>
+<tr class="odd">
+<td><strong>Urban</strong></td>
+<td align="right">0.00</td>
+<td align="right">0.10</td>
+<td align="right">0.90</td>
+</tr>
+</tbody>
+</table>
+<p>Each row represents the <strong>current state</strong>, and each column represents the <strong>next state</strong>.<br />
+The <strong>diagonal entries</strong> (like 0.85 for Forest → Forest) show <strong>persistence</strong> or stability.</p>
+<p><strong>Multi-step behavior:</strong><br />
+- <span class="math inline">\(\mathbf{P}^2\)</span>: two-year transitions.<br />
+- <span class="math inline">\(\mathbf{P}^{10}\)</span>: ten-year transitions.</p>
+<hr />
+</div>
+<div id="from-whats-next-to-where-does-it-settle" class="section level3 hasAnchor" number="5.8.3">
+<h3><span class="header-section-number">5.8.3</span> <strong>From “What’s Next?” to “Where Does It Settle?”</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#from-whats-next-to-where-does-it-settle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the chain is <strong>irreducible</strong> (all states eventually communicate) and <strong>aperiodic</strong> (no fixed cycle, often ensured by diagonal entries &gt; 0), then there exists a unique <strong>stationary distribution</strong> <span class="math inline">\(\boldsymbol{\pi}^*\)</span> such that:</p>
+<p><span class="math display">\[
+\boldsymbol{\pi}^* = \boldsymbol{\pi}^* \mathbf{P}, \quad \sum_j \pi^*_j = 1
+\]</span></p>
+<p><strong>Interpretation:</strong><br />
+The stationary distribution represents the <strong>long-run proportion</strong> of time (or area) spent in each state, independent of where the system started.</p>
+<p>For the matrix above:</p>
+<p><span class="math display">\[
+\boldsymbol{\pi}^* \approx [0.133, 0.400, 0.467]
+\]</span></p>
+<p>So in the long run, the landscape tends toward:
+- <strong>13.3% Forest</strong>
+- <strong>40.0% Agriculture</strong>
+- <strong>46.7% Urban</strong></p>
+<p>Even if the system starts as 100% Forest, it will gradually move toward this equilibrium mix.</p>
+<hr />
+</div>
+<div id="reading-the-matrix-like-an-ecologist-or-planner" class="section level3 hasAnchor" number="5.8.4">
+<h3><span class="header-section-number">5.8.4</span> <strong>Reading the Matrix Like an Ecologist or Planner</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#reading-the-matrix-like-an-ecologist-or-planner" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Stability / Persistence:</strong> High diagonal values (<span class="math inline">\(P_{ii}\)</span>) indicate long-term stability. Urban is very persistent here (0.90).<br />
+</li>
+<li><strong>Flux Pathways:</strong> Off-diagonal entries reveal where transitions are most likely (Agriculture → Urban at 0.10).<br />
+</li>
+<li><strong>Policy Sensitivity:</strong> Adjusting a few key entries—like lowering Agriculture → Urban—can shift the entire long-term balance.</li>
+</ul>
+<hr />
+</div>
+<div id="special-structures" class="section level3 hasAnchor" number="5.8.5">
+<h3><span class="header-section-number">5.8.5</span> <strong>Special Structures</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#special-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Absorbing states:</strong> <span class="math inline">\(P_{kk} = 1\)</span> (e.g., <em>Urban</em>, if no reforestation possible). Once entered, the system stays there.
+<ul>
+<li>The <strong>fundamental matrix</strong> <span class="math inline">\(\mathbf{N} = (\mathbf{I} - \mathbf{Q})^{-1}\)</span> gives expected times to absorption.</li>
+</ul></li>
+<li><strong>Metastable states:</strong> Very high self-transition probability, but not strictly absorbing (Urban with 0.90).<br />
+</li>
+<li><strong>Time-varying chains:</strong> <span class="math inline">\(\mathbf{P}_t\)</span> changes over time (e.g., policy or climate effects).<br />
+</li>
+<li><strong>Continuous-time chains:</strong> Transitions occur continuously, governed by a <strong>rate matrix</strong> <span class="math inline">\(\mathbf{Q}\)</span> where <span class="math inline">\(\mathbf{P}(t) = e^{t\mathbf{Q}}\)</span>.</li>
+</ul>
+<hr />
+</div>
+<div id="estimating-transition-matrices" class="section level3 hasAnchor" number="5.8.6">
+<h3><span class="header-section-number">5.8.6</span> <strong>Estimating Transition Matrices</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#estimating-transition-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Classify</strong> each site’s state at two time steps (e.g., land cover maps).<br />
+</li>
+<li><strong>Count transitions</strong> <span class="math inline">\(N_{ij}\)</span> from <span class="math inline">\(i \to j\)</span>.<br />
+</li>
+<li><strong>Normalize</strong> by row:<br />
+<span class="math display">\[
+\widehat{P}_{ij} = \frac{N_{ij}}{\sum_j N_{ij}}.
+\]</span></li>
+<li><strong>Quantify uncertainty:</strong>
+<ul>
+<li>Rows follow a <strong>multinomial distribution</strong>.<br />
+</li>
+<li>Use <strong>Dirichlet priors</strong> for Bayesian inference or <strong>bootstrap</strong> for intervals.<br />
+</li>
+</ul></li>
+<li><strong>Check assumptions:</strong>
+<ul>
+<li>Does the Markov property hold (no dependence on earlier states)?<br />
+</li>
+<li>Is the time step appropriate?<br />
+</li>
+<li>Are there misclassification errors (use Hidden Markov Models if so)?</li>
+</ul></li>
+</ol>
+<hr />
+</div>
+<div id="what-markov-models-answer-well" class="section level3 hasAnchor" number="5.8.7">
+<h3><span class="header-section-number">5.8.7</span> <strong>What Markov Models Answer Well</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#what-markov-models-answer-well" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Short-term forecasts:</strong> <span class="math inline">\(\boldsymbol{\pi}_0 \mathbf{P}^h\)</span><br />
+</li>
+<li><strong>Long-run equilibrium:</strong> <span class="math inline">\(\boldsymbol{\pi}^*\)</span><br />
+</li>
+<li><strong>Sensitivity analysis:</strong> Which transitions most affect long-run outcomes<br />
+</li>
+<li><strong>Expected times:</strong> Probability or expected time to reach certain states (e.g., &gt;50% Urban)</li>
+</ul>
+<hr />
+</div>
+<div id="environmental-applications" class="section level3 hasAnchor" number="5.8.8">
+<h3><span class="header-section-number">5.8.8</span> <strong>Environmental Applications</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#environmental-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Land cover change:</strong> Forecast forest loss or urban expansion; test reforestation policies.<br />
+</li>
+<li><strong>Species occupancy:</strong> States = <em>present/absent</em>; transitions reflect colonization or extinction rates.<br />
+</li>
+<li><strong>Fire regimes:</strong> States = <em>unburned</em>, <em>recently burned</em>, <em>recovering</em>; estimate recurrence intervals.<br />
+</li>
+<li><strong>Climate regimes:</strong> <em>El Niño</em>, <em>La Niña</em>, <em>Neutral</em>; evaluate persistence and switching probabilities.<br />
+</li>
+<li><strong>Water quality:</strong> <em>Good</em>, <em>Impaired</em>, <em>Hypoxic</em>; estimate risks of degradation and recovery likelihood.</li>
+</ul>
+<hr />
+</div>
+<div id="common-pitfalls-and-fixes" class="section level3 hasAnchor" number="5.8.9">
+<h3><span class="header-section-number">5.8.9</span> <strong>Common Pitfalls and Fixes</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#common-pitfalls-and-fixes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Path dependence:</strong> Add “memory” by defining expanded states (<em>Forest-young</em> vs <em>Forest-old</em>).<br />
+</li>
+<li><strong>Nonstationarity:</strong> Use time-varying <span class="math inline">\(\mathbf{P}_t\)</span> matrices under different scenarios.<br />
+</li>
+<li><strong>Spatial heterogeneity:</strong> Fit region-specific matrices or spatially varying coefficients.<br />
+</li>
+<li><strong>Classification error:</strong> Employ <strong>Hidden Markov Models (HMMs)</strong> to account for uncertainty in observed states.</li>
+</ul>
+<hr />
+</div>
+<div id="mini-worked-example" class="section level3 hasAnchor" number="5.8.10">
+<h3><span class="header-section-number">5.8.10</span> <strong>Mini Worked Example</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#mini-worked-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Starting with 100% <strong>Forest</strong> (<span class="math inline">\(\boldsymbol{\pi}_0 = [1, 0, 0]\)</span>):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Time Step</th>
+<th align="right">Forest</th>
+<th align="right">Agriculture</th>
+<th align="right">Urban</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Year 0</td>
+<td align="right">1.000</td>
+<td align="right">0.000</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td>Year 5</td>
+<td align="right">0.477</td>
+<td align="right">0.305</td>
+<td align="right">0.218</td>
+</tr>
+<tr class="odd">
+<td>Year 10</td>
+<td align="right">0.276</td>
+<td align="right">0.378</td>
+<td align="right">0.347</td>
+</tr>
+<tr class="even">
+<td>Long Run</td>
+<td align="right">0.133</td>
+<td align="right">0.400</td>
+<td align="right">0.467</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation:</strong><br />
+Even a fully forested landscape trends toward an <strong>urban–agricultural equilibrium</strong> under current transition rates.<br />
+If we increase Forest persistence (e.g., <span class="math inline">\(P_{\text{Forest,Forest}}\)</span> from 0.85 → 0.92), the long-run forest fraction rises substantially—showing how <strong>policy changes shift long-term stability</strong>.</p>
+<hr />
+</div>
+<div id="key-takeaway" class="section level3 hasAnchor" number="5.8.11">
+<h3><span class="header-section-number">5.8.11</span> <strong>Key Takeaway</strong><a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#key-takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Markov and transition models provide a simple yet powerful framework for studying <strong>change over time</strong> in systems with distinct states.<br />
+They show not only where a system is likely to go next but also its <strong>long-term equilibrium</strong>, <strong>stability</strong>, and <strong>sensitivity to intervention</strong>.<br />
+Whether tracking forests, species, or climate regimes, these models transform observations of “change” into quantitative forecasts of <strong>persistence and transformation</strong>.</p>
+<hr />
+</div>
+</div>
+<div id="communicating-probabilistic-results" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Communicating Probabilistic Results<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#communicating-probabilistic-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Probabilistic results are often harder to communicate than single-number predictions, but they are more honest and useful.</p>
+<p><strong>Good practices:</strong></p>
+<ul>
+<li>Report ranges or confidence intervals instead of single values.<br />
+</li>
+<li>Use visualizations such as:
+<ul>
+<li><strong>Histograms:</strong> frequency of outcomes.<br />
+</li>
+<li><strong>Fan plots:</strong> spread of model trajectories over time.<br />
+</li>
+<li><strong>CDFs:</strong> probability of exceeding thresholds.<br />
+</li>
+</ul></li>
+<li>Phrase results as probabilities:
+<ul>
+<li>“There’s a 30% chance of flood levels exceeding 2 m.”<br />
+</li>
+<li>“90% of simulations predict temperatures rising above 1.5 °C by 2050.”</li>
+</ul></li>
+</ul>
+<p>Communicating uncertainty transparently fosters trust and supports risk-aware decisions.</p>
+<hr />
+</div>
+<div id="summary-and-reflection" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Summary and Reflection<a href="probabilistic-modeling-embracing-uncertainty-in-environmental-systems.html#summary-and-reflection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Environmental systems are inherently variable and uncertain. Probabilistic models capture that variability by representing parameters, inputs, and outcomes as distributions rather than fixed values.</p>
+<p>Key ideas from this chapter:</p>
+<ul>
+<li>Probability distributions describe uncertainty quantitatively.<br />
+</li>
+<li>PDFs and CDFs form the foundation for stochastic modeling.<br />
+</li>
+<li>Monte Carlo simulations explore possible futures through random sampling.<br />
+</li>
+<li>Markov models describe transitions between discrete system states.<br />
+</li>
+<li>Probabilistic models shift focus from exact predictions to likelihoods and risks.</li>
+</ul>
+<p>By embracing uncertainty rather than avoiding it, environmental scientists build models that are both more realistic and more useful for decision-making under changing and unpredictable conditions.</p>
+<hr />
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-3-mathematical-models-parameters-functions-and-growth.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="app-wk1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-Prob.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

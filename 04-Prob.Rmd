@@ -1,0 +1,1566 @@
+# Probabilistic Modeling: Embracing Uncertainty in Environmental Systems  
+
+Environmental systems are complex and variable. No two days of rainfall, no two migration seasons, and no two pollution events are exactly alike. Traditional deterministic models give a single outcome for a given set of inputs, but real-world systems are rarely that predictable.  
+
+This chapter introduces **probabilistic modeling**—an approach that explicitly represents **uncertainty**, **randomness**, and **variability**. You’ll learn how to use probability distributions, random sampling, and simulation to describe and analyze environmental systems where outcomes are not fixed but occur within a range of possibilities.  
+
+---
+
+## Introduction: Why Probabilities Matter  
+
+Deterministic models are powerful but limited—they produce only one trajectory of change. In environmental systems, variability is the rule, not the exception. Probabilistic models help us ask questions in terms of likelihoods rather than certainties.  
+
+**Examples:**  
+
+- What is the probability that river flow will exceed flood stage next year?  
+- How likely is it that a pollutant will stay above a safe concentration threshold?  
+- What are the chances a species population will persist for 50 years?  
+
+By framing predictions probabilistically, we not only acknowledge uncertainty but also make models more informative and realistic for decision-making.  
+
+---
+
+## Sources of Uncertainty  
+
+Uncertainty enters environmental models from several directions. Recognizing its sources helps us model it appropriately.  
+
+- **Aleatory uncertainty** refers to natural randomness—unpredictable fluctuations inherent to the system. Weather, genetic variation, or random seed dispersal are examples.  
+- **Epistemic uncertainty** comes from lack of knowledge. We might not know the true growth rate of a species or the exact decay constant of a pollutant.  
+- **Model structural uncertainty** arises from simplifications and missing processes.  
+- **Measurement error** comes from noisy or biased observations.  
+
+In practice, all four interact. A rainfall–runoff model, for example, has aleatory uncertainty in rainfall, epistemic uncertainty in soil properties, and structural uncertainty in how infiltration is represented.  
+
+---
+
+## Primer: Probability, PDFs, and CDFs  
+
+Before we build probabilistic models, we need to understand the language of probability. Probability gives us a way to quantify uncertainty—the likelihood of different outcomes.  
+
+### Probability Basics  
+
+- A **random variable** represents a quantity that can take on different values, each with some probability.  
+- For discrete variables, we use \( P(X = x) \).  
+- For continuous variables, we consider ranges: \( P(a < X < b) \).  
+
+*Example:* Let \(R\) be daily rainfall. \(R\) can take any non-negative value, and we might ask, “What is the probability that rainfall tomorrow exceeds 10 mm?”  
+
+---
+
+### Probability Density Function (PDF)  
+
+A **probability density function** (PDF) describes how probability is distributed over the range of possible values.  
+
+\[
+P(a < X < b) = \int_a^b f(x)\,dx = 1
+\]
+
+- The total area under the curve equals 1.  
+- The height of \(f(x)\) at any point shows relative likelihood, not actual probability.  
+
+**Environmental interpretation:**  
+Rainfall PDFs are often skewed right—many dry days, fewer wet ones, and rare extreme storms.  
+
+---
+
+::: promptbox
+
+**Activity: PDFs**
+
+For each of the distributions below, interpret the pdfs with respect to the system variables they represent.
+
+Think about the features of the pdf curve and what they mean with respect to the variable.
+
+```{r,echo=FALSE, warning=FALSE}
+# env_pdfs_to_screen.R
+# Six environmental PDFs with mean lines (display only)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(scales)
+})
+
+# Helper function: show PDF with mean line
+plot_pdf <- function(df, x_col, y_col, mean_x, x_lab, title, log_x = FALSE) {
+  p <- ggplot(df, aes(x = .data[[x_col]], y = .data[[y_col]])) +
+    geom_line(linewidth = 1) +
+    geom_vline(xintercept = mean_x, linetype = "dashed", color = "red", linewidth = 0.8) +
+    labs(title = title, x = x_lab, y = "Density") +
+    theme_minimal(base_size = 14)
+  if (log_x) p <- p + scale_x_log10(labels = label_number())
+  print(p) # ensures plot appears when sourcing
+}
+
+# 1) Daily rainfall (coastal)
+x1 <- seq(0, 80, length.out = 400)
+shape1 <- 2.2; scale1 <- 6
+df1 <- data.frame(x = x1, pdf = dgamma(x1, shape = shape1, scale = scale1))
+plot_pdf(df1, "x", "pdf", mean_x = shape1 * scale1,
+         x_lab = "Rainfall (mm)",
+         title = "Daily Rainfall PDF (Coastal Climate, Gamma)")
+
+# 2) Daily rainfall (semi-arid)
+x2 <- seq(0, 80, length.out = 400)
+shape2 <- 0.9; scale2 <- 8
+df2 <- data.frame(x = x2, pdf = dgamma(x2, shape = shape2, scale = scale2))
+plot_pdf(df2, "x", "pdf", mean_x = shape2 * scale2,
+         x_lab = "Rainfall (mm)",
+         title = "Daily Rainfall PDF (Semi-Arid Climate, Gamma)")
+
+# 3) Wind speed (Weibull)
+x3 <- seq(0, 30, length.out = 400)
+shape3 <- 2; scale3 <- 8
+df3 <- data.frame(x = x3, pdf = dweibull(x3, shape = shape3, scale = scale3))
+plot_pdf(df3, "x", "pdf", mean_x = scale3 * gamma(1 + 1/shape3),
+         x_lab = "Wind speed (m/s)",
+         title = "Wind Speed PDF (Weibull, k=2, λ=8 m/s)")
+
+# 4) River discharge (Lognormal)
+x4 <- exp(seq(log(0.1), log(1000), length.out = 500))
+mu4 <- 3.5; sigma4 <- 0.6
+df4 <- data.frame(x = x4, pdf = dlnorm(x4, meanlog = mu4, sdlog = sigma4))
+plot_pdf(df4, "x", "pdf", mean_x = exp(mu4 + 0.5 * sigma4^2),
+         x_lab = expression(Discharge~(m^3/s)),
+         title = "River Discharge PDF (Lognormal, log-x scale)",
+         log_x = TRUE)
+
+# 5) Temperature anomaly (Normal)
+x5 <- seq(-2.5, 4, length.out = 400)
+mu5 <- 0.8; sd5 <- 0.7
+df5 <- data.frame(x = x5, pdf = dnorm(x5, mean = mu5, sd = sd5))
+plot_pdf(df5, "x", "pdf", mean_x = mu5,
+         x_lab = "Temperature anomaly (\u00B0C)",
+         title = "Daily Temperature Anomaly PDF (Normal)")
+
+# 6) Time between storms (Exponential)
+x6 <- seq(0, 20, length.out = 400)
+rate6 <- 1/3
+df6 <- data.frame(x = x6, pdf = dexp(x6, rate = rate6))
+plot_pdf(df6, "x", "pdf", mean_x = 1 / rate6,
+         x_lab = "Inter-arrival time (days)",
+         title = "Time Between Storms PDF (Exponential, mean = 3 days)")
+
+# bimodal_pdf_mixture.R
+# Draw a PDF with two peaks using a Gaussian mixture
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+})
+
+# ----- Mixture parameters (edit these to change the peaks) -----
+w1 <- 0.55            # weight of component 1  (0 < w1 < 1)
+w2 <- 1 - w1          # weight of component 2
+mu1 <- 10;  sd1 <- 2  # mean & sd of peak 1
+mu2 <- 18;  sd2 <- 3  # mean & sd of peak 2
+
+# Overall mixture mean (for reference)
+mix_mean <- w1 * mu1 + w2 * mu2
+
+# ----- Grid & densities -----
+x <- seq(mu1 - 5*sd1, mu2 + 5*sd2, length.out = 800)
+f1 <- dnorm(x, mean = mu1, sd = sd1)       # component 1
+f2 <- dnorm(x, mean = mu2, sd = sd2)       # component 2
+f  <- w1 * f1 + w2 * f2                    # mixture PDF (bimodal)
+
+df <- tibble(x, f, f1 = w1 * f1, f2 = w2 * f2)  # note: scaled by weights
+
+# ----- Plot -----
+ggplot(df, aes(x = x)) +
+  geom_line(aes(y = f), linewidth = 1.1) +
+  geom_line(aes(y = f1), linetype = "dashed") +
+  geom_line(aes(y = f2), linetype = "dashed") +
+  geom_vline(xintercept = c(mu1, mu2), color = "gray40", linetype = "dotted") +
+  geom_vline(xintercept = mix_mean, color = "red", linetype = "dashed") +
+  annotate("text", x = mix_mean, y = max(f)*0.95,
+           label = paste0("Mixture mean = ", round(mix_mean, 2)),
+           hjust = -0.05, color = "red", size = 4) +
+  labs(
+    title = "Bimodal PDF (Mixture of Two Normals)",
+    subtitle = paste0("w1=", w1, ", mu1=", mu1, ", sd1=", sd1,
+                      "   |   w2=", w2, ", mu2=", mu2, ", sd2=", sd2),
+    x = "x", y = "Density"
+  ) +
+  theme_minimal(base_size = 14)
+
+
+```
+
+:::
+
+
+
+::: promptbox
+
+**Activity: CDFs**
+
+For each of the distributions below, interpret the cdfs with respect to the system variables they represent.
+
+Think about the features of the cdf curve and what they mean with respect to the variable.
+
+```{r,echo=FALSE, warning=FALSE}
+# env_cdfs_to_screen.R
+# Environmental CDFs (cumulative distribution functions) for classroom discussion
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(scales)
+})
+
+# Helper to make CDF plots
+plot_cdf <- function(df, x_col, y_col, mean_x, x_lab, title, log_x = FALSE) {
+  p <- ggplot(df, aes(x = .data[[x_col]], y = .data[[y_col]])) +
+    geom_line(linewidth = 1.2, color = "steelblue") +
+    geom_vline(xintercept = mean_x, color = "red", linetype = "dashed", linewidth = 0.8) +
+    labs(title = title, x = x_lab, y = "Cumulative Probability (F(x))") +
+    theme_minimal(base_size = 14)
+  if (log_x) p <- p + scale_x_log10(labels = label_number())
+  print(p)
+}
+
+# 1) Daily rainfall (coastal) — Gamma(shape=2.2, scale=6)
+x1 <- seq(0, 80, length.out = 400)
+shape1 <- 2.2; scale1 <- 6
+df1 <- data.frame(x = x1, cdf = pgamma(x1, shape = shape1, scale = scale1))
+plot_cdf(df1, "x", "cdf", mean_x = shape1 * scale1,
+         x_lab = "Rainfall (mm)",
+         title = "CDF of Daily Rainfall (Coastal, Gamma)")
+
+# 2) Daily rainfall (semi-arid) — Gamma(shape=0.9, scale=8)
+x2 <- seq(0, 80, length.out = 400)
+shape2 <- 0.9; scale2 <- 8
+df2 <- data.frame(x = x2, cdf = pgamma(x2, shape = shape2, scale = scale2))
+plot_cdf(df2, "x", "cdf", mean_x = shape2 * scale2,
+         x_lab = "Rainfall (mm)",
+         title = "CDF of Daily Rainfall (Semi-Arid, Gamma)")
+
+# 3) Wind speed (m/s) — Weibull(shape=2, scale=8)
+x3 <- seq(0, 30, length.out = 400)
+shape3 <- 2; scale3 <- 8
+df3 <- data.frame(x = x3, cdf = pweibull(x3, shape = shape3, scale = scale3))
+plot_cdf(df3, "x", "cdf", mean_x = scale3 * gamma(1 + 1/shape3),
+         x_lab = "Wind speed (m/s)",
+         title = "CDF of Wind Speed (Weibull, k=2, λ=8 m/s)")
+
+# 4) River discharge (m³/s) — Lognormal(meanlog=3.5, sdlog=0.6)
+x4 <- exp(seq(log(0.1), log(1000), length.out = 500))
+mu4 <- 3.5; sigma4 <- 0.6
+df4 <- data.frame(x = x4, cdf = plnorm(x4, meanlog = mu4, sdlog = sigma4))
+plot_cdf(df4, "x", "cdf", mean_x = exp(mu4 + 0.5 * sigma4^2),
+         x_lab = expression(Discharge~(m^3/s)),
+         title = "CDF of River Discharge (Lognormal)",
+         log_x = TRUE)
+
+# 5) Temperature anomaly (°C) — Normal(mean=0.8, sd=0.7)
+x5 <- seq(-2.5, 4, length.out = 400)
+mu5 <- 0.8; sd5 <- 0.7
+df5 <- data.frame(x = x5, cdf = pnorm(x5, mean = mu5, sd = sd5))
+plot_cdf(df5, "x", "cdf", mean_x = mu5,
+         x_lab = "Temperature anomaly (\u00B0C)",
+         title = "CDF of Daily Temperature Anomaly (Normal)")
+
+# 6) Time between storms (days) — Exponential(rate=1/3)
+x6 <- seq(0, 20, length.out = 400)
+rate6 <- 1/3
+df6 <- data.frame(x = x6, cdf = pexp(x6, rate = rate6))
+plot_cdf(df6, "x", "cdf", mean_x = 1 / rate6,
+         x_lab = "Inter-arrival time (days)",
+         title = "CDF of Time Between Storms (Exponential, mean=3 days)")
+
+
+# bimodal_cdf_mixture.R
+# CDF for a bimodal mixture of two Normal distributions
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+})
+
+# ----- Mixture parameters -----
+w1 <- 0.55            # weight of component 1 (0 < w1 < 1)
+w2 <- 1 - w1          # weight of component 2
+mu1 <- 10;  sd1 <- 2  # mean & sd of peak 1
+mu2 <- 18;  sd2 <- 3  # mean & sd of peak 2
+
+# Overall mixture mean (for reference)
+mix_mean <- w1 * mu1 + w2 * mu2
+
+# ----- Grid & cumulative probabilities -----
+x <- seq(mu1 - 5*sd1, mu2 + 5*sd2, length.out = 800)
+F1 <- pnorm(x, mean = mu1, sd = sd1)       # component 1 CDF
+F2 <- pnorm(x, mean = mu2, sd = sd2)       # component 2 CDF
+F  <- w1 * F1 + w2 * F2                    # mixture CDF (weighted sum)
+
+df <- tibble(x, F, F1 = w1 * F1, F2 = w2 * F2)
+
+# ----- Plot -----
+ggplot(df, aes(x = x)) +
+  geom_line(aes(y = F), linewidth = 1.2, color = "steelblue") +
+  geom_line(aes(y = F1), linetype = "dashed", color = "gray50") +
+  geom_line(aes(y = F2), linetype = "dashed", color = "gray50") +
+  geom_vline(xintercept = c(mu1, mu2), color = "gray40", linetype = "dotted") +
+  geom_vline(xintercept = mix_mean, color = "red", linetype = "dashed") +
+  annotate("text", x = mix_mean, y = 0.5,
+           label = paste0("Mixture mean = ", round(mix_mean, 2)),
+           hjust = -0.05, color = "red", size = 4) +
+  labs(
+    title = "Bimodal CDF (Mixture of Two Normals)",
+    subtitle = paste0("w1=", w1, ", mu1=", mu1, ", sd1=", sd1,
+                      "   |   w2=", w2, ", mu2=", mu2, ", sd2=", sd2),
+    x = "x", y = "Cumulative Probability F(x)"
+  ) +
+  theme_minimal(base_size = 14)
+
+```
+
+:::
+
+### Cumulative Distribution Function (CDF)  
+
+The **cumulative distribution function** (CDF) gives the probability that a variable is less than or equal to a value \(x\):  
+
+\[
+F(x) = P(X \le x) = \int_{-\infty}^{x} f(t)\,dt
+\]
+
+CDFs rise from 0 to 1, showing cumulative probability. If \(F(10) = 0.8\), there’s an 80% chance rainfall will be below 10 mm on a given day.  
+
+**How to see this visually.** The shaded area under the **PDF** from the minimum up to a threshold \(x_0\) *is exactly* the CDF value \(F(x_0)\). The plot below shows (left) a right-skewed rainfall PDF with area shaded up to \(x_0\), and (right) the corresponding CDF with the point \((x_0, F(x_0))\) highlighted.
+
+
+
+```{r cdf_explainer_gamma, message=FALSE, warning=FALSE, echo=FALSE}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(scales)
+  if (!requireNamespace("patchwork", quietly = TRUE)) {
+    install.packages("patchwork", repos = "https://cloud.r-project.org")
+  }
+  library(patchwork)
+})
+
+# --- Parameters students can tweak ---
+shape <- 2.2       # Gamma shape (rainfall PDF is often right-skewed)
+scale <- 6         # Gamma scale
+x0    <- 10        # threshold (mm) to illustrate F(x0)
+
+# --- Build grid and distributions ---
+x         <- seq(0, 60, length.out = 800)
+pdf_vals  <- dgamma(x, shape = shape, scale = scale)
+cdf_vals  <- pgamma(x, shape = shape, scale = scale)
+F_x0      <- pgamma(x0, shape = shape, scale = scale)
+
+df        <- tibble(x = x, pdf = pdf_vals, cdf = cdf_vals)
+df_shade  <- df |> filter(x <= x0)
+
+# --- PDF with shaded area up to x0 (area = F(x0)) ---
+p_pdf <- ggplot(df, aes(x = x, y = pdf)) +
+  geom_area(data = df_shade, aes(y = pdf), alpha = 0.35, fill = "gray50") +
+  geom_line(linewidth = 1.1) +
+  geom_vline(xintercept = x0, linetype = "dashed", color = "red") +
+  annotate("text", x = x0, y = max(df$pdf)*0.9,
+           label = paste0("x0 = ", x0, " mm"),
+           hjust = -0.1, color = "red", size = 4) +
+  annotate("text", x = x0, y = max(df$pdf)*0.75,
+           label = paste0("Shaded area = F(x0) ≈ ", percent(F_x0, accuracy = 0.1)),
+           hjust = -0.1, size = 4.1) +
+  labs(
+    title = "PDF of Daily Rainfall (Gamma)",
+    subtitle = "Shaded area from 0 to x0 equals F(x0)",
+    x = "Rainfall (mm)",
+    y = "Density f(x)"
+  ) +
+  theme_minimal(base_size = 14)
+
+# --- CDF with highlighted point (x0, F(x0)) and guide lines ---
+p_cdf <- ggplot(df, aes(x = x, y = cdf)) +
+  geom_line(linewidth = 1.2, color = "steelblue") +
+  geom_point(aes(x = x0, y = F_x0), color = "red", size = 3) +
+  geom_segment(aes(x = min(x), xend = x0, y = F_x0, yend = F_x0),
+               linetype = "dotted", color = "gray40") +
+  geom_segment(aes(x = x0, xend = x0, y = 0, yend = F_x0),
+               linetype = "dotted", color = "gray40") +
+  annotate("text", x = x0, y = F_x0,
+           label = paste0("  F(x0) ≈ ", round(F_x0, 3)),
+           hjust = 0, vjust = -0.8, color = "red", size = 4) +
+  labs(
+    title = "CDF of Daily Rainfall (Gamma)",
+    subtitle = "F(x0) is the cumulative probability up to x0",
+    x = "Rainfall (mm)",
+    y = "Cumulative probability F(x)"
+  ) +
+  coord_cartesian(ylim = c(0, 1)) +
+  theme_minimal(base_size = 14)
+
+# --- Show side-by-side ---
+(p_pdf | p_cdf) 
+
+```
+
+### Discrete vs Continuous Distributions  
+
+Probability models can describe two broad types of random variables — **discrete** and **continuous** — depending on whether outcomes take on isolated values or form a continuum.
+
+#### Discrete Distributions  
+Discrete variables take on **countable** values — often whole numbers that represent distinct events or outcomes. Examples include the number of storms in a season, the number of trees in a plot, or the number of salmon successfully migrating past a dam.  
+These are described by a **probability mass function (PMF)**, which gives the probability of each possible outcome:  
+
+\[
+P(X = x_i)
+\]
+
+The sum of all probabilities across possible outcomes equals 1. For instance, if \(X\) is the number of successful seed germinations out of 20 seeds with a germination probability of 0.7, \(X\) follows a **Binomial distribution**.
+
+Similarly, if \(X\) represents the number of storms in a year, it may follow a **Poisson distribution**, which models the number of events that occur within a fixed interval given an average rate.
+
+Discrete distributions are often used for **event counts**, **success/failure outcomes**, and **presence/absence data** in environmental systems.
+
+#### Continuous Distributions 
+
+Continuous variables, on the other hand, can take on **any value within a range** — often representing measurements such as rainfall depth, temperature, river flow, or wind speed.  
+These are described by a **probability density function (PDF)**, which defines the *relative likelihood* of observing values near a given point. Because there are infinitely many possible values, the probability of observing any *exact* value is zero; instead, we compute probabilities over intervals:
+
+\[
+P(a < X < b) = \int_a^b f(x)\,dx
+\]
+
+Common continuous distributions in environmental science include:
+
+- The **Normal distribution**, used for temperature anomalies or measurement errors.  
+- The **Exponential distribution**, often used for modeling time between events like rainfall or wildfires.  
+- The **Gamma distribution**, commonly used for rainfall depth or pollutant concentration.
+
+Continuous models are particularly useful when representing **natural variability** and **measurement uncertainty** in environmental systems.
+
+#### Summary Comparison  
+
+| Type | Example Variable | Representation | Example Distribution | Visualization |
+|------|------------------|----------------|----------------------|----------------|
+| **Discrete** | Number of storms per year | Probability **Mass** Function (PMF) | Binomial, Poisson | Bars for individual outcomes |
+| **Continuous** | Rainfall depth, temperature | Probability Density Function (PDF) | Normal, Exponential, Gamma | Smooth continuous curve |
+
+**In practice:** Many environmental datasets blur this distinction. For example, rainfall measured to the nearest millimeter is technically discrete but is often modeled as continuous because the measurement resolution is fine enough to approximate a continuum.
+
+
+### Moments: Mean, Variance, and Shape  
+
+Moments describe the key numerical characteristics of a probability distribution — they quantify its **center**, **spread**, **asymmetry**, and **tail behavior**.
+
+In environmental systems, moments help us summarize how variable, extreme, or asymmetric natural processes can be — for example, how storm intensity may increase even if the mean annual rainfall stays constant.
+
+- **Mean (\(\mu\))** — the *expected value* or long-term average. It represents the “center of mass” of the distribution:  
+  \[
+  \mu = E[X] = \int_{-\infty}^{\infty} x\,f(x)\,dx
+  \]
+- **Variance (\(\sigma^2\))** — measures the *spread* or dispersion around the mean:  
+  \[
+  \sigma^2 = E[(X - \mu)^2]
+  \]
+  A high variance indicates that outcomes fluctuate widely (e.g., highly variable daily precipitation).  
+- **Skewness** — captures *asymmetry*. Right-skewed distributions (positive skew) have long tails toward large values, as seen in rainfall or pollutant concentrations.  
+- **Kurtosis** — measures the *heaviness of the tails* relative to a normal distribution. High kurtosis implies more frequent extreme events — like rare but severe floods.
+
+Moments collectively describe how variable and extreme environmental conditions can be, guiding modelers toward more realistic representations of uncertainty and risk.
+
+---
+
+#### Visualizing Moments on a PDF and CDF  
+
+The annotated plots below show how these statistical moments appear on a probability distribution.  
+We use a **Gamma distribution** as an example for **daily rainfall (mm)** — a right-skewed, non-negative continuous variable common in environmental modeling.
+
+```{r pdf_and_cdf_labeled_separate_fast, message=FALSE, warning=FALSE, fig.width=8, fig.height=5, echo=FALSE}
+# knitr::opts_chunk$set(dev = "ragg_png", dpi = 150)  # <- uncomment for faster, crisper plots
+
+library(ggplot2)
+
+# ----- Parameters -----
+shape <- 2.0
+scale <- 6.0
+alpha <- 0.10
+x0    <- 20
+
+# ----- Derived quantities -----
+mu     <- shape * scale
+sd_x   <- sqrt(shape) * scale
+med    <- qgamma(0.5, shape, scale = scale)
+mode_x <- if (shape > 1) (shape - 1) * scale else NA_real_
+qL     <- qgamma(alpha/2, shape, scale = scale)
+qU     <- qgamma(1 - alpha/2, shape, scale = scale)
+Fx0    <- pgamma(x0, shape, scale = scale)
+tailP  <- 1 - Fx0
+
+# ----- Data (smaller grid) -----
+x  <- seq(0, max(qU, x0) * 1.25, length.out = 600)
+pdf <- dgamma(x, shape, scale = scale)
+cdf <- pgamma(x, shape, scale = scale)
+df  <- data.frame(x, pdf, cdf)
+
+y_max  <- max(pdf)
+y_top  <- y_max * 0.92
+y_mid  <- y_max * 0.55
+y_tail <- y_max * 0.30
+
+# Helper single-row data frames for labels (avoid recycling across df)
+lab_mean   <- data.frame(x = mu,     y = y_top,       txt = sprintf("Mean = %.2f", mu))
+lab_median <- data.frame(x = med,    y = y_top*0.92,  txt = sprintf("Median = %.2f", med))
+lab_mode   <- if (!is.na(mode_x)) data.frame(x = mode_x, y = y_top*0.84, txt = sprintf("Mode ≈ %.2f", mode_x)) else NULL
+lab_centr  <- data.frame(x = (qL+qU)/2, y = y_mid, txt = sprintf("Central %s interval", scales::percent(1 - alpha)))
+lab_tail   <- data.frame(x = x0, y = y_tail, txt = sprintf("P(X > x0) ≈ %.3f", tailP))
+
+# ==============
+# Figure 1: PDF
+# ==============
+ggplot(df, aes(x, pdf)) +
+  # shaded regions
+  geom_area(data = subset(df, x >= qL & x <= qU), aes(y = pdf), fill = "#2F6B9A", alpha = 0.28) +
+  geom_area(data = subset(df, x >= x0),           aes(y = pdf), fill = "#D04E4E", alpha = 0.30) +
+  # curve
+  geom_line(linewidth = 1.2, color = "black") +
+  # guides
+  geom_vline(xintercept = c(qL, qU), linetype = "dotted", color = "#2F6B9A") +
+  geom_vline(xintercept = x0,        linetype = "dashed", color = "#D04E4E") +
+  geom_vline(xintercept = mu,                         color = "black") +
+  geom_vline(xintercept = med,        linetype = "dotdash", color = "gray40") +
+  { if (!is.na(mode_x)) geom_vline(xintercept = mode_x, linetype = "longdash", color = "gray25") } +
+  # labels (single draw each)
+  geom_label(data = lab_mean,   aes(x, y, label = txt), size = 4, fill = "white") +
+  geom_label(data = lab_median, aes(x, y, label = txt), size = 4, fill = "white", color = "gray25") +
+  { if (!is.na(mode_x)) geom_label(data = lab_mode, aes(x, y, label = txt), size = 4, fill = "white", color = "gray25") } +
+  geom_label(data = lab_centr,  aes(x, y, label = txt), size = 4, fill = "white", color = "#1F487E") +
+  geom_label(data = lab_tail,   aes(x, y, label = txt), size = 4, fill = "white", color = "#8E2B2B") +
+  labs(
+    title = "PDF (Gamma — Daily Rainfall)",
+    subtitle = sprintf("shape=%.1f, scale=%.1f | Central %s interval shaded (blue); exceedance beyond x0 shaded (red)",
+                       shape, scale, scales::percent(1 - alpha)),
+    x = "Rainfall (mm)", y = "Density  f(x)"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(color = "gray30"))
+
+# ==============
+# Figure 2: CDF (same labels/markers)
+# ==============
+lab_Fx0 <- data.frame(x = x0, y = Fx0, txt = sprintf("F(x0) = %.3f\nP(X>x0) ≈ %.3f", Fx0, tailP))
+
+ggplot(df, aes(x, cdf)) +
+  geom_line(linewidth = 1.4, color = "#2F6B9A") +
+  geom_vline(xintercept = c(qL, qU), linetype = "dotted", color = "#2F6B9A") +
+  geom_vline(xintercept = x0,        linetype = "dashed", color = "#D04E4E") +
+  geom_vline(xintercept = mu,                         color = "black") +
+  geom_vline(xintercept = med,        linetype = "dotdash", color = "gray40") +
+  { if (!is.na(mode_x)) geom_vline(xintercept = mode_x, linetype = "longdash", color = "gray25") } +
+  geom_point(aes(x = x0, y = Fx0), color = "#D04E4E", size = 3) +
+  geom_segment(aes(x = min(x), xend = x0, y = Fx0, yend = Fx0), color = "gray50", linetype = "dotted") +
+  geom_segment(aes(x = x0, xend = x0, y = 0,   yend = Fx0),    color = "gray50", linetype = "dotted") +
+  # same labels (single draw each)
+  geom_label(data = lab_mean,   aes(x, 0.95, label = txt), size = 4, fill = "white") +
+  geom_label(data = lab_median, aes(x, 0.88, label = txt), size = 4, fill = "white", color = "gray25") +
+  { if (!is.na(mode_x)) geom_label(data = transform(lab_mode, y = 0.81), aes(x, y, label = txt),
+                                   size = 4, fill = "white", color = "gray25") } +
+  geom_label(data = transform(lab_centr, y = 0.60), aes(x, y, label = txt), size = 4, fill = "white", color = "#1F487E") +
+  geom_label(data = lab_Fx0, aes(x, y, label = txt), size = 4, fill = "white", color = "#8E2B2B",
+             label.padding = unit(0.15, "lines")) +
+  coord_cartesian(ylim = c(0, 1)) +
+  labs(
+    title = "CDF (Gamma — Daily Rainfall)",
+    subtitle = "Same parameters as PDF: mean, median, mode, central interval, and exceedance probability",
+    x = "Rainfall (mm)", y = "Cumulative Probability  F(x)"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(color = "gray30"))
+```
+
+
+This plot shows a **Gamma probability density function (PDF)** modeling daily rainfall.  
+Key annotations:
+
+- **Mean, Median, and Mode** — Indicate the central tendency measures; note the skewed shape where mean > median > mode.  
+- **Central 90% Interval (blue shaded)** — Encloses the middle 90% of all rainfall outcomes; only 5% fall below and 5% above this range.  
+- **Exceedance Probability (red shaded)** — The probability that rainfall exceeds a threshold \(x_0\), here approximately 0.155 (15.5%).  
+- The plot emphasizes how rainfall distributions are often **positively skewed**, with most days having modest rainfall and a few days of heavy rain.
+
+## Visualizing Probability Distributions  
+
+Visuals make distributions intuitive:  
+- **PDFs/PMFs** show which values are most likely (shape, skew, tails).  
+- **CDFs** show the cumulative probability up to any value.  
+
+Below are common distributions in environmental modeling.  
+For **each distribution**, you’ll see the **equation**, **parameters**, **use cases**, and two **separate plots** — **PDF/PMF first**, **CDF second**.  
+
+---
+
+### Normal (Gaussian)
+
+The **Normal distribution**, also called the **Gaussian distribution**, is one of the most fundamental probability models in environmental science and statistics. It describes random variables that tend to cluster around a mean value, with smaller probabilities for values farther away from that mean. Many natural processes — such as temperature variation, measurement error, and small perturbations around equilibrium — often follow this bell-shaped pattern due to the **Central Limit Theorem**, which states that the sum of many small independent effects tends to be normally distributed.
+
+---
+
+**Probability Density Function (PDF)**  
+
+\[
+f(x\mid \mu,\sigma)=\frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]
+
+- The function is symmetric around the mean \( \mu \).  
+- The height of the curve at any \( x \) represents the *relative likelihood* of that value.  
+- The spread is controlled by the standard deviation \( \sigma \): larger \( \sigma \) values create flatter, wider curves; smaller \( \sigma \) values create narrower peaks.
+
+---
+
+**Parameters:** 
+
+- \(\mu\): **Mean** — the central tendency or expected value of the distribution.  
+- \(\sigma>0\): **Standard deviation** — a measure of variability or spread around the mean.  
+
+**Key properties:**  
+
+- About 68% of values fall within one standard deviation of the mean (\(\mu \pm \sigma\)).  
+- About 95% within two (\(\mu \pm 2\sigma\)).  
+- About 99.7% within three (\(\mu \pm 3\sigma\)).  
+- The distribution is defined for all real numbers (\(-\infty < x < \infty\)).
+
+---
+
+**Environmental examples:** 
+
+- **Temperature anomalies:** Daily or annual temperature deviations from a long-term mean are often approximately Normal, especially after removing seasonal cycles.  
+- **Measurement errors:** Instrument noise and random observational error frequently follow Normal patterns due to the aggregation of many small random effects.  
+- **Biological growth:** Traits like plant height or leaf size may approximate a Normal distribution in large, uniform populations.
+
+---
+
+```{r normal_pdf_cdf, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# Parameters
+mu <- 0.8
+sigma <- 0.7
+
+# Data grid
+x <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 500)
+
+# ---- PDF ----
+df_pdf <- data.frame(x, pdf = dnorm(x, mu, sigma))
+p1 <- ggplot(df_pdf, aes(x, pdf)) +
+  geom_line(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = mu, color = "red", linetype = "dashed") +
+  annotate("text", x = mu, y = max(df_pdf$pdf) * 0.9, label = "μ (mean)", color = "red", vjust = -0.5) +
+  labs(
+    title = "Normal PDF (Probability Density Function)",
+    subtitle = expression(paste("μ = 0.8,  σ = 0.7")),
+    x = "x",
+    y = "f(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- CDF ----
+df_cdf <- data.frame(x, cdf = pnorm(x, mu, sigma))
+p2 <- ggplot(df_cdf, aes(x, cdf)) +
+  geom_line(linewidth = 1.2, color = "#2F6B9A") +
+  geom_vline(xintercept = mu, color = "red", linetype = "dashed") +
+  geom_hline(yintercept = 0.5, color = "gray50", linetype = "dotted") +
+  annotate("text", x = mu, y = 0.55, label = "50% cumulative probability", color = "red", hjust = -0.1) +
+  coord_cartesian(ylim = c(0, 1)) +
+  labs(
+    title = "Normal CDF (Cumulative Distribution Function)",
+    subtitle = expression(paste("μ = 0.8,  σ = 0.7")),
+    x = "x",
+    y = "F(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- Display ----
+p1
+p2
+```
+
+### Lognormal
+
+The **Lognormal distribution** models positive quantities whose logarithm is normally distributed. In other words, if \(Y = \ln(X)\) follows a Normal distribution with mean \(\mu\) and standard deviation \(\sigma\), then \(X\) follows a Lognormal distribution.  
+
+This distribution is **right-skewed**, meaning it captures phenomena where small values are common but large, extreme values occasionally occur. Such asymmetry is typical of environmental data like rainfall, pollutant concentration, or river discharge — where values cannot go below zero, yet large events can occasionally dominate the total.
+
+---
+
+**Probability Density Function (PDF)**  
+
+\[
+f(x\mid \mu,\sigma)=\frac{1}{x\,\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(\ln x-\mu)^2}{2\sigma^2}\right),\quad x>0
+\]
+
+---
+
+**Parameters:**  
+
+- \(\mu\): **Mean of the log-transformed variable** (\(\ln X\)), determining the central tendency in log-space.  
+- \(\sigma>0\): **Standard deviation of \(\ln X\)**, controlling the spread and skewness.  
+  Larger \(\sigma\) values make the distribution more skewed and heavy-tailed.  
+
+**Key properties:**  
+
+- Mean \(E[X] = e^{\mu+\sigma^2/2}\)  
+- Median \(= e^{\mu}\)  
+- Mode \(= e^{\mu-\sigma^2}\)  
+- Defined only for \(x>0\).  
+
+---
+
+**Environmental examples:**  
+
+- **Rainfall amounts:** Many small precipitation events occur, but occasional intense storms create a long right tail.  
+- **River discharge:** Streamflow over time shows frequent moderate flows and rare floods.  
+- **Air pollutants (PM₂.₅, ozone):** Concentrations are positive, right-skewed, and vary multiplicatively with meteorological conditions.
+
+---
+
+```{r lognormal_pdf_cdf, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# Parameters
+muL <- 3.5
+sdL <- 0.6
+
+# Data grid
+x <- exp(seq(log(0.1), log(1000), length.out = 600))
+
+# ---- PDF ----
+df_pdf <- data.frame(x, pdf = dlnorm(x, muL, sdL))
+p1 <- ggplot(df_pdf, aes(x, pdf)) +
+  geom_line(linewidth = 1.2, color = "black") +
+  scale_x_log10() +
+  geom_vline(xintercept = exp(muL), color = "red", linetype = "dashed") +
+  annotate("text", x = exp(muL), y = max(df_pdf$pdf)*0.8,
+           label = "Median = e^μ", color = "red", hjust = -0.1) +
+  labs(
+    title = "Lognormal PDF (Probability Density Function)",
+    subtitle = expression(paste("μ = 3.5,  σ = 0.6")),
+    x = "x (log scale)",
+    y = "f(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- CDF ----
+df_cdf <- data.frame(x, cdf = plnorm(x, muL, sdL))
+p2 <- ggplot(df_cdf, aes(x, cdf)) +
+  geom_line(linewidth = 1.2, color = "#2F6B9A") +
+  scale_x_log10() +
+  coord_cartesian(ylim = c(0, 1)) +
+  geom_vline(xintercept = exp(muL), color = "red", linetype = "dashed") +
+  geom_hline(yintercept = 0.5, color = "gray50", linetype = "dotted") +
+  annotate("text", x = exp(muL), y = 0.55,
+           label = "50% cumulative probability (median)", color = "red", hjust = -0.1) +
+  labs(
+    title = "Lognormal CDF (Cumulative Distribution Function)",
+    subtitle = expression(paste("μ = 3.5,  σ = 0.6")),
+    x = "x (log scale)",
+    y = "F(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- Display ----
+p1
+p2
+```
+
+---
+
+### Gamma
+
+The **Gamma distribution** is a flexible model for positive, continuous data that are right-skewed. It’s often used to represent **waiting times**, **rates**, and **environmental magnitudes** like rainfall totals, pollutant concentrations, or groundwater recharge rates.  
+
+The Gamma family includes a range of shapes:
+
+- When the shape parameter \(k\) is small, the distribution is highly skewed (many small events, few large ones).  
+- As \(k\) increases, the curve becomes more symmetric and approaches a Normal shape.  
+
+This flexibility makes the Gamma distribution one of the most common in environmental and hydrological modeling.
+
+---
+
+**Probability Density Function (PDF)**  
+
+\[
+f(x\mid k,\theta)=\frac{1}{\Gamma(k)\,\theta^k}\,x^{k-1}e^{-x/\theta},\quad x>0
+\]
+
+- \(k\): **Shape parameter** — controls the skewness.  
+- \(\theta\): **Scale parameter** — stretches or compresses the distribution horizontally.  
+- \(\Gamma(k)\) is the **gamma function**, a continuous extension of the factorial.
+
+---
+
+**Key properties:** 
+
+- Mean \(E[X] = k\theta\)  
+- Variance \(Var[X] = k\theta^2\)  
+- Mode (for \(k>1\)) \(= (k-1)\theta\)  
+- Skewness \(= 2/\sqrt{k}\) (decreases as \(k\) increases).  
+
+---
+
+**Environmental examples:**  
+
+- **Rainfall amounts:** Daily or monthly precipitation totals often follow a Gamma distribution — many small rain events and occasional heavy storms.  
+- **Pollutant concentrations:** Skewed positive values due to occasional high-emission days.  
+- **Hydrologic response times:** Waiting time between flow events or recharge occurrences.
+
+---
+
+```{r gamma_pdf_cdf, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# Parameters
+k <- 2.2       # shape
+theta <- 6     # scale
+
+# Data grid
+x <- seq(0, 80, length.out = 600)
+
+# ---- PDF ----
+df_pdf <- data.frame(x, pdf = dgamma(x, shape = k, scale = theta))
+mean_x <- k * theta
+mode_x <- ifelse(k > 1, (k - 1) * theta, NA)
+
+p1 <- ggplot(df_pdf, aes(x, pdf)) +
+  geom_line(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = mean_x, color = "red", linetype = "dashed") +
+  geom_vline(xintercept = mode_x, color = "blue", linetype = "dotted") +
+  annotate("text", x = mean_x, y = max(df_pdf$pdf) * 0.9,
+           label = "Mean = kθ", color = "red", hjust = -0.1) +
+  annotate("text", x = mode_x, y = max(df_pdf$pdf) * 0.7,
+           label = "Mode = (k−1)θ", color = "blue", hjust = -0.1) +
+  labs(
+    title = "Gamma PDF (Probability Density Function)",
+    subtitle = expression(paste("k = 2.2,  θ = 6")),
+    x = "x",
+    y = "f(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- CDF ----
+df_cdf <- data.frame(x, cdf = pgamma(x, shape = k, scale = theta))
+p2 <- ggplot(df_cdf, aes(x, cdf)) +
+  geom_line(linewidth = 1.2, color = "#2F6B9A") +
+  coord_cartesian(ylim = c(0, 1)) +
+  geom_vline(xintercept = mean_x, color = "red", linetype = "dashed") +
+  geom_hline(yintercept = pgamma(mean_x, shape = k, scale = theta),
+             color = "gray50", linetype = "dotted") +
+  annotate("text", x = mean_x, y = pgamma(mean_x, shape = k, scale = theta) + 0.05,
+           label = "Cumulative probability at mean", color = "red", hjust = -0.1) +
+  labs(
+    title = "Gamma CDF (Cumulative Distribution Function)",
+    subtitle = expression(paste("k = 2.2,  θ = 6")),
+    x = "x",
+    y = "F(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- Display ----
+p1
+p2
+```
+
+---
+
+### Exponential
+
+The **Exponential distribution** is one of the simplest continuous probability models. It describes the time between random, independent events occurring at a constant average rate — such as the time until the next rainfall, the duration between earthquakes, or the decay of a pollutant.  
+
+Mathematically, it is a **special case of the Gamma distribution** where the shape parameter \(k = 1\). Despite its simplicity, the exponential model provides powerful insight into systems governed by **memoryless processes**, meaning the probability of an event occurring in the future is independent of how much time has already passed.
+
+---
+
+**Probability Density Function (PDF)**  
+
+\[
+f(x\mid \lambda)=\lambda e^{-\lambda x}, \quad x \ge 0
+\]
+
+---
+
+**Parameters:** 
+
+- \(\lambda>0\): **Rate parameter**, representing the average frequency of events per unit time.  
+  - Mean \(E[X] = 1/\lambda\)  
+  - Variance \(Var[X] = 1/\lambda^2\)  
+
+**Key property:**  
+
+The Exponential distribution is **memoryless**:
+\[
+P(X > s + t \mid X > s) = P(X > t)
+\]
+This makes it ideal for modeling systems with constant hazard rates, such as radioactive decay or Poisson event arrivals.
+
+---
+
+**Environmental examples:**  
+
+- **Time between rainfall events:** Days between consecutive storms often follow an exponential pattern during a rainy season.  
+- **Pollutant decay:** Concentration of a dissolved chemical decreasing exponentially over time due to natural degradation or dilution.  
+- **Streamflow recovery:** Time between flow spikes after storm events.
+
+---
+
+```{r exponential_pdf_cdf, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# Parameters
+lambda <- 1/3  # rate parameter
+mean_x <- 1 / lambda
+
+# Data grid
+x <- seq(0, 30, length.out = 500)
+
+# ---- PDF ----
+df_pdf <- data.frame(x, pdf = dexp(x, rate = lambda))
+p1 <- ggplot(df_pdf, aes(x, pdf)) +
+  geom_line(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = mean_x, color = "red", linetype = "dashed") +
+  annotate("text", x = mean_x, y = max(df_pdf$pdf)*0.8,
+           label = "Mean = 1/λ", color = "red", hjust = -0.1) +
+  labs(
+    title = "Exponential PDF (Probability Density Function)",
+    subtitle = expression(paste("λ = 1/3")),
+    x = "x",
+    y = "f(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- CDF ----
+df_cdf <- data.frame(x, cdf = pexp(x, rate = lambda))
+p2 <- ggplot(df_cdf, aes(x, cdf)) +
+  geom_line(linewidth = 1.2, color = "#2F6B9A") +
+  coord_cartesian(ylim = c(0, 1)) +
+  geom_vline(xintercept = mean_x, color = "red", linetype = "dashed") +
+  geom_hline(yintercept = pexp(mean_x, rate = lambda),
+             color = "gray50", linetype = "dotted") +
+  annotate("text", x = mean_x, y = pexp(mean_x, rate = lambda) + 0.05,
+           label = "Cumulative probability at mean", color = "red", hjust = -0.1) +
+  labs(
+    title = "Exponential CDF (Cumulative Distribution Function)",
+    subtitle = expression(paste("λ = 1/3")),
+    x = "x",
+    y = "F(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- Display ----
+p1
+p2
+```
+
+---
+
+### Weibull
+
+The **Weibull distribution** is a versatile model that generalizes the Exponential distribution by introducing a **shape parameter**. It’s widely used in environmental and engineering applications to represent phenomena such as **wind speeds**, **drought durations**, **extreme wave heights**, or **time-to-failure** processes.  
+
+When the shape parameter \(k = 1\), the Weibull reduces to the Exponential distribution, meaning events occur at a constant rate.  When \(k \ne 1\), the event rate changes over time — increasing for \(k > 1\) (aging systems) or decreasing for \(k < 1\) (infant mortality or early failures).  
+
+---
+
+**Probability Density Function (PDF)**  
+
+\[
+f(x\mid k,\lambda)=\frac{k}{\lambda}\left(\frac{x}{\lambda}\right)^{k-1}
+\exp\!\left[-\left(\frac{x}{\lambda}\right)^k\right], \quad x\ge 0
+\]
+
+---
+
+**Parameters:**  
+
+- \(k>0\): **Shape parameter**, controls the slope and skewness.  
+  - \(k < 1\): decreasing rate (events most likely early).  
+  - \(k = 1\): constant rate (Exponential case).  
+  - \(k > 1\): increasing rate (events more likely later).  
+- \(\lambda>0\): **Scale parameter**, stretches the distribution horizontally; larger \(\lambda\) means longer time scales or higher magnitudes.  
+
+**Key properties:**  
+
+- Mean \(E[X] = \lambda\,\Gamma(1 + 1/k)\)  
+- Variance \(Var[X] = \lambda^2 [\Gamma(1 + 2/k) - \Gamma(1 + 1/k)^2]\)  
+- Mode (for \(k > 1\)) \(= \lambda[(k-1)/k]^{1/k}\)  
+
+---
+
+**Environmental examples:**  
+
+- **Wind speeds:** Weibull provides excellent fits to observed wind speed distributions — used in wind energy assessment.  
+- **Drought durations:** The shape parameter \(k\) captures the likelihood of prolonged dry spells.  
+- **Wave heights or storm durations:** Often right-skewed and bounded below by zero, well-suited to Weibull modeling.  
+- **Failure time models:** Used for lifespan analysis of sensors, equipment, or biological survival times.
+
+---
+
+```{r weibull_pdf_cdf, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# Parameters
+kW <- 2      # shape
+lamW <- 8    # scale
+
+# Data grid
+x <- seq(0, 35, length.out = 600)
+
+# ---- PDF ----
+df_pdf <- data.frame(x, pdf = dweibull(x, shape = kW, scale = lamW))
+mean_x <- lamW * gamma(1 + 1/kW)
+mode_x <- lamW * ((kW - 1)/kW)^(1/kW)
+
+p1 <- ggplot(df_pdf, aes(x, pdf)) +
+  geom_line(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = mean_x, color = "red", linetype = "dashed") +
+  geom_vline(xintercept = mode_x, color = "blue", linetype = "dotted") +
+  annotate("text", x = mean_x, y = max(df_pdf$pdf)*0.9,
+           label = "Mean", color = "red", hjust = -0.1) +
+  annotate("text", x = mode_x, y = max(df_pdf$pdf)*0.7,
+           label = "Mode", color = "blue", hjust = -0.1) +
+  labs(
+    title = "Weibull PDF (Probability Density Function)",
+    subtitle = expression(paste("k = 2,  λ = 8")),
+    x = "x",
+    y = "f(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- CDF ----
+df_cdf <- data.frame(x, cdf = pweibull(x, shape = kW, scale = lamW))
+p2 <- ggplot(df_cdf, aes(x, cdf)) +
+  geom_line(linewidth = 1.2, color = "#2F6B9A") +
+  coord_cartesian(ylim = c(0, 1)) +
+  geom_vline(xintercept = mean_x, color = "red", linetype = "dashed") +
+  geom_hline(yintercept = pweibull(mean_x, shape = kW, scale = lamW),
+             color = "gray50", linetype = "dotted") +
+  annotate("text", x = mean_x, y = pweibull(mean_x, shape = kW, scale = lamW) + 0.05,
+           label = "Cumulative probability at mean", color = "red", hjust = -0.1) +
+  labs(
+    title = "Weibull CDF (Cumulative Distribution Function)",
+    subtitle = expression(paste("k = 2,  λ = 8")),
+    x = "x",
+    y = "F(x)"
+  ) +
+  theme_minimal(base_size = 15)
+
+# ---- Display ----
+p1
+p2
+```
+
+---
+
+### Poisson (Discrete Counts)
+
+The **Poisson distribution** models the probability of a given number of discrete events occurring in a fixed interval of time or space, **assuming events occur independently and at a constant average rate**.  
+
+It’s a cornerstone of environmental and ecological modeling — ideal for situations where we count occurrences, such as the number of storms per year, lightning strikes per month, or invasive species arrivals at a site.
+
+---
+
+**Probability Mass Function (PMF)**  
+
+\[
+P(X = x \mid \lambda) = \frac{e^{-\lambda}\lambda^x}{x!}, \quad x = 0,1,2,\ldots
+\]
+
+---
+
+**Parameters:**  
+
+- \(\lambda>0\): **Rate parameter** — the average number of occurrences per interval.  
+  - Mean \(E[X] = \lambda\)  
+  - Variance \(Var[X] = \lambda\)  
+
+**Key properties:**  
+
+- Models *counts* (integer values).  
+- Appropriate when events are rare and independent.  
+- The variance equals the mean — an important diagnostic property for checking fit.
+
+---
+
+**Environmental examples:**  
+
+- **Storm frequency:** Number of rainstorms per month or year.  
+- **Wildfire ignitions:** Count of new fires detected in a region during summer.  
+- **Earthquake counts:** Number of earthquakes above a threshold magnitude per year.  
+- **Pollution events:** Number of exceedances over a safe limit within a week.
+
+---
+
+```{r poisson_pmf_cdf, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# Parameters
+lam <- 4   # expected events per interval
+
+# Support (choose a sensible max for plotting)
+k_max <- max(12, ceiling(lam + 4*sqrt(lam)))
+k     <- 0:k_max
+
+# ---- PMF ----
+df_pmf <- data.frame(k = k, pmf = dpois(k, lam))
+p1 <- ggplot(df_pmf, aes(k, pmf)) +
+  geom_col(width = 0.8, fill = "gray70", color = "gray35") +
+  geom_vline(xintercept = lam, color = "red", linetype = "dashed") +
+  annotate("text", x = lam, y = max(df_pmf$pmf) * 0.9,
+           label = "Mean = λ", color = "red", hjust = -0.1) +
+  labs(
+    title = "Poisson PMF (Probability Mass Function)",
+    subtitle = expression(paste("λ = 4 (mean count per interval)")),
+    x = "k (event count)",
+    y = "P(X = k)"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(panel.grid.minor = element_blank())
+
+# ---- CDF ----
+df_cdf <- data.frame(k = k, cdf = ppois(k, lam))
+p2 <- ggplot(df_cdf, aes(k, cdf)) +
+  geom_step(linewidth = 1.2, color = "#2F6B9A") +
+  coord_cartesian(ylim = c(0, 1)) +
+  geom_vline(xintercept = lam, color = "red", linetype = "dashed") +
+  geom_hline(yintercept = ppois(lam, lam), color = "gray50", linetype = "dotted") +
+  annotate("text", x = lam, y = ppois(lam, lam) + 0.05,
+           label = "Cumulative probability at mean", color = "red", hjust = -0.1) +
+  labs(
+    title = "Poisson CDF (Cumulative Distribution Function)",
+    subtitle = expression(paste("λ = 4 (mean count per interval)")),
+    x = "k (event count)",
+    y = "P(X ≤ k)"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(panel.grid.minor = element_blank())
+
+# ---- Display ----
+p1
+p2
+```
+
+---
+
+### Gumbel (Extreme Value Type I): Emphasizing Fat Tails
+
+In extreme-value work we care about the **upper tail**: rare, very large events (e.g., record floods). Compared to a Normal distribution (whose tail probability decays roughly like \(\exp(-x^2)\)), the **Gumbel tail decays exponentially**:
+\[
+\bar F(x)=1-F(x)\approx \exp\!\left(-\frac{x-\mu}{\beta}\right)\quad\text{for large }x,
+\]
+which is **heavier (fatter)** than the Normal’s “thin” tail. A fatter tail means **higher probability of extremes** than you’d expect if you (incorrectly) used a Normal model.
+
+Two visual cues help students see this:
+
+1. **Tail shading (PDF & CDF):** Shade the region beyond high quantiles (e.g., 95th and 99th percentiles).  
+2. **Return level marker:** Show the **\(T\)-year return level** \(x_T\) (e.g., \(T=100\) years), which satisfies \(F(x_T)=1-1/T\). On the CDF this is a horizontal line at \(1-1/T\) and a vertical line at \(x_T\).
+
+```{r gumbel_pdf_cdf_fattail, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, echo=FALSE}
+library(ggplot2)
+
+# ---- Gumbel helpers ----
+dgumbel <- function(x, mu, beta) (1/beta) * exp(-(x - mu)/beta - exp(-(x - mu)/beta))
+pgumbel <- function(x, mu, beta) exp(-exp(-(x - mu)/beta))
+qgumbel <- function(p, mu, beta) mu - beta * log(-log(p)) # inverse CDF (return level tool)
+
+# ---- Parameters ----
+muG   <- 50       # location (typical extreme magnitude)
+betaG <- 8        # scale (spread of extremes)
+p95   <- 0.95
+p99   <- 0.99
+T     <- 100      # return period (years)
+pT    <- 1 - 1/T  # non-exceedance prob at return period
+
+# ---- Key tail markers ----
+x95 <- qgumbel(p95, muG, betaG)
+x99 <- qgumbel(p99, muG, betaG)
+xT  <- qgumbel(pT,  muG, betaG)
+
+# ---- Grid and distributions ----
+x   <- seq(muG - 3*betaG, muG + 8*betaG, length.out = 600)
+pdf <- dgumbel(x, muG, betaG)
+cdf <- pgumbel(x, muG, betaG)
+df  <- data.frame(x, pdf, cdf)
+
+# ---- Tail data for shading ----
+df_tail95 <- subset(df, x >= x95)
+df_tail99 <- subset(df, x >= x99)
+
+# =====================
+# 1) PDF with tail shading
+# =====================
+p_pdf <- ggplot(df, aes(x, pdf)) +
+  geom_area(data = df_tail95, aes(y = pdf), fill = "#F5A5A5", alpha = 0.55) +
+  geom_area(data = df_tail99, aes(y = pdf), fill = "#E05757", alpha = 0.65) +
+  geom_line(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = c(x95, x99, xT),
+             linetype = c("dashed", "dotdash", "solid"),
+             color   = c("#C44A4A","#9E2E2E","#222222")) +
+  annotate("text", x = x95 + 1.5, y = max(df$pdf)*0.90,
+           label = "95th percentile", color = "#C44A4A",
+           hjust = 0, size = 4.3, fontface = "bold") +
+  annotate("text", x = x99 + 1.5, y = max(df$pdf)*0.75,
+           label = "99th percentile", color = "#9E2E2E",
+           hjust = 0, size = 4.3, fontface = "bold") +
+  annotate("text", x = xT + 1.5, y = max(df$pdf)*0.60,
+           label = "100-year return level", color = "#222222",
+           hjust = 0, size = 4.3, fontface = "bold") +
+  labs(
+    title = "Gumbel PDF — Highlighting the Fat Tail",
+    x = "Extreme magnitude (x)", y = "Density  f(x)"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(panel.grid.minor = element_blank())
+
+# =====================
+# 2) CDF with tail & return level
+# =====================
+p_cdf <- ggplot(df, aes(x, cdf)) +
+  geom_line(linewidth = 1.2, color = "#2F6B9A") +
+  geom_vline(xintercept = c(x95, x99, xT),
+             linetype = c("dashed","dotdash","solid"),
+             color   = c("#C44A4A","#9E2E2E","#222222")) +
+  geom_hline(yintercept = c(p95, p99, pT),
+             linetype = c("dashed","dotdash","solid"),
+             color   = c("#C44A4A","#9E2E2E","#222222")) +
+  annotate("text", x = x95 + 2, y = p95 - 0.05,
+           label = "F(x)=0.95", color = "#C44A4A", hjust = 0, size = 4.3, fontface = "bold") +
+  annotate("text", x = x99 + 2, y = p99 - 0.07,
+           label = "F(x)=0.99", color = "#9E2E2E", hjust = 0, size = 4.3, fontface = "bold") +
+  annotate("text", x = xT + 2, y = pT - 0.09,
+           label = "F(x)=0.99 (100-yr)", color = "#222222", hjust = 0, size = 4.3, fontface = "bold") +
+  coord_cartesian(ylim = c(0, 1)) +
+  labs(
+    title = "Gumbel CDF — Interpreting Tail Probabilities",
+    x = "Extreme magnitude (x)", y = "Cumulative probability  F(x)"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(panel.grid.minor = element_blank())
+
+# ---- Display (two separate figures) ----
+p_pdf
+p_cdf
+```
+
+---
+
+### Quick guidance on **when to use which**
+
+- **Normal**: deviations around a mean; symmetric noise; aggregated processes.  
+- **Lognormal**: **positive** and **right-skewed** (products of factors) — flows, concentrations.  
+- **Gamma**: flexible right-skew for **amounts** like rainfall depth.  
+- **Exponential**: **waiting times** with memoryless property (simple storm arrivals).  
+- **Weibull**: **wind speed**, lifetimes; shape controls tail and peak.  
+- **Poisson**: **counts** of events per interval (storms, fires).  
+- **Gumbel**: **block maxima** (flood peaks, annual max rainfall) when GEV shape ≈ 0.  
+
+
+### From Probability to Modeling  
+
+In deterministic models, parameters are fixed values. In probabilistic models, those parameters are *random variables* drawn from PDFs that describe uncertainty.  
+
+Running the same model many times with randomly drawn parameters produces a **distribution of outcomes** rather than a single number. The result is a richer understanding of what could happen—and with what likelihood.  
+
+::: promptbox
+**Reflection**  
+Why might it be more informative to say “There is a 25% chance that nitrate concentrations will exceed the safe limit” rather than “Nitrate concentrations will be 12 mg/L next month”?  
+:::
+
+---
+
+## Representing Uncertainty with Probability Distributions  
+
+Probability distributions allow us to mathematically describe and model uncertainty.  
+
+Common distributions in environmental modeling include:  
+
+- **Normal distribution:** temperature fluctuations around a mean.  
+- **Exponential distribution:** time between random rainfall events.  
+- **Poisson distribution:** number of storms per year.  
+- **Binomial distribution:** number of successful seed germinations out of \(n\) attempts.  
+- **Uniform distribution:** when all values within a range are equally likely.  
+
+Selecting an appropriate distribution depends on the process being modeled. For instance, rainfall is often modeled with a **Gamma** or **Weibull** distribution to capture its right-skewed nature.  
+
+---
+
+## Deterministic vs Stochastic Models  
+
+A **deterministic model** produces the same outcome every time for the same inputs.  
+A **stochastic model** includes random variation—each run produces a slightly different result.  
+
+**Example:**  
+\[
+N_{t+1} = rN_t(1 - N_t/K)
+\]
+is deterministic, while  
+\[
+N_{t+1} = rN_t(1 - N_t/K) + \varepsilon_t
+\]
+is stochastic, where \(\varepsilon_t\) represents random environmental noise.  
+
+Stochasticity can be added to:  
+
+- **Parameters:** growth rate \(r\) varies yearly.  
+- **Inputs:** rainfall or temperature fluctuate randomly.  
+- **Processes:** survival or reproduction are probabilistic.  
+
+Deterministic models show the mean trajectory; stochastic models show the variability around that trajectory.  
+
+---
+
+## Monte Carlo Simulation  
+
+Monte Carlo simulation is the **workhorse of probabilistic modeling** — a powerful way to explore uncertainty when outcomes depend on random events.  
+Its name comes from **Monte Carlo, Monaco**, home to one of the world’s most famous casinos. Just as dice rolls, card draws, and slot spins involve chance, Monte Carlo methods rely on **repeated random sampling** to understand what outcomes are likely — and how variable they are.
+
+---
+
+### **How it works**
+1. Define **probability distributions** for uncertain inputs (like dice rolls, card values, or interest rates).  
+2. **Randomly sample** values from those distributions.  
+3. **Run the model** or “game” using those sampled values.  
+4. **Repeat** the process many times — hundreds or thousands of rounds.  
+5. **Analyze** the resulting spread of outcomes to see probabilities, risks, and likely ranges.
+
+---
+
+### **Example: Simulating Casino Winnings**
+
+Imagine you’re playing a simple casino game — betting \$10 on **red** in roulette.  
+You have an 18 out of 38 chance (in American roulette) of winning \$10, and a 20 out of 38 chance of losing \$10.  
+
+We can simulate this:
+
+- Each spin = one random trial.  
+- The outcome is either +10 or −10.  
+- Repeat for, say, 1,000 spins and record your cumulative winnings.
+
+---
+
+### **Monte Carlo in action**
+
+By running this simulation thousands of times:
+
+- You can estimate your **expected return** (average winnings per spin).  
+- You can visualize the **distribution** of possible final balances after 1,000 spins.  
+- You’ll likely see a **bell-shaped spread** centered below \$0 — meaning the casino wins in the long run.  
+
+Each individual player’s outcome is uncertain, but across thousands of simulated players, patterns emerge. This is the power of Monte Carlo simulation: it turns randomness into **predictable probabilities**.
+
+---
+
+### **Takeaway**
+
+Monte Carlo simulations aren’t limited to casinos — they’re used anywhere uncertainty matters:  
+from **finance** (forecasting returns) to **engineering** (safety margins) to **science** (climate models).  
+
+The key idea: 
+
+> Instead of solving uncertainty analytically, we **simulate it repeatedly** and let probability reveal the shape of possible futures.
+
+---
+
+## Markov and Transition Models
+
+Many environmental systems move among a **finite set of states** over time (e.g., land cover: *forest*, *agriculture*, *urban*; ecosystem health: *healthy*, *stressed*, *degraded*). **Markov models** capture these dynamics when the *next* state depends **only on the current state**, not on the full history (the **Markov property**).
+
+---
+
+### **Core Pieces**
+
+- **States:** \( S = \{1, \dots, K\} \) (e.g., Forest, Agriculture, Urban).  
+- **Time:** typically discrete steps (year, decade, season).  
+- **Transition matrix** \( \mathbf{P} \) (row-stochastic):  
+  \[
+  P_{ij} = \Pr\{X_{t+1} = j \mid X_t = i\}, \quad \text{where } \sum_j P_{ij} = 1.
+  \]  
+- **State distribution** (row vector) at time \(t\):  
+  \[
+  \boldsymbol{\pi}_t = [\Pr(X_t=1), \dots, \Pr(X_t=K)].
+  \]
+
+**Forward projection:**
+\[
+\boldsymbol{\pi}_{t+1} = \boldsymbol{\pi}_t \mathbf{P}, \quad
+\boldsymbol{\pi}_{t+h} = \boldsymbol{\pi}_t \mathbf{P}^h
+\]
+
+---
+
+### **Example Transition Matrix (Annual)**
+
+| From \ To | Forest | Agriculture | Urban |
+|------------|---------:|-------------:|-------:|
+| **Forest** | 0.85 | 0.10 | 0.05 |
+| **Agriculture** | 0.05 | 0.85 | 0.10 |
+| **Urban** | 0.00 | 0.10 | 0.90 |
+
+Each row represents the **current state**, and each column represents the **next state**.  
+The **diagonal entries** (like 0.85 for Forest → Forest) show **persistence** or stability.
+
+**Multi-step behavior:**  
+- \( \mathbf{P}^2 \): two-year transitions.  
+- \( \mathbf{P}^{10} \): ten-year transitions.
+
+---
+
+### **From “What’s Next?” to “Where Does It Settle?”**
+
+If the chain is **irreducible** (all states eventually communicate) and **aperiodic** (no fixed cycle, often ensured by diagonal entries > 0), then there exists a unique **stationary distribution** \( \boldsymbol{\pi}^* \) such that:
+
+\[
+\boldsymbol{\pi}^* = \boldsymbol{\pi}^* \mathbf{P}, \quad \sum_j \pi^*_j = 1
+\]
+
+**Interpretation:**  
+The stationary distribution represents the **long-run proportion** of time (or area) spent in each state, independent of where the system started.
+
+For the matrix above:
+
+\[
+\boldsymbol{\pi}^* \approx [0.133, 0.400, 0.467]
+\]
+
+So in the long run, the landscape tends toward:
+- **13.3% Forest**
+- **40.0% Agriculture**
+- **46.7% Urban**
+
+Even if the system starts as 100% Forest, it will gradually move toward this equilibrium mix.
+
+---
+
+### **Reading the Matrix Like an Ecologist or Planner**
+
+- **Stability / Persistence:** High diagonal values (\( P_{ii} \)) indicate long-term stability. Urban is very persistent here (0.90).  
+- **Flux Pathways:** Off-diagonal entries reveal where transitions are most likely (Agriculture → Urban at 0.10).  
+- **Policy Sensitivity:** Adjusting a few key entries—like lowering Agriculture → Urban—can shift the entire long-term balance.
+
+---
+
+### **Special Structures**
+
+- **Absorbing states:** \( P_{kk} = 1 \) (e.g., *Urban*, if no reforestation possible). Once entered, the system stays there.  
+  - The **fundamental matrix** \( \mathbf{N} = (\mathbf{I} - \mathbf{Q})^{-1} \) gives expected times to absorption.
+
+- **Metastable states:** Very high self-transition probability, but not strictly absorbing (Urban with 0.90).  
+- **Time-varying chains:** \( \mathbf{P}_t \) changes over time (e.g., policy or climate effects).  
+- **Continuous-time chains:** Transitions occur continuously, governed by a **rate matrix** \( \mathbf{Q} \) where \( \mathbf{P}(t) = e^{t\mathbf{Q}} \).
+
+---
+
+### **Estimating Transition Matrices**
+
+1. **Classify** each site’s state at two time steps (e.g., land cover maps).  
+2. **Count transitions** \( N_{ij} \) from \(i \to j\).  
+3. **Normalize** by row:  
+   \[
+   \widehat{P}_{ij} = \frac{N_{ij}}{\sum_j N_{ij}}.
+   \]
+4. **Quantify uncertainty:**  
+   - Rows follow a **multinomial distribution**.  
+   - Use **Dirichlet priors** for Bayesian inference or **bootstrap** for intervals.  
+5. **Check assumptions:**  
+   - Does the Markov property hold (no dependence on earlier states)?  
+   - Is the time step appropriate?  
+   - Are there misclassification errors (use Hidden Markov Models if so)?
+
+---
+
+### **What Markov Models Answer Well**
+
+- **Short-term forecasts:** \( \boldsymbol{\pi}_0 \mathbf{P}^h \)  
+- **Long-run equilibrium:** \( \boldsymbol{\pi}^* \)  
+- **Sensitivity analysis:** Which transitions most affect long-run outcomes  
+- **Expected times:** Probability or expected time to reach certain states (e.g., >50% Urban)
+
+---
+
+### **Environmental Applications**
+
+- **Land cover change:** Forecast forest loss or urban expansion; test reforestation policies.  
+- **Species occupancy:** States = *present/absent*; transitions reflect colonization or extinction rates.  
+- **Fire regimes:** States = *unburned*, *recently burned*, *recovering*; estimate recurrence intervals.  
+- **Climate regimes:** *El Niño*, *La Niña*, *Neutral*; evaluate persistence and switching probabilities.  
+- **Water quality:** *Good*, *Impaired*, *Hypoxic*; estimate risks of degradation and recovery likelihood.
+
+---
+
+### **Common Pitfalls and Fixes**
+
+- **Path dependence:** Add “memory” by defining expanded states (*Forest-young* vs *Forest-old*).  
+- **Nonstationarity:** Use time-varying \( \mathbf{P}_t \) matrices under different scenarios.  
+- **Spatial heterogeneity:** Fit region-specific matrices or spatially varying coefficients.  
+- **Classification error:** Employ **Hidden Markov Models (HMMs)** to account for uncertainty in observed states.
+
+---
+
+### **Mini Worked Example**
+
+Starting with 100% **Forest** (\( \boldsymbol{\pi}_0 = [1, 0, 0] \)):
+
+| Time Step | Forest | Agriculture | Urban |
+|------------|--------:|-------------:|-------:|
+| Year 0 | 1.000 | 0.000 | 0.000 |
+| Year 5 | 0.477 | 0.305 | 0.218 |
+| Year 10 | 0.276 | 0.378 | 0.347 |
+| Long Run | 0.133 | 0.400 | 0.467 |
+
+**Interpretation:**  
+Even a fully forested landscape trends toward an **urban–agricultural equilibrium** under current transition rates.  
+If we increase Forest persistence (e.g., \( P_{\text{Forest,Forest}} \) from 0.85 → 0.92), the long-run forest fraction rises substantially—showing how **policy changes shift long-term stability**.
+
+---
+
+### **Key Takeaway**
+
+Markov and transition models provide a simple yet powerful framework for studying **change over time** in systems with distinct states.  
+They show not only where a system is likely to go next but also its **long-term equilibrium**, **stability**, and **sensitivity to intervention**.  
+Whether tracking forests, species, or climate regimes, these models transform observations of “change” into quantitative forecasts of **persistence and transformation**.
+
+---
+
+## Communicating Probabilistic Results  
+
+Probabilistic results are often harder to communicate than single-number predictions, but they are more honest and useful.  
+
+**Good practices:**  
+
+- Report ranges or confidence intervals instead of single values.  
+- Use visualizations such as:  
+  - **Histograms:** frequency of outcomes.  
+  - **Fan plots:** spread of model trajectories over time.  
+  - **CDFs:** probability of exceeding thresholds.  
+- Phrase results as probabilities:  
+  - “There’s a 30% chance of flood levels exceeding 2 m.”  
+  - “90% of simulations predict temperatures rising above 1.5 °C by 2050.”  
+
+Communicating uncertainty transparently fosters trust and supports risk-aware decisions.  
+
+---
+
+## Summary and Reflection  
+
+Environmental systems are inherently variable and uncertain. Probabilistic models capture that variability by representing parameters, inputs, and outcomes as distributions rather than fixed values.  
+
+Key ideas from this chapter:  
+
+- Probability distributions describe uncertainty quantitatively.  
+- PDFs and CDFs form the foundation for stochastic modeling.  
+- Monte Carlo simulations explore possible futures through random sampling.  
+- Markov models describe transitions between discrete system states.  
+- Probabilistic models shift focus from exact predictions to likelihoods and risks.  
+
+By embracing uncertainty rather than avoiding it, environmental scientists build models that are both more realistic and more useful for decision-making under changing and unpredictable conditions.  
+
+---
+
+
