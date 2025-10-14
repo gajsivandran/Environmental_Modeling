@@ -10,20 +10,10 @@ library(tidyverse)
 # ---------------------------
 load_cod_data <- function() {
   path <- "data/cod_timeseries.csv"
-  if (file.exists(path)) {
-    read_csv(path, show_col_types = FALSE) |>
-      select(Year, Pop) |>
-      arrange(Year)
-  } else {
-    set.seed(42)
-    tibble(
-      Year = 1980:2009,
-      Pop  = 200 / (1 + exp(-0.18*(Year - 1990))) *
-        exp(-0.03*pmax(Year-1995,0)) + rnorm(30, 0, 3)
-    ) |>
-      mutate(Pop = pmax(Pop, 0.1)) |>
-      arrange(Year)
-  }
+  read_csv(path, show_col_types = FALSE) |>
+    select(Year, Pop) |>
+    arrange(Year)
+
 }
 
 cod <- load_cod_data() |>
