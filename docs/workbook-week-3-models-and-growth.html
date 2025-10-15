@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-14" />
+<meta name="date" content="2025-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -423,6 +423,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#troubleshooting-3"><i class="fa fa-check"></i>Troubleshooting</a></li>
 <li class="chapter" data-level="D.6.1" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#source-code-3"><i class="fa fa-check"></i><b>D.6.1</b> Source Code</a></li>
 </ul></li>
+<li class="chapter" data-level="D.7" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#understanding-the-central-limit-theorem"><i class="fa fa-check"></i><b>D.7</b> Understanding the Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#why-we-care"><i class="fa fa-check"></i><b>D.7.1</b> Why We Care</a></li>
+<li class="chapter" data-level="D.7.2" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#start-with-a-simple-example"><i class="fa fa-check"></i><b>D.7.2</b> Start with a Simple Example</a></li>
+<li class="chapter" data-level="D.7.3" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#the-central-limit-theorem-plain-language-version"><i class="fa fa-check"></i><b>D.7.3</b> The Central Limit Theorem (Plain-Language Version)</a></li>
+<li class="chapter" data-level="D.7.4" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#why-it-happens"><i class="fa fa-check"></i><b>D.7.4</b> Why It Happens</a></li>
+<li class="chapter" data-level="D.7.5" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#what-you-saw-in-the-app"><i class="fa fa-check"></i><b>D.7.5</b> What You Saw in the App</a></li>
+<li class="chapter" data-level="D.7.6" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#real-world-meaning"><i class="fa fa-check"></i><b>D.7.6</b> Real-World Meaning</a></li>
+<li class="chapter" data-level="D.7.7" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#key-takeaways"><i class="fa fa-check"></i><b>D.7.7</b> Key Takeaways</a></li>
+<li class="chapter" data-level="D.7.8" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#quick-reflection"><i class="fa fa-check"></i><b>D.7.8</b> Quick Reflection</a></li>
+<li class="chapter" data-level="D.7.9" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#in-a-sentence"><i class="fa fa-check"></i><b>D.7.9</b> 🧠 In a Sentence</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="E" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>E</b> Tutorial: Getting Started with RStudio</a>
 <ul>
@@ -641,7 +653,7 @@ RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
 <span id="cb3-6"><a href="workbook-week-3-models-and-growth.html#cb3-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
 <span id="cb3-7"><a href="workbook-week-3-models-and-growth.html#cb3-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">&quot;CO&quot;</span>[<span class="dv">2</span>]<span class="sc">*</span><span class="st">&quot; concentration (ppm)&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb3-8"><a href="workbook-week-3-models-and-growth.html#cb3-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div class="promptbox">
 <p><strong>Fit a linear model By Eye</strong></p>
@@ -2457,6 +2469,146 @@ To build despite missing files, check existence and return a placeholder tibble,
 <span id="cb30-266"><a href="workbook-week-3-models-and-growth.html#cb30-266" tabindex="-1"></a>}</span>
 <span id="cb30-267"><a href="workbook-week-3-models-and-growth.html#cb30-267" tabindex="-1"></a></span>
 <span id="cb30-268"><a href="workbook-week-3-models-and-growth.html#cb30-268" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+</div>
+<div id="understanding-the-central-limit-theorem" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">D.7</span> Understanding the Central Limit Theorem<a href="workbook-week-3-models-and-growth.html#understanding-the-central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-we-care" class="section level3 hasAnchor" number="9.7.1">
+<h3><span class="header-section-number">D.7.1</span> Why We Care<a href="workbook-week-3-models-and-growth.html#why-we-care" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we collect data from nature, every measurement comes with randomness — rainfall changes day to day, fish populations fluctuate, and even repeated measurements of the same thing vary slightly.<br />
+Yet when we look at <em>averages</em> of these random events, a remarkable pattern emerges: those averages tend to form a <strong>bell-shaped (normal) distribution</strong>.</p>
+<p>This is the essence of the <strong>Central Limit Theorem (CLT)</strong> — one of the most important results in statistics.</p>
+<hr />
+</div>
+<div id="start-with-a-simple-example" class="section level3 hasAnchor" number="9.7.2">
+<h3><span class="header-section-number">D.7.2</span> Start with a Simple Example<a href="workbook-week-3-models-and-growth.html#start-with-a-simple-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the <strong>coin-flip app</strong>, you flipped coins and recorded the proportion of Heads in each experiment.</p>
+<ul>
+<li>Each individual flip is <strong>unpredictable</strong> — 50% chance of Heads, 50% chance of Tails.<br />
+</li>
+<li>But when you flip <strong>many coins at once</strong> and record the proportion of Heads, those proportions cluster near 0.5.<br />
+</li>
+<li>When you repeat that whole experiment many times, and make a histogram of those proportions, the shape looks surprisingly smooth and <strong>bell-like</strong>.</li>
+</ul>
+<p>That bell shape <strong>isn’t built into the coin</strong> — it comes from the <em>averaging process itself.</em></p>
+<hr />
+</div>
+<div id="the-central-limit-theorem-plain-language-version" class="section level3 hasAnchor" number="9.7.3">
+<h3><span class="header-section-number">D.7.3</span> The Central Limit Theorem (Plain-Language Version)<a href="workbook-week-3-models-and-growth.html#the-central-limit-theorem-plain-language-version" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>When we take many random samples from any population and compute the <strong>mean</strong> (or <strong>proportion</strong>) for each sample,<br />
+the <strong>distribution of those sample means</strong> will approximate a <strong>normal distribution</strong>,<br />
+as long as our samples are large enough.</p>
+</blockquote>
+<p>In symbols:
+<span class="math display">\[
+\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i \quad \text{is approximately } N\left(\mu, \frac{\sigma^2}{n}\right)
+\]</span>
+where:</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> = population mean<br />
+</li>
+<li><span class="math inline">\(\sigma^2\)</span> = population variance<br />
+</li>
+<li><span class="math inline">\(n\)</span> = sample size</li>
+</ul>
+<hr />
+</div>
+<div id="why-it-happens" class="section level3 hasAnchor" number="9.7.4">
+<h3><span class="header-section-number">D.7.4</span> Why It Happens<a href="workbook-week-3-models-and-growth.html#why-it-happens" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each sample mean is like an average of many small random influences:</p>
+<ul>
+<li>Some pushes are high, some are low.</li>
+<li>When you add them up, <strong>extremes cancel out</strong>.</li>
+<li>What remains is the overall trend — most results fall near the middle.</li>
+</ul>
+<p>This “balancing of randomness” is what makes the sampling distribution of averages look normal, even when the original data aren’t.</p>
+<hr />
+</div>
+<div id="what-you-saw-in-the-app" class="section level3 hasAnchor" number="9.7.5">
+<h3><span class="header-section-number">D.7.5</span> What You Saw in the App<a href="workbook-week-3-models-and-growth.html#what-you-saw-in-the-app" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>Sample Size (n)</th>
+<th>Shape of Sampling Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Still two spikes: Heads vs. Tails</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Somewhat bumpy, but already more centered</td>
+</tr>
+<tr class="odd">
+<td>30</td>
+<td>Nearly a perfect bell curve</td>
+</tr>
+</tbody>
+</table>
+<p>Notice two things:</p>
+<ol style="list-style-type: decimal">
+<li><strong>The mean stays around 0.5</strong>, no matter how many coins you flip.<br />
+</li>
+<li><strong>The spread gets smaller</strong> as <span class="math inline">\(n\)</span> increases — large samples give more stable averages.</li>
+</ol>
+<p>That shrinking spread follows the rule:
+<span class="math display">\[
+\text{Spread of sample mean} = \frac{\text{Population spread}}{\sqrt{n}}
+\]</span>
+so each time you multiply <span class="math inline">\(n\)</span> by 4, the variation in your averages is cut in half.</p>
+<hr />
+</div>
+<div id="real-world-meaning" class="section level3 hasAnchor" number="9.7.6">
+<h3><span class="header-section-number">D.7.6</span> Real-World Meaning<a href="workbook-week-3-models-and-growth.html#real-world-meaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The CLT explains why we can trust statistics based on averages — like:</p>
+<ul>
+<li>Mean temperature across many days<br />
+</li>
+<li>Average fish biomass in repeated surveys<br />
+</li>
+<li>Mean exam score across students</li>
+</ul>
+<p>Even if individual observations are noisy, <strong>averages behave predictably</strong>.</p>
+<p>That’s why the normal distribution shows up everywhere in science: height, rainfall, errors, growth rates, and countless other measurements are all the result of <strong>many small, random effects</strong> added together.</p>
+<hr />
+</div>
+<div id="key-takeaways" class="section level3 hasAnchor" number="9.7.7">
+<h3><span class="header-section-number">D.7.7</span> Key Takeaways<a href="workbook-week-3-models-and-growth.html#key-takeaways" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Individual outcomes can be messy; averages are stable.<br />
+</li>
+<li>The CLT connects <em>randomness</em> to <em>predictability</em>.<br />
+</li>
+<li>As sample size increases:
+<ul>
+<li>The distribution of sample means becomes more normal.</li>
+<li>The spread of sample means becomes narrower.</li>
+</ul></li>
+<li>This is why the normal curve is the foundation of statistical inference.</li>
+</ul>
+<hr />
+</div>
+<div id="quick-reflection" class="section level3 hasAnchor" number="9.7.8">
+<h3><span class="header-section-number">D.7.8</span> Quick Reflection<a href="workbook-week-3-models-and-growth.html#quick-reflection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Try answering these after exploring the app:</p>
+<ol style="list-style-type: decimal">
+<li>What changed when you increased the sample size in your simulation?<br />
+</li>
+<li>Why does the histogram of sample proportions become smoother as <span class="math inline">\(n\)</span> grows?<br />
+</li>
+<li>Can you think of an environmental process where we rely on averages to make predictions?</li>
+</ol>
+<hr />
+</div>
+<div id="in-a-sentence" class="section level3 hasAnchor" number="9.7.9">
+<h3><span class="header-section-number">D.7.9</span> 🧠 In a Sentence<a href="#in-a-sentence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>The Central Limit Theorem is the reason that when we collect enough data — even from a chaotic world — the averages we compute begin to look beautifully predictable.</p>
+</blockquote>
 
 </div>
 </div>

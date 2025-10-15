@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-14" />
+<meta name="date" content="2025-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -423,6 +423,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#troubleshooting-3"><i class="fa fa-check"></i>Troubleshooting</a></li>
 <li class="chapter" data-level="D.6.1" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#source-code-3"><i class="fa fa-check"></i><b>D.6.1</b> Source Code</a></li>
 </ul></li>
+<li class="chapter" data-level="D.7" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#understanding-the-central-limit-theorem"><i class="fa fa-check"></i><b>D.7</b> Understanding the Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#why-we-care"><i class="fa fa-check"></i><b>D.7.1</b> Why We Care</a></li>
+<li class="chapter" data-level="D.7.2" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#start-with-a-simple-example"><i class="fa fa-check"></i><b>D.7.2</b> Start with a Simple Example</a></li>
+<li class="chapter" data-level="D.7.3" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#the-central-limit-theorem-plain-language-version"><i class="fa fa-check"></i><b>D.7.3</b> The Central Limit Theorem (Plain-Language Version)</a></li>
+<li class="chapter" data-level="D.7.4" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#why-it-happens"><i class="fa fa-check"></i><b>D.7.4</b> Why It Happens</a></li>
+<li class="chapter" data-level="D.7.5" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#what-you-saw-in-the-app"><i class="fa fa-check"></i><b>D.7.5</b> What You Saw in the App</a></li>
+<li class="chapter" data-level="D.7.6" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#real-world-meaning"><i class="fa fa-check"></i><b>D.7.6</b> Real-World Meaning</a></li>
+<li class="chapter" data-level="D.7.7" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#key-takeaways"><i class="fa fa-check"></i><b>D.7.7</b> Key Takeaways</a></li>
+<li class="chapter" data-level="D.7.8" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#quick-reflection"><i class="fa fa-check"></i><b>D.7.8</b> Quick Reflection</a></li>
+<li class="chapter" data-level="D.7.9" data-path="workbook-week-3-models-and-growth.html"><a href="workbook-week-3-models-and-growth.html#in-a-sentence"><i class="fa fa-check"></i><b>D.7.9</b> 🧠 In a Sentence</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="E" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>E</b> Tutorial: Getting Started with RStudio</a>
 <ul>
@@ -622,7 +634,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb33-7"><a href="tutorial-getting-started-with-rstudio.html#cb33-7" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Simple Plot&quot;</span>, </span>
 <span id="cb33-8"><a href="tutorial-getting-started-with-rstudio.html#cb33-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, </span>
 <span id="cb33-9"><a href="tutorial-getting-started-with-rstudio.html#cb33-9" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;y^2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>This will generate a basic scatter plot of numbers 1–10 against their squares.</p>
 </div>
 <div id="example-2-using-a-built-in-dataset-cars" class="section level3 hasAnchor" number="10.7.2">
@@ -650,7 +662,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb36-5"><a href="tutorial-getting-started-with-rstudio.html#cb36-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span>,</span>
 <span id="cb36-6"><a href="tutorial-getting-started-with-rstudio.html#cb36-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
 <span id="cb36-7"><a href="tutorial-getting-started-with-rstudio.html#cb36-7" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <ul>
 <li>col = “blue” makes the points blue.</li>
 <li>pch = 19 makes the points solid circles.</li>
@@ -672,7 +684,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb37-11"><a href="tutorial-getting-started-with-rstudio.html#cb37-11" tabindex="-1"></a></span>
 <span id="cb37-12"><a href="tutorial-getting-started-with-rstudio.html#cb37-12" tabindex="-1"></a><span class="co"># Add the fitted line</span></span>
 <span id="cb37-13"><a href="tutorial-getting-started-with-rstudio.html#cb37-13" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <div id="ggplot2-version" class="section level4 hasAnchor" number="10.7.3.1">
 <h4><span class="header-section-number">E.7.3.1</span> ggplot2 Version<a href="tutorial-getting-started-with-rstudio.html#ggplot2-version" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>ggplot2</code> package provides more control and produces publication-quality graphics.</p>
@@ -689,7 +701,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb38-11"><a href="tutorial-getting-started-with-rstudio.html#cb38-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span></span>
 <span id="cb38-12"><a href="tutorial-getting-started-with-rstudio.html#cb38-12" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>✅ Using base R, you get quick and simple plots.</p>
 <p>✅ Using ggplot2, you get more flexible, customizable, and professional-looking plots.</p>
 </div>

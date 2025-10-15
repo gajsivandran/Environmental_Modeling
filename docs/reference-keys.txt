@@ -179,6 +179,16 @@ readme-interactive-logistic-fit-cod-population-shiny
 readme-logistic-growth-with-constant-harvesting-delayed-start-cod-population-shiny
 readme-logistic-with-harvesting-stochastic-bad-year-shocks-cod-population-shiny
 source-code-3
+understanding-the-central-limit-theorem
+why-we-care
+start-with-a-simple-example
+the-central-limit-theorem-plain-language-version
+why-it-happens
+what-you-saw-in-the-app
+real-world-meaning
+key-takeaways
+quick-reflection
+in-a-sentence
 tutorial-getting-started-with-rstudio
 what-is-rstudio
 the-rstudio-interface
