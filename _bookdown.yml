@@ -1,4 +1,5 @@
 book_filename: "bookdown-demo"
+rmd_files: [ "index.Rmd","01-Modeling.Rmd","02-LLMs.Rmd","03-Pop_dyn.Rmd","04-Prob.Rmd", "90-Appendix.Rmd","101wb-Modeling.Rmd","102wb-LLMs.Rmd","103wb-Pop_dyn.Rmd","104wb_prob.Rmd" ,"999wb-r.Rmd"]
 output_dir: "docs"
 clean: [packages.bib, bookdown.bbl]
 language:
@@ -14,15 +15,5 @@ output:
 
 number_sections: true
 
-rmd_files:
-  - index.Rmd
-  - 01-Modeling.Rmd
-  - 02-LLMs.Rmd
-  - 03-Pop_dyn.Rmd
-  - 04-Prob.Rmd
-  - 90-Appendix.Rmd
-  - 101wb-Modeling.Rmd
-  - 102wb-LLMs.Rmd
-  - 103wb-Pop_dyn.Rmd
-  - 999wb-r.Rmd
+
 

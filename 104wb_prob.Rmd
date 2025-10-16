@@ -1,0 +1,122 @@
+# Prob Workbook
+
+## Learning Goals
+By the end of this in-class session, you will be able to:
+
+1. Interpret and compare **PDFs** and **CDFs** for environmental variables.  
+2. Choose reasonable probability models (Normal, Lognormal, Gamma, Exponential, Weibull, Poisson, Gumbel) for a given process.  
+3. Estimate simple distribution parameters from data (quick **method-of-moments**).  
+
+## Run the Tree Height Demo App
+
+::: promptbox
+**Background**
+The data in this file is from a large sampling of an established forest. 500 tree heights were surveyed.
+
+In the overview tab you are given some information on the data.
+In your own words describe what the following mean to you
+
+- mean
+- standard deviation (variance)
+- mode (can you determine where it is?)
+- median (can you determine where it is?)
+
+**Class Discussion**
+
+- How is the kind of data used?
+- What kinds of insights can we extract?
+- How could we use this in modeling?
+
+:::
+
+
+::: promptbox
+**PDFs** *the math kind*
+
+Observe the bar graph of probabilities. 
+
+- How does it compare to the histogram on the previous tab?
+- What's the same / different?
+- There are two fitted curves (distributions) to the data, one is *normal* the other *empirical* - what do you think the difference is?
+- Which of the fitted distributions do you think is right?
+
+
+Set the lower and upper bound to 24
+
+- What probability do you get for the empirical and theoretical distributions?
+
+Set the lower bound to 17 and upper bound to 23
+
+- What probability do you get for the empirical and theoretical distributions?
+
+Can you explain how the probability is calculated?
+
+::::
+
+
+::: promptbox
+**CDFs**
+
+Cumulative distributions functions are the accumulation of the pdf curve. Or in mathematical language, the integration of the PDF.
+
+Lets see what you remember from calc
+
+- The point of inflection on the CDF correspons to what on the pdf (its derivative)
+
+- Examine the slopes of the CDF, describe what is happening from 10 to 30 (in everyday words)
+
+
+Now repeat what we did earlier, set the lower and upper bound to 24
+
+- What probability do you get for the empirical and theoretical distributions?
+
+Set the lower bound to 17 and upper bound to 23
+
+- What probability do you get for the empirical and theoretical distributions?
+
+Can you explain how the probability is calculated?
+
+
+:::
+
+::: promptbox
+**Sampling from a CDF**
+
+**How Sampling from a CDF Works**
+
+The **Cumulative Distribution Function (CDF)** tells us, for any value \(x\), the probability that a random variable is *less than or equal* to that value —  
+\[
+F(x) = P(X \le x)
+\]
+
+If we reverse this process, we can **generate new samples** that follow the same distribution as the data.  
+Here’s the logic:
+
+1. Draw a random number \(u\) between 0 and 1 — this represents a cumulative probability.  
+2. Find the value \(x\) where \(F(x) = u\).  
+3. That value \(x\) becomes one of your simulated samples.  
+
+In other words, each \(u\) tells you *how far up the CDF to go*, and you then read off the corresponding \(x\)-value on the horizontal axis.  
+Doing this repeatedly produces data that follow the same shape and probabilities as your original dataset.
+
+---
+
+**Try It Yourself**
+
+- Click **“Draw 1 sample”** to see how a random \(u\) maps to a tree height \(x\) on the CDF.  
+- Draw **10 samples at a time** to see how your histogram begins to approximate the original data.  
+- Watch the **Running KDE (samples)** curve below — does it begin to match the **Empirical KDE (full data)** or the **Normal(μ,σ) fit**?  
+- Reflect: *Why does the sample-based distribution become smoother and more similar as the number of samples increases?*  
+  *(Hint: the Law of Large Numbers.)*
+
+:::
+
+::: promptbox
+**Class discussion**
+
+What does this kind of statistics / probability allows us to do?
+
+:::
+
+
+
