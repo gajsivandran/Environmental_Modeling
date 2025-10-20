@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-16" />
+<meta name="date" content="2025-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -440,6 +440,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="E.1" data-path="prob-workbook.html"><a href="prob-workbook.html#learning-goals-3"><i class="fa fa-check"></i><b>E.1</b> Learning Goals</a></li>
 <li class="chapter" data-level="E.2" data-path="prob-workbook.html"><a href="prob-workbook.html#run-the-tree-height-demo-app"><i class="fa fa-check"></i><b>E.2</b> Run the Tree Height Demo App</a></li>
+<li class="chapter" data-level="E.3" data-path="prob-workbook.html"><a href="prob-workbook.html#lab-3-exploring-noaa-climate-data"><i class="fa fa-check"></i><b>E.3</b> Lab 3: Exploring NOAA Climate Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-1-download-data"><i class="fa fa-check"></i>Step 1: Download Data</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-2-read-the-documentation"><i class="fa fa-check"></i>Step 2: Read the Documentation</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-3-raw-data-exploration---daily"><i class="fa fa-check"></i>Step 3: Raw data exploration - Daily</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-4-raw-data-exploration---annual"><i class="fa fa-check"></i>Step 4: Raw data exploration - Annual</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-5-raw-data-exploration---monthly"><i class="fa fa-check"></i>Step 5: Raw data exploration - Monthly</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-6-conceptual-modelling-of-rainfall"><i class="fa fa-check"></i>Step 6: Conceptual Modelling of Rainfall</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="F" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>F</b> Tutorial: Getting Started with RStudio</a>
 <ul>
@@ -585,6 +594,86 @@ Doing this repeatedly produces data that follow the same shape and probabilities
 <div class="promptbox">
 <p><strong>Class discussion</strong></p>
 <p>What does this kind of statistics / probability allows us to do?</p>
+</div>
+</div>
+<div id="lab-3-exploring-noaa-climate-data" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">E.3</span> Lab 3: Exploring NOAA Climate Data<a href="prob-workbook.html#lab-3-exploring-noaa-climate-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this activity, you will work with real-world climate data from the <strong>National Centers for Environmental Information (NCEI)</strong>.</p>
+<div id="step-1-download-data" class="section level3 unnumbered hasAnchor promptbox">
+<h3>Step 1: Download Data<a href="prob-workbook.html#step-1-download-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Go to the <a href="https://www.ncdc.noaa.gov/cdo-web/">NOAA Climate Data Online (CDO)</a>.</li>
+<li>Under <strong>“Data Tools”</strong>, select <strong>“Search Tool”</strong>. Run a search with the search term <strong>Seattle</strong>.</li>
+<li>Select a dataset such as <strong>Daily Summaries (GHCND)</strong>.</li>
+<li>Choose a <strong>date range</strong> (for example, the past 10 years) and download the data as a <strong>.csv file</strong> (I’ve donwloaded a file for you on CANVAS)</li>
+<li>Once you get to the map view, find a station and click the <strong>View Full Details</strong> link.</li>
+</ol>
+<p><strong>Pay special attention to ‘data coverage’ - this lets you know how much missing data there is in the time period</strong></p>
+</div>
+<div id="step-2-read-the-documentation" class="section level3 unnumbered hasAnchor promptbox">
+<h3>Step 2: Read the Documentation<a href="prob-workbook.html#step-2-read-the-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before analyzing the data, read the <strong>GHCND (Global Historical Climatology Network – Daily)</strong> documentation:</p>
+<p><a href="https://www.ncei.noaa.gov/pub/data/ghcn/daily/readme.txt">GHCND Documentation (NOAA)</a></p>
+<p>This file describes:</p>
+<ul>
+<li>The meaning of each column</li>
+<li>Units</li>
+<li>Flags that indicate data quality or measurement conditions</li>
+</ul>
+<p><strong>What units are precipitation and temperature in?</strong></p>
+</div>
+<div id="step-3-raw-data-exploration---daily" class="section level3 unnumbered hasAnchor promptbox">
+<h3>Step 3: Raw data exploration - Daily<a href="prob-workbook.html#step-3-raw-data-exploration---daily" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Save the sea_tac.R file to your <strong>Models</strong> folder</p>
+<p>Be sure the place the dataset seatac_data.csv in a folder titled <strong>data</strong> (which should be inside your Models folder)</p>
+<p>In the <strong>Daily Time Series Tab</strong></p>
+<ul>
+<li>Any outliers? are they real? or are they errors?</li>
+<li>Do the values make sense?</li>
+<li>Observe any trends</li>
+<li>Zoom in on a period of 5 years, what do you notice about daily rainfall?</li>
+</ul>
+</div>
+<div id="step-4-raw-data-exploration---annual" class="section level3 unnumbered hasAnchor promptbox">
+<h3>Step 4: Raw data exploration - Annual<a href="prob-workbook.html#step-4-raw-data-exploration---annual" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hit the <strong>Update Annual</strong> button</p>
+<ul>
+<li>What do you notice about the means?</li>
+<li>Would you say rainfall is stationary?</li>
+</ul>
+<p>Now hit the <strong>Update Distribution</strong> button</p>
+<ul>
+<li>Toggle on the <strong>Exclude zero-rain days</strong> (hit update)
+<ul>
+<li>Why do you this we exclude the zeros?</li>
+<li>What kind of distribution is this?</li>
+<li>Comment on the tail of this distribution</li>
+</ul></li>
+<li>Toggle on the <strong>Overlay Period B</strong> button
+<ul>
+<li>Make period B run from 2015 to present</li>
+<li>Discuss what you observe</li>
+</ul></li>
+</ul>
+</div>
+<div id="step-5-raw-data-exploration---monthly" class="section level3 unnumbered hasAnchor promptbox">
+<h3>Step 5: Raw data exploration - Monthly<a href="prob-workbook.html#step-5-raw-data-exploration---monthly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Repeat what you did for the Annual but not in the <strong>Monthly Tab</strong></p>
+<ul>
+<li>Which months are interesting in terms of how they are changing</li>
+<li>Describe their change in terms of the distribution shifts</li>
+</ul>
+</div>
+<div id="step-6-conceptual-modelling-of-rainfall" class="section level3 unnumbered hasAnchor promptbox">
+<h3>Step 6: Conceptual Modelling of Rainfall<a href="prob-workbook.html#step-6-conceptual-modelling-of-rainfall" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Go back to the Daily Time Series Tab
+Set the dates from 2024-10-15 to 2025-10-15</p>
+<ul>
+<li>In a small group, think about how you would create an synthetic timeseries of rainfall.</li>
+<li>How could you use the dataset we downloaded?</li>
+<li>What statistics could we utilize?</li>
+<li>Any ideas on how we could use probabilities to build a timeseries?</li>
+</ul>
 </div>
 
 </div>

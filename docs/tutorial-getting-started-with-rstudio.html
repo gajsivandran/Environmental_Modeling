@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-16" />
+<meta name="date" content="2025-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -440,6 +440,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="E.1" data-path="prob-workbook.html"><a href="prob-workbook.html#learning-goals-3"><i class="fa fa-check"></i><b>E.1</b> Learning Goals</a></li>
 <li class="chapter" data-level="E.2" data-path="prob-workbook.html"><a href="prob-workbook.html#run-the-tree-height-demo-app"><i class="fa fa-check"></i><b>E.2</b> Run the Tree Height Demo App</a></li>
+<li class="chapter" data-level="E.3" data-path="prob-workbook.html"><a href="prob-workbook.html#lab-3-exploring-noaa-climate-data"><i class="fa fa-check"></i><b>E.3</b> Lab 3: Exploring NOAA Climate Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-1-download-data"><i class="fa fa-check"></i>Step 1: Download Data</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-2-read-the-documentation"><i class="fa fa-check"></i>Step 2: Read the Documentation</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-3-raw-data-exploration---daily"><i class="fa fa-check"></i>Step 3: Raw data exploration - Daily</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-4-raw-data-exploration---annual"><i class="fa fa-check"></i>Step 4: Raw data exploration - Annual</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-5-raw-data-exploration---monthly"><i class="fa fa-check"></i>Step 5: Raw data exploration - Monthly</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-6-conceptual-modelling-of-rainfall"><i class="fa fa-check"></i>Step 6: Conceptual Modelling of Rainfall</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="F" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>F</b> Tutorial: Getting Started with RStudio</a>
 <ul>
@@ -639,7 +648,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb33-7"><a href="tutorial-getting-started-with-rstudio.html#cb33-7" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Simple Plot&quot;</span>, </span>
 <span id="cb33-8"><a href="tutorial-getting-started-with-rstudio.html#cb33-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, </span>
 <span id="cb33-9"><a href="tutorial-getting-started-with-rstudio.html#cb33-9" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;y^2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>This will generate a basic scatter plot of numbers 1–10 against their squares.</p>
 </div>
 <div id="example-2-using-a-built-in-dataset-cars" class="section level3 hasAnchor" number="11.7.2">
@@ -667,7 +676,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb36-5"><a href="tutorial-getting-started-with-rstudio.html#cb36-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span>,</span>
 <span id="cb36-6"><a href="tutorial-getting-started-with-rstudio.html#cb36-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
 <span id="cb36-7"><a href="tutorial-getting-started-with-rstudio.html#cb36-7" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <ul>
 <li>col = “blue” makes the points blue.</li>
 <li>pch = 19 makes the points solid circles.</li>
@@ -689,7 +698,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb37-11"><a href="tutorial-getting-started-with-rstudio.html#cb37-11" tabindex="-1"></a></span>
 <span id="cb37-12"><a href="tutorial-getting-started-with-rstudio.html#cb37-12" tabindex="-1"></a><span class="co"># Add the fitted line</span></span>
 <span id="cb37-13"><a href="tutorial-getting-started-with-rstudio.html#cb37-13" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <div id="ggplot2-version" class="section level4 hasAnchor" number="11.7.3.1">
 <h4><span class="header-section-number">F.7.3.1</span> ggplot2 Version<a href="tutorial-getting-started-with-rstudio.html#ggplot2-version" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>ggplot2</code> package provides more control and produces publication-quality graphics.</p>
@@ -706,7 +715,7 @@ Most packages are shared on <a href="https://cran.r-project.org/">CRAN</a> (the 
 <span id="cb38-11"><a href="tutorial-getting-started-with-rstudio.html#cb38-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span></span>
 <span id="cb38-12"><a href="tutorial-getting-started-with-rstudio.html#cb38-12" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>✅ Using base R, you get quick and simple plots.</p>
 <p>✅ Using ggplot2, you get more flexible, customizable, and professional-looking plots.</p>
 </div>

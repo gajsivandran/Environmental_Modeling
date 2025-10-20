@@ -119,4 +119,101 @@ What does this kind of statistics / probability allows us to do?
 :::
 
 
+## Lab 3: Exploring NOAA Climate Data
+
+In this activity, you will work with real-world climate data from the **National Centers for Environmental Information (NCEI)**.
+
+::: promptbox
+### Step 1: Download Data {-}
+1. Go to the [NOAA Climate Data Online (CDO)](https://www.ncdc.noaa.gov/cdo-web/).
+2. Under **"Data Tools"**, select **"Search Tool"**. Run a search with the search term **Seattle**.
+3. Select a dataset such as **Daily Summaries (GHCND)**.
+4. Choose a **date range** (for example, the past 10 years) and download the data as a **.csv file** (I've donwloaded a file for you on CANVAS)
+5. Once you get to the map view, find a station and click the **View Full Details** link.
+
+**Pay special attention to 'data coverage' - this lets you know how much missing data there is in the time period**
+
+:::
+
+::: promptbox
+### Step 2: Read the Documentation {-}
+Before analyzing the data, read the **GHCND (Global Historical Climatology Network – Daily)** documentation:
+
+[GHCND Documentation (NOAA)](https://www.ncei.noaa.gov/pub/data/ghcn/daily/readme.txt)
+
+This file describes:
+
+- The meaning of each column 
+- Units
+- Flags that indicate data quality or measurement conditions
+
+**What units are precipitation and temperature in?**
+
+:::
+
+::: promptbox
+### Step 3: Raw data exploration - Daily{-}
+
+Save the sea_tac.R file to your **Models** folder
+
+Be sure the place the dataset seatac_data.csv in a folder titled **data** (which should be inside your Models folder) 
+
+In the **Daily Time Series Tab**
+
+- Any outliers? are they real? or are they errors?
+- Do the values make sense?
+- Observe any trends
+- Zoom in on a period of 5 years, what do you notice about daily rainfall?
+
+:::
+
+::: promptbox
+### Step 4: Raw data exploration - Annual {-}
+
+Hit the **Update Annual** button
+
+- What do you notice about the means?
+- Would you say rainfall is stationary?
+
+Now hit the **Update Distribution** button
+
+- Toggle on the **Exclude zero-rain days** (hit update)
+  - Why do you this we exclude the zeros?
+  - What kind of distribution is this?
+  - Comment on the tail of this distribution
+  
+- Toggle on the **Overlay Period B** button
+  - Make period B run from 2015 to present
+  - Discuss what you observe
+
+:::
+
+
+::: promptbox
+### Step 5: Raw data exploration - Monthly {-}
+
+Repeat what you did for the Annual but not in the **Monthly Tab**
+
+- Which months are interesting in terms of how they are changing
+- Describe their change in terms of the distribution shifts
+
+:::
+
+::: promptbox
+### Step 6: Conceptual Modelling of Rainfall {-}
+
+Go back to the Daily Time Series Tab
+Set the dates from 2024-10-15 to 2025-10-15
+
+- In a small group, think about how you would create an synthetic timeseries of rainfall.
+- How could you use the dataset we downloaded?
+- What statistics could we utilize?
+- Any ideas on how we could use probabilities to build a timeseries?
+
+:::
+
+
+
+
+
 

@@ -192,6 +192,7 @@ in-a-sentence
 prob-workbook
 learning-goals-3
 run-the-tree-height-demo-app
+lab-3-exploring-noaa-climate-data
 tutorial-getting-started-with-rstudio
 what-is-rstudio
 the-rstudio-interface
