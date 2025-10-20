@@ -192,7 +192,7 @@ Now hit the **Update Distribution** button
 ::: promptbox
 ### Step 5: Raw data exploration - Monthly {-}
 
-Repeat what you did for the Annual but not in the **Monthly Tab**
+Repeat what you did for the Annual but now in the **Monthly Tab**
 
 - Which months are interesting in terms of how they are changing
 - Describe their change in terms of the distribution shifts
