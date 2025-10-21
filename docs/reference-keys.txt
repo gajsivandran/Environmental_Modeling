@@ -208,3 +208,4 @@ example-2-using-a-built-in-dataset-cars
 example-3-adding-a-trend-line
 ggplot2-version
 data-visualization-tutorial
+prompting-and-building-a-complex-simulation-model---roulette

@@ -198,4 +198,13 @@ Work through this tutorial at your own pace:
 [Data visualization – R for Data Science](https://r4ds.hadley.nz/data-visualize.html)
 
 
+## Prompting and Building a Complex Simulation Model - Roulette
+
+Today's task will be to build a model of a Roulette table.
+
+- Start simple and just get a the ability to spin and get a number within the range
+- Incorporate the ability to bet on black / red
+- Incorporate the ability to simulate 1000s of spins to see what the probabilistic outcome is
+- Examine the impact of "0" and "00"
+- Build in some playing rules "always bet on black" - or "if red or black comes up 3 times in a row, bet on the other"
 

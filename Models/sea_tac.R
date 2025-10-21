@@ -31,7 +31,7 @@ raw <- read_csv(
 data <- raw |>
   select(DATE, PRCP) |>
   mutate(
-     PRCP = suppressWarnings(as.numeric(PRCP))
+     PRCP = suppressWarnings(as.numeric(PRCP))/10
   ) |>
   filter(!is.na(DATE)) |>
   arrange(DATE)
