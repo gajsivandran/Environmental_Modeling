@@ -13,31 +13,47 @@ library(zoo)       # rollmean
 library(plotly)    # interactive zoom for distributions
 
 # ---------------------------
-# Data load
+# Data load (robust against T/M/odd tokens)
 # ---------------------------
 DATA_PATH <- "data/seatac_data.csv"
 stopifnot(file.exists(DATA_PATH))
 
-# Parse DATE as m/d/YYYY, PRCP numeric
-raw <- read_csv(
+raw <- readr::read_csv(
   DATA_PATH,
-  col_types = cols(
-    DATE = col_date(format = "%m/%d/%Y"),
-    PRCP = col_double(),
-    .default = col_guess()
-  )
+  col_types = readr::cols_only(
+    DATE = readr::col_date(format = "%m/%d/%Y"),
+    PRCP = readr::col_character()
+  ),
+  na = c("", "NA", "N/A")
 )
 
+# Inspect any parsing issues from DATE (PRCP is character, so won't warn)
+if (nrow(problems(raw)) > 0) {
+  message("Parser notes:\n"); print(head(problems(raw), 10))
+}
+
+clean_prcp <- function(x_chr) {
+  x_chr <- trimws(x_chr)
+  # common tokens in daily precip files
+  x_chr[x_chr %in% c("T", "t", "TRACE", "Trace")] <- "0"   # or use a tiny value if you prefer
+  x_chr[x_chr %in% c("M", "m", "-", "—", ".")] <- NA_character_
+  # remove grouping commas just in case
+  x_chr <- gsub(",", "", x_chr, fixed = TRUE)
+  suppressWarnings(as.numeric(x_chr))
+}
+
 data <- raw |>
-  select(DATE, PRCP) |>
-  mutate(
-     PRCP = suppressWarnings(as.numeric(PRCP))/10
+  transmute(
+    DATE,
+    # If your source PRCP is in tenths of mm (common for GHCND extracts), divide by 10
+    PRCP = clean_prcp(PRCP) / 10
   ) |>
   filter(!is.na(DATE)) |>
   arrange(DATE)
 
 date_min <- min(data$DATE, na.rm = TRUE)
 date_max <- max(data$DATE, na.rm = TRUE)
+
 
 # Helpers
 filter_zero <- function(df, exclude_zero) {

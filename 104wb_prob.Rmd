@@ -214,6 +214,253 @@ Set the dates from 2024-10-15 to 2025-10-15
 
 
 
+## Lab 4: 🌧️ Guided Activity: Exploring Rainfall Variability and Simulation
 
+**Goal:**  
+
+- Use the *Sea-Tac Rainfall Explorer* app to explore precipitation patterns, fit statistical distributions, and simulate realistic rainfall sequences.  
+- Over several short sessions, you will move from describing data → fitting models → testing simulations → reflecting on model strengths and weaknesses.
+
+---
+
+### Exploring the Data
+
+#### 1. Start the App {-}
+Open the Shiny app **Sea-Tac Rainfall Explorer**.  
+You’ll begin in the **Annual Data → Daily precipitation** tab.
+
+#### 2. Observe the Daily Record {-}
+- Zoom in and out on the time series to examine wet and dry periods.
+- Note any long dry spells, clustering of wet days, or long-term trends.
+
+::: promptbox
+**Prompt 1:** 
+
+- What is the longest consecutive dry period you can find?  
+- How does it compare to the longest wet period?
+
+**Prompt 2:**  
+
+- Identify one or more years that appear unusually dry or wet.  
+- What real-world factors (ENSO, climate trends, etc.) might explain these anomalies?
+
+:::
+---
+
+#### 3. Examine Annual Totals{-}
+Navigate to **Annual Data → Annual totals**.
+
+- The blue bars show annual precipitation; the black line shows a 7-year moving average.
+
+::: promptbox
+
+**Prompt 3:**  
+
+- Describe at least two multi-year “wet” and “dry” spells.  
+- Estimate their duration in years.
+
+**Prompt 4:**  
+
+- How can you use the moving average to find these 'spells'?  
+
+:::
+
+---
+
+### Fitting Statistical Distributions {-}
+
+#### 1. Explore Annual Distribution Fits{-}
+Open **Annual Data → Distribution of annual totals.**
+
+1. Select all the distribution fits.
+2. Observe how each distribution curve matches (or misses) the histogram.
+
+::: promptbox
+
+**Prompt 5:** 
+
+- Which distribution best captures the shape of the annual rainfall data?  
+- What feature (e.g., skewness, tail behavior) informs your choice?
+
+**Prompt 6:**  
+
+- Inspect the **Fit parameters** panel.  
+- How do the estimated mean and standard deviation compare across models?
+
+:::
+
+---
+
+#### 2. Interpret the CDF {-}
+
+- Look at the **CDF** plot (right side).  
+- Notice how the **10% and 90%** lines highlight extreme dry or wet years.
+
+::: promptbox
+
+**Prompt 7:**  
+
+- For the each fit, estimate the rainfall amount that marks the 10th and 90th percentile.  
+- What do these regions represent?
+
+:::
+
+---
+
+#### 3. Move to Daily Distributions{-}
+Explore the **Daily Data** tabs:
+
+- **Volume:** rainfall on wet days  
+- **Duration:** consecutive wet days  
+- **Interstorm:** consecutive dry days
+
+::: promptbox
+
+**Prompt 8:** 
+
+- Compare the typical shapes of these three distributions.  
+- Which one is most skewed?  
+- What physical processes might produce that shape?
+- Put your intuition to work - do these make sense?
+
+:::
+
+---
+
+### Simulation and Model Evaluation{-}
+
+#### 1. Simulate a Single Year{-}
+Go to **Simulation → Procedure**.
+
+Click **Sample Step** several times and observe how the model builds a time series:
+
+- First sampling **dry days (interstorm)**,
+- Then **wet-spell duration**,
+- Then **rain volumes**.
+
+::: promptbox
+
+**Prompt 9:** 
+
+- How realistic does the simulated pattern look compared to the actual daily record?  
+- Are wet and dry spells too frequent, too long, or about right?
+
+**Prompt 10:**  
+
+- After clicking **Complete 1-Year Simulation**, check the summary panel.  
+- How does the total simulated rainfall compare to the historical mean?
+- Reset and run again - do things stay the same? are the different?
+
+:::
+
+---
+
+#### 2. Compare Distributions{-}
+Scroll to **Sampled vs. Historical Distributions.**  
+Look at how the simulated (red line) distributions compare with historical histograms.
+
+::: promptbox
+
+**Prompt 11:**
+
+- Which distribution (volume, duration, interstorm) is reproduced most accurately?  
+- Which differs most from the historical shape?
+- Reset and run again, do things change?
+
+:::
+
+---
+
+#### 3. Simulate Multiple Years{-}
+Move to **Simulation → Bulk sim.**
+
+- Choose a 3-year window of historical data.  
+- Click **Simulate 3 years**.
+
+Compare the **Historical** and **Simulated** plots.
+
+::: promptbox
+
+**Prompt 12:**
+
+- Does the simulation reproduce realistic sequences of wet and dry spells at this multi-year scale?  
+- What differences stand out?
+
+:::
+
+---
+
+#### 4. Add Seasonality{-}
+Now open **Simulation → Bulk Month sim.**
+
+This simulation varies the distribution parameters by month, capturing **seasonal changes** in rainfall characteristics.
+
+::: promptbox
+
+**Prompt 13:**
+
+- Compare the *Bulk sim* and *Bulk Month sim* results.  
+- What visual or statistical differences do you notice?
+
+**Prompt 14:**
+
+- Which months contribute most to the total rainfall in the simulation?  
+- Is that consistent with the historical record?
+
+:::
+
+---
+
+#### 5. Think Critically — Model Limitations and Extensions{-}
+
+::: promptbox
+
+**Prompt 15:**
+
+- What are the key assumptions behind this rainfall generator?
+
+**Prompt 16:**
+
+- List two aspects of real rainfall the model ignores.  
+- How might you modify the model to include them?
+
+**Prompt 17:**
+
+- If you were to apply this model to a different station (e.g., Phoenix or Miami),  
+what challenges would you expect?
+
+:::
+
+---
+
+### Optional Extensions (for advanced exploration){-}
+
+1. **Parameter Sensitivity:**  
+   Adjust the Gamma parameters manually (in R) to see how changing shape/rate alters rainfall variability.
+
+2. **Spatial Extension:**  
+   Imagine repeating this analysis for multiple stations across the Pacific Northwest.  
+   How might you assess *regional coherence* in rainfall trends?
+
+3. **Climate Change Scenario:**  
+   Suppose the mean annual precipitation increases by 10%.  
+   How would that shift the fitted distributions and simulated outcomes?
+
+---
+
+### Wrap-Up Reflection{-}
+
+Write a short (1-page) reflection answering:
+
+- Which part of the rainfall record is most predictable, and which is most stochastic?  
+- What does this modeling exercise reveal about the relationship between *data* and *simulation*?  
+- How could similar probabilistic modeling approaches help in environmental forecasting (e.g., streamflow, drought risk)?
+
+---
+
+**Submission:**  
+Upload your responses (prompts + reflection) to Canvas.
+
+---
 
 
