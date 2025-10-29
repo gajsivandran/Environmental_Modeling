@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-23" />
+<meta name="date" content="2025-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -456,6 +456,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#simulation-and-model-evaluation"><i class="fa fa-check"></i>Simulation and Model Evaluation</a></li>
 <li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#optional-extensions-for-advanced-exploration"><i class="fa fa-check"></i>Optional Extensions (for advanced exploration)</a></li>
 <li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#wrap-up-reflection"><i class="fa fa-check"></i>Wrap-Up Reflection</a></li>
+</ul></li>
+<li class="chapter" data-level="E.5" data-path="prob-workbook.html"><a href="prob-workbook.html#lab-5---coupling-models"><i class="fa fa-check"></i><b>E.5</b> Lab 5 - Coupling Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#background-logistic-growth-and-rainfall-dependence"><i class="fa fa-check"></i>Background: Logistic Growth and Rainfall Dependence</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#conceptual-exploration-before-using-the-app"><i class="fa fa-check"></i>Conceptual Exploration: Before Using the App</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-1-exploring-the-logistic-model"><i class="fa fa-check"></i>Part 1 — Exploring the Logistic Model</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-2-understanding-rainfall-distributions"><i class="fa fa-check"></i>Part 2 — Understanding Rainfall Distributions</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-3-linking-rainfall-to-growth"><i class="fa fa-check"></i>Part 3 — Linking Rainfall to Growth</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-4-exploring-climate-scenarios"><i class="fa fa-check"></i>Part 4 — Exploring Climate Scenarios</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-5-ensemble-simulations"><i class="fa fa-check"></i>Part 5 — Ensemble Simulations</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-6-reflection"><i class="fa fa-check"></i>Part 6 — Reflection</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="F" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>F</b> Tutorial: Getting Started with RStudio</a>
@@ -942,6 +954,229 @@ How would that shift the fitted distributions and simulated outcomes?</p></li>
 <p><strong>Submission:</strong><br />
 Upload your responses (prompts + reflection) to Canvas.</p>
 <hr />
+</div>
+</div>
+<div id="lab-5---coupling-models" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">E.5</span> Lab 5 - Coupling Models<a href="prob-workbook.html#lab-5---coupling-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, you’ll explore how forest biomass responds to varying rainfall conditions using a <strong>logistic growth model</strong> with rainfall-dependent growth rate <span class="math inline">\(r_t\)</span>.</p>
+<p>You’ll use an interactive Shiny app to:</p>
+<ol style="list-style-type: decimal">
+<li>Visualize the <strong>logistic growth model</strong> and its differential equation.<br />
+</li>
+<li>Examine <strong>rainfall distributions</strong> and how they are modeled statistically.<br />
+</li>
+<li>Simulate forest growth under <strong>different rainfall scenarios</strong> — historical, synthetic, and climate-altered.<br />
+</li>
+<li>Explore how <strong>drought intensity and mortality</strong> influence long-term forest dynamics.</li>
+</ol>
+<hr />
+<div id="background-logistic-growth-and-rainfall-dependence" class="section level3 unnumbered hasAnchor">
+<h3>Background: Logistic Growth and Rainfall Dependence<a href="prob-workbook.html#background-logistic-growth-and-rainfall-dependence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The logistic model describes how biomass or population grows over time under resource limitations:
+<span class="math display">\[
+B(t) = \frac{K}{1 + \left(\frac{K - B_0}{B_0}\right)e^{-r_t t}}
+\]</span></p>
+<p>and it’s derivative:</p>
+<p><span class="math display">\[
+\frac{dB}{dt} = r_t B \left(1 - \frac{B}{K}\right)
+\]</span></p>
+<p>Here:</p>
+<ul>
+<li><span class="math inline">\(B(t)\)</span>: biomass (or population size) at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(r_t\)</span>: intrinsic growth rate, possibly varying with rainfall</li>
+<li><span class="math inline">\(K\)</span>: carrying capacity of the forest</li>
+<li><span class="math inline">\(B_0\)</span>: initial biomass</li>
+</ul>
+<p><strong>In this lab we are going to relax the assumption that <span class="math inline">\(r_t\)</span> is constant and allow it to change each year depending on rainfall <span class="math inline">\(R_t\)</span>.</strong></p>
+<hr />
+</div>
+<div id="conceptual-exploration-before-using-the-app" class="section level3 unnumbered hasAnchor">
+<h3>Conceptual Exploration: Before Using the App<a href="prob-workbook.html#conceptual-exploration-before-using-the-app" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before interacting with the model, take time to reason through the following questions.</p>
+<div id="task-1" class="section level4 unnumbered hasAnchor promptbox">
+<h4><strong>Task 1</strong><a href="prob-workbook.html#task-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Situation: You planted a forest on the weekend, you want to model its growth over time.</p>
+<p>Discuss in pairs or small groups, then record your individual thoughts.</p>
+<p><strong>1. How might rainfall influence forest growth?</strong></p>
+<ul>
+<li><p>Which aspects of rainfall are most important? (e.g., total annual amount, intensity, timing, variability)</p></li>
+<li><p>Is the relationship likely to be linear, or are there thresholds or saturation points?</p></li>
+</ul>
+<p><strong>2. What timescales of rainfall change matter most?</strong></p>
+<ul>
+<li><p>Daily variation? Seasonal cycles? Multi-year droughts?</p></li>
+<li><p>How quickly could a forest respond to a change in rainfall?</p></li>
+</ul>
+<p><strong>3. How could you simplify the problem to start?</strong></p>
+<ul>
+<li><p>What assumptions might you make to build a minimal model?</p></li>
+<li><p>How could rainfall data be summarized or reduced to one or two key parameters?</p></li>
+</ul>
+<p>Write down one simple conceptual model of your own that links rainfall to forest biomass growth. Use words, a short equation, or a flow diagram.</p>
+<p>Be prepared to compare your model with the one implemented in the Shiny app.</p>
+</div>
+<hr />
+</div>
+<div id="part-1-exploring-the-logistic-model" class="section level3 unnumbered hasAnchor">
+<h3>Part 1 — Exploring the Logistic Model<a href="prob-workbook.html#part-1-exploring-the-logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Open the <strong>“Logistic Growth”</strong> tab in the Shiny app.<br />
+</li>
+<li>Use the sliders to vary:
+<ul>
+<li>Growth rate <span class="math inline">\(r\)</span></li>
+<li>Carrying capacity <span class="math inline">\(K\)</span></li>
+<li>Initial biomass <span class="math inline">\(B_0\)</span></li>
+</ul></li>
+<li>Observe how each parameter affects the curve of <span class="math inline">\(B(t)\)</span>.</li>
+</ol>
+<p>This is just to refamiliarize yourself with how the paramters impact your model.</p>
+<hr />
+</div>
+<div id="part-2-understanding-rainfall-distributions" class="section level3 unnumbered hasAnchor">
+<h3>Part 2 — Understanding Rainfall Distributions<a href="prob-workbook.html#part-2-understanding-rainfall-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Navigate to the <strong>“Distributions”</strong> tab.<br />
+Examine the fitted Gamma distributions for:</p>
+<ul>
+<li>Wet-day rainfall volume<br />
+</li>
+<li>Wet-spell duration<br />
+</li>
+<li>Interstorm duration</li>
+</ul>
+<p>Note how these variables differ in their means and spread.</p>
+<div id="task-2" class="section level4 unnumbered hasAnchor promptbox">
+<h4><strong>Task 2</strong><a href="prob-workbook.html#task-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Why is the Gamma distribution more appropriate than a Normal distribution for rainfall-related variables?</p></li>
+<li><p>What might a longer “right tail” in the interstorm duration distribution imply about drought frequency?</p></li>
+<li><p>Do you think these annual distributions help answer the questions you are asking abouut the growth of your forest?
+<br><br><br><br><br></p></li>
+</ol>
+</div>
+<hr />
+</div>
+<div id="part-3-linking-rainfall-to-growth" class="section level3 unnumbered hasAnchor">
+<h3>Part 3 — Linking Rainfall to Growth<a href="prob-workbook.html#part-3-linking-rainfall-to-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this lab, <span class="math inline">\(r_t\)</span> changes each year depending on rainfall <span class="math inline">\(R_t\)</span>, relative to a fixed <strong>historical</strong> mean <span class="math inline">\(\overline{R}\)</span>:</p>
+<p><span class="math display">\[
+r_t = r_0 \min\!\big(1 + \max(\tfrac{R_t}{\overline{R}}-1, 0), 1.2\big)
+- m \max\!\big(1 - \tfrac{R_t}{\overline{R}}, 0\big)
+\]</span></p>
+<p>where <span class="math inline">\(m\)</span> controls how strongly drought reduces the growth rate.</p>
+<div id="task-3" class="section level4 unnumbered hasAnchor promptbox">
+<h4><strong>Task 3</strong><a href="prob-workbook.html#task-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Explain how this equation works. How does it augment <span class="math inline">\(r_t\)</span>.</li>
+<li>Can you reason your way to why each component is included?</li>
+<li>Examine the limits of <span class="math inline">\(r_t\)</span>
+<br> <br><br><br><br></li>
+</ul>
+</div>
+<div id="step-a-no-rainfall-dependence" class="section level4 unnumbered hasAnchor">
+<h4>Step A: No Rainfall Dependence<a href="prob-workbook.html#step-a-no-rainfall-dependence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>View the <strong>“No Rainfall Dependence”</strong> panel.<br />
+This represents constant <span class="math inline">\(r = r_0\)</span>, independent of rainfall.</p>
+</div>
+<div id="step-b-historical-rainfall" class="section level4 unnumbered hasAnchor">
+<h4>Step B: Historical Rainfall<a href="prob-workbook.html#step-b-historical-rainfall" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Switch to the <strong>“Historical Rainfall”</strong> panel.<br />
+Here, <span class="math inline">\(r_t\)</span> changes annually with observed rainfall.</p>
+</div>
+<div id="task-4" class="section level4 unnumbered hasAnchor promptbox">
+<h4><strong>Task 4</strong><a href="prob-workbook.html#task-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Adjust the <strong>mortality parameter (m)</strong> and note how it affects long-term biomass.</p>
+<p>Comment on what you see - link it to your understanding of the equation used to model <span class="math inline">\(r_t\)</span>.</p>
+<p><br> <br><br><br><br></p>
+</div>
+<div id="step-c-synthetic-rainfall" class="section level4 unnumbered hasAnchor">
+<h4>Step C: Synthetic Rainfall<a href="prob-workbook.html#step-c-synthetic-rainfall" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Try the <strong>“Simulated Annual Rainfall”</strong> panel.<br />
+This version generates rainfall sequences from fitted Gamma distributions.</p>
+</div>
+<div id="task-5" class="section level4 unnumbered hasAnchor promptbox">
+<h4>Task 5<a href="prob-workbook.html#task-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>When mortality <span class="math inline">\(m\)</span> increases, how does the equilibrium biomass change? - How do wet years versus dry years appear in the growth trajectory?<br />
+</li>
+<li>Why might it be useful to compare results using a fixed historical mean <span class="math inline">\(\overline{R}\)</span>?</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="part-4-exploring-climate-scenarios" class="section level3 unnumbered hasAnchor">
+<h3>Part 4 — Exploring Climate Scenarios<a href="prob-workbook.html#part-4-exploring-climate-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the next two tabs to simulate rainfall under modified climate conditions.</p>
+<p><strong>Tab 4:</strong> Adjust the <strong>mean</strong> and <strong>variance</strong> of annual rainfall.<br />
+<strong>Tab 5:</strong> Simulate <strong>daily rainfall</strong> from the fitted Gamma distributions.</p>
+<div id="task-6" class="section level4 unnumbered hasAnchor promptbox">
+<h4>Task 6<a href="prob-workbook.html#task-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Compare biomass trajectories between these different rainfall regimes.</p>
+<ul>
+<li>What happens to average biomass when mean rainfall decreases by 10%?<br />
+</li>
+<li>How does increased rainfall variability (higher SD) affect stability?<br />
+</li>
+<li>Which approach—annual or daily rainfall modeling—produces more realistic dynamics?</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="part-5-ensemble-simulations" class="section level3 unnumbered hasAnchor">
+<h3>Part 5 — Ensemble Simulations<a href="prob-workbook.html#part-5-ensemble-simulations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <strong>Tab 6</strong> to run multiple stochastic simulations.</p>
+<ol style="list-style-type: decimal">
+<li><p>Click <strong>“Add 1 Simulation”</strong> or <strong>“Add 10 Simulations”</strong> to build an ensemble of runs. Each run samples new rainfall sequences.</p></li>
+<li><p>Use the <strong>Year X</strong> slider to explore the distribution of biomass at that year.</p>
+<ul>
+<li>The histogram shows biomass across simulations.<br />
+</li>
+<li>The dashed line shows a fitted normal distribution.</li>
+</ul></li>
+<li><p>Use <strong>“Reset Plot”</strong> to clear the ensemble and try new parameter settings.</p></li>
+</ol>
+<p>Start with this model setup up</p>
+<ul>
+<li>m=0</li>
+<li>all rainfall characteristics at 0% change</li>
+<li>run 50 sims</li>
+<li>move the slider to examine the distribution</li>
+</ul>
+<p>This represents the forest’s growth with <em>no dependency</em> on rainfall and <em>no changes</em> to rainfall charateristics</p>
+<div id="task-7" class="section level4 unnumbered hasAnchor promptbox">
+<h4>Task 7<a href="prob-workbook.html#task-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Set the parameters and tell me a modeling story</p>
+<ul>
+<li>Use the ‘base’ condition to compare your change scenario to</li>
+<li>What are the implications to the your forest?</li>
+</ul>
+<p><br><br><br><br><br></p>
+</div>
+<hr />
+</div>
+<div id="part-6-reflection" class="section level3 unnumbered hasAnchor">
+<h3>Part 6 — Reflection<a href="prob-workbook.html#part-6-reflection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="task-8" class="section level4 unnumbered hasAnchor promptbox">
+<h4>Task 8<a href="prob-workbook.html#task-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The reality of future change in the PNW is increased large storm events and longer interstorms - with little to no impact to annual rainfall.</p>
+<p>This model uses a <strong>historical</strong> annual mean <span class="math inline">\(\overline{R}\)</span> to drive the drought stress.</p>
+<ul>
+<li>Why won’t this show much change given the reality of PNWs future change?</li>
+<li>How could you adjust (don’t code it) this dependence into the model, what might you change?</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="learning-outcomes" class="section level3 unnumbered hasAnchor">
+<h3>Learning Outcomes<a href="prob-workbook.html#learning-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>By the end of this lab, you should be able to:</p>
+<ul>
+<li>Explain how the logistic growth model represents biomass dynamics.<br />
+</li>
+<li>Describe how rainfall variability affects intrinsic growth rate <span class="math inline">\(r_t\)</span>.</li>
+<li>Use simulation to evaluate resilience and collapse under drought stress.</li>
+<li>Connect conceptual modeling with data-driven exploration in a Shiny environment.</li>
+</ul>
 
 </div>
 </div>

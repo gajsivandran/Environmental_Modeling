@@ -464,3 +464,266 @@ Upload your responses (prompts + reflection) to Canvas.
 ---
 
 
+
+
+
+
+
+
+
+
+
+
+
+## Lab 5 - Coupling Models
+
+In this lab, you’ll explore how forest biomass responds to varying rainfall conditions using a **logistic growth model** with rainfall-dependent growth rate \( r_t \).
+
+You’ll use an interactive Shiny app to:
+
+1. Visualize the **logistic growth model** and its differential equation.  
+2. Examine **rainfall distributions** and how they are modeled statistically.  
+3. Simulate forest growth under **different rainfall scenarios** — historical, synthetic, and climate-altered.  
+4. Explore how **drought intensity and mortality** influence long-term forest dynamics.  
+
+---
+
+### Background: Logistic Growth and Rainfall Dependence {-}
+
+The logistic model describes how biomass or population grows over time under resource limitations:
+\[
+B(t) = \frac{K}{1 + \left(\frac{K - B_0}{B_0}\right)e^{-r_t t}}
+\]
+
+and it's derivative: 
+
+\[
+\frac{dB}{dt} = r_t B \left(1 - \frac{B}{K}\right)
+\]
+
+
+
+
+Here:
+
+- \( B(t) \): biomass (or population size) at time \(t\)
+- \( r_t \): intrinsic growth rate, possibly varying with rainfall
+- \( K \): carrying capacity of the forest
+- \( B_0 \): initial biomass
+
+**In this lab we are going to relax the assumption that \(r_t\) is constant and allow it to change each year depending on rainfall \(R_t\).**
+
+---
+
+### Conceptual Exploration: Before Using the App {-}
+
+Before interacting with the model, take time to reason through the following questions. 
+
+::: promptbox
+#### **Task 1**{-}
+
+Situation: You planted a forest on the weekend, you want to model its growth over time.
+
+Discuss in pairs or small groups, then record your individual thoughts.
+
+**1. How might rainfall influence forest growth?**
+
+- Which aspects of rainfall are most important? (e.g., total annual amount, intensity, timing, variability)
+
+- Is the relationship likely to be linear, or are there thresholds or saturation points?
+
+**2. What timescales of rainfall change matter most?**
+
+- Daily variation? Seasonal cycles? Multi-year droughts?
+
+- How quickly could a forest respond to a change in rainfall?
+
+**3. How could you simplify the problem to start?**
+
+- What assumptions might you make to build a minimal model?
+
+- How could rainfall data be summarized or reduced to one or two key parameters?
+
+
+Write down one simple conceptual model of your own that links rainfall to forest biomass growth.  Use words, a short equation, or a flow diagram.  
+
+Be prepared to compare your model with the one implemented in the Shiny app.
+
+:::
+
+---
+
+### Part 1 — Exploring the Logistic Model {-}
+
+1. Open the **“Logistic Growth”** tab in the Shiny app.  
+2. Use the sliders to vary:
+   - Growth rate \(r\)
+   - Carrying capacity \(K\)
+   - Initial biomass \(B_0\)
+3. Observe how each parameter affects the curve of \(B(t)\).
+
+This is just to refamiliarize yourself with how the paramters impact your model.
+
+---
+
+### Part 2 — Understanding Rainfall Distributions {-}
+
+Navigate to the **“Distributions”** tab.  
+   Examine the fitted Gamma distributions for:
+   
+   - Wet-day rainfall volume  
+   - Wet-spell duration  
+   - Interstorm duration
+   
+Note how these variables differ in their means and spread.
+
+::: promptbox
+#### **Task 2**{-}
+
+1. Why is the Gamma distribution more appropriate than a Normal distribution for rainfall-related variables?  
+
+2. What might a longer “right tail” in the interstorm duration distribution imply about drought frequency?
+
+3. Do you think these annual distributions help answer the questions you are asking abouut the growth of your forest?
+<br><br><br><br><br>
+
+:::
+
+---
+
+### Part 3 — Linking Rainfall to Growth {-}
+
+In this lab, \(r_t\) changes each year depending on rainfall \(R_t\), relative to a fixed **historical** mean \( \overline{R} \):
+
+\[
+r_t = r_0 \min\!\big(1 + \max(\tfrac{R_t}{\overline{R}}-1, 0), 1.2\big)
+- m \max\!\big(1 - \tfrac{R_t}{\overline{R}}, 0\big)
+\]
+
+where \(m\) controls how strongly drought reduces the growth rate.
+
+::: promptbox
+#### **Task 3** {-}
+
+- Explain how this equation works. How does it augment \(r_t\). 
+- Can you reason your way to why each component is included?
+- Examine the limits of \(r_t\)
+<br> <br><br><br><br>
+:::
+
+#### Step A: No Rainfall Dependence {-}
+View the **“No Rainfall Dependence”** panel.  
+This represents constant \(r = r_0\), independent of rainfall.
+
+#### Step B: Historical Rainfall {-}
+
+Switch to the **“Historical Rainfall”** panel.  
+Here, \(r_t\) changes annually with observed rainfall.
+
+::: promptbox
+#### **Task 4**{-}
+
+Adjust the **mortality parameter (m)** and note how it affects long-term biomass. 
+
+Comment on what you see - link it to your understanding of the equation used to model \(r_t\).
+
+<br> <br><br><br><br>
+:::
+
+
+#### Step C: Synthetic Rainfall {-}
+Try the **“Simulated Annual Rainfall”** panel.  
+This version generates rainfall sequences from fitted Gamma distributions.
+
+::: promptbox
+#### Task 5 {-}
+
+- When mortality \(m\) increases, how does the equilibrium biomass change? - How do wet years versus dry years appear in the growth trajectory?  
+- Why might it be useful to compare results using a fixed historical mean \( \overline{R} \)?
+
+:::
+
+---
+
+### Part 4 — Exploring Climate Scenarios {-}
+
+Use the next two tabs to simulate rainfall under modified climate conditions.
+
+**Tab 4:** Adjust the **mean** and **variance** of annual rainfall.  
+**Tab 5:** Simulate **daily rainfall** from the fitted Gamma distributions.
+
+::: promptbox
+#### Task 6 {-}
+Compare biomass trajectories between these different rainfall regimes.
+
+
+- What happens to average biomass when mean rainfall decreases by 10%?  
+- How does increased rainfall variability (higher SD) affect stability?  
+- Which approach—annual or daily rainfall modeling—produces more realistic dynamics?
+
+:::
+
+---
+
+### Part 5 — Ensemble Simulations {-}
+
+Use **Tab 6** to run multiple stochastic simulations.
+
+1. Click **“Add 1 Simulation”** or **“Add 10 Simulations”** to build an ensemble of runs. Each run samples new rainfall sequences.  
+
+2. Use the **Year X** slider to explore the distribution of biomass at that year.  
+
+   - The histogram shows biomass across simulations.  
+   - The dashed line shows a fitted normal distribution.  
+
+3. Use **“Reset Plot”** to clear the ensemble and try new parameter settings.
+
+Start with this model setup up
+
+- m=0
+- all rainfall characteristics at 0% change
+- run 50 sims
+- move the slider to examine the distribution
+
+This represents the forest's growth with *no dependency* on rainfall and *no changes* to rainfall charateristics
+
+::: promptbox
+
+#### Task 7 {-}
+
+Set the parameters and tell me a modeling story
+
+- Use the 'base' condition to compare your change scenario to
+- What are the implications to the your forest?
+
+<br><br><br><br><br>
+:::
+
+---
+
+### Part 6 — Reflection {-}
+
+::: promptbox
+
+#### Task 8 {-}
+
+The reality of future change in the PNW is increased large storm events and longer interstorms - with little to no impact to annual rainfall.
+
+This model uses a  **historical** annual mean \( \overline{R} \) to drive the drought stress. 
+
+- Why won't this show much change given the reality of PNWs future change?
+- How could you adjust (don't code it) this dependence into the model, what might you change?
+
+
+:::
+
+---
+
+### Learning Outcomes {-}
+
+By the end of this lab, you should be able to:
+
+- Explain how the logistic growth model represents biomass dynamics.  
+- Describe how rainfall variability affects intrinsic growth rate \(r_t\). 
+- Use simulation to evaluate resilience and collapse under drought stress.
+- Connect conceptual modeling with data-driven exploration in a Shiny environment.

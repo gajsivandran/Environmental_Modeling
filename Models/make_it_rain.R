@@ -1535,6 +1535,6 @@ server <- function(input, output, session) {
     sim_stats(vals, u)
   }, striped = TRUE, bordered = TRUE, spacing = "s", align = "l")
 
-  }
+}
 
 shinyApp(ui, server)
