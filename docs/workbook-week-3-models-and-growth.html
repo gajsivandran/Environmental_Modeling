@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2025-10-29" />
+<meta name="date" content="2025-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -469,6 +469,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#part-6-reflection"><i class="fa fa-check"></i>Part 6 — Reflection</a></li>
 <li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 </ul></li>
+<li class="chapter" data-level="E.6" data-path="prob-workbook.html"><a href="prob-workbook.html#in-class-activity-markov-chains-and-daily-energy-levels"><i class="fa fa-check"></i><b>E.6</b> In-Class Activity — Markov Chains and Daily Energy Levels</a>
+<ul>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#background"><i class="fa fa-check"></i>Background</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#the-states"><i class="fa fa-check"></i>The States</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#the-base-transition-matrix"><i class="fa fa-check"></i>The Base Transition Matrix</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-1-experience-the-model"><i class="fa fa-check"></i>Step 1 — Experience the Model</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-2-visualize-the-system"><i class="fa fa-check"></i>Step 2 — Visualize the System</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-3-personality-profiles"><i class="fa fa-check"></i>Step 3 — Personality Profiles</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-4-group-simulation"><i class="fa fa-check"></i>Step 4 — Group Simulation</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#step-5-reflect-and-connect"><i class="fa fa-check"></i>Step 5 — Reflect and Connect</a></li>
+<li class="chapter" data-level="" data-path="prob-workbook.html"><a href="prob-workbook.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="F" data-path="tutorial-getting-started-with-rstudio.html"><a href="tutorial-getting-started-with-rstudio.html"><i class="fa fa-check"></i><b>F</b> Tutorial: Getting Started with RStudio</a>
 <ul>
@@ -674,12 +686,12 @@ RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
 <span id="cb1-9"><a href="workbook-week-3-models-and-growth.html#cb1-9" tabindex="-1"></a><span class="co"># Check the first few rows</span></span>
 <span id="cb1-10"><a href="workbook-week-3-models-and-growth.html#cb1-10" tabindex="-1"></a><span class="fu">head</span>(co2_data)</span></code></pre></div>
 <pre><code>##   Year Month DecimalDate CO2_Monthly CO2_Deseason NumDays StdDev Uncertainty
-## 1 1958     3    1958.203      315.71       314.44      -1  -9.99       -0.99
-## 2 1958     4    1958.288      317.45       315.16      -1  -9.99       -0.99
-## 3 1958     5    1958.370      317.51       314.69      -1  -9.99       -0.99
-## 4 1958     6    1958.455      317.27       315.15      -1  -9.99       -0.99
-## 5 1958     7    1958.537      315.87       315.20      -1  -9.99       -0.99
-## 6 1958     8    1958.622      314.93       316.21      -1  -9.99       -0.99</code></pre>
+## 1 1958     3        1958       315.7        314.4      -1  -9.99       -0.99
+## 2 1958     4        1958       317.4        315.2      -1  -9.99       -0.99
+## 3 1958     5        1958       317.5        314.7      -1  -9.99       -0.99
+## 4 1958     6        1958       317.3        315.1      -1  -9.99       -0.99
+## 5 1958     7        1959       315.9        315.2      -1  -9.99       -0.99
+## 6 1958     8        1959       314.9        316.2      -1  -9.99       -0.99</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="workbook-week-3-models-and-growth.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-2"><a href="workbook-week-3-models-and-growth.html#cb3-2" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="workbook-week-3-models-and-growth.html#cb3-3" tabindex="-1"></a><span class="fu">ggplot</span>(co2_data, <span class="fu">aes</span>(<span class="at">x =</span> DecimalDate, <span class="at">y =</span> CO2_Monthly)) <span class="sc">+</span></span>

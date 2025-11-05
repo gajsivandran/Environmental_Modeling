@@ -727,3 +727,572 @@ By the end of this lab, you should be able to:
 - Describe how rainfall variability affects intrinsic growth rate \(r_t\). 
 - Use simulation to evaluate resilience and collapse under drought stress.
 - Connect conceptual modeling with data-driven exploration in a Shiny environment.
+
+
+\newpage
+
+## In-Class Activity — Markov Chains and Daily Energy Levels 
+
+In this activity, you’ll explore how a **Markov chain** models changes between different “states” of energy and focus throughout a typical day.
+
+You’ll experience the concept firsthand by simulating transitions between **Tired**, **Awake**, **Focused**, **Distracted**, and **Exhausted** states — just like how your real energy levels fluctuate during a long day of classes.
+
+---
+
+### Background {-}
+
+A **Markov chain** represents a system that moves between discrete states with certain probabilities.  
+At any time \( t \), the system is in one state, and at time \( t + 1 \), it transitions to another (or stays the same) based on a fixed **transition matrix**.
+
+\[
+\mathbf{x}_{t+1} = \mathbf{x}_t P
+\]
+
+Each row of the matrix represents the *current* state, and each column the *next* one.
+
+---
+
+### The States {-}
+
+| State | Description | Emoji |
+|:--:|:--|:--:|
+| 1 | **Tired** — not awake yet, regretting that all-nighter | 😴 |
+| 2 | **Awake** — caffeine kicking in, alert but not yet productive | 🙂 |
+| 3 | **Focused** — fully engaged and working effectively | 🔥 |
+| 4 | **Distracted** — scrolling, chatting, or daydreaming | 🙃 |
+| 5 | **Exhausted** — mentally checked out; can’t continue | 😩 |
+
+---
+
+### The Base Transition Matrix {-}
+
+Below is a sample transition matrix representing one hour in the life of a student:
+
+| From \ To | Tired | Awake | Focused | Distracted | Exhausted |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Tired** | 0.2 | 0.7 | 0.0 | 0.0 | 0.1 |
+| **Awake** | 0.0 | 0.3 | 0.5 | 0.1 | 0.1 |
+| **Focused** | 0.0 | 0.1 | 0.6 | 0.2 | 0.1 |
+| **Distracted** | 0.1 | 0.2 | 0.2 | 0.3 | 0.2 |
+| **Exhausted** | 0.5 | 0.0 | 0.0 | 0.0 | 0.5 |
+
+Each row sums to 1.  
+The values represent the probability of moving from one state to another in a single time step (one “hour” in this model).
+
+---
+
+### Step 1 — Experience the Model {-}
+
+1. Each student starts as **Tired**.  
+2. At each simulated hour, roll a **10-sided die ** or use a random-number generator.  
+3. Use the current row of the matrix to determine your new state.  
+Example:  
+
+   - A roll of 1-3 means you stay *Tired* (30% chance).  
+   - A roll of 4-6 means you go from *Tired → Awake* (60% chance). 
+   - A roll of 10 means you become *Exhausted* (10% chance).  
+   
+4. What state are you now in? Record that state, move to that state's row and repeat for the next hour
+5. Repeat for 100 hours
+6. In the googlesheet record the number of hours you spent in each state
+
+---
+
+### Step 2 — Visualize the System {-}
+
+
+
+::: promptbox
+#### **Task 1** {-}
+- Which states dominate after several rounds?  
+- Does the class settle into a stable distribution (a “steady energy mix”)?  
+- What state seems “absorbing” — once you’re there, you rarely leave?
+:::
+
+---
+
+### Step 3 — Personality Profiles {-}
+
+Different people move through their day with different energy dynamics.  
+Below are **three alternate transition matrices**, each representing a “personality type.”
+
+---
+
+#### 🦸 Over-Caffeinated Optimist {-}
+
+| From \ To | Tired | Awake | Focused | Distracted | Exhausted |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Tired** | 0.1 | 0.8 | 0.1 | 0.0 | 0.0 |
+| **Awake** | 0.0 | 0.2 | 0.6 | 0.1 | 0.1 |
+| **Focused** | 0.0 | 0.1 | 0.6 | 0.2 | 0.1 |
+| **Distracted** | 0.0 | 0.1 | 0.3 | 0.4 | 0.2 |
+| **Exhausted** | 0.5 | 0.1 | 0.0 | 0.0 | 0.4 |
+
+
+---
+
+#### 🧘 Steady Strategist {-}
+
+| From \ To | Tired | Awake | Focused | Distracted | Exhausted |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Tired | 0.30 | 0.60 | 0.00 | 0.00 | 0.10 |
+| Awake | 0.00 | 0.50 | 0.30 | 0.10 | 0.10 |
+| Focused | 0.00 | 0.10 | 0.70 | 0.10 | 0.10 |
+| Distracted | 0.10 | 0.30 | 0.20 | 0.30 | 0.10 |
+| Exhausted | 0.30 | 0.20 | 0.00 | 0.00 | 0.50 |
+
+---
+
+#### 🦥 Procrastinating Dreamer {-}
+
+| From \ To | Tired | Awake | Focused | Distracted | Exhausted |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Tired | 0.40 | 0.40 | 0.00 | 0.10 | 0.10 |
+| Awake | 0.10 | 0.30 | 0.10 | 0.40 | 0.10 |
+| Focused | 0.00 | 0.10 | 0.40 | 0.30 | 0.20 |
+| Distracted | 0.10 | 0.10 | 0.10 | 0.50 | 0.20 |
+| Exhausted | 0.50 | 0.00 | 0.00 | 0.00 | 0.50 |
+
+---
+
+### Step 4 — Group Simulation {-}
+
+1. Divide into groups
+   - Group 1 = Over-Caffeinated Optimists  
+   - Group 2 = Steady Strategists  
+   - Group 3 = Procrastinating Dreamers  
+2. Run your simulations for 20 hours each recording how many hours your spend in each state. 
+
+::: promptbox
+#### **Task 3** {-}
+- Which group had the most “focused” time? 
+- With the data you now have - can you explain why your distribution of states looks the way it does?
+
+:::
+
+---
+
+### Step 5 — Reflect and Connect {-}
+
+::: promptbox
+#### **Task 4** {-}
+1. What does the stationary distribution represent in this context?  
+2. How can personality differences (modeled as probabilities) explain variation in real-world behavior?  
+3. How is this similar to populations in nature, where different species or individuals have distinct life-history strategies?
+4. How could you extend this to an environmental problem?
+
+:::
+
+---
+
+### Learning Outcomes {-}
+
+By the end of this activity, you should be able to:
+
+- Explain how a **Markov chain** models transitions between behavioral or energetic states.  
+- Interpret how **transition probabilities** affect system stability and outcomes.  
+- Recognize that different “personalities” (or ecological strategies) can be represented by different transition matrices.  
+- Relate the **stationary distribution** to long-term patterns in both human and ecological systems.
+
+
+
+
+
+
+
+<!-- ## Lab 6 — Modeling Mosquito Population Dynamics with Markov Chains -->
+
+<!-- In this lab, you’ll explore how the **life cycle of a mosquito** can be represented using a **Markov chain model** — a framework that describes how populations transition between discrete life stages with certain probabilities. -->
+
+<!-- You’ll use an interactive Shiny app to: -->
+
+<!-- 1. Examine how the **transition matrix** encodes daily probabilities of survival and development.   -->
+<!-- 2. Simulate changes in mosquito populations across **egg, larva, pupa, and adult** stages.   -->
+<!-- 3. Explore how **mortality** and **reproduction rates** affect population stability and persistence.   -->
+<!-- 4. Investigate how stochastic (random) variation influences population outcomes. -->
+
+<!-- --- -->
+
+<!-- ### Background: Markov Chains and Life Cycles {-} -->
+
+<!-- Many organisms pass through a series of life stages, each with characteristic survival and transition probabilities.   -->
+<!-- A **Markov chain** models these transitions as probabilistic changes from one stage to another. -->
+
+<!-- Let   -->
+
+<!-- \[ -->
+<!-- \mathbf{x}_t = [x_{E,t}, x_{L,t}, x_{P,t}, x_{A,t}, x_{D,t}] -->
+<!-- \] -->
+
+<!-- represent the number of individuals in each stage — **Egg, Larva, Pupa, Adult, Dead** — at time \(t\).   -->
+<!-- Then, the population evolves according to: -->
+
+<!-- \[ -->
+<!-- \mathbf{x}_{t+1} = \mathbf{x}_t P -->
+<!-- \] -->
+
+<!-- where \(P\) is the **transition matrix**: -->
+
+<!-- \[ -->
+<!-- P = -->
+<!-- \begin{bmatrix} -->
+<!-- p_{EE} & p_{EL} & p_{EP} & p_{EA} & p_{ED} \\ -->
+<!-- p_{LE} & p_{LL} & p_{LP} & p_{LA} & p_{LD} \\ -->
+<!-- p_{PE} & p_{PL} & p_{PP} & p_{PA} & p_{PD} \\ -->
+<!-- p_{AE} & p_{AL} & p_{AP} & p_{AA} & p_{AD} \\ -->
+<!-- p_{DE} & p_{DL} & p_{DP} & p_{DA} & p_{DD} -->
+<!-- \end{bmatrix} -->
+<!-- \] -->
+
+<!-- Each row represents the *current stage*, and each column represents the *next stage* on the following day.   -->
+<!-- For example, \(p_{LP}\) is the probability that a larva becomes a pupa in one day. -->
+
+<!-- --- -->
+
+<!-- ### Life Stages in This Model {-} -->
+
+<!-- | State | Description | Typical Duration | Color | -->
+<!-- |:------:|:-------------|:----------------:|:------:| -->
+<!-- | 1 | **Egg** | 1–3 days | Light blue | -->
+<!-- | 2 | **Larva** | 5–10 days | Orange | -->
+<!-- | 3 | **Pupa** | 1–2 days | Red | -->
+<!-- | 4 | **Adult** | 1–3 weeks | Dark red | -->
+<!-- | 5 | **Dead** | Absorbing state | Gray | -->
+
+<!-- The **Dead** state is *absorbing* — once entered, individuals remain there.   -->
+<!-- The **Adult** stage contributes new eggs to the population through the **reproduction rate** parameter. -->
+
+<!-- --- -->
+
+<!-- ### Conceptual Exploration: Before Using the App {-} -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 1** {-} -->
+
+<!-- Reflect and discuss: -->
+
+<!-- 1. What biological processes determine how mosquitoes move between life stages?   -->
+<!-- 2. Why might daily transition probabilities differ between stages (e.g., larval crowding, temperature effects)?   -->
+<!-- 3. Why do we include a *“Dead”* state in the model — and what does it mean mathematically for it to be *absorbing*?   -->
+<!-- 4. How does reproduction act as an *external input* rather than a transition? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 1 — Exploring the Transition Matrix {-} -->
+
+<!-- 1. Open the **“Overview”** tab and read through the background.   -->
+<!--    - Each row of the transition matrix must sum to 1.   -->
+<!--    - The probabilities represent development, survival, and mortality. -->
+<!-- 2. In the **left panel**, click on the table cells to edit probabilities (in 0.05 increments).   -->
+<!--    - Rows that do not sum to 1 will show a warning message. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 2** {-} -->
+
+<!-- - What does a larger diagonal entry \(p_{ii}\) imply about a stage’s stability (e.g., larvae remaining larvae)?   -->
+<!-- - How does increasing \(p_{12}\) (Egg → Larva) change the speed of development?   -->
+<!-- - What happens if mortality (probability to Dead) increases in any row? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 2 — Running the Simulation {-} -->
+
+<!-- 1. Keep the **initial population** at 100 individuals.   -->
+<!-- 2. Set the **simulation length** to 60 days.   -->
+<!-- 3. Keep **mortality** at 0.01 and **reproduction rate** at 0.5 eggs/adult/day.   -->
+<!-- 4. Click **“Run Simulation”** and watch the population change across stages. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 3** {-} -->
+
+<!-- - Which stage dominates early in the simulation?   -->
+<!-- - Do you observe steady growth, decline, or oscillations in total population?   -->
+<!-- - Why does the adult population not grow indefinitely, even with reproduction? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 3 — Varying Mortality and Reproduction {-} -->
+
+<!-- Now explore how environmental factors alter population outcomes. -->
+
+<!-- 1. Increase **mortality** to 0.05 and rerun the model.   -->
+<!--    - Observe how quickly the population declines.   -->
+<!-- 2. Set **mortality = 0.01** but increase **reproduction rate = 1.0**.   -->
+<!--    - Compare total population and stage composition over time. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 4** {-} -->
+
+<!-- - How sensitive is the total population size to changes in mortality vs. reproduction?   -->
+<!-- - Which life stage’s survival appears most critical for population persistence?   -->
+<!-- - What environmental scenarios might correspond to high or low mortality? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 4 — Understanding Stochasticity {-} -->
+
+<!-- This model uses **multinomial sampling** to represent daily survival and transitions.   -->
+<!-- That means even with the same parameters, each run can produce slightly different results. -->
+
+<!-- 1. Run the simulation several times with identical settings.   -->
+<!-- 2. Observe how much variation appears in the trajectories. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 5** {-} -->
+
+<!-- - What does this variability represent biologically?   -->
+<!-- - How might random variation lead to different population fates in small mosquito populations?   -->
+<!-- - Why might stochastic models better reflect real-world ecological dynamics than deterministic ones? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 5 — Experimenting with Development Rates {-} -->
+
+<!-- Try altering the transition probabilities between life stages: -->
+
+<!-- 1. Increase \(p_{EL}\), \(p_{LP}\), and \(p_{PA}\) to simulate **warmer conditions** (faster development).   -->
+<!-- 2. Decrease these same probabilities to mimic **cooler conditions**.   -->
+<!-- 3. Compare total population trends under both scenarios. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 6** {-} -->
+
+<!-- - How does temperature (through development rate) affect the timing and amplitude of population peaks?   -->
+<!-- - Why might warmer conditions lead to more overlapping generations? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 6 — Synthesis and Reflection {-} -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 7** {-} -->
+
+<!-- - What does the long-term population trend look like — stable, growing, or declining?   -->
+<!-- - Which parameters (mortality, reproduction, or stage durations) most strongly control equilibrium size?   -->
+<!-- - How could this type of model be extended to include **disease transmission**, **predation**, or **control interventions**? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Learning Outcomes {-} -->
+
+<!-- By the end of this lab, you should be able to: -->
+
+<!-- - Describe how a **Markov chain** represents biological life stages.   -->
+<!-- - Interpret the **transition matrix** as a set of daily probabilities of survival and development.   -->
+<!-- - Explain how **mortality** and **reproduction** affect mosquito population dynamics.   -->
+<!-- - Recognize how **stochasticity** influences ecological outcomes.   -->
+<!-- - Apply matrix-based reasoning to analyze complex population processes. -->
+
+
+
+<!-- ## Lab 7 - Forest Disturbance Dynamics and Monte Carlo Simulation -->
+
+<!-- In this lab, you’ll explore how **disturbance and regrowth** interact to shape long-term forest dynamics.   -->
+<!-- Using an interactive Shiny app, you will simulate a forest where each patch grows logistically until a **disturbance event** (e.g., fire) resets it to a low biomass value.   -->
+
+<!-- You’ll use this app to: -->
+
+<!-- 1. Examine the **logistic growth process** in a spatial grid.   -->
+<!-- 2. Investigate how **disturbance frequency** affects total forest biomass.   -->
+<!-- 3. Explore **age structure** as an emergent property of disturbance and regrowth.   -->
+<!-- 4. Use **Monte Carlo simulations** to capture stochastic variability in forest trajectories.   -->
+
+<!-- --- -->
+
+<!-- ### Background: Logistic Growth and Disturbance {-} -->
+
+<!-- At the patch level, forest biomass follows a **logistic growth model**: -->
+
+<!-- \[ -->
+<!-- B(t) = \frac{K}{1 + A e^{-r t}} -->
+<!-- \] -->
+
+<!-- with differential form: -->
+
+<!-- \[ -->
+<!-- \frac{dB}{dt} = rB\left(1 - \frac{B}{K}\right) -->
+<!-- \] -->
+
+<!-- Here: -->
+
+<!-- - \(B(t)\): biomass at time \(t\)   -->
+<!-- - \(K\): carrying capacity (maximum sustainable biomass)   -->
+<!-- - \(r\): intrinsic growth rate   -->
+<!-- - \(A = \frac{K - B_0}{B_0}\): constant determined by initial biomass \(B_0\) -->
+
+<!-- Disturbances are modeled as **random events** that reset biomass to a small fraction of \(K\).   -->
+<!-- Each cell (or patch) in the forest grid has a probability \(p_{disturb}\) of being disturbed each year. -->
+
+<!-- \[ -->
+<!-- D_{i,j}(t) \sim \text{Bernoulli}(p_{disturb}) -->
+<!-- \] -->
+
+<!-- When a disturbance occurs, biomass \(B_{i,j}\) is reset to \(B_0 = fK\), where \(f\) is a user-defined fraction. -->
+
+<!-- --- -->
+
+<!-- ### Model Overview {-} -->
+
+<!-- At the landscape scale, total forest biomass is the sum of all patches: -->
+<!-- \[ -->
+<!-- B_{total}(t) = \sum_{i,j} B_{i,j}(t) -->
+<!-- \] -->
+
+<!-- As the model runs over many years: -->
+
+<!-- - Individual cells grow according to the logistic equation.   -->
+<!-- - Disturbances occur randomly and cause local biomass loss.   -->
+<!-- - The forest continually regrows and burns, reaching a **dynamic equilibrium**. -->
+
+<!-- By running the model multiple times (Monte Carlo replicates), we can estimate both **expected biomass trajectories** and **variability** among runs: -->
+
+<!-- \[ -->
+<!-- E[B(t)] \approx \frac{1}{N} \sum_{i=1}^{N} B_i(t) -->
+<!-- \] -->
+
+<!-- --- -->
+
+<!-- ### Conceptual Exploration: Before Using the App {-} -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 1** {-} -->
+
+<!-- Discuss the following with your group: -->
+
+<!-- 1. What types of real-world disturbances might this model represent?   -->
+<!-- 2. Why do forests tend to recover after disturbance instead of collapsing entirely?   -->
+<!-- 3. What assumptions of this model might not hold true in nature (e.g., spatial independence, fixed probabilities)?   -->
+<!-- 4. How might the time since last disturbance (age) influence biomass and fire risk? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 1 — Exploring Logistic Growth at the Patch Scale {-} -->
+
+<!-- 1. Set disturbance probability to **0** to remove stochastic effects.   -->
+<!-- 2. Choose reasonable values for: -->
+<!--    - \(r = 0.2\)   -->
+<!--    - \(K = 100\)   -->
+<!--    - Grid size \(= 10 \times 10\)   -->
+<!-- 3. Run the simulation for **100 years**. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 2** {-} -->
+
+<!-- - Describe how biomass changes over time.   -->
+<!-- - What shape does the total biomass curve take, and why?   -->
+<!-- - How does the logistic model’s upper limit \(K\) control long-term behavior? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 2 — Introducing Disturbance {-} -->
+
+<!-- 1. Set **disturbance probability = 0.05**.   -->
+<!-- 2. Observe the **Grid View** as the simulation runs — patches of biomass reset randomly each year.   -->
+<!-- 3. Examine the **Age Distribution** tab to see how time-since-disturbance changes over time. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 3** {-} -->
+
+<!-- - What pattern emerges in the age distribution?   -->
+<!-- - Why does the distribution often have many young patches and few very old ones?   -->
+<!-- - How does this relate to the disturbance rate \(p_{disturb}\)? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 3 — Adjusting Regrowth After Fire {-} -->
+
+<!-- Use the slider for **\(B_0\) as a fraction of K** to adjust how much biomass remains after disturbance. -->
+
+<!-- 1. Compare runs where \(B_0 / K = 0.05\) versus \(0.2\).   -->
+<!-- 2. Keep all other parameters fixed.   -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 4** {-} -->
+
+<!-- - How does changing post-disturbance biomass affect total forest recovery?   -->
+<!-- - What happens to average biomass at equilibrium?   -->
+<!-- - Which scenario represents a more resilient forest, and why? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 4 — Total Biomass Over Time {-} -->
+
+<!-- 1. Open the **“Total Biomass”** tab.   -->
+<!-- 2. Run the simulation for **200–250 years** to observe how biomass fluctuates over long time spans.   -->
+<!-- 3. Note the emergence of a stable average but variable trajectory. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 5** {-} -->
+
+<!-- - Describe the long-term pattern of total biomass.   -->
+<!-- - Does the system reach a steady state, oscillate, or remain irregular?   -->
+<!-- - What ecological factors could produce similar long-term dynamics? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 5 — Monte Carlo Simulations {-} -->
+
+<!-- 1. Navigate to the **“Monte Carlo Simulation”** tab.   -->
+<!-- 2. Set **replicates = 20** and click **“Run Monte Carlo Simulation.”**   -->
+<!-- 3. Observe the mean curve (dark green) and the shaded uncertainty region. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 6** {-} -->
+
+<!-- - What does the shaded area represent?   -->
+<!-- - Why do repeated random simulations produce slightly different biomass trajectories?   -->
+<!-- - How does the number of replicates affect the smoothness and reliability of the mean estimate? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 6 — Exploring Disturbance Frequency {-} -->
+
+<!-- 1. Try different disturbance probabilities: **0.01**, **0.05**, **0.1**.   -->
+<!-- 2. Keep all other parameters constant.   -->
+<!-- 3. Compare total biomass and variability across runs. -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 7** {-} -->
+
+<!-- - How does increasing disturbance frequency change mean biomass and age structure?   -->
+<!-- - Does the forest ever fully recover between disturbances?   -->
+<!-- - What tradeoff emerges between disturbance frequency and average biomass? -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Part 7 — Reflection and Application {-} -->
+
+<!-- ::: promptbox -->
+<!-- #### **Task 8** {-} -->
+
+<!-- - How does this model help explain the balance between disturbance and recovery in forest ecosystems?   -->
+<!-- - In what ways is this model *too simple* for real forests?   -->
+<!-- - Suggest one modification that would make the model more realistic (e.g., spatial fire spread, variable \(r\), or changing climate effects).   -->
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ### Learning Outcomes {-} -->
+
+<!-- By the end of this lab, you should be able to: -->
+
+<!-- - Explain how **logistic growth** and **disturbance** interact to shape forest dynamics.   -->
+<!-- - Interpret **spatial and temporal variability** in biomass and age structure.   -->
+<!-- - Use **Monte Carlo methods** to quantify uncertainty in ecological simulations.   -->
+<!-- - Discuss the balance between **resilience** and **disturbance frequency** in sustaining forests. -->
+
+
