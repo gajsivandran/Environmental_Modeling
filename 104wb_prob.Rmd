@@ -1092,207 +1092,207 @@ By the end of this lab, you should be able to:
 
 
 
-## Lab 7 - Forest Disturbance Dynamics and Monte Carlo Simulation
+<!-- ## Lab 7 - Forest Disturbance Dynamics and Monte Carlo Simulation -->
 
-In this lab, you’ll explore how **disturbance and regrowth** interact to shape long-term forest dynamics.
-Using an interactive Shiny app, you will simulate a forest where each patch grows logistically until a **disturbance event** (e.g., fire) resets it to a low biomass value.
+<!-- In this lab, you’ll explore how **disturbance and regrowth** interact to shape long-term forest dynamics. -->
+<!-- Using an interactive Shiny app, you will simulate a forest where each patch grows logistically until a **disturbance event** (e.g., fire) resets it to a low biomass value. -->
 
-You’ll use this app to:
+<!-- You’ll use this app to: -->
 
-1. Examine the **logistic growth process** in a spatial grid.
-2. Investigate how **disturbance frequency** affects total forest biomass.
-3. Explore **age structure** as an emergent property of disturbance and regrowth.
-4. Use **Monte Carlo simulations** to capture stochastic variability in forest trajectories.
+<!-- 1. Examine the **logistic growth process** in a spatial grid. -->
+<!-- 2. Investigate how **disturbance frequency** affects total forest biomass. -->
+<!-- 3. Explore **age structure** as an emergent property of disturbance and regrowth. -->
+<!-- 4. Use **Monte Carlo simulations** to capture stochastic variability in forest trajectories. -->
 
----
+<!-- --- -->
 
-### Background: Logistic Growth and Disturbance {-}
+<!-- ### Background: Logistic Growth and Disturbance {-} -->
 
-At the patch level, forest biomass follows a **logistic growth model**:
+<!-- At the patch level, forest biomass follows a **logistic growth model**: -->
 
-\[
-B(t) = \frac{K}{1 + A e^{-r t}}
-\]
+<!-- \[ -->
+<!-- B(t) = \frac{K}{1 + A e^{-r t}} -->
+<!-- \] -->
 
-with differential form:
+<!-- with differential form: -->
 
-\[
-\frac{dB}{dt} = rB\left(1 - \frac{B}{K}\right)
-\]
+<!-- \[ -->
+<!-- \frac{dB}{dt} = rB\left(1 - \frac{B}{K}\right) -->
+<!-- \] -->
 
-Here:
+<!-- Here: -->
 
-- \(B(t)\): biomass at time \(t\)
-- \(K\): carrying capacity (maximum sustainable biomass)
-- \(r\): intrinsic growth rate
-- \(A = \frac{K - B_0}{B_0}\): constant determined by initial biomass \(B_0\)
+<!-- - \(B(t)\): biomass at time \(t\) -->
+<!-- - \(K\): carrying capacity (maximum sustainable biomass) -->
+<!-- - \(r\): intrinsic growth rate -->
+<!-- - \(A = \frac{K - B_0}{B_0}\): constant determined by initial biomass \(B_0\) -->
 
-Disturbances are modeled as **random events** that reset biomass to a small fraction of \(K\).
-Each cell (or patch) in the forest grid has a probability \(p_{disturb}\) of being disturbed each year.
+<!-- Disturbances are modeled as **random events** that reset biomass to a small fraction of \(K\). -->
+<!-- Each cell (or patch) in the forest grid has a probability \(p_{disturb}\) of being disturbed each year. -->
 
-\[
-D_{i,j}(t) \sim \text{Bernoulli}(p_{disturb})
-\]
+<!-- \[ -->
+<!-- D_{i,j}(t) \sim \text{Bernoulli}(p_{disturb}) -->
+<!-- \] -->
 
-When a disturbance occurs, biomass \(B_{i,j}\) is reset to \(B_0 = fK\), where \(f\) is a user-defined fraction.
+<!-- When a disturbance occurs, biomass \(B_{i,j}\) is reset to \(B_0 = fK\), where \(f\) is a user-defined fraction. -->
 
----
+<!-- --- -->
 
-### Model Overview {-}
+<!-- ### Model Overview {-} -->
 
-At the landscape scale, total forest biomass is the sum of all patches:
-\[
-B_{total}(t) = \sum_{i,j} B_{i,j}(t)
-\]
+<!-- At the landscape scale, total forest biomass is the sum of all patches: -->
+<!-- \[ -->
+<!-- B_{total}(t) = \sum_{i,j} B_{i,j}(t) -->
+<!-- \] -->
 
-As the model runs over many years:
+<!-- As the model runs over many years: -->
 
-- Individual cells grow according to the logistic equation.
-- Disturbances occur randomly and cause local biomass loss.
-- The forest continually regrows and burns, reaching a **dynamic equilibrium**.
+<!-- - Individual cells grow according to the logistic equation. -->
+<!-- - Disturbances occur randomly and cause local biomass loss. -->
+<!-- - The forest continually regrows and burns, reaching a **dynamic equilibrium**. -->
 
-By running the model multiple times (Monte Carlo replicates), we can estimate both **expected biomass trajectories** and **variability** among runs:
+<!-- By running the model multiple times (Monte Carlo replicates), we can estimate both **expected biomass trajectories** and **variability** among runs: -->
 
-\[
-E[B(t)] \approx \frac{1}{N} \sum_{i=1}^{N} B_i(t)
-\]
+<!-- \[ -->
+<!-- E[B(t)] \approx \frac{1}{N} \sum_{i=1}^{N} B_i(t) -->
+<!-- \] -->
 
----
+<!-- --- -->
 
-### Conceptual Exploration: Before Using the App {-}
+<!-- ### Conceptual Exploration: Before Using the App {-} -->
 
-::: promptbox
-#### **Task 1** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 1** {-} -->
 
-Discuss the following with your group:
+<!-- Discuss the following with your group: -->
 
-1. What types of real-world disturbances might this model represent?
-2. Why do forests tend to recover after disturbance instead of collapsing entirely?
-3. What assumptions of this model might not hold true in nature (e.g., spatial independence, fixed probabilities)?
-4. How might the time since last disturbance (age) influence biomass and fire risk?
-:::
+<!-- 1. What types of real-world disturbances might this model represent? -->
+<!-- 2. Why do forests tend to recover after disturbance instead of collapsing entirely? -->
+<!-- 3. What assumptions of this model might not hold true in nature (e.g., spatial independence, fixed probabilities)? -->
+<!-- 4. How might the time since last disturbance (age) influence biomass and fire risk? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 1 — Exploring Logistic Growth at the Patch Scale {-}
+<!-- ### Part 1 — Exploring Logistic Growth at the Patch Scale {-} -->
 
-1. Set disturbance probability to **0** to remove stochastic effects.
-2. Choose reasonable values for:
-   - \(r = 0.2\)
-   - \(K = 100\)
-   - Grid size \(= 10 \times 10\)
-3. Run the simulation for **100 years**.
+<!-- 1. Set disturbance probability to **0** to remove stochastic effects. -->
+<!-- 2. Choose reasonable values for: -->
+<!--    - \(r = 0.2\) -->
+<!--    - \(K = 100\) -->
+<!--    - Grid size \(= 10 \times 10\) -->
+<!-- 3. Run the simulation for **100 years**. -->
 
-::: promptbox
-#### **Task 2** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 2** {-} -->
 
-- Describe how biomass changes over time.
-- What shape does the total biomass curve take, and why?
-- How does the logistic model’s upper limit \(K\) control long-term behavior?
-:::
+<!-- - Describe how biomass changes over time. -->
+<!-- - What shape does the total biomass curve take, and why? -->
+<!-- - How does the logistic model’s upper limit \(K\) control long-term behavior? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 2 — Introducing Disturbance {-}
+<!-- ### Part 2 — Introducing Disturbance {-} -->
 
-1. Set **disturbance probability = 0.05**.
-2. Observe the **Grid View** as the simulation runs — patches of biomass reset randomly each year.
-3. Examine the **Age Distribution** tab to see how time-since-disturbance changes over time.
+<!-- 1. Set **disturbance probability = 0.05**. -->
+<!-- 2. Observe the **Grid View** as the simulation runs — patches of biomass reset randomly each year. -->
+<!-- 3. Examine the **Age Distribution** tab to see how time-since-disturbance changes over time. -->
 
-::: promptbox
-#### **Task 3** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 3** {-} -->
 
-- What pattern emerges in the age distribution?
-- Why does the distribution often have many young patches and few very old ones?
-- How does this relate to the disturbance rate \(p_{disturb}\)?
-:::
+<!-- - What pattern emerges in the age distribution? -->
+<!-- - Why does the distribution often have many young patches and few very old ones? -->
+<!-- - How does this relate to the disturbance rate \(p_{disturb}\)? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 3 — Adjusting Regrowth After Fire {-}
+<!-- ### Part 3 — Adjusting Regrowth After Fire {-} -->
 
-Use the slider for **\(B_0\) as a fraction of K** to adjust how much biomass remains after disturbance.
+<!-- Use the slider for **\(B_0\) as a fraction of K** to adjust how much biomass remains after disturbance. -->
 
-1. Compare runs where \(B_0 / K = 0.05\) versus \(0.2\).
-2. Keep all other parameters fixed.
+<!-- 1. Compare runs where \(B_0 / K = 0.05\) versus \(0.2\). -->
+<!-- 2. Keep all other parameters fixed. -->
 
-::: promptbox
-#### **Task 4** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 4** {-} -->
 
-- How does changing post-disturbance biomass affect total forest recovery?
-- What happens to average biomass at equilibrium?
-- Which scenario represents a more resilient forest, and why?
-:::
+<!-- - How does changing post-disturbance biomass affect total forest recovery? -->
+<!-- - What happens to average biomass at equilibrium? -->
+<!-- - Which scenario represents a more resilient forest, and why? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 4 — Total Biomass Over Time {-}
+<!-- ### Part 4 — Total Biomass Over Time {-} -->
 
-1. Open the **“Total Biomass”** tab.
-2. Run the simulation for **200–250 years** to observe how biomass fluctuates over long time spans.
-3. Note the emergence of a stable average but variable trajectory.
+<!-- 1. Open the **“Total Biomass”** tab. -->
+<!-- 2. Run the simulation for **200–250 years** to observe how biomass fluctuates over long time spans. -->
+<!-- 3. Note the emergence of a stable average but variable trajectory. -->
 
-::: promptbox
-#### **Task 5** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 5** {-} -->
 
-- Describe the long-term pattern of total biomass.
-- Does the system reach a steady state, oscillate, or remain irregular?
-- What ecological factors could produce similar long-term dynamics?
-:::
+<!-- - Describe the long-term pattern of total biomass. -->
+<!-- - Does the system reach a steady state, oscillate, or remain irregular? -->
+<!-- - What ecological factors could produce similar long-term dynamics? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 5 — Monte Carlo Simulations {-}
+<!-- ### Part 5 — Monte Carlo Simulations {-} -->
 
-1. Navigate to the **“Monte Carlo Simulation”** tab.
-2. Set **replicates = 20** and click **“Run Monte Carlo Simulation.”**
-3. Observe the mean curve (dark green) and the shaded uncertainty region.
+<!-- 1. Navigate to the **“Monte Carlo Simulation”** tab. -->
+<!-- 2. Set **replicates = 20** and click **“Run Monte Carlo Simulation.”** -->
+<!-- 3. Observe the mean curve (dark green) and the shaded uncertainty region. -->
 
-::: promptbox
-#### **Task 6** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 6** {-} -->
 
-- What does the shaded area represent?
-- Why do repeated random simulations produce slightly different biomass trajectories?
-- How does the number of replicates affect the smoothness and reliability of the mean estimate?
-:::
+<!-- - What does the shaded area represent? -->
+<!-- - Why do repeated random simulations produce slightly different biomass trajectories? -->
+<!-- - How does the number of replicates affect the smoothness and reliability of the mean estimate? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 6 — Exploring Disturbance Frequency {-}
+<!-- ### Part 6 — Exploring Disturbance Frequency {-} -->
 
-1. Try different disturbance probabilities: **0.01**, **0.05**, **0.1**.
-2. Keep all other parameters constant.
-3. Compare total biomass and variability across runs.
+<!-- 1. Try different disturbance probabilities: **0.01**, **0.05**, **0.1**. -->
+<!-- 2. Keep all other parameters constant. -->
+<!-- 3. Compare total biomass and variability across runs. -->
 
-::: promptbox
-#### **Task 7** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 7** {-} -->
 
-- How does increasing disturbance frequency change mean biomass and age structure?
-- Does the forest ever fully recover between disturbances?
-- What tradeoff emerges between disturbance frequency and average biomass?
-:::
+<!-- - How does increasing disturbance frequency change mean biomass and age structure? -->
+<!-- - Does the forest ever fully recover between disturbances? -->
+<!-- - What tradeoff emerges between disturbance frequency and average biomass? -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Part 7 — Reflection and Application {-}
+<!-- ### Part 7 — Reflection and Application {-} -->
 
-::: promptbox
-#### **Task 8** {-}
+<!-- ::: promptbox -->
+<!-- #### **Task 8** {-} -->
 
-- How does this model help explain the balance between disturbance and recovery in forest ecosystems?
-- In what ways is this model *too simple* for real forests?
-- Suggest one modification that would make the model more realistic (e.g., spatial fire spread, variable \(r\), or changing climate effects).
-:::
+<!-- - How does this model help explain the balance between disturbance and recovery in forest ecosystems? -->
+<!-- - In what ways is this model *too simple* for real forests? -->
+<!-- - Suggest one modification that would make the model more realistic (e.g., spatial fire spread, variable \(r\), or changing climate effects). -->
+<!-- ::: -->
 
----
+<!-- --- -->
 
-### Learning Outcomes {-}
+<!-- ### Learning Outcomes {-} -->
 
-By the end of this lab, you should be able to:
+<!-- By the end of this lab, you should be able to: -->
 
-- Explain how **logistic growth** and **disturbance** interact to shape forest dynamics.
-- Interpret **spatial and temporal variability** in biomass and age structure.
-- Use **Monte Carlo methods** to quantify uncertainty in ecological simulations.
-- Discuss the balance between **resilience** and **disturbance frequency** in sustaining forests.
+<!-- - Explain how **logistic growth** and **disturbance** interact to shape forest dynamics. -->
+<!-- - Interpret **spatial and temporal variability** in biomass and age structure. -->
+<!-- - Use **Monte Carlo methods** to quantify uncertainty in ecological simulations. -->
+<!-- - Discuss the balance between **resilience** and **disturbance frequency** in sustaining forests. -->
 
 
