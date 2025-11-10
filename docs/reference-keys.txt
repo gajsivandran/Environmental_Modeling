@@ -197,6 +197,8 @@ lab-4-guided-activity-exploring-rainfall-variability-and-simulation
 exploring-the-data
 lab-5---coupling-models
 in-class-activity-markov-chains-and-daily-energy-levels
+lab-6-modeling-mosquito-population-dynamics-with-markov-chains
+lab-7---forest-disturbance-dynamics-and-monte-carlo-simulation
 tutorial-getting-started-with-rstudio
 what-is-rstudio
 the-rstudio-interface
